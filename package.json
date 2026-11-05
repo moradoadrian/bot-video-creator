@@ -1,0 +1,41 @@
+{
+  "name": "fiestas-bot",
+  "version": "1.0.0",
+  "description": "Generador de videos de TikTok sobre fiestas infantiles (guion IA + voz IA + Remotion)",
+  "scripts": {
+    "studio": "remotion studio src/index.ts",
+    "guion": "tsx --env-file-if-exists=.env scripts/guion.ts",
+    "guion:codigo": "tsx --env-file-if-exists=.env scripts/guion.ts --canal=codigo",
+    "voz": "tsx --env-file-if-exists=.env scripts/voz.ts",
+    "render": "tsx --env-file-if-exists=.env scripts/render.ts",
+    "preview": "tsx --env-file-if-exists=.env scripts/render.ts ejemplo --sin-voz",
+    "preview:codigo": "tsx --env-file-if-exists=.env scripts/render.ts ejemplo-codigo --sin-voz",
+    "todo": "tsx --env-file-if-exists=.env scripts/todo.ts",
+    "typecheck": "tsc -p ."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@fontsource/baloo-2": "^5.3.0",
+    "@fontsource/bricolage-grotesque": "^5.3.0",
+    "@fontsource/jetbrains-mono": "^5.3.0",
+    "@fontsource/nunito": "^5.3.0",
+    "@remotion/bundler": "^4.0.540",
+    "@remotion/cli": "^4.0.540",
+    "@remotion/media-utils": "^4.0.540",
+    "@remotion/renderer": "^4.0.540",
+    "music-metadata": "^12.3.4",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "remotion": "^4.0.540",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.6",
+    "@types/react": "^18.3.31",
+    "tsx": "^4.23.15",
+    "typescript": "^5.9.3"
+  },
+  "private": true
+}

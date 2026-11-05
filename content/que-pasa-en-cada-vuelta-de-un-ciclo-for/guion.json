@@ -1,0 +1,45 @@
+{
+  "canal": "codigo",
+  "lenguaje": "javascript",
+  "slug": "que-pasa-en-cada-vuelta-de-un-ciclo-for",
+  "tema": "Qué pasa en cada vuelta de un ciclo for",
+  "gancho": {
+    "titulo": "Un for, vuelta por vuelta",
+    "narracion": "Vamos a ver un ciclo for como lo ve la computadora, vuelta por vuelta. Cuando lo veas así, ya no te va a confundir."
+  },
+  "escenas": [
+    {
+      "titulo": "Primero, el inicio",
+      "narracion": "Antes de repetir nada, la computadora crea i y le da el valor cero. Esta parte corre una sola vez. Es como poner el marcador en cero antes de empezar el partido.",
+      "codigo": "for (let i = 0; i < 3; i++) {\n  // lo que se repite\n}",
+      "resaltar": [1]
+    },
+    {
+      "titulo": "Revisa, imprime, aumenta",
+      "narracion": "Ahora pregunta: ¿cero es menor que tres? Sí, así que entra e imprime cero. Al terminar la vuelta, i aumenta en uno, y repite lo mismo. Uno es menor que tres, imprime uno. Dos es menor que tres, imprime dos.",
+      "codigo": "for (let i = 0; i < 3; i++) {\n  console.log(i);\n}",
+      "resaltar": [2],
+      "salida": "0\n1\n2"
+    },
+    {
+      "titulo": "i llega a tres",
+      "narracion": "Después de imprimir dos, i aumenta y vale tres. ¿Tres es menor que tres? No, y ahí termina el ciclo. Por eso el tres no se imprime en ninguna vuelta. Para comprobarlo, aquí creé i afuera del ciclo, y al salir vale tres.",
+      "codigo": "let i;\nfor (i = 0; i < 3; i++) {\n  console.log(i);\n}\nconsole.log(\"Al salir:\", i);",
+      "resaltar": [5],
+      "salida": "0\n1\n2\nAl salir: 3"
+    },
+    {
+      "titulo": "Error común: doble aumento",
+      "narracion": "El error común es cambiar i dentro del ciclo. Aquí aumenta dos veces por vuelta: una adentro y otra en la primera línea. Por eso imprime cero, dos y cuatro, y se salta números sin avisarte.",
+      "codigo": "for (let i = 0; i < 5; i++) {\n  console.log(i);\n  i++;\n}",
+      "resaltar": [3],
+      "salida": "0\n2\n4"
+    }
+  ],
+  "cierre": {
+    "titulo": "¿Una vuelta de más?",
+    "narracion": "Guarda este video para tu próxima práctica y sígueme para aprender a programar desde cero. En el siguiente te respondo esto: ¿por qué tu for a veces da una vuelta de más o de menos?"
+  },
+  "descripcion": "Qué hace la computadora en cada vuelta de un ciclo for en JavaScript, por qué el ciclo termina y un error común que hace que se salte números.",
+  "hashtags": ["#programacion", "#javascript", "#aprendeaprogramar", "#ciclofor", "#codigo"]
+}

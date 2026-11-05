@@ -1,0 +1,59 @@
+{
+  "canal": "codigo",
+  "lenguaje": "javascript",
+  "slug": "el-ciclo-for-en-javascript-explicado-facil",
+  "tema": "El ciclo for en JavaScript explicado fácil",
+  "gancho": {
+    "titulo": "El ciclo for en 60 segundos",
+    "narracion": "Si el ciclo for te confunde, en un minuto lo vas a entender para siempre. Vamos con JavaScript."
+  },
+  "escenas": [
+    {
+      "titulo": "Sus 3 partes",
+      "narracion": "Un for tiene tres partes separadas por punto y coma. Primero, dónde empieza: i vale cero. Después, la condición: mientras i sea menor que cinco. Y al final, qué cambia en cada vuelta: i aumenta en uno.",
+      "codigo": "for (let i = 0; i < 5; i++) {\n  // esto se repite\n}",
+      "resaltar": [
+        1
+      ]
+    },
+    {
+      "titulo": "Contar del 1 al 5",
+      "narracion": "Veámoslo en acción. Empezamos en uno, repetimos mientras i sea menor o igual a cinco, y en cada vuelta imprimimos i. El resultado: uno, dos, tres, cuatro, cinco. Fíjate en el menor o igual: si solo pones menor que cinco, se detiene en cuatro.",
+      "codigo": "for (let i = 1; i <= 5; i++) {\n  console.log(i);\n}",
+      "resaltar": [
+        2
+      ],
+      "salida": "1\n2\n3\n4\n5"
+    },
+    {
+      "titulo": "Cuenta regresiva",
+      "narracion": "También puedes ir hacia atrás. Empiezas en tres, repites mientras i sea mayor que cero y le restas uno en cada vuelta. Cuando el ciclo termina, el programa sigue con la siguiente línea.",
+      "codigo": "for (let i = 3; i > 0; i--) {\n  console.log(i);\n}\nconsole.log(\"¡Despegue!\");",
+      "resaltar": [
+        4
+      ],
+      "salida": "3\n2\n1\n¡Despegue!"
+    },
+    {
+      "titulo": "Cuidado: bucle infinito",
+      "narracion": "El error más común. Aquí la condición pide que i sea menor que cinco, pero en cada vuelta le restamos uno. i nunca llega a cinco, así que el ciclo jamás termina y tu programa se congela.",
+      "codigo": "for (let i = 0; i < 5; i--) {\n  console.log(i);\n}",
+      "resaltar": [
+        1
+      ],
+      "salida": "0\n-1\n-2\n-3\n... nunca termina"
+    }
+  ],
+  "cierre": {
+    "titulo": "¿while o do while?",
+    "narracion": "Guarda este video para tu próxima práctica y dime en comentarios si quieres la diferencia entre while y do while. Sígueme para aprender a programar desde cero."
+  },
+  "descripcion": "El ciclo for en JavaScript explicado fácil: sus 3 partes, ejemplos y el error del bucle infinito.",
+  "hashtags": [
+    "#programacion",
+    "#javascript",
+    "#aprendeaprogramar",
+    "#ciclofor",
+    "#codigo"
+  ]
+}
