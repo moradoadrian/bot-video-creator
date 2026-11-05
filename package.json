@@ -1,16 +1,18 @@
 {
   "name": "fiestas-bot",
   "version": "1.0.0",
-  "description": "Generador de videos de TikTok sobre fiestas infantiles (guion IA + voz IA + Remotion)",
+  "description": "Generador de videos de TikTok para los canales de programación y fiestas infantiles (guion IA + voz IA + Remotion)",
   "scripts": {
     "studio": "remotion studio src/index.ts",
     "guion": "tsx --env-file-if-exists=.env scripts/guion.ts",
     "guion:codigo": "tsx --env-file-if-exists=.env scripts/guion.ts --canal=codigo",
     "voz": "tsx --env-file-if-exists=.env scripts/voz.ts",
     "render": "tsx --env-file-if-exists=.env scripts/render.ts",
-    "preview": "tsx --env-file-if-exists=.env scripts/render.ts ejemplo --sin-voz",
-    "preview:codigo": "tsx --env-file-if-exists=.env scripts/render.ts ejemplo-codigo --sin-voz",
+    "preview": "tsx --env-file-if-exists=.env scripts/render.ts --sin-voz",
+    "portada": "tsx --env-file-if-exists=.env scripts/portada.ts",
+    "sonidos": "tsx scripts/sonidos.ts",
     "todo": "tsx --env-file-if-exists=.env scripts/todo.ts",
+    "test": "tsx --test scripts/pruebas.test.ts",
     "typecheck": "tsc -p ."
   },
   "keywords": [],

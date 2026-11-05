@@ -45,8 +45,12 @@ npm run render -- diferencia-entre-while-y-do-while
 ```
 
 - `npm run todo -- "tema"` (o `npm run todo -- --canal=codigo "tema"`) hace los tres pasos seguidos.
-- `npm run preview` y `npm run preview:codigo` renderizan los ejemplos sin voz.
+- `npm run voz -- <slug>` reutiliza los bloques cuyo texto no cambió, así que corregir una frase solo cobra esa frase. Con `--forzar` genera todo otra vez. Si se corta, vuelve a correrlo: continúa donde se quedó.
+- `npm run preview -- <slug>` renderiza sin voz en `out/<slug>-preview.mp4`, sin tocar el video final.
+- `npm run portada -- <slug>` crea `out/<slug>-portada.png` (solo canal código).
 - `npm run studio` abre Remotion Studio para ajustar las plantillas en vivo.
+- `npm test` corre las pruebas de los validadores y los subtítulos, sin red ni créditos.
+- `npm run sonidos` crea el tecleo y el sonido de resultado; se activan con `"sonidos": true` en `config/marca-codigo.json`.
 - Temas listos: `temas.md` (fiestas) y `temas-codigo.md` (ruta de aprendizaje de programación).
 
 ## Guion del canal código
@@ -69,8 +73,14 @@ npm run render -- diferencia-entre-while-y-do-while
 
 - Máximo 10 líneas de 35 caracteres por escena para que el código se lea en el teléfono.
 - `resaltar` marca las líneas que explica la narración.
-- **El bot ejecuta cada código** en una caja aislada: `guion:codigo` corrige la `salida` si no coincide y `render` te avisa. Un bucle infinito a propósito se detecta y se respeta la salida que escribiste (termínala con `... nunca termina`).
+- **El bot ejecuta cada código** con `node:vm`: `guion:codigo` corrige la `salida` si no coincide y `render` te avisa. Un bucle infinito a propósito se detecta y se respeta la salida que escribiste (termínala con `... nunca termina`). `vm` no es una barrera de seguridad: revisa el código de cada guion antes de correrlo.
+- También avisa si el código y la consola taparían el subtítulo, o si `resaltar` apunta a una línea que no existe.
 - Una escena puede no llevar `codigo` si solo explica un concepto.
+- Opcional, para la portada: `"portada": { "titulo": "...", "frase": "..." }`. Sin esto usa el título del gancho.
+
+## Personaje
+
+La imagen y sus coordenadas están en `personaje` dentro de `config/marca-codigo.json`. Si cambias o recortas la imagen, actualiza `ancho` y `alto`, el círculo de la `cara` y la posición de la `boca`, todo en píxeles de la imagen original.
 
 ## Estructura
 
@@ -78,11 +88,16 @@ npm run render -- diferencia-entre-while-y-do-while
 |---|---|
 | `src/FiestaVideo.tsx` | Plantilla fiestas: gancho, tips numerados, cierre con CTA, subtítulos |
 | `src/CodigoVideo.tsx` | Plantilla código: editor con resaltado de sintaxis, línea activa, consola, subtítulos |
-| `src/components/` | Íconos SVG, confeti y resaltado de JavaScript |
+| `src/Portada.tsx` | Portada del canal código |
+| `src/medidas.ts` | Tamaño del código en pantalla, compartido con los validadores |
+| `src/subtitulos.ts` | Convierte los tiempos de la voz en subtítulos palabra por palabra |
+| `src/components/` | Personaje, íconos SVG, confeti y resaltado de JavaScript |
 | `scripts/guion.ts` | Prompts por canal y llamada a Claude; valida con zod y verifica el código |
-| `scripts/voz.ts` | TTS por bloque (ElevenLabs u OpenAI) con tono y voz por canal |
+| `scripts/voz.ts` | TTS por bloque (ElevenLabs u OpenAI) con tono y voz por canal, reintentos y reutilización |
+| `scripts/portada.ts` | Genera la portada de un video |
+| `scripts/sonidos.ts` | Sintetiza los sonidos del editor |
+| `scripts/pruebas.test.ts` | Pruebas sin red ni créditos |
 | `scripts/render.ts` | Elige la plantilla del canal; render H.264 1080×1920 30 fps y texto para publicar |
-| `content/ejemplo*/guion.json` | Guiones de ejemplo de cada canal |
 
 ## Para que cuente en Creator Rewards
 
@@ -96,4 +111,4 @@ npm run render -- diferencia-entre-while-y-do-while
 
 - Si Remotion no puede descargar su navegador, define `CHROME_PATH` en `.env`.
 - El código se muestra sin ligaduras tipográficas, para que `<=` y `++` se vean tal cual se escriben.
-- Los subtítulos se reparten por longitud de texto dentro de cada bloque; para sincronía palabra por palabra, el siguiente paso es transcribir el audio con timestamps.
+- Con ElevenLabs, los subtítulos del canal código usan los tiempos reales de cada palabra y resaltan la que se está diciendo. Con OpenAI, o con voz generada antes de esta función, se reparten por longitud de texto.

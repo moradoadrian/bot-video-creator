@@ -1,5 +1,13 @@
 {
   "handle": "@devmorado",
   "ctaSecundario": "Un concepto nuevo cada día",
-  "colores": ["#FFB454", "#7FD1B9", "#B79CFF", "#FF7A8A", "#6CC4FF"]
+  "colores": ["#FFB454", "#7FD1B9", "#B79CFF", "#FF7A8A", "#6CC4FF"],
+  "sonidos": false,
+  "personaje": {
+    "imagen": "Desarrollador Latino con Estilo Morado.png",
+    "ancho": 903,
+    "alto": 1249,
+    "cara": { "x": 620, "y": 290, "radio": 278 },
+    "boca": { "x": 625, "y": 421, "ancho": 62, "alto": 34 }
+  }
 }

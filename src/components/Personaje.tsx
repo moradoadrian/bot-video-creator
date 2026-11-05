@@ -1,21 +1,19 @@
 import { useAudioData, visualizeAudio } from '@remotion/media-utils';
 import React from 'react';
 import { Img, spring, staticFile, useCurrentFrame, useVideoConfig } from 'remotion';
+import { ConfigPersonaje } from '../types';
 
-const IMAGEN = 'Desarrollador Latino con Estilo Morado.png';
-/** Coordenadas en píxeles de la imagen original: círculo de la cara y posición de la boca. */
-const IMAGEN_ANCHO = 903;
-const IMAGEN_ALTO = 1249;
-const CARA = { x: 620, y: 290, radio: 278 };
-const BOCA = { x: 625, y: 421, ancho: 62, alto: 34 };
+type Comunes = { config: ConfigPersonaje; tam: number; acento: string };
 
-const Avatar: React.FC<{ tam: number; acento: string; volumen: number }> = ({ tam, acento, volumen }) => {
+const Avatar: React.FC<Comunes & { volumen: number; quieto?: boolean }> = ({ config, tam, acento, volumen, quieto }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
-  const entra = spring({ frame, fps, config: { damping: 13, stiffness: 160 } });
-  const esc = tam / (CARA.radio * 2);
-  const respira = Math.sin(frame / 18) * 0.008;
-  const altoBoca = BOCA.alto * esc * volumen;
+  // Adelantado para que ya se vea en el primer cuadro del bloque
+  const entra = quieto ? 1 : spring({ frame: frame + 8, fps, config: { damping: 13, stiffness: 160 } });
+  const { cara, boca } = config;
+  const esc = tam / (cara.radio * 2);
+  const respira = quieto ? 0 : Math.sin(frame / 18) * 0.008;
+  const altoBoca = boca.alto * esc * volumen;
 
   return (
     <div
@@ -31,24 +29,24 @@ const Avatar: React.FC<{ tam: number; acento: string; volumen: number }> = ({ ta
       }}
     >
       <Img
-        src={staticFile(IMAGEN)}
+        src={staticFile(config.imagen)}
         style={{
           position: 'absolute',
-          width: IMAGEN_ANCHO * esc,
-          height: IMAGEN_ALTO * esc,
+          width: config.ancho * esc,
+          height: config.alto * esc,
           maxWidth: 'none',
-          left: -(CARA.x - CARA.radio) * esc,
-          top: -(CARA.y - CARA.radio) * esc,
+          left: -(cara.x - cara.radio) * esc,
+          top: -(cara.y - cara.radio) * esc,
         }}
       />
       {altoBoca > 0.5 && (
         <div
           style={{
             position: 'absolute',
-            width: BOCA.ancho * esc,
+            width: boca.ancho * esc,
             height: altoBoca,
-            left: (BOCA.x - CARA.x + CARA.radio - BOCA.ancho / 2) * esc,
-            top: (BOCA.y - CARA.y + CARA.radio) * esc - altoBoca / 2,
+            left: (boca.x - cara.x + cara.radio - boca.ancho / 2) * esc,
+            top: (boca.y - cara.y + cara.radio) * esc - altoBoca / 2,
             borderRadius: '50%',
             background: '#3A0F14',
           }}
@@ -59,7 +57,7 @@ const Avatar: React.FC<{ tam: number; acento: string; volumen: number }> = ({ ta
 };
 
 /** La boca y el brillo siguen el volumen de la voz del bloque actual. */
-const ConVoz: React.FC<{ audio: string; tam: number; acento: string }> = ({ audio, tam, acento }) => {
+const ConVoz: React.FC<Comunes & { audio: string }> = ({ audio, ...comunes }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const datos = useAudioData(audio);
@@ -69,8 +67,15 @@ const ConVoz: React.FC<{ audio: string; tam: number; acento: string }> = ({ audi
     const graves = bandas.slice(0, 6).reduce((a, b) => a + b, 0) / 6;
     volumen = Math.min(1, graves * 3);
   }
-  return <Avatar tam={tam} acento={acento} volumen={volumen} />;
+  return <Avatar {...comunes} volumen={volumen} />;
 };
 
-export const Personaje: React.FC<{ audio?: string; tam: number; acento: string }> = ({ audio, tam, acento }) =>
-  audio ? <ConVoz audio={audio} tam={tam} acento={acento} /> : <Avatar tam={tam} acento={acento} volumen={0} />;
+export const Personaje: React.FC<Omit<Comunes, 'config'> & { config?: ConfigPersonaje; audio?: string; quieto?: boolean }> = ({
+  config,
+  audio,
+  quieto,
+  ...resto
+}) => {
+  if (!config) return null;
+  return audio ? <ConVoz config={config} audio={audio} {...resto} /> : <Avatar config={config} volumen={0} quieto={quieto} {...resto} />;
+};

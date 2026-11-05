@@ -1,0 +1,50 @@
+{
+  "canal": "codigo",
+  "lenguaje": "javascript",
+  "slug": "por-que-tu-for-da-una-vuelta-de-mas-o-de-menos",
+  "tema": "Por qué tu for da una vuelta de más o de menos",
+  "gancho": {
+    "titulo": "¿Tu for da vueltas de más?",
+    "narracion": "Un solo signo de igual le cambia el resultado a todo tu ciclo. Este error es muy común cuando empiezas, y hoy lo vamos a resolver."
+  },
+  "escenas": [
+    {
+      "titulo": "Una vuelta de menos",
+      "narracion": "Quieres contar del uno al cinco, pero escribes menor que cinco. Cuando i vale cinco, la condición ya es falsa y el ciclo se detiene. Por eso imprime solo hasta el cuatro. Te faltó una vuelta.",
+      "codigo": "for (let i = 1; i < 5; i++) {\n  console.log(i);\n}",
+      "resaltar": [1],
+      "salida": "1\n2\n3\n4"
+    },
+    {
+      "titulo": "Solución: menor o igual",
+      "narracion": "La solución es cambiar a menor o igual. Ahora, cuando i vale cinco, la condición sigue siendo verdadera y esa vuelta sí corre. Con ese signo de igual, ya llegas hasta el cinco.",
+      "codigo": "for (let i = 1; i <= 5; i++) {\n  console.log(i);\n}",
+      "resaltar": [1],
+      "salida": "1\n2\n3\n4\n5"
+    },
+    {
+      "titulo": "Una vuelta de más",
+      "narracion": "Ahora el error contrario. Quieres saludar cinco veces, empiezas en cero y usas menor o igual a cinco. Cuenta los saludos: del cero al cinco son seis. Te sobró una vuelta, porque el cero también cuenta.",
+      "codigo": "for (let i = 0; i <= 5; i++) {\n  console.log(\"Hola\", i);\n}",
+      "resaltar": [1],
+      "salida": "Hola 0\nHola 1\nHola 2\nHola 3\nHola 4\nHola 5"
+    },
+    {
+      "titulo": "Regla para no fallar",
+      "narracion": "Aquí va la regla. Si empiezas en cero y quieres cinco vueltas, usa menor que cinco. Si empiezas en uno y quieres llegar al cinco, usa menor o igual. Antes de correrlo, revisa la primera y la última vuelta.",
+      "codigo": "for (let i = 0; i < 5; i++) {\n  console.log(\"Hola\", i);\n}",
+      "resaltar": [1],
+      "salida": "Hola 0\nHola 1\nHola 2\nHola 3\nHola 4"
+    }
+  ],
+  "cierre": {
+    "titulo": "¿Y hacia atrás?",
+    "narracion": "Guarda este video para cuando tu ciclo no te dé las cuentas y sígueme para aprender a programar desde cero. En el siguiente te enseño esto: ¿cómo se cuenta hacia atrás con un ciclo for?"
+  },
+  "descripcion": "Por qué tu ciclo for en JavaScript da una vuelta de más o de menos, cómo corregirlo con menor que o menor o igual, y una regla para no fallar.",
+  "hashtags": ["#programacion", "#javascript", "#aprendeaprogramar", "#ciclofor", "#codigo"],
+  "portada": {
+    "titulo": "¿Una vuelta de más?",
+    "frase": "El error del signo de igual"
+  }
+}

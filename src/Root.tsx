@@ -2,6 +2,7 @@ import React from 'react';
 import { CalculateMetadataFunction, Composition } from 'remotion';
 import { CodigoVideo } from './CodigoVideo';
 import { FiestaVideo, FPS, framesPorBloque } from './FiestaVideo';
+import { Portada } from './Portada';
 import { CodigoProps, GuionCodigo, GuionFiestas, Timing, VideoProps } from './types';
 import guionCodigo from '../content/el-ciclo-for-en-javascript-explicado-facil/guion.json';
 import marca from '../config/marca.json';
@@ -51,6 +52,15 @@ export const RemotionRoot: React.FC = () => (
       durationInFrames={FPS * 60}
       defaultProps={{ guion: guionCodigo as GuionCodigo, timing: estimado(guionCodigo), marca: marcaCodigo }}
       calculateMetadata={calcular<CodigoProps>()}
+    />
+    <Composition
+      id="Portada"
+      component={Portada}
+      width={1080}
+      height={1920}
+      fps={FPS}
+      durationInFrames={1}
+      defaultProps={{ guion: guionCodigo as GuionCodigo, marca: marcaCodigo }}
     />
   </>
 );

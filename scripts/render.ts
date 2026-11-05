@@ -10,7 +10,7 @@ import path from 'node:path';
 import { RAIZ, canalDe, leerGuion, leerMarca, leerTiming, timingEstimado, verificarCodigo } from './lib';
 
 async function main() {
-  const slug = process.argv[2];
+  const slug = process.argv.slice(2).find((a) => !a.startsWith('--'));
   if (!slug) throw new Error('Uso: npm run render -- <slug> [--sin-voz]');
   const sinVoz = process.argv.includes('--sin-voz');
 
@@ -28,7 +28,8 @@ async function main() {
 
   const outDir = path.join(RAIZ, 'out');
   mkdirSync(outDir, { recursive: true });
-  const salida = path.join(outDir, `${slug}.mp4`);
+  // Una vista previa nunca reemplaza el video final
+  const salida = path.join(outDir, sinVoz ? `${slug}-preview.mp4` : `${slug}.mp4`);
   let ultimo = -1;
   await renderMedia({
     composition,
@@ -51,6 +52,10 @@ async function main() {
   });
 
   const seg = composition.durationInFrames / composition.fps;
+  if (sinVoz) {
+    console.log(`\n✔ Vista previa sin voz: out/${slug}-preview.mp4 (${seg.toFixed(1)} s)`);
+    return;
+  }
   const post = [
     `${guion.descripcion}`,
     '',

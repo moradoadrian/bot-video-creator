@@ -28,16 +28,41 @@ type Comun = {
 };
 
 export type GuionFiestas = Comun & { canal?: 'fiestas'; escenas: Escena[] };
-export type GuionCodigo = Comun & { canal: 'codigo'; lenguaje: 'javascript'; escenas: EscenaCodigo[] };
+export type GuionCodigo = Comun & {
+  canal: 'codigo';
+  lenguaje: 'javascript';
+  escenas: EscenaCodigo[];
+  /** Opcional: por defecto la portada usa el título del gancho. */
+  portada?: { titulo?: string; frase?: string };
+};
 export type Guion = GuionFiestas | GuionCodigo;
 
 /** Duración en segundos de cada bloque de audio, en orden: gancho, escenas..., cierre */
-export type Timing = { duraciones: number[]; conAudio: boolean };
+export type Timing = {
+  duraciones: number[];
+  conAudio: boolean;
+  /** Tiempos reales de cada palabra por bloque, si el proveedor de voz los da. */
+  palabras?: Palabra[][];
+};
+
+export type Palabra = { texto: string; inicio: number; fin: number };
+
+/** Coordenadas en píxeles sobre la imagen original del personaje. */
+export type ConfigPersonaje = {
+  imagen: string;
+  ancho: number;
+  alto: number;
+  cara: { x: number; y: number; radio: number };
+  boca: { x: number; y: number; ancho: number; alto: number };
+};
 
 export type Marca = {
   handle: string;
   ctaSecundario: string;
   colores: string[];
+  personaje?: ConfigPersonaje;
+  /** Tecleo y sonido de resultado en el editor. */
+  sonidos?: boolean;
 };
 
 export type VideoProps = {

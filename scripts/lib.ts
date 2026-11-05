@@ -2,6 +2,7 @@ import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
 import vm from 'node:vm';
 import { z } from 'zod';
+import { MAX_SALIDA_VISIBLE, medidasEditor } from '../src/medidas';
 import { Canal, EscenaCodigo, Guion, ICONOS, Marca, Timing } from '../src/types';
 
 export const RAIZ = path.resolve(__dirname, '..');
@@ -55,6 +56,7 @@ export const GuionCodigoSchema = z.object({
     )
     .min(3)
     .max(7),
+  portada: z.object({ titulo: z.string().max(40).optional(), frase: z.string().max(40).optional() }).optional(),
 });
 
 export const parsearGuion = (data: any): Guion =>
@@ -95,7 +97,28 @@ export const timingEstimado = (g: Guion): Timing => ({
 
 export const leerTiming = (slug: string, g: Guion): Timing => {
   const f = path.join(dirContenido(slug), 'timing.json');
-  return existsSync(f) ? JSON.parse(readFileSync(f, 'utf8')) : timingEstimado(g);
+  if (!existsSync(f)) return timingEstimado(g);
+  const timing: Timing = JSON.parse(readFileSync(f, 'utf8'));
+  if (timing.duraciones.length !== narraciones(g).length) {
+    throw new Error(`El guion cambió de bloques desde la última voz. Corre: npm run voz -- ${slug}`);
+  }
+  return timing;
+};
+
+/** Reintenta errores temporales con espera creciente; un error definitivo sale de inmediato. */
+export const conReintentos = async <T>(
+  intento: () => Promise<T>,
+  esTemporal: (e: any) => boolean,
+  { veces = 3, esperaMs = 2000 } = {},
+): Promise<T> => {
+  for (let i = 1; ; i++) {
+    try {
+      return await intento();
+    } catch (e) {
+      if (i >= veces || !esTemporal(e)) throw e;
+      await new Promise((r) => setTimeout(r, esperaMs * i));
+    }
+  }
 };
 
 /** Duración de un mp3 en segundos, en JavaScript puro (sin ffprobe ni npx, funciona igual en Windows). */
@@ -113,7 +136,8 @@ export const requiereEnv = (nombre: string) => {
 };
 
 /**
- * Ejecuta el código de una escena en una caja aislada y devuelve lo que imprime con console.log.
+ * Ejecuta el código de una escena con node:vm y devuelve lo que imprime con console.log.
+ * vm no es una barrera de seguridad: solo sirve para código ya revisado.
  * timeout = true cuando el código no termina (por ejemplo, un bucle infinito a propósito).
  */
 export const ejecutar = (codigo: string): { salida: string; error?: string; timeout?: boolean } => {
@@ -130,15 +154,23 @@ export const ejecutar = (codigo: string): { salida: string; error?: string; time
 };
 
 /**
- * Revisa que la salida de cada escena sea la que imprime su código.
+ * Revisa que la salida de cada escena sea la que imprime su código y que todo quepa en pantalla.
  * Si corregir = true, reemplaza la salida por la real. Devuelve avisos legibles.
  */
 export const verificarCodigo = (escenas: EscenaCodigo[], corregir: boolean): string[] => {
   const avisos: string[] = [];
   escenas.forEach((e, i) => {
     if (!e.codigo) return;
-    const r = ejecutar(e.codigo);
     const n = `Escena ${i + 1} (${e.titulo})`;
+    const lineas = e.codigo.split('\n');
+    const nSalida = (e.salida ?? '').split('\n').filter((l) => l.length).length;
+    if (medidasEditor(lineas, nSalida).desborda) {
+      avisos.push(`${n}: el código y la consola tapan el subtítulo. Quita líneas de código o de salida.`);
+    }
+    if (nSalida > MAX_SALIDA_VISIBLE) avisos.push(`${n}: la consola solo muestra las últimas ${MAX_SALIDA_VISIBLE} líneas de salida.`);
+    const fuera = (e.resaltar ?? []).filter((l) => l > lineas.length);
+    if (fuera.length) avisos.push(`${n}: resaltar apunta a líneas que no existen: ${fuera.join(', ')}.`);
+    const r = ejecutar(e.codigo);
     if (r.timeout) {
       if (!e.salida) avisos.push(`${n}: el código no termina (¿bucle infinito?) y no tiene salida escrita.`);
       return; // un bucle infinito a propósito: se respeta la salida escrita a mano
@@ -147,7 +179,7 @@ export const verificarCodigo = (escenas: EscenaCodigo[], corregir: boolean): str
       avisos.push(`${n}: el código lanza ${r.error}`);
       return;
     }
-    if (r.salida && r.salida !== (e.salida ?? '').trim()) {
+    if (r.salida !== (e.salida ?? '').trim()) {
       avisos.push(`${n}: la salida no coincide con lo que imprime el código.${corregir ? ' Corregida.' : ''}`);
       if (corregir) e.salida = r.salida;
     }
