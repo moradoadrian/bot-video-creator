@@ -15,29 +15,18 @@ import {
   useVideoConfig,
 } from 'remotion';
 import { framesPorBloque, trozos } from './FiestaVideo';
+import { EditorDepurador } from './components/EditorDepurador';
 import { Personaje } from './components/Personaje';
 import { LineaCodigo, SINTAXIS } from './components/Resaltado';
 import { MAX_SALIDA_VISIBLE, medidasEditor } from './medidas';
 import { agruparPalabras, indiceActual } from './subtitulos';
+import { EDITOR, FONDO, MONO, SIN_LIGADURAS, TENUE, TEXTO, TINTA, TITULO, segAFrames } from './temaCodigo';
 import { CodigoProps, ConfigPersonaje, EscenaCodigo, Palabra } from './types';
 
-const FONDO = '#15122A';
-const EDITOR = '#0E0C1E';
-const TINTA = '#F4F1FF';
-const TENUE = '#9C95BF';
-const TITULO = '"Bricolage Grotesque", system-ui, sans-serif';
-const MONO = '"JetBrains Mono", ui-monospace, monospace';
-const TEXTO = 'Nunito, system-ui, sans-serif';
-
-/** Sin ligaduras: un principiante debe ver <= y ++ tal cual se escriben. */
-const SIN_LIGADURAS = { fontVariantLigatures: 'none' as const, fontFeatureSettings: '"liga" 0, "calt" 0' };
-
 type Bloque =
-  | { tipo: 'gancho'; titulo: string; narracion: string; codigo?: string }
+  | { tipo: 'gancho'; titulo: string; narracion: string; codigo?: string; etiqueta?: string }
   | { tipo: 'cierre'; titulo: string; narracion: string }
   | ({ tipo: 'escena'; numero: number } & EscenaCodigo);
-
-const segAFrames = (s: number, fps: number) => Math.round(s * fps);
 
 /** Fondo con cuadrícula de puntos, muy tenue. */
 const Fondo: React.FC = () => (
@@ -299,7 +288,9 @@ const BloqueVista: React.FC<{
             {b.titulo}
           </div>
         </div>
-        {b.codigo ? (
+        {b.codigo && b.traza ? (
+          <EditorDepurador e={b} duracionSeg={duracionSeg} acento={acento} archivo={archivo} sonidos={sonidos} palabras={palabras} />
+        ) : b.codigo ? (
           <Editor e={b} duracionSeg={duracionSeg} acento={acento} archivo={archivo} sonidos={sonidos} />
         ) : null}
         <Subtitulo texto={b.narracion} duracionSeg={duracionSeg} acento={acento} tamPersonaje={200} {...voz} />
@@ -311,7 +302,7 @@ const BloqueVista: React.FC<{
     return (
       <AbsoluteFill>
         <div style={{ position: 'absolute', top: 210, left: 70, right: 160, display: 'flex', flexDirection: 'column', gap: 34 }}>
-          <div style={{ fontFamily: MONO, fontWeight: 700, fontSize: 38, color: acento, opacity: entra }}>// JavaScript desde cero</div>
+          <div style={{ fontFamily: MONO, fontWeight: 700, fontSize: 38, color: acento, opacity: entra }}>// {b.etiqueta ?? 'JavaScript desde cero'}</div>
           <div
             style={{
               fontFamily: TITULO,
@@ -416,7 +407,7 @@ const Progreso: React.FC<{ color: string }> = ({ color }) => {
 
 export const CodigoVideo: React.FC<CodigoProps> = ({ guion, timing, marca }) => {
   const bloques: Bloque[] = [
-    { tipo: 'gancho', ...guion.gancho, codigo: guion.escenas.find((e) => e.codigo)?.codigo },
+    { tipo: 'gancho', ...guion.gancho, codigo: guion.escenas.find((e) => e.codigo)?.codigo, etiqueta: guion.etiqueta },
     ...guion.escenas.map((e, i) => ({ tipo: 'escena' as const, numero: i + 1, ...e })),
     { tipo: 'cierre', ...guion.cierre },
   ];

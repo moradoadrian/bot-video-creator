@@ -44,3 +44,18 @@ El orden sigue una ruta de aprendizaje: cada video prepara el siguiente.
 28. Errores de principiante que todos cometemos
 29. Cómo leer un mensaje de error
 30. Qué aprender después de lo básico
+
+# Banco de temas: JavaScript por dentro
+
+Para quien ya programa. Se ven con el depurador visual: úsalos con `npm run guion:avanzado -- "tema"`.
+
+1. Closures sin misterio (listo: `closures-sin-misterio`)
+2. Copiaste un objeto y cambió el original: valor contra referencia
+3. Copia superficial contra copia profunda
+4. Recursividad: cómo se apilan las llamadas
+5. Fibonacci: de lento a rápido con memoización
+6. Qué es el hoisting y por qué tu función existe antes de declararla
+7. this: por qué cambia según cómo llamas la función
+8. Búsqueda lineal contra búsqueda binaria
+9. Ordenar un arreglo: burbuja paso a paso
+10. reduce sin miedo: qué pasa en cada vuelta

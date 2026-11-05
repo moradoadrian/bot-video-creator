@@ -15,7 +15,21 @@ export type EscenaCodigo = Bloque & {
   resaltar?: number[];
   /** Lo que imprime el código en consola. El bot lo verifica ejecutándolo. */
   salida?: string;
+  /** Anima la ejecución real del código: línea activa, variables y consola paso a paso. */
+  depurar?: { marcas?: MarcaDepurador[] };
+  /** Pasos de la ejecución. No se escribe a mano: render.ts los calcula ejecutando el código. */
+  traza?: Traza;
 };
+
+/** Cuando la voz dice `frase`, la ejecución llega a la vez número `vez` que corre `linea` (0 = el programa terminó). */
+export type MarcaDepurador = { frase: string; linea: number; vez?: number };
+
+export type VariableTraza = { nombre: string; valor: string };
+/** `recordada`: la variable sigue viva aunque su función ya terminó (un closure). */
+export type GrupoTraza = { etiqueta: string; recordada: boolean; variables: VariableTraza[] };
+/** `linea` = 0 es el último paso, cuando el programa ya terminó. */
+export type PasoTraza = { linea: number; en: string; grupos: GrupoTraza[]; nSalida: number };
+export type Traza = { pasos: PasoTraza[]; salida: string[] };
 
 type Comun = {
   slug: string;
@@ -31,6 +45,8 @@ export type GuionFiestas = Comun & { canal?: 'fiestas'; escenas: Escena[] };
 export type GuionCodigo = Comun & {
   canal: 'codigo';
   lenguaje: 'javascript';
+  /** Texto sobre el título del gancho. Por defecto: "JavaScript desde cero". */
+  etiqueta?: string;
   escenas: EscenaCodigo[];
   /** Opcional: por defecto la portada usa el título del gancho. */
   portada?: { titulo?: string; frase?: string };
