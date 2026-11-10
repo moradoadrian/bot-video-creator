@@ -54,9 +54,28 @@ const whoosh = generar(DUR_WHOOSH, (t) => {
   return filtrado * forma ** 2 * 1.8;
 });
 
+// Burbuja: un tono que cae rápido. Para cada elemento que aparece en un diagrama.
+const pop = generar(0.09, (t) => {
+  const fase = 2 * Math.PI * (650 * t - 2200 * t * t); // de 650 Hz hacia abajo
+  return Math.sin(fase) * Math.exp(-t * 45) * 0.8;
+});
+
+// Éxito: arpegio do–mi–sol con un brillo encima. Cuando la consola termina.
+const NOTAS = [1047, 1319, 1568];
+const exito = generar(0.5, (t) =>
+  NOTAS.reduce((a, f, i) => {
+    const t0 = i * 0.075;
+    if (t < t0) return a;
+    const dt = t - t0;
+    return a + (Math.sin(2 * Math.PI * f * dt) + 0.3 * Math.sin(4 * Math.PI * f * dt)) * Math.exp(-dt * 9) * 0.28;
+  }, 0),
+);
+
 const dir = path.join(RAIZ, 'public', 'sfx');
 mkdirSync(dir, { recursive: true });
 writeFileSync(path.join(dir, 'tecla.wav'), wav(tecla));
 writeFileSync(path.join(dir, 'resultado.wav'), wav(resultado));
 writeFileSync(path.join(dir, 'whoosh.wav'), wav(whoosh));
+writeFileSync(path.join(dir, 'pop.wav'), wav(pop));
+writeFileSync(path.join(dir, 'exito.wav'), wav(exito));
 console.log('✔ Sonidos en public/sfx. Actívalos con "sonidos": true en config/marca-codigo.json');

@@ -5,6 +5,8 @@ import { pasoActual, recortar, tiemposDePasos } from '../src/depurador';
 import { medidasEditor } from '../src/medidas';
 import { agruparPalabras, indiceActual, palabrasDeAlineacion } from '../src/subtitulos';
 import { momentosClave } from '../src/momentos';
+import { duracionTecleo, iniciosDeLinea, lineaDelCursor, momentosDeTecla, visiblesPorLinea } from '../src/tecleo';
+import { esClave, palabrasClave } from '../src/subtitulos';
 import { golpesDeCamara, SEPARACION_MIN, ZOOM_ENTRADA, ZOOM_GOLPE, ZOOM_LENTO, zoomCamara } from '../src/camara';
 import { EscenaCodigo, PasoTraza, Traza } from '../src/types';
 import { conReintentos, ejecutar, leerGuion, parsearGuion, slugify, verificarCodigo, verificarVisuales } from './lib';
@@ -340,4 +342,34 @@ test('zoomCamara entra acercada, se asienta, avanza lento y golpea en los moment
   cerca(zoomCamara(10, 10, []), 1 + ZOOM_LENTO);
   cerca(zoomCamara(5.12, 10, [5]) - zoomCamara(5.12, 10, []), ZOOM_GOLPE);
   cerca(zoomCamara(7, 10, [5]), zoomCamara(7, 10, []));
+});
+
+test('visiblesPorLinea teclea en orden y lineaDelCursor sigue al tecleo', () => {
+  const lineas = ['abcd', '', 'ef'];
+  assert.deepEqual(visiblesPorLinea(lineas, 0, 0, 6), [0, 0, 0]);
+  assert.deepEqual(visiblesPorLinea(lineas, 3, 0, 6), [3, 0, 0]);
+  assert.deepEqual(visiblesPorLinea(lineas, 5, 0, 6), [4, 0, 1]);
+  assert.deepEqual(visiblesPorLinea(lineas, 99, 0, 6), [4, 0, 2]);
+  assert.equal(lineaDelCursor(lineas, [3, 0, 0]), 0);
+  assert.equal(lineaDelCursor(lineas, [4, 0, 1]), 2);
+  assert.equal(lineaDelCursor(lineas, [4, 0, 2]), 2);
+  assert.deepEqual(iniciosDeLinea(lineas, 1, 6), [1, 5, 5]);
+  assert.equal(momentosDeTecla(lineas, 0, 6).length, 2);
+});
+
+test('duracionTecleo crece con el código pero respeta el máximo', () => {
+  assert.ok(duracionTecleo(10, 2.5) < duracionTecleo(60, 2.5));
+  assert.equal(duracionTecleo(1000, 2.5), 2.5);
+});
+
+test('palabrasClave toma nombres del código, del diagrama y del título, sin comentarios ni cadenas', () => {
+  const claves = palabrasClave({ titulo: 'Cuándo usar while', codigo: ['let total = 0; // suma', 'console.log("hola mundo");'].join('\n') });
+  assert.ok(esClave('total,', claves));
+  assert.ok(esClave('While', claves));
+  assert.ok(esClave('console', claves));
+  assert.ok(!esClave('suma', claves));
+  assert.ok(!esClave('hola', claves));
+  assert.ok(!esClave('cuándo', claves));
+  const visual = palabrasClave({ titulo: 'x', visual: { tipo: 'versus', lados: [{ texto: 'Frontend' }, { texto: 'Backend' }] } });
+  assert.ok(esClave('frontends', visual));
 });

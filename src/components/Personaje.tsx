@@ -13,6 +13,9 @@ const Avatar: React.FC<Comunes & { volumen: number; quieto?: boolean }> = ({ con
   const { cara, boca } = config;
   const esc = tam / (cara.radio * 2);
   const respira = quieto ? 0 : Math.sin(frame / 18) * 0.008;
+  // Salta al entrar a cada bloque y se balancea; al hablar, inclina la cabeza al ritmo de la voz
+  const salto = quieto ? 1 : spring({ frame, fps, config: { damping: 7, stiffness: 170 } });
+  const inclina = quieto ? 0 : Math.sin(frame / 24) * 2 + Math.sin(frame / 7) * volumen * 5;
   const altoBoca = boca.alto * esc * volumen;
 
   return (
@@ -25,7 +28,7 @@ const Avatar: React.FC<Comunes & { volumen: number; quieto?: boolean }> = ({ con
         position: 'relative',
         flex: '0 0 auto',
         boxShadow: `0 0 0 8px ${acento}, 0 0 ${16 + volumen * 44}px ${acento}`,
-        transform: `scale(${entra * (1 + respira + volumen * 0.035)}) translateY(${-volumen * 5}px)`,
+        transform: `translateY(${(1 - salto) * 50 - volumen * 5}px) rotate(${inclina}deg) scale(${entra * (1 + respira + volumen * 0.035)})`,
       }}
     >
       <Img
