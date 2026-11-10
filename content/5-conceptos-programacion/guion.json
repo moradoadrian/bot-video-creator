@@ -1,0 +1,57 @@
+{
+  "canal": "codigo",
+  "lenguaje": "javascript",
+  "slug": "5-conceptos-programacion",
+  "tema": "5 conceptos que todo programador debe saber",
+  "gancho": {
+    "titulo": "5 conceptos que debes saber",
+    "narracion": "Estos cinco conceptos existen en casi todos los lenguajes de programación. Los aprendes una vez y te sirven siempre. Quédate hasta el quinto, porque al principio confunde a muchos."
+  },
+  "escenas": [
+    {
+      "titulo": "Variables",
+      "narracion": "Primero, las variables. Son cajas con nombre donde guardas un dato, para usarlo después. Aquí, una guarda el nombre Ana y otra guarda la edad. Si le pides el dato a la caja, te lo entrega.",
+      "codigo": "let nombre = \"Ana\";\nlet edad = 20;\nconsole.log(nombre, edad);",
+      "resaltar": [1, 2],
+      "salida": "Ana 20"
+    },
+    {
+      "titulo": "Condicionales",
+      "narracion": "Segundo, las condicionales. Con ellas tu programa toma decisiones. Si la edad es mayor o igual a dieciocho, puedes pasar. Si no, se queda afuera. Solo corre uno de los dos caminos.",
+      "codigo": "let edad = 20;\nif (edad >= 18) {\n  console.log(\"Puedes pasar\");\n} else {\n  console.log(\"No puedes pasar\");\n}",
+      "resaltar": [2],
+      "salida": "Puedes pasar"
+    },
+    {
+      "titulo": "Ciclos",
+      "narracion": "Tercero, los ciclos. Repiten una tarea sin que copies el código una y otra vez. Este da tres vueltas, pero con cambiar un número podría dar mil. Para eso sirven: para no repetirte.",
+      "codigo": "for (let i = 1; i <= 3; i++) {\n  console.log(\"Vuelta\", i);\n}",
+      "resaltar": [1],
+      "salida": "Vuelta 1\nVuelta 2\nVuelta 3"
+    },
+    {
+      "titulo": "Funciones",
+      "narracion": "Cuarto, las funciones. Le pones nombre a un bloque de código para usarlo cuando quieras. Le das un dato, hace su trabajo y te regresa un resultado. Escribes saludar una vez, y la usas con Ana y con Luis.",
+      "codigo": "function saludar(nombre) {\n  return \"Hola, \" + nombre;\n}\nconsole.log(saludar(\"Ana\"));\nconsole.log(saludar(\"Luis\"));",
+      "resaltar": [1],
+      "salida": "Hola, Ana\nHola, Luis"
+    },
+    {
+      "titulo": "Arreglos",
+      "narracion": "Y quinto, los arreglos: una lista de datos en una sola variable. Aquí está lo que confunde: se empieza a contar desde cero. Por eso, la posición cero es lunes, aunque la lista tenga tres elementos.",
+      "codigo": "let dias = [\"lun\", \"mar\", \"mié\"];\nconsole.log(dias[0]);\nconsole.log(dias.length);",
+      "resaltar": [2],
+      "salida": "lun\n3"
+    }
+  ],
+  "cierre": {
+    "titulo": "¿Cuál te cuesta más?",
+    "narracion": "Guarda este video para repasar estos cinco conceptos, y sígueme para aprender a programar desde cero. Cuéntame en los comentarios: ¿cuál te cuesta más? Con eso armo tus próximos videos."
+  },
+  "descripcion": "Los 5 conceptos que todo programador debe saber: variables, condicionales, ciclos, funciones y arreglos, con ejemplos cortos en JavaScript.",
+  "hashtags": ["#programacion", "#javascript", "#aprendeaprogramar", "#codigo", "#programador"],
+  "portada": {
+    "titulo": "5 conceptos que debes saber",
+    "frase": "Te sirven en casi todo lenguaje"
+  }
+}

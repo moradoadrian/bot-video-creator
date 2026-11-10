@@ -1,0 +1,1225 @@
+{
+  "conAudio": true,
+  "duraciones": [
+    12.2,
+    19.49,
+    20.04,
+    20.11,
+    11.31,
+    15.07
+  ],
+  "palabras": [
+    [
+      {
+        "texto": "Cuando",
+        "inicio": 0,
+        "fin": 0.2
+      },
+      {
+        "texto": "compras",
+        "inicio": 0.24,
+        "fin": 0.52
+      },
+      {
+        "texto": "por",
+        "inicio": 0.56,
+        "fin": 0.693
+      },
+      {
+        "texto": "internet,",
+        "inicio": 0.72,
+        "fin": 1.52
+      },
+      {
+        "texto": "solamente",
+        "inicio": 1.6,
+        "fin": 2
+      },
+      {
+        "texto": "ves",
+        "inicio": 2.12,
+        "fin": 2.24
+      },
+      {
+        "texto": "una",
+        "inicio": 2.32,
+        "fin": 2.4
+      },
+      {
+        "texto": "página",
+        "inicio": 2.48,
+        "fin": 2.88
+      },
+      {
+        "texto": "con",
+        "inicio": 2.96,
+        "fin": 3.04
+      },
+      {
+        "texto": "productos",
+        "inicio": 3.36,
+        "fin": 3.68
+      },
+      {
+        "texto": "y",
+        "inicio": 3.84,
+        "fin": 3.92
+      },
+      {
+        "texto": "un",
+        "inicio": 4,
+        "fin": 4.04
+      },
+      {
+        "texto": "botón",
+        "inicio": 4.08,
+        "fin": 4.4
+      },
+      {
+        "texto": "para",
+        "inicio": 4.48,
+        "fin": 4.56
+      },
+      {
+        "texto": "comprar.",
+        "inicio": 4.64,
+        "fin": 5.32
+      },
+      {
+        "texto": "Pero",
+        "inicio": 5.6,
+        "fin": 5.76
+      },
+      {
+        "texto": "detrás",
+        "inicio": 5.867,
+        "fin": 6.32
+      },
+      {
+        "texto": "ocurren",
+        "inicio": 6.44,
+        "fin": 6.96
+      },
+      {
+        "texto": "muchas",
+        "inicio": 7.04,
+        "fin": 7.44
+      },
+      {
+        "texto": "cosas.",
+        "inicio": 7.52,
+        "fin": 8.4
+      },
+      {
+        "texto": "Hoy",
+        "inicio": 8.44,
+        "fin": 8.56
+      },
+      {
+        "texto": "te",
+        "inicio": 8.6,
+        "fin": 8.64
+      },
+      {
+        "texto": "explico",
+        "inicio": 8.72,
+        "fin": 9.12
+      },
+      {
+        "texto": "qué",
+        "inicio": 9.28,
+        "fin": 9.44
+      },
+      {
+        "texto": "es",
+        "inicio": 9.52,
+        "fin": 9.6
+      },
+      {
+        "texto": "el",
+        "inicio": 9.64,
+        "fin": 9.68
+      },
+      {
+        "texto": "Frontend",
+        "inicio": 9.84,
+        "fin": 10.56
+      },
+      {
+        "texto": "y",
+        "inicio": 10.6,
+        "fin": 10.64
+      },
+      {
+        "texto": "qué",
+        "inicio": 10.8,
+        "fin": 10.96
+      },
+      {
+        "texto": "es",
+        "inicio": 11.08,
+        "fin": 11.2
+      },
+      {
+        "texto": "el",
+        "inicio": 11.28,
+        "fin": 11.36
+      },
+      {
+        "texto": "Backend.",
+        "inicio": 11.44,
+        "fin": 12.24
+      }
+    ],
+    [
+      {
+        "texto": "El",
+        "inicio": 0,
+        "fin": 0.16
+      },
+      {
+        "texto": "Frontend",
+        "inicio": 0.32,
+        "fin": 0.72
+      },
+      {
+        "texto": "es",
+        "inicio": 0.8,
+        "fin": 0.88
+      },
+      {
+        "texto": "la",
+        "inicio": 0.96,
+        "fin": 1.04
+      },
+      {
+        "texto": "parte",
+        "inicio": 1.12,
+        "fin": 1.36
+      },
+      {
+        "texto": "de",
+        "inicio": 1.44,
+        "fin": 1.52
+      },
+      {
+        "texto": "una",
+        "inicio": 1.6,
+        "fin": 1.68
+      },
+      {
+        "texto": "aplicación",
+        "inicio": 1.76,
+        "fin": 2.32
+      },
+      {
+        "texto": "con",
+        "inicio": 2.4,
+        "fin": 2.48
+      },
+      {
+        "texto": "la",
+        "inicio": 2.52,
+        "fin": 2.56
+      },
+      {
+        "texto": "que",
+        "inicio": 2.64,
+        "fin": 2.72
+      },
+      {
+        "texto": "interactúas:",
+        "inicio": 2.84,
+        "fin": 3.84
+      },
+      {
+        "texto": "los",
+        "inicio": 3.92,
+        "fin": 4
+      },
+      {
+        "texto": "botones,",
+        "inicio": 4.12,
+        "fin": 4.88
+      },
+      {
+        "texto": "las",
+        "inicio": 4.96,
+        "fin": 5.04
+      },
+      {
+        "texto": "imágenes,",
+        "inicio": 5.16,
+        "fin": 5.92
+      },
+      {
+        "texto": "los",
+        "inicio": 6,
+        "fin": 6.08
+      },
+      {
+        "texto": "formularios,",
+        "inicio": 6.2,
+        "fin": 7.04
+      },
+      {
+        "texto": "los",
+        "inicio": 7.12,
+        "fin": 7.2
+      },
+      {
+        "texto": "menús",
+        "inicio": 7.28,
+        "fin": 7.68
+      },
+      {
+        "texto": "y",
+        "inicio": 8,
+        "fin": 8.24
+      },
+      {
+        "texto": "todo",
+        "inicio": 8.36,
+        "fin": 8.48
+      },
+      {
+        "texto": "lo",
+        "inicio": 8.56,
+        "fin": 8.6
+      },
+      {
+        "texto": "que",
+        "inicio": 8.64,
+        "fin": 8.72
+      },
+      {
+        "texto": "aparece",
+        "inicio": 8.76,
+        "fin": 9.04
+      },
+      {
+        "texto": "en",
+        "inicio": 9.12,
+        "fin": 9.2
+      },
+      {
+        "texto": "pantalla.",
+        "inicio": 9.28,
+        "fin": 10.24
+      },
+      {
+        "texto": "Para",
+        "inicio": 10.32,
+        "fin": 10.4
+      },
+      {
+        "texto": "construirlo",
+        "inicio": 10.48,
+        "fin": 11.2
+      },
+      {
+        "texto": "utilizamos",
+        "inicio": 11.32,
+        "fin": 11.76
+      },
+      {
+        "texto": "tecnologías",
+        "inicio": 11.8,
+        "fin": 12.48
+      },
+      {
+        "texto": "como",
+        "inicio": 12.56,
+        "fin": 12.8
+      },
+      {
+        "texto": "HTML,",
+        "inicio": 12.96,
+        "fin": 13.92
+      },
+      {
+        "texto": "CSS",
+        "inicio": 14.08,
+        "fin": 14.88
+      },
+      {
+        "texto": "y",
+        "inicio": 15.04,
+        "fin": 15.12
+      },
+      {
+        "texto": "JavaScript,",
+        "inicio": 15.2,
+        "fin": 16.16
+      },
+      {
+        "texto": "además",
+        "inicio": 16.24,
+        "fin": 16.48
+      },
+      {
+        "texto": "de",
+        "inicio": 16.52,
+        "fin": 16.56
+      },
+      {
+        "texto": "herramientas",
+        "inicio": 16.6,
+        "fin": 17.12
+      },
+      {
+        "texto": "como",
+        "inicio": 17.2,
+        "fin": 17.44
+      },
+      {
+        "texto": "React,",
+        "inicio": 17.52,
+        "fin": 18.24
+      },
+      {
+        "texto": "Angular",
+        "inicio": 18.52,
+        "fin": 18.8
+      },
+      {
+        "texto": "y",
+        "inicio": 18.88,
+        "fin": 18.96
+      },
+      {
+        "texto": "Vue.",
+        "inicio": 19.04,
+        "fin": 19.52
+      }
+    ],
+    [
+      {
+        "texto": "Pero",
+        "inicio": 0,
+        "fin": 0.32
+      },
+      {
+        "texto": "¿qué",
+        "inicio": 0.56,
+        "fin": 0.64
+      },
+      {
+        "texto": "pasa",
+        "inicio": 0.8,
+        "fin": 1.04
+      },
+      {
+        "texto": "cuando",
+        "inicio": 1.12,
+        "fin": 1.36
+      },
+      {
+        "texto": "presionas",
+        "inicio": 1.48,
+        "fin": 1.84
+      },
+      {
+        "texto": "comprar?",
+        "inicio": 1.92,
+        "fin": 2.76
+      },
+      {
+        "texto": "Ahí",
+        "inicio": 3.04,
+        "fin": 3.36
+      },
+      {
+        "texto": "entra",
+        "inicio": 3.52,
+        "fin": 3.76
+      },
+      {
+        "texto": "el",
+        "inicio": 3.8,
+        "fin": 3.84
+      },
+      {
+        "texto": "Backend.",
+        "inicio": 3.92,
+        "fin": 4.48
+      },
+      {
+        "texto": "Es",
+        "inicio": 4.88,
+        "fin": 4.96
+      },
+      {
+        "texto": "la",
+        "inicio": 5.04,
+        "fin": 5.12
+      },
+      {
+        "texto": "parte",
+        "inicio": 5.2,
+        "fin": 5.4
+      },
+      {
+        "texto": "que",
+        "inicio": 5.44,
+        "fin": 5.52
+      },
+      {
+        "texto": "procesa",
+        "inicio": 5.6,
+        "fin": 6
+      },
+      {
+        "texto": "la",
+        "inicio": 6.04,
+        "fin": 6.08
+      },
+      {
+        "texto": "información,",
+        "inicio": 6.24,
+        "fin": 7.12
+      },
+      {
+        "texto": "valida",
+        "inicio": 7.24,
+        "fin": 7.44
+      },
+      {
+        "texto": "los",
+        "inicio": 7.52,
+        "fin": 7.6
+      },
+      {
+        "texto": "datos,",
+        "inicio": 7.68,
+        "fin": 8.32
+      },
+      {
+        "texto": "aplica",
+        "inicio": 8.44,
+        "fin": 8.72
+      },
+      {
+        "texto": "las",
+        "inicio": 8.8,
+        "fin": 8.88
+      },
+      {
+        "texto": "reglas",
+        "inicio": 8.96,
+        "fin": 9.2
+      },
+      {
+        "texto": "del",
+        "inicio": 9.28,
+        "fin": 9.36
+      },
+      {
+        "texto": "negocio",
+        "inicio": 9.48,
+        "fin": 9.92
+      },
+      {
+        "texto": "y",
+        "inicio": 10.08,
+        "fin": 10.16
+      },
+      {
+        "texto": "se",
+        "inicio": 10.24,
+        "fin": 10.32
+      },
+      {
+        "texto": "comunica",
+        "inicio": 10.44,
+        "fin": 10.88
+      },
+      {
+        "texto": "con",
+        "inicio": 10.96,
+        "fin": 11.04
+      },
+      {
+        "texto": "la",
+        "inicio": 11.08,
+        "fin": 11.12
+      },
+      {
+        "texto": "base",
+        "inicio": 11.2,
+        "fin": 11.36
+      },
+      {
+        "texto": "de",
+        "inicio": 11.44,
+        "fin": 11.52
+      },
+      {
+        "texto": "datos.",
+        "inicio": 11.6,
+        "fin": 12.28
+      },
+      {
+        "texto": "Algunas",
+        "inicio": 12.56,
+        "fin": 12.88
+      },
+      {
+        "texto": "tecnologías",
+        "inicio": 12.96,
+        "fin": 13.52
+      },
+      {
+        "texto": "utilizadas",
+        "inicio": 13.64,
+        "fin": 14.24
+      },
+      {
+        "texto": "son",
+        "inicio": 14.4,
+        "fin": 14.56
+      },
+      {
+        "texto": "Node.js,",
+        "inicio": 14.88,
+        "fin": 16.36
+      },
+      {
+        "texto": "Python,",
+        "inicio": 16.56,
+        "fin": 17.12
+      },
+      {
+        "texto": "Java,",
+        "inicio": 17.44,
+        "fin": 17.96
+      },
+      {
+        "texto": "PHP",
+        "inicio": 18.08,
+        "fin": 18.64
+      },
+      {
+        "texto": "y",
+        "inicio": 18.96,
+        "fin": 19.04
+      },
+      {
+        "texto": ".NET.",
+        "inicio": 19.2,
+        "fin": 20.08
+      }
+    ],
+    [
+      {
+        "texto": "Imagina",
+        "inicio": 0,
+        "fin": 0.4
+      },
+      {
+        "texto": "que",
+        "inicio": 0.48,
+        "fin": 0.64
+      },
+      {
+        "texto": "compras",
+        "inicio": 0.76,
+        "fin": 1.12
+      },
+      {
+        "texto": "unos",
+        "inicio": 1.24,
+        "fin": 1.36
+      },
+      {
+        "texto": "audífonos.",
+        "inicio": 1.48,
+        "fin": 2.28
+      },
+      {
+        "texto": "Primero",
+        "inicio": 2.48,
+        "fin": 2.88
+      },
+      {
+        "texto": "presionas",
+        "inicio": 3,
+        "fin": 3.36
+      },
+      {
+        "texto": "comprar",
+        "inicio": 3.44,
+        "fin": 4
+      },
+      {
+        "texto": "en",
+        "inicio": 4.08,
+        "fin": 4.16
+      },
+      {
+        "texto": "el",
+        "inicio": 4.24,
+        "fin": 4.32
+      },
+      {
+        "texto": "Frontend.",
+        "inicio": 4.4,
+        "fin": 5.36
+      },
+      {
+        "texto": "Después,",
+        "inicio": 5.44,
+        "fin": 6
+      },
+      {
+        "texto": "tu",
+        "inicio": 6.04,
+        "fin": 6.08
+      },
+      {
+        "texto": "aplicación",
+        "inicio": 6.16,
+        "fin": 6.64
+      },
+      {
+        "texto": "envía",
+        "inicio": 6.76,
+        "fin": 6.96
+      },
+      {
+        "texto": "una",
+        "inicio": 7.04,
+        "fin": 7.12
+      },
+      {
+        "texto": "solicitud",
+        "inicio": 7.2,
+        "fin": 7.76
+      },
+      {
+        "texto": "al",
+        "inicio": 7.84,
+        "fin": 7.92
+      },
+      {
+        "texto": "Backend",
+        "inicio": 8.16,
+        "fin": 8.4
+      },
+      {
+        "texto": "mediante",
+        "inicio": 8.48,
+        "fin": 8.88
+      },
+      {
+        "texto": "una",
+        "inicio": 8.96,
+        "fin": 9.12
+      },
+      {
+        "texto": "API.",
+        "inicio": 9.2,
+        "fin": 10.32
+      },
+      {
+        "texto": "El",
+        "inicio": 10.4,
+        "fin": 10.48
+      },
+      {
+        "texto": "Backend",
+        "inicio": 10.56,
+        "fin": 10.96
+      },
+      {
+        "texto": "valida",
+        "inicio": 11.04,
+        "fin": 11.4
+      },
+      {
+        "texto": "la",
+        "inicio": 11.44,
+        "fin": 11.52
+      },
+      {
+        "texto": "compra,",
+        "inicio": 11.6,
+        "fin": 12.16
+      },
+      {
+        "texto": "procesa",
+        "inicio": 12.28,
+        "fin": 12.64
+      },
+      {
+        "texto": "el",
+        "inicio": 12.667,
+        "fin": 12.693
+      },
+      {
+        "texto": "pedido",
+        "inicio": 12.72,
+        "fin": 13.2
+      },
+      {
+        "texto": "y",
+        "inicio": 13.28,
+        "fin": 13.36
+      },
+      {
+        "texto": "guarda",
+        "inicio": 13.44,
+        "fin": 13.76
+      },
+      {
+        "texto": "la",
+        "inicio": 13.8,
+        "fin": 13.84
+      },
+      {
+        "texto": "información",
+        "inicio": 14,
+        "fin": 14.48
+      },
+      {
+        "texto": "en",
+        "inicio": 14.52,
+        "fin": 14.56
+      },
+      {
+        "texto": "la",
+        "inicio": 14.6,
+        "fin": 14.64
+      },
+      {
+        "texto": "base",
+        "inicio": 14.72,
+        "fin": 14.96
+      },
+      {
+        "texto": "de",
+        "inicio": 15,
+        "fin": 15.04
+      },
+      {
+        "texto": "datos.",
+        "inicio": 15.12,
+        "fin": 16
+      },
+      {
+        "texto": "Finalmente,",
+        "inicio": 16.16,
+        "fin": 16.72
+      },
+      {
+        "texto": "envía",
+        "inicio": 16.84,
+        "fin": 17.04
+      },
+      {
+        "texto": "una",
+        "inicio": 17.12,
+        "fin": 17.2
+      },
+      {
+        "texto": "respuesta",
+        "inicio": 17.28,
+        "fin": 17.84
+      },
+      {
+        "texto": "y",
+        "inicio": 18,
+        "fin": 18.08
+      },
+      {
+        "texto": "tú",
+        "inicio": 18.24,
+        "fin": 18.32
+      },
+      {
+        "texto": "ves",
+        "inicio": 18.4,
+        "fin": 18.56
+      },
+      {
+        "texto": "la",
+        "inicio": 18.64,
+        "fin": 18.68
+      },
+      {
+        "texto": "confirmación",
+        "inicio": 18.72,
+        "fin": 19.28
+      },
+      {
+        "texto": "en",
+        "inicio": 19.32,
+        "fin": 19.36
+      },
+      {
+        "texto": "pantalla.",
+        "inicio": 19.44,
+        "fin": 20.16
+      }
+    ],
+    [
+      {
+        "texto": "Y",
+        "inicio": 0,
+        "fin": 0.16
+      },
+      {
+        "texto": "cuando",
+        "inicio": 0.2,
+        "fin": 0.4
+      },
+      {
+        "texto": "un",
+        "inicio": 0.44,
+        "fin": 0.48
+      },
+      {
+        "texto": "desarrollador",
+        "inicio": 0.6,
+        "fin": 1.2
+      },
+      {
+        "texto": "trabaja",
+        "inicio": 1.28,
+        "fin": 1.68
+      },
+      {
+        "texto": "tanto",
+        "inicio": 1.84,
+        "fin": 2.16
+      },
+      {
+        "texto": "en",
+        "inicio": 2.2,
+        "fin": 2.24
+      },
+      {
+        "texto": "Frontend",
+        "inicio": 2.32,
+        "fin": 2.88
+      },
+      {
+        "texto": "como",
+        "inicio": 2.96,
+        "fin": 3.04
+      },
+      {
+        "texto": "en",
+        "inicio": 3.08,
+        "fin": 3.12
+      },
+      {
+        "texto": "Backend,",
+        "inicio": 3.2,
+        "fin": 3.92
+      },
+      {
+        "texto": "se",
+        "inicio": 3.96,
+        "fin": 4
+      },
+      {
+        "texto": "le",
+        "inicio": 4.08,
+        "fin": 4.16
+      },
+      {
+        "texto": "conoce",
+        "inicio": 4.24,
+        "fin": 4.64
+      },
+      {
+        "texto": "como",
+        "inicio": 4.76,
+        "fin": 4.88
+      },
+      {
+        "texto": "Full",
+        "inicio": 5.04,
+        "fin": 5.2
+      },
+      {
+        "texto": "Stack.",
+        "inicio": 5.28,
+        "fin": 6.16
+      },
+      {
+        "texto": "Es",
+        "inicio": 6.2,
+        "fin": 6.24
+      },
+      {
+        "texto": "decir,",
+        "inicio": 6.32,
+        "fin": 6.96
+      },
+      {
+        "texto": "puede",
+        "inicio": 7.04,
+        "fin": 7.28
+      },
+      {
+        "texto": "participar",
+        "inicio": 7.4,
+        "fin": 7.84
+      },
+      {
+        "texto": "en",
+        "inicio": 7.88,
+        "fin": 7.92
+      },
+      {
+        "texto": "la",
+        "inicio": 7.96,
+        "fin": 8
+      },
+      {
+        "texto": "construcción",
+        "inicio": 8.08,
+        "fin": 8.64
+      },
+      {
+        "texto": "de",
+        "inicio": 8.68,
+        "fin": 8.72
+      },
+      {
+        "texto": "una",
+        "inicio": 8.8,
+        "fin": 8.88
+      },
+      {
+        "texto": "aplicación",
+        "inicio": 8.96,
+        "fin": 9.68
+      },
+      {
+        "texto": "de",
+        "inicio": 9.76,
+        "fin": 9.84
+      },
+      {
+        "texto": "principio",
+        "inicio": 9.92,
+        "fin": 10.64
+      },
+      {
+        "texto": "a",
+        "inicio": 10.68,
+        "fin": 10.72
+      },
+      {
+        "texto": "fin.",
+        "inicio": 10.88,
+        "fin": 11.36
+      }
+    ],
+    [
+      {
+        "texto": "Ahora",
+        "inicio": 0,
+        "fin": 0.24
+      },
+      {
+        "texto": "dime:",
+        "inicio": 0.32,
+        "fin": 0.64
+      },
+      {
+        "texto": "si",
+        "inicio": 1.04,
+        "fin": 1.12
+      },
+      {
+        "texto": "tuvieras",
+        "inicio": 1.2,
+        "fin": 1.52
+      },
+      {
+        "texto": "que",
+        "inicio": 1.6,
+        "fin": 1.64
+      },
+      {
+        "texto": "elegir,",
+        "inicio": 1.68,
+        "fin": 2.56
+      },
+      {
+        "texto": "¿te",
+        "inicio": 2.587,
+        "fin": 2.64
+      },
+      {
+        "texto": "gustaría",
+        "inicio": 2.72,
+        "fin": 3.04
+      },
+      {
+        "texto": "desarrollar",
+        "inicio": 3.12,
+        "fin": 3.68
+      },
+      {
+        "texto": "lo",
+        "inicio": 3.76,
+        "fin": 3.84
+      },
+      {
+        "texto": "que",
+        "inicio": 3.88,
+        "fin": 3.92
+      },
+      {
+        "texto": "ves",
+        "inicio": 4,
+        "fin": 4.16
+      },
+      {
+        "texto": "en",
+        "inicio": 4.24,
+        "fin": 4.32
+      },
+      {
+        "texto": "pantalla",
+        "inicio": 4.427,
+        "fin": 4.88
+      },
+      {
+        "texto": "o",
+        "inicio": 5.2,
+        "fin": 5.36
+      },
+      {
+        "texto": "trabajar",
+        "inicio": 5.44,
+        "fin": 5.92
+      },
+      {
+        "texto": "en",
+        "inicio": 6.04,
+        "fin": 6.16
+      },
+      {
+        "texto": "todo",
+        "inicio": 6.24,
+        "fin": 6.48
+      },
+      {
+        "texto": "lo",
+        "inicio": 6.52,
+        "fin": 6.56
+      },
+      {
+        "texto": "que",
+        "inicio": 6.64,
+        "fin": 6.72
+      },
+      {
+        "texto": "sucede",
+        "inicio": 6.76,
+        "fin": 7.12
+      },
+      {
+        "texto": "detrás?",
+        "inicio": 7.2,
+        "fin": 7.88
+      },
+      {
+        "texto": "¿Frontend",
+        "inicio": 8.16,
+        "fin": 8.8
+      },
+      {
+        "texto": "o",
+        "inicio": 8.88,
+        "fin": 8.96
+      },
+      {
+        "texto": "Backend?",
+        "inicio": 9.12,
+        "fin": 10
+      },
+      {
+        "texto": "Te",
+        "inicio": 10.04,
+        "fin": 10.08
+      },
+      {
+        "texto": "leo",
+        "inicio": 10.16,
+        "fin": 10.24
+      },
+      {
+        "texto": "en",
+        "inicio": 10.28,
+        "fin": 10.32
+      },
+      {
+        "texto": "los",
+        "inicio": 10.4,
+        "fin": 10.48
+      },
+      {
+        "texto": "comentarios.",
+        "inicio": 10.52,
+        "fin": 11.52
+      },
+      {
+        "texto": "Sígueme",
+        "inicio": 11.56,
+        "fin": 11.84
+      },
+      {
+        "texto": "en",
+        "inicio": 11.88,
+        "fin": 11.92
+      },
+      {
+        "texto": "DevMorado",
+        "inicio": 12,
+        "fin": 12.56
+      },
+      {
+        "texto": "para",
+        "inicio": 12.64,
+        "fin": 12.72
+      },
+      {
+        "texto": "aprender",
+        "inicio": 12.8,
+        "fin": 13.12
+      },
+      {
+        "texto": "desarrollo",
+        "inicio": 13.2,
+        "fin": 13.6
+      },
+      {
+        "texto": "de",
+        "inicio": 13.64,
+        "fin": 13.68
+      },
+      {
+        "texto": "software",
+        "inicio": 13.76,
+        "fin": 14.24
+      },
+      {
+        "texto": "desde",
+        "inicio": 14.32,
+        "fin": 14.48
+      },
+      {
+        "texto": "cero.",
+        "inicio": 14.64,
+        "fin": 15.12
+      }
+    ]
+  ]
+}

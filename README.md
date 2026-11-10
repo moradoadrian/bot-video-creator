@@ -76,6 +76,13 @@ npm run render -- diferencia-entre-while-y-do-while
 - **El bot ejecuta cada código** con `node:vm`: `guion:codigo` corrige la `salida` si no coincide y `render` te avisa. Un bucle infinito a propósito se detecta y se respeta la salida que escribiste (termínala con `... nunca termina`). `vm` no es una barrera de seguridad: revisa el código de cada guion antes de correrlo.
 - También avisa si el código y la consola taparían el subtítulo, o si `resaltar` apunta a una línea que no existe.
 - Una escena puede no llevar `codigo` si solo explica un concepto.
+- Opcional, por escena: `"archivo": "Contador.vue"` cambia el nombre que se ve en el editor y marca el código como ilustrativo: **no se ejecuta ni se verifica su salida**, así que revísalo a mano. Sirve para JSX, Vue, Angular o código que necesita navegador.
+- Opcional, por escena (o en el `gancho`): `"visual"` dibuja un diagrama animado en lugar del editor. Una escena lleva `codigo` o `visual`, no los dos. Cada elemento entra cuando la voz dice su `clave` (por defecto su `texto`); las claves se buscan en orden en la narración y `render` avisa si alguna no aparece.
+  - `tarjetas`: `items` (2–6) y opcionalmente `etiquetas: { lista, clave }`, una fila de chips (tecnologías, por ejemplo).
+  - `flujo`: `pasos` (2–5) en cadena con un paquete que viaja entre ellos; opcionales `regreso: { texto, clave }` y `final` (un aviso al terminar).
+  - `suma`: `partes` (2–3) + … = `resultado`.
+  - `versus`: `lados` con dos elementos frente a frente.
+  - Cada elemento: `{ "texto": "Backend", "detalle": "Valida y procesa", "icono": "servidor", "clave": "valida" }`. Íconos: `pantalla`, `servidor`, `base-datos`, `api`, `cursor`, `imagen`, `formulario`, `menu`, `engrane`, `escudo`, `lista`, `capas`, `check`, `carrito`, `codigo`, `rayo`, `gota`, `usuario`, `nube`, `candado`. Ejemplo completo: `content/frontend-vs-backend-que-es-cada-uno/guion.json`.
 - Opcional, para la portada: `"portada": { "titulo": "...", "frase": "..." }`. Sin esto usa el título del gancho.
 
 ## Personaje
@@ -91,7 +98,8 @@ La imagen y sus coordenadas están en `personaje` dentro de `config/marca-codigo
 | `src/Portada.tsx` | Portada del canal código |
 | `src/medidas.ts` | Tamaño del código en pantalla, compartido con los validadores |
 | `src/subtitulos.ts` | Convierte los tiempos de la voz en subtítulos palabra por palabra |
-| `src/components/` | Personaje, íconos SVG, confeti y resaltado de JavaScript |
+| `src/components/` | Personaje, íconos SVG, confeti, resaltado de JavaScript y diagramas animados (`Visual.tsx`) |
+| `src/momentos.ts` | En qué segundo aparece cada elemento de un diagrama, según la voz |
 | `scripts/guion.ts` | Prompts por canal y llamada a Claude; valida con zod y verifica el código |
 | `scripts/voz.ts` | TTS por bloque (ElevenLabs u OpenAI) con tono y voz por canal, reintentos y reutilización |
 | `scripts/portada.ts` | Genera la portada de un video |

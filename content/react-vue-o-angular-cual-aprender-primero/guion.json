@@ -1,0 +1,57 @@
+{
+  "canal": "codigo",
+  "lenguaje": "javascript",
+  "slug": "react-vue-o-angular-cual-aprender-primero",
+  "tema": "React, Vue o Angular: cuál aprender primero",
+  "gancho": {
+    "titulo": "¿React, Vue o Angular?",
+    "narracion": "React, Vue y Angular. Todos te dicen que aprendas uno, pero casi nadie te muestra la diferencia. Hoy programamos lo mismo en los tres, para que la veas con tus propios ojos."
+  },
+  "escenas": [
+    {
+      "titulo": "Sin framework, todo a mano",
+      "narracion": "Sin framework, tú actualizas la pantalla a mano cada vez que algo cambia. Los tres resuelven eso: cambias el dato y la pantalla se actualiza sola. Para compararlos, haremos un botón que cuenta los clics.",
+      "codigo": "let n = 0;\n\nboton.onclick = () => {\n  n++;\n  boton.textContent = n;\n};",
+      "resaltar": [5],
+      "archivo": "sin-framework.js"
+    },
+    {
+      "titulo": "React",
+      "narracion": "React lo creó Meta, y es el más usado de los tres. Técnicamente es una biblioteca, no un framework. Aquí, use state guarda el número, y con cada clic, set N lo cambia. Mezcla JavaScript con etiquetas en un solo lugar.",
+      "codigo": "function Contador() {\n  const [n, setN] = useState(0);\n  const sumar = () => setN(n + 1);\n  return (\n    <button onClick={sumar}>\n      {n}\n    </button>\n  );\n}",
+      "resaltar": [2],
+      "archivo": "Contador.jsx"
+    },
+    {
+      "titulo": "Vue",
+      "narracion": "Vue nació como proyecto de Evan You, y hoy lo sostiene su comunidad. Separa la lógica de lo que se ve: arriba el código, abajo la plantilla. Aquí basta con n más más dentro del clic. Por eso muchos lo sienten más fácil para empezar.",
+      "codigo": "<script setup>\nimport { ref } from 'vue';\nconst n = ref(0);\n</script>\n<template>\n  <button @click=\"n++\">\n    {{ n }}\n  </button>\n</template>",
+      "resaltar": [6],
+      "archivo": "Contador.vue"
+    },
+    {
+      "titulo": "Angular",
+      "narracion": "Angular es de Google, y es el más completo: trae casi todo incluido y se escribe en TypeScript. Por eso tiene más reglas y cuesta más al inicio, pero se usa mucho en empresas grandes. Aquí, la plantilla va arriba y la clase guarda el número.",
+      "codigo": "@Component({\n  template: `\n    <button (click)=\"n = n + 1\">\n      {{ n }}\n    </button>\n  `,\n})\nclass Contador {\n  n = 0;\n}",
+      "resaltar": [3],
+      "archivo": "contador.ts"
+    },
+    {
+      "titulo": "¿Cuál aprendo primero?",
+      "narracion": "Mi consejo: no empieces por ninguno. Primero aprende JavaScript, porque los tres se apoyan en él. Después, si buscas trabajo, ve por React, que suele ser el más pedido. Si quieres algo más suave, Vue. Y Angular, si tu empresa lo usa.",
+      "codigo": "// Tu ruta para empezar:\n\n// 1. JavaScript\n// 2. React o Vue\n// 3. Angular, si te lo piden",
+      "resaltar": [3],
+      "archivo": "mi-ruta.js"
+    }
+  ],
+  "cierre": {
+    "titulo": "¿Con cuál empezarías?",
+    "narracion": "¿Con cuál empezarías tú? Déjamelo en los comentarios. Guarda este video para cuando te toque elegir, y sígueme para aprender a programar desde cero."
+  },
+  "descripcion": "El mismo contador en React, Vue y Angular para que veas la diferencia, y cuál conviene aprender primero si estás empezando a programar.",
+  "hashtags": ["#programacion", "#javascript", "#react", "#vue", "#angular", "#aprendeaprogramar"],
+  "portada": {
+    "titulo": "¿React, Vue o Angular?",
+    "frase": "¿Cuál aprendo primero?"
+  }
+}

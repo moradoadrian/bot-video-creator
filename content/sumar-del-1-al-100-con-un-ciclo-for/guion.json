@@ -1,0 +1,57 @@
+{
+  "canal": "codigo",
+  "lenguaje": "javascript",
+  "slug": "sumar-del-1-al-100-con-un-ciclo-for",
+  "tema": "Sumar del 1 al 100 con un ciclo for",
+  "gancho": {
+    "titulo": "Suma del 1 al 100",
+    "narracion": "Sumar del uno al cien a mano te tomaría minutos. Tu código lo hace al instante, con un ciclo de tres líneas. Te reto a resolverlo antes de que yo te enseñe cómo."
+  },
+  "escenas": [
+    {
+      "titulo": "Tu turno",
+      "narracion": "El reto es sumar uno, más dos, más tres, y así hasta llegar a cien. Pausa el video e inténtalo. Te doy una pista: necesitas una variable que vaya guardando el total.",
+      "codigo": "let suma = 0;\n// escribe aquí tu ciclo\nconsole.log(suma);",
+      "resaltar": [2],
+      "archivo": "reto.js"
+    },
+    {
+      "titulo": "La solución",
+      "narracion": "Aquí está. Suma empieza en cero, el ciclo recorre del uno al cien, y en cada vuelta le agrega i al total. Al terminar, imprimimos el resultado: cinco mil cincuenta.",
+      "codigo": "let suma = 0;\nfor (let i = 1; i <= 100; i++) {\n  suma += i;\n}\nconsole.log(suma);",
+      "resaltar": [2, 3, 4],
+      "salida": "5050"
+    },
+    {
+      "titulo": "Vuelta por vuelta",
+      "narracion": "Míralo con cuatro vueltas. A la izquierda está i, y a la derecha el total. Cero más uno es uno, uno más dos es tres, tres más tres es seis, seis más cuatro es diez. El total crece en cada vuelta.",
+      "codigo": "let suma = 0;\nfor (let i = 1; i <= 4; i++) {\n  suma += i;\n  console.log(i, suma);\n}",
+      "resaltar": [3],
+      "salida": "1 1\n2 3\n3 6\n4 10"
+    },
+    {
+      "titulo": "El error más común",
+      "narracion": "Cuidado con este error. Si creas suma dentro del ciclo, vuelve a cero en cada vuelta y nunca acumula nada. Por eso imprime uno, dos, tres, y no el total. La variable del total siempre va afuera.",
+      "codigo": "for (let i = 1; i <= 3; i++) {\n  let suma = 0;\n  suma += i;\n  console.log(suma);\n}",
+      "resaltar": [2],
+      "salida": "1\n2\n3"
+    },
+    {
+      "titulo": "El atajo de Gauss",
+      "narracion": "Un dato curioso. Se cuenta que el matemático Gauss, de niño, resolvió esta suma sin ir número por número: cien por ciento uno, entre dos. Da lo mismo. Pero el ciclo te sirve aunque no exista una fórmula.",
+      "codigo": "let n = 100;\nconsole.log(n * (n + 1) / 2);",
+      "resaltar": [2],
+      "salida": "5050"
+    }
+  ],
+  "cierre": {
+    "titulo": "¿Y solo los pares?",
+    "narracion": "Ahora te toca a ti: ¿cuánto da si sumas solo los números pares del uno al cien? Déjalo en los comentarios y sígueme, porque en el siguiente haremos que la computadora escriba cualquier tabla de multiplicar por ti."
+  },
+  "descripcion": "Reto: suma del 1 al 100 en JavaScript con un ciclo for. Cómo acumular un total, el error más común al hacerlo y el atajo de Gauss.",
+  "hashtags": ["#programacion", "#javascript", "#aprendeaprogramar", "#ciclofor", "#retodecodigo"],
+  "portada": {
+    "titulo": "Suma del 1 al 100",
+    "frase": "Con un ciclo de 3 líneas"
+  }
+}

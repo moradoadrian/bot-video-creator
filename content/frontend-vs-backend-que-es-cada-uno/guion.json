@@ -1,0 +1,186 @@
+{
+  "canal": "codigo",
+  "lenguaje": "javascript",
+  "slug": "frontend-vs-backend-que-es-cada-uno",
+  "tema": "Frontend vs Backend: qué es cada uno",
+  "gancho": {
+    "titulo": "¿Qué sucede detrás de una aplicación?",
+    "narracion": "Cuando compras por internet, solamente ves una página con productos y un botón para comprar. Pero detrás ocurren muchas cosas. Hoy te explico qué es el Frontend y qué es el Backend.",
+    "visual": {
+      "tipo": "versus",
+      "lados": [
+        {
+          "texto": "Frontend",
+          "detalle": "Lo que ves",
+          "icono": "pantalla",
+          "clave": "ves"
+        },
+        {
+          "texto": "Backend",
+          "detalle": "Lo que pasa detrás",
+          "icono": "servidor",
+          "clave": "detrás"
+        }
+      ]
+    }
+  },
+  "escenas": [
+    {
+      "titulo": "¿Qué es el Frontend?",
+      "narracion": "El Frontend es la parte de una aplicación con la que interactúas: los botones, las imágenes, los formularios, los menús y todo lo que aparece en pantalla. Para construirlo utilizamos tecnologías como HTML, CSS y JavaScript, además de herramientas como React, Angular y Vue.",
+      "visual": {
+        "tipo": "tarjetas",
+        "items": [
+          {
+            "texto": "Botones",
+            "icono": "cursor"
+          },
+          {
+            "texto": "Imágenes",
+            "icono": "imagen"
+          },
+          {
+            "texto": "Formularios",
+            "icono": "formulario"
+          },
+          {
+            "texto": "Menús",
+            "icono": "menu"
+          }
+        ],
+        "etiquetas": {
+          "lista": [
+            "HTML",
+            "CSS",
+            "JavaScript",
+            "React",
+            "Angular",
+            "Vue"
+          ],
+          "clave": "HTML"
+        }
+      }
+    },
+    {
+      "titulo": "¿Qué es el Backend?",
+      "narracion": "Pero ¿qué pasa cuando presionas comprar? Ahí entra el Backend. Es la parte que procesa la información, valida los datos, aplica las reglas del negocio y se comunica con la base de datos. Algunas tecnologías utilizadas son Node.js, Python, Java, PHP y .NET.",
+      "visual": {
+        "tipo": "tarjetas",
+        "items": [
+          {
+            "texto": "Procesa",
+            "detalle": "La información",
+            "icono": "engrane"
+          },
+          {
+            "texto": "Valida",
+            "detalle": "Los datos",
+            "icono": "escudo"
+          },
+          {
+            "texto": "Aplica reglas",
+            "detalle": "Del negocio",
+            "icono": "lista",
+            "clave": "reglas"
+          },
+          {
+            "texto": "Base de datos",
+            "detalle": "Se comunica con ella",
+            "icono": "base-datos"
+          }
+        ],
+        "etiquetas": {
+          "lista": [
+            "Node.js",
+            "Python",
+            "Java",
+            "PHP",
+            ".NET"
+          ],
+          "clave": "Node"
+        }
+      }
+    },
+    {
+      "titulo": "¿Cómo trabajan juntos?",
+      "narracion": "Imagina que compras unos audífonos. Primero presionas comprar en el Frontend. Después, tu aplicación envía una solicitud al Backend mediante una API. El Backend valida la compra, procesa el pedido y guarda la información en la base de datos. Finalmente, envía una respuesta y tú ves la confirmación en pantalla.",
+      "visual": {
+        "tipo": "flujo",
+        "pasos": [
+          {
+            "texto": "Frontend",
+            "detalle": "Presionas comprar",
+            "icono": "pantalla",
+            "clave": "presionas"
+          },
+          {
+            "texto": "API",
+            "detalle": "Lleva la solicitud",
+            "icono": "api"
+          },
+          {
+            "texto": "Backend",
+            "detalle": "Valida y procesa",
+            "icono": "servidor",
+            "clave": "valida"
+          },
+          {
+            "texto": "Base de datos",
+            "detalle": "Guarda el pedido",
+            "icono": "base-datos",
+            "clave": "guarda"
+          }
+        ],
+        "regreso": {
+          "texto": "Respuesta",
+          "clave": "respuesta"
+        },
+        "final": {
+          "texto": "¡Compra confirmada!",
+          "icono": "check",
+          "clave": "confirmación"
+        }
+      }
+    },
+    {
+      "titulo": "¿Qué es Full Stack?",
+      "narracion": "Y cuando un desarrollador trabaja tanto en Frontend como en Backend, se le conoce como Full Stack. Es decir, puede participar en la construcción de una aplicación de principio a fin.",
+      "visual": {
+        "tipo": "suma",
+        "partes": [
+          {
+            "texto": "Frontend",
+            "icono": "pantalla"
+          },
+          {
+            "texto": "Backend",
+            "icono": "servidor"
+          }
+        ],
+        "resultado": {
+          "texto": "Full Stack",
+          "detalle": "De principio a fin",
+          "icono": "capas"
+        }
+      }
+    }
+  ],
+  "cierre": {
+    "titulo": "¿De qué lado estás?",
+    "narracion": "Ahora dime: si tuvieras que elegir, ¿te gustaría desarrollar lo que ves en pantalla o trabajar en todo lo que sucede detrás? ¿Frontend o Backend? Te leo en los comentarios. Sígueme en DevMorado para aprender desarrollo de software desde cero."
+  },
+  "descripcion": "Frontend vs Backend: descubre qué hace cada uno, qué tecnologías utilizan y cómo trabajan juntos para crear las aplicaciones que usamos todos los días.",
+  "hashtags": [
+    "#Frontend",
+    "#Backend",
+    "#FullStack",
+    "#DesarrolloWeb",
+    "#Programacion",
+    "#JavaScript",
+    "#DevMorado"
+  ],
+  "portada": {
+    "titulo": "FRONTEND vs BACKEND",
+    "frase": "¿Qué hace cada uno?"
+  }
+}

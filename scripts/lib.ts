@@ -3,7 +3,8 @@ import path from 'node:path';
 import vm from 'node:vm';
 import { z } from 'zod';
 import { MAX_SALIDA_VISIBLE, medidasEditor } from '../src/medidas';
-import { Canal, EscenaCodigo, Guion, ICONOS, Marca, Timing } from '../src/types';
+import { clavesDe, momentosClave } from '../src/momentos';
+import { Canal, EscenaCodigo, Guion, GuionCodigo, ICONOS, ICONOS_CODIGO, Marca, Timing, Visual } from '../src/types';
 
 export const RAIZ = path.resolve(__dirname, '..');
 export const dirContenido = (slug: string) => path.join(RAIZ, 'content', slug);
@@ -31,6 +32,31 @@ const Codigo = z
     `Cada línea de código debe tener máximo ${MAX_COLUMNAS} caracteres para que quepa en pantalla`,
   );
 
+const Item = z.object({
+  texto: z.string().max(22),
+  detalle: z.string().max(28).optional(),
+  icono: z.enum(ICONOS_CODIGO).optional(),
+  clave: z.string().optional(),
+});
+
+const VisualSchema = z.discriminatedUnion('tipo', [
+  z.object({
+    tipo: z.literal('tarjetas'),
+    items: z.array(Item).min(2).max(6),
+    etiquetas: z
+      .object({ titulo: z.string().max(24).optional(), lista: z.array(z.string().max(14)).min(1).max(8), clave: z.string().optional() })
+      .optional(),
+  }),
+  z.object({
+    tipo: z.literal('flujo'),
+    pasos: z.array(Item).min(2).max(5),
+    regreso: z.object({ texto: z.string().max(20), clave: z.string().optional() }).optional(),
+    final: Item.optional(),
+  }),
+  z.object({ tipo: z.literal('suma'), partes: z.array(Item).min(2).max(3), resultado: Item }),
+  z.object({ tipo: z.literal('versus'), lados: z.tuple([Item, Item]) }),
+]);
+
 export const GuionFiestasSchema = z.object({
   ...Comun,
   canal: z.literal('fiestas').optional(),
@@ -44,15 +70,20 @@ export const GuionCodigoSchema = z.object({
   ...Comun,
   canal: z.literal('codigo'),
   lenguaje: z.literal('javascript'),
+  gancho: Bloque(40).extend({ visual: VisualSchema.optional() }),
   escenas: z
     .array(
-      z.object({
+      z
+        .object({
         titulo: z.string().max(36),
         narracion: z.string(),
         codigo: Codigo.optional(),
         resaltar: z.array(z.number().int().min(1)).optional(),
         salida: z.string().optional(),
-      }),
+        archivo: z.string().max(30).optional(),
+        visual: VisualSchema.optional(),
+      })
+        .refine((e) => !(e.codigo && e.visual), 'Una escena lleva codigo o visual, no los dos'),
     )
     .min(3)
     .max(7),
@@ -170,6 +201,7 @@ export const verificarCodigo = (escenas: EscenaCodigo[], corregir: boolean): str
     if (nSalida > MAX_SALIDA_VISIBLE) avisos.push(`${n}: la consola solo muestra las últimas ${MAX_SALIDA_VISIBLE} líneas de salida.`);
     const fuera = (e.resaltar ?? []).filter((l) => l > lineas.length);
     if (fuera.length) avisos.push(`${n}: resaltar apunta a líneas que no existen: ${fuera.join(', ')}.`);
+    if (e.archivo) return; // código ilustrativo (JSX, Vue, Angular…): no corre en node:vm
     const r = ejecutar(e.codigo);
     if (r.timeout) {
       if (!e.salida) avisos.push(`${n}: el código no termina (¿bucle infinito?) y no tiene salida escrita.`);
@@ -185,4 +217,19 @@ export const verificarCodigo = (escenas: EscenaCodigo[], corregir: boolean): str
     }
   });
   return avisos;
+};
+
+/** Avisa si un elemento de un diagrama no se nombra en la narración (saldría en un tiempo estimado). */
+export const verificarVisuales = (g: GuionCodigo): string[] => {
+  const bloques: { n: string; narracion: string; visual?: Visual }[] = [
+    { n: 'Gancho', ...g.gancho },
+    ...g.escenas.map((e, i) => ({ n: `Escena ${i + 1} (${e.titulo})`, ...e })),
+  ];
+  return bloques.flatMap(({ n, narracion, visual }) => {
+    if (!visual) return [];
+    const claves = clavesDe(visual);
+    return momentosClave(claves, narracion, 10)
+      .map((m, i) => (m.ok ? null : `${n}: "${claves[i]}" no se dice en la narración (o no en ese orden); aparecerá en un tiempo estimado.`))
+      .filter((a): a is string => a !== null);
+  });
 };

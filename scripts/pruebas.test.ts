@@ -3,8 +3,10 @@ import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import { medidasEditor } from '../src/medidas';
 import { agruparPalabras, indiceActual, palabrasDeAlineacion } from '../src/subtitulos';
+import { momentosClave } from '../src/momentos';
+import { golpesDeCamara, SEPARACION_MIN, ZOOM_ENTRADA, ZOOM_GOLPE, ZOOM_LENTO, zoomCamara } from '../src/camara';
 import { EscenaCodigo } from '../src/types';
-import { conReintentos, ejecutar, parsearGuion, slugify, verificarCodigo } from './lib';
+import { conReintentos, ejecutar, parsearGuion, slugify, verificarCodigo, verificarVisuales } from './lib';
 
 const escena = (e: Partial<EscenaCodigo>): EscenaCodigo => ({ titulo: 'Prueba', narracion: 'Texto', ...e });
 const contiene = (avisos: string[], texto: string) => avisos.some((a) => a.includes(texto));
@@ -44,6 +46,11 @@ test('verificarCodigo avisa si la consola taparía el subtítulo', () => {
 
 test('verificarCodigo avisa si resaltar apunta a una línea inexistente', () => {
   assert.ok(contiene(verificarCodigo([escena({ codigo: 'let a = 1;', resaltar: [5] })], false), 'no existen'));
+});
+
+test('verificarCodigo no ejecuta el código ilustrativo, pero sí revisa que quepa', () => {
+  assert.deepEqual(verificarCodigo([escena({ codigo: '<button>{{ n }}</button>', archivo: 'Contador.vue' })], false), []);
+  assert.ok(contiene(verificarCodigo([escena({ codigo: '<a>', archivo: 'a.vue', resaltar: [5] })], false), 'no existen'));
 });
 
 test('medidasEditor agranda el código corto y respeta el mínimo en el largo', () => {
@@ -117,4 +124,58 @@ test('parsearGuion conserva la portada opcional', () => {
     portada: { frase: 'Entiéndelo de una vez' },
   });
   assert.equal(g.portada.frase, 'Entiéndelo de una vez');
+});
+
+const guionCodigo = (extra: any = {}) => ({
+  canal: 'codigo',
+  lenguaje: 'javascript',
+  slug: 'prueba',
+  tema: 'Prueba',
+  gancho: { titulo: 'a', narracion: 'b' },
+  cierre: { titulo: 'a', narracion: 'b' },
+  descripcion: '',
+  hashtags: [],
+  escenas: [1, 2, 3].map(() => ({ titulo: 'a', narracion: 'b' })),
+  ...extra,
+});
+
+test('momentosClave estima por posición en el texto y respeta el orden', () => {
+  const m = momentosClave(['Frontend', 'Backend', 'nada'], 'Primero el Frontend y luego el Backend.', 10);
+  assert.ok(m[0].ok && m[1].ok && !m[2].ok);
+  assert.ok(m[0].t < m[1].t && m[1].t <= m[2].t);
+});
+
+test('momentosClave usa los tiempos reales de la voz y tolera acentos y signos', () => {
+  const palabras = ['Usa', 'Node.js', 'y', 'después', 'Imágenes.'].map((texto, i) => ({ texto, inicio: i, fin: i + 0.5 }));
+  const m = momentosClave(['node', 'imagenes'], 'Usa Node.js y después Imágenes.', 5, palabras);
+  assert.deepEqual(m.map((x) => x.t), [1, 4]);
+});
+
+test('parsearGuion acepta un visual y rechaza codigo y visual en la misma escena', () => {
+  const visual = { tipo: 'suma', partes: [{ texto: 'A' }, { texto: 'B' }], resultado: { texto: 'C', icono: 'capas' } };
+  const ok: any = parsearGuion(guionCodigo({ escenas: [1, 2, 3].map(() => ({ titulo: 'a', narracion: 'A B C', visual })) }));
+  assert.equal(ok.escenas[0].visual.tipo, 'suma');
+  assert.throws(() => parsearGuion(guionCodigo({ escenas: [1, 2, 3].map(() => ({ titulo: 'a', narracion: 'b', codigo: 'let a;', visual })) })));
+});
+
+test('verificarVisuales avisa si un elemento no se nombra en la narración', () => {
+  const g: any = parsearGuion(
+    guionCodigo({ gancho: { titulo: 'a', narracion: 'Solo Frontend', visual: { tipo: 'versus', lados: [{ texto: 'Frontend' }, { texto: 'Backend' }] } } }),
+  );
+  const avisos = verificarVisuales(g);
+  assert.equal(avisos.length, 1);
+  assert.ok(contiene(avisos, '"Backend"'));
+});
+
+test('golpesDeCamara ordena, descarta los de fuera y los demasiado juntos', () => {
+  assert.deepEqual(golpesDeCamara([3, 1, 1.5, 0.1, 9.9, Infinity], 10), [1, 3]);
+  assert.deepEqual(golpesDeCamara([1, 1 + SEPARACION_MIN], 10), [1, 1 + SEPARACION_MIN]);
+});
+
+test('zoomCamara entra acercada, se asienta, avanza lento y golpea en los momentos clave', () => {
+  const cerca = (a: number, b: number) => assert.ok(Math.abs(a - b) < 1e-6, `${a} ≈ ${b}`);
+  cerca(zoomCamara(0, 10, []), 1 + ZOOM_ENTRADA);
+  cerca(zoomCamara(10, 10, []), 1 + ZOOM_LENTO);
+  cerca(zoomCamara(5.12, 10, [5]) - zoomCamara(5.12, 10, []), ZOOM_GOLPE);
+  cerca(zoomCamara(7, 10, [5]), zoomCamara(7, 10, []));
 });

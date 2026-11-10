@@ -1,0 +1,57 @@
+{
+  "canal": "codigo",
+  "lenguaje": "javascript",
+  "slug": "diferencia-entre-while-y-do-while",
+  "tema": "Diferencia entre while y do while en JavaScript",
+  "gancho": {
+    "titulo": "¿WHILE o DO...WHILE?",
+    "narracion": "¿Sabías que estos dos ciclos parecen iguales, pero no funcionan exactamente de la misma manera? Hoy te enseño la diferencia entre while y do while en JavaScript."
+  },
+  "escenas": [
+    {
+      "titulo": "El ciclo WHILE",
+      "narracion": "El ciclo while comprueba la condición antes de ejecutar el código. Si la condición es verdadera, ejecuta las instrucciones. Pero si es falsa desde el principio, simplemente no hace nada.",
+      "codigo": "let numero = 1;\nwhile (numero <= 3) {\n  console.log(numero);\n  numero++;\n}",
+      "resaltar": [2, 3, 4],
+      "salida": "1\n2\n3"
+    },
+    {
+      "titulo": "El ciclo DO WHILE",
+      "narracion": "En cambio, do while primero ejecuta el código y después comprueba la condición. Esto significa que siempre se ejecuta al menos una vez, aunque la condición sea falsa.",
+      "codigo": "let numero = 1;\ndo {\n  console.log(numero);\n  numero++;\n} while (numero <= 3);",
+      "resaltar": [2, 3, 4, 5],
+      "salida": "1\n2\n3"
+    },
+    {
+      "titulo": "Aquí está la diferencia",
+      "narracion": "Pero mira lo que pasa cuando la condición es falsa desde el principio. El while no imprime absolutamente nada. En cambio, do while imprime su mensaje una vez y después termina. ¡Esa es la gran diferencia!",
+      "codigo": "let numero = 10;\nwhile (numero < 5) {\n  console.log('WHILE');\n}\n\nlet otroNumero = 10;\ndo {\n  console.log('DO WHILE');\n} while (otroNumero < 5);",
+      "resaltar": [2, 3, 8, 9],
+      "salida": "DO WHILE"
+    },
+    {
+      "titulo": "¿Cuándo utilizar cada uno?",
+      "narracion": "Utiliza while cuando quieras comprobar primero si debes ejecutar algo. Utiliza do while cuando necesites ejecutar una instrucción al menos una vez, como mostrar un menú interactivo.",
+      "codigo": "// WHILE: comprueba primero\nwhile (condicion) {\n  // instrucciones\n}\n\n// DO WHILE: ejecuta primero\ndo {\n  // instrucciones\n} while (condicion);",
+      "resaltar": [2, 7],
+      "archivo": "sintaxis.js"
+    }
+  ],
+  "cierre": {
+    "titulo": "¡Pon a prueba tu lógica!",
+    "narracion": "Ahora te toca: si la condición es falsa desde el principio, ¿cuántas veces se ejecuta do while? Déjame tu respuesta en los comentarios y sígueme para aprender JavaScript desde cero."
+  },
+  "descripcion": "While vs do while en JavaScript: descubre sus diferencias, cómo funcionan y por qué uno puede ejecutarse incluso cuando la condición es falsa.",
+  "hashtags": [
+    "#JavaScript",
+    "#While",
+    "#DoWhile",
+    "#Programacion",
+    "#AprenderAProgramar",
+    "#DevMorado"
+  ],
+  "portada": {
+    "titulo": "WHILE vs DO WHILE",
+    "frase": "¡No funcionan igual!"
+  }
+}

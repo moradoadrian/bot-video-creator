@@ -1,0 +1,55 @@
+{
+  "canal": "codigo",
+  "lenguaje": "javascript",
+  "slug": "api-explicada-facil",
+  "tema": "Qué es una API",
+  "gancho": {
+    "titulo": "¿Qué es una API?",
+    "narracion": "Todo programador habla de APIs, y casi nadie te explica qué son. En poco más de un minuto lo vas a entender, y vas a ver cómo se usa una con código."
+  },
+  "escenas": [
+    {
+      "titulo": "Piensa en un restaurante",
+      "narracion": "Piensa en un restaurante. Tú no entras a la cocina: le pides al mesero, él lleva tu pedido y te trae el plato. Una API es ese mesero: conecta tu programa con otro programa, sin que veas cómo trabaja por dentro.",
+      "codigo": "// Tú: tu aplicación\n// Mesero: la API\n// Cocina: el servidor",
+      "resaltar": [2]
+    },
+    {
+      "titulo": "Así se hace el pedido",
+      "narracion": "En JavaScript, fetch hace el pedido. Le das una dirección, que es como elegir un plato del menú, y await espera la respuesta. Esta dirección es solo de ejemplo: cada API tiene las suyas.",
+      "codigo": "const res = await fetch(\n  \"https://api.example.com/clima\"\n);\nconst datos = await res.json();",
+      "resaltar": [1, 2],
+      "archivo": "pedido.js"
+    },
+    {
+      "titulo": "Lo que te responde",
+      "narracion": "Muchas APIs responden en formato JSON. Es texto ordenado en pares de nombre y valor: la ciudad, los grados, el cielo. Y no es solo para JavaScript: casi todos los lenguajes lo pueden leer.",
+      "codigo": "{\n  \"ciudad\": \"CDMX\",\n  \"grados\": 22,\n  \"cielo\": \"soleado\"\n}",
+      "resaltar": [3],
+      "archivo": "respuesta.json"
+    },
+    {
+      "titulo": "Usa los datos",
+      "narracion": "Ya en tu programa, esa respuesta es un objeto. Con un punto sacas lo que necesitas: datos punto ciudad, datos punto grados. Y con eso ya puedes mostrar el clima en tu página.",
+      "codigo": "const datos = {\n  ciudad: \"CDMX\",\n  grados: 22,\n};\nconsole.log(datos.ciudad);\nconsole.log(datos.grados);",
+      "resaltar": [5, 6],
+      "salida": "CDMX\n22"
+    },
+    {
+      "titulo": "Ya las usas todos los días",
+      "narracion": "Y lo mejor: ya las usas. Cuando entras a una app con tu cuenta de Google, cuando ves un mapa dentro de otra aplicación o pagas con tarjeta en una tienda en línea, casi siempre hay una API trabajando por detrás.",
+      "codigo": "// Entrar con tu cuenta de Google\n// Ver un mapa dentro de otra app\n// Pagar en una tienda en línea",
+      "resaltar": [1, 2, 3]
+    }
+  ],
+  "cierre": {
+    "titulo": "¿Qué app conectarías?",
+    "narracion": "Guarda este video para la próxima vez que escuches la palabra API, y sígueme para aprender a programar desde cero. Cuéntame en los comentarios: ¿qué app te gustaría conectar con tu programa?"
+  },
+  "descripcion": "Qué es una API explicada con un mesero: cómo se hace un pedido con fetch, qué responde en JSON y dónde las usas todos los días.",
+  "hashtags": ["#programacion", "#javascript", "#api", "#aprendeaprogramar", "#codigo"],
+  "portada": {
+    "titulo": "¿Qué es una API?",
+    "frase": "Explicada con un mesero"
+  }
+}

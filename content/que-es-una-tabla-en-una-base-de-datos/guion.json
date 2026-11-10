@@ -1,0 +1,64 @@
+{
+  "canal": "codigo",
+  "lenguaje": "javascript",
+  "slug": "que-es-una-tabla-en-una-base-de-datos",
+  "tema": "Qué es una tabla en una base de datos",
+  "gancho": {
+    "titulo": "¿Qué es una tabla?",
+    "narracion": "Una base de datos puede guardar miles de productos, pero ¿cómo organiza toda esa información? ¡Utilizando tablas! Y hoy vas a entender cómo funcionan."
+  },
+  "escenas": [
+    {
+      "titulo": "¿Qué es una tabla?",
+      "narracion": "Una tabla es una estructura que permite organizar información relacionada. Imagina una tienda: puedes tener una tabla para guardar todos sus productos, otra para los clientes y otra para los pedidos.",
+      "codigo": "PRODUCTOS\nCLIENTES\nPEDIDOS",
+      "resaltar": [1],
+      "archivo": "tienda.db"
+    },
+    {
+      "titulo": "Las columnas",
+      "narracion": "Las columnas representan las características que queremos guardar. Por ejemplo, en una tabla de productos podemos tener el identificador, el nombre, el precio y el stock disponible.",
+      "codigo": "ID | Nombre | Precio | Stock",
+      "resaltar": [1],
+      "archivo": "productos"
+    },
+    {
+      "titulo": "Las filas",
+      "narracion": "Ahora, cada fila representa un registro diferente. Por ejemplo, una fila contiene los datos de un teclado, otra los de un mouse y otra los de un monitor. ¡Así podemos guardar muchos productos en una misma tabla!",
+      "codigo": "ID | Nombre  | Precio | Stock\n1  | Teclado | 500    | 10\n2  | Mouse   | 250    | 20\n3  | Monitor | 3000   | 5",
+      "resaltar": [2, 3, 4],
+      "archivo": "productos"
+    },
+    {
+      "titulo": "Creando una tabla con SQL",
+      "narracion": "Y así podemos crear una tabla utilizando SQL. Con esta instrucción creamos una tabla de productos y definimos sus cuatro columnas.",
+      "codigo": "CREATE TABLE productos (\n  id INT,\n  nombre VARCHAR(100),\n  precio DECIMAL(10,2),\n  stock INT\n);",
+      "resaltar": [1, 2, 3, 4, 5],
+      "archivo": "crear-tabla.sql"
+    },
+    {
+      "titulo": "Todo queda organizado",
+      "narracion": "Gracias a esta organización, podemos encontrar, modificar y consultar información fácilmente. Y lo mejor es que podemos relacionar diferentes tablas para construir aplicaciones completas.",
+      "codigo": "PRODUCTOS  <->  PEDIDOS\nCLIENTES   <->  PEDIDOS",
+      "resaltar": [1, 2],
+      "archivo": "relaciones"
+    }
+  ],
+  "cierre": {
+    "titulo": "¡Ahora te toca!",
+    "narracion": "Ahora te tengo un reto: si crearas una tabla para guardar clientes, ¿qué columnas utilizarías? ¿Nombre, correo, teléfono? Déjame tu respuesta en los comentarios y sígueme para aprender programación desde cero."
+  },
+  "descripcion": "¿Qué es una tabla en una base de datos? Aprende qué son las filas, columnas y registros con un ejemplo práctico utilizando productos y SQL.",
+  "hashtags": [
+    "#BasesDeDatos",
+    "#SQL",
+    "#Programacion",
+    "#DesarrolloWeb",
+    "#AprenderAProgramar",
+    "#DevMorado"
+  ],
+  "portada": {
+    "titulo": "¿Qué es una tabla?",
+    "frase": "Filas y columnas explicadas"
+  }
+}

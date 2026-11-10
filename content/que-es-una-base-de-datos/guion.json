@@ -1,0 +1,51 @@
+{
+  "canal": "codigo",
+  "lenguaje": "javascript",
+  "slug": "que-es-una-base-de-datos",
+  "tema": "Introducción a las bases de datos",
+  "gancho": {
+    "titulo": "¿Dónde se guarda toda la información?",
+    "narracion": "Cuando compras en una tienda en línea, ¿dónde crees que se guardan tus datos, los productos y tus pedidos? La respuesta está en algo que todo programador debe conocer: las bases de datos."
+  },
+  "escenas": [
+    {
+      "titulo": "¿Qué es una base de datos?",
+      "narracion": "Una base de datos es un lugar donde podemos almacenar, organizar y consultar información de manera ordenada. Imagina un archivador: tiene diferentes secciones para guardar clientes, productos y pedidos. Una base de datos hace algo parecido, pero digitalmente.",
+      "codigo": "// Archivador: tienda\n\n// Cajón 1: clientes\n// Cajón 2: productos\n// Cajón 3: pedidos",
+      "resaltar": [3, 4, 5],
+      "archivo": "tienda.db"
+    },
+    {
+      "titulo": "¿Cómo organiza la información?",
+      "narracion": "Por ejemplo, una tienda puede tener una tabla de productos. Las columnas representan el nombre, el precio y el stock. Cada fila representa un producto diferente. Así podemos encontrar la información que necesitamos.",
+      "codigo": "ID | Nombre  | Precio | Stock\n1  | Teclado | 500    | 10\n2  | Mouse   | 250    | 20\n3  | Monitor | 3000   | 5",
+      "resaltar": [1],
+      "archivo": "productos"
+    },
+    {
+      "titulo": "¿Cómo consultamos los datos?",
+      "narracion": "Pero ¿cómo le pedimos información a una base de datos? Podemos utilizar SQL, un lenguaje que permite consultar y modificar información. Con esta instrucción le estamos diciendo que queremos consultar todos los productos de nuestra tabla.",
+      "codigo": "SELECT * FROM productos;",
+      "resaltar": [1],
+      "salida": "1 | Teclado | 500  | 10\n2 | Mouse   | 250  | 20\n3 | Monitor | 3000 | 5",
+      "archivo": "consulta.sql"
+    },
+    {
+      "titulo": "¿Dónde se utilizan?",
+      "narracion": "Las bases de datos están en todas partes: cuando inicias sesión en una aplicación, cuando compras por internet, cuando consultas tu banco o cuando publicas en redes sociales. Detrás de muchas aplicaciones hay una base de datos almacenando información.",
+      "codigo": "// Iniciar sesión en una app\n// Comprar por internet\n// Consultar tu banco\n// Publicar en redes sociales",
+      "resaltar": [1, 2, 3, 4],
+      "archivo": "en-todas-partes"
+    }
+  ],
+  "cierre": {
+    "titulo": "Ahora te toca a ti.",
+    "narracion": "Ahora que sabes qué es una base de datos, te tengo un reto: si crearas una aplicación de videojuegos, ¿qué información guardarías en tu base de datos? Déjamelo en los comentarios y sígueme para aprender programación desde cero."
+  },
+  "descripcion": "¿Qué es una base de datos? Aprende cómo se almacena y organiza la información, qué son las tablas, filas y columnas y cómo consultar datos utilizando SQL.",
+  "hashtags": ["#BasesDeDatos", "#SQL", "#Programacion", "#DesarrolloWeb", "#AprenderAProgramar", "#DevMorado"],
+  "portada": {
+    "titulo": "¿QUÉ ES UNA BASE DE DATOS?",
+    "frase": "Explicada desde cero"
+  }
+}

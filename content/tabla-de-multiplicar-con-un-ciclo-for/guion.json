@@ -1,0 +1,50 @@
+{
+  "canal": "codigo",
+  "lenguaje": "javascript",
+  "slug": "tabla-de-multiplicar-con-un-ciclo-for",
+  "tema": "Tabla de multiplicar con un ciclo for",
+  "gancho": {
+    "titulo": "Cualquier tabla, en segundos",
+    "narracion": "Haz que la computadora escriba cualquier tabla de multiplicar por ti. Hoy armamos este mini proyecto paso a paso, y al final te basta con cambiar un solo número para tener la tabla que quieras."
+  },
+  "escenas": [
+    {
+      "titulo": "Sin ciclo, línea por línea",
+      "narracion": "Primero, sin ciclo. Tendrías que escribir una línea por cada multiplicación: siete por uno, siete por dos, siete por tres, y así diez veces. Cuando ves algo que se repite de esta forma, es trabajo para un ciclo.",
+      "codigo": "console.log(7 * 1);\nconsole.log(7 * 2);\nconsole.log(7 * 3);\n// ... y así hasta el 10",
+      "resaltar": [1, 2, 3],
+      "salida": "7\n14\n21"
+    },
+    {
+      "titulo": "El ciclo hace el trabajo",
+      "narracion": "Ahora con un ciclo. i va del uno al diez, y en cada vuelta multiplicamos siete por i. Tres líneas hacen el trabajo de diez, y la computadora no se equivoca en ninguna cuenta.",
+      "codigo": "for (let i = 1; i <= 10; i++) {\n  console.log(7 * i);\n}",
+      "resaltar": [2],
+      "salida": "7\n14\n21\n28\n35\n42\n49\n56\n63\n70"
+    },
+    {
+      "titulo": "Que se vea como tabla",
+      "narracion": "Pero así solo salen resultados. Para que se lea como una tabla, guardamos la cuenta en r, e imprimimos todo junto: siete, por, i, igual, r. Ahora sí dice siete por uno igual a siete.",
+      "codigo": "for (let i = 1; i <= 10; i++) {\n  let r = 7 * i;\n  console.log(7, \"x\", i, \"=\", r);\n}",
+      "resaltar": [2, 3],
+      "salida": "7 x 1 = 7\n7 x 2 = 14\n7 x 3 = 21\n7 x 4 = 28\n7 x 5 = 35\n7 x 6 = 42\n7 x 7 = 49\n7 x 8 = 56\n7 x 9 = 63\n7 x 10 = 70"
+    },
+    {
+      "titulo": "Cualquier tabla",
+      "narracion": "Y aquí está el truco final. Guardamos la tabla en una variable n, y usamos n en lugar del siete. Si quieres la del nueve, cambias un solo número arriba, y el ciclo hace todo lo demás.",
+      "codigo": "let n = 9;\nfor (let i = 1; i <= 10; i++) {\n  let r = n * i;\n  console.log(n, \"x\", i, \"=\", r);\n}",
+      "resaltar": [1],
+      "salida": "9 x 1 = 9\n9 x 2 = 18\n9 x 3 = 27\n9 x 4 = 36\n9 x 5 = 45\n9 x 6 = 54\n9 x 7 = 63\n9 x 8 = 72\n9 x 9 = 81\n9 x 10 = 90"
+    }
+  ],
+  "cierre": {
+    "titulo": "¿Y hasta el 12?",
+    "narracion": "Ahora te toca a ti: ¿qué cambiarías para que la tabla llegue hasta el doce? Déjalo en los comentarios y sígueme. En el siguiente: ¿y si no sabes cuántas vueltas vas a dar? Para eso existe while."
+  },
+  "descripcion": "Mini proyecto: haz que JavaScript escriba cualquier tabla de multiplicar con un ciclo for, cambiando un solo número.",
+  "hashtags": ["#programacion", "#javascript", "#aprendeaprogramar", "#ciclofor", "#proyecto"],
+  "portada": {
+    "titulo": "Cualquier tabla de multiplicar",
+    "frase": "Con un ciclo for"
+  }
+}

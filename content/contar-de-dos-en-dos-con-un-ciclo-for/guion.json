@@ -1,0 +1,57 @@
+{
+  "canal": "codigo",
+  "lenguaje": "javascript",
+  "slug": "contar-de-dos-en-dos-con-un-ciclo-for",
+  "tema": "Contar de dos en dos con un ciclo for",
+  "gancho": {
+    "titulo": "¿Qué imprime este for?",
+    "narracion": "¿Qué imprime este ciclo for? Parece muy fácil, pero mucha gente falla justo en el último número. Vamos a ver si tú le atinas."
+  },
+  "escenas": [
+    {
+      "titulo": "Tu turno",
+      "narracion": "Míralo bien. Empieza en cero, sigue mientras i sea menor que diez, y en cada vuelta le suma dos. ¿Cuál es el último número que imprime? Tienes tres segundos. Tres. Dos. Uno.",
+      "codigo": "for (let i = 0; i < 10; i += 2) {\n  console.log(i);\n}",
+      "resaltar": [1],
+      "archivo": "reto.js"
+    },
+    {
+      "titulo": "La respuesta: 8",
+      "narracion": "El último número es ocho, no diez. Cuando i llega a diez, el ciclo pregunta: ¿diez es menor que diez? No. Entonces se detiene antes de imprimirlo. Si dijiste ocho, vas muy bien.",
+      "codigo": "for (let i = 0; i < 10; i += 2) {\n  console.log(i);\n}",
+      "resaltar": [1],
+      "salida": "0\n2\n4\n6\n8"
+    },
+    {
+      "titulo": "¿Qué significa i += 2?",
+      "narracion": "Ahora, ¿qué significa i más igual dos? Quiere decir: súmale dos a lo que ya tiene. Es una forma corta de escribir i igual a i más dos. Las dos hacen lo mismo, y también funciona con tres, con cinco o con el número que quieras.",
+      "codigo": "let i = 0;\ni = i + 2;\nconsole.log(i);\ni += 2;\nconsole.log(i);",
+      "resaltar": [2, 4],
+      "salida": "2\n4"
+    },
+    {
+      "titulo": "Para que llegue al 10",
+      "narracion": "¿Y si sí quieres llegar al diez? Cambia a menor o igual. Ahora, cuando i vale diez, la condición sigue siendo verdadera y esa vuelta sí corre. Un solo signo cambia el final.",
+      "codigo": "for (let i = 0; i <= 10; i += 2) {\n  console.log(i);\n}",
+      "resaltar": [1],
+      "salida": "0\n2\n4\n6\n8\n10"
+    },
+    {
+      "titulo": "Los números impares",
+      "narracion": "Y si empiezas en uno, en lugar de cero, salen los impares: uno, tres, cinco, siete, nueve. Mismo ciclo, mismo salto. Solo cambiaste de dónde arranca.",
+      "codigo": "for (let i = 1; i < 10; i += 2) {\n  console.log(i);\n}",
+      "resaltar": [1],
+      "salida": "1\n3\n5\n7\n9"
+    }
+  ],
+  "cierre": {
+    "titulo": "¿Y de tres en tres?",
+    "narracion": "Ahora te toca a ti: si empieza en cero, sigue mientras i sea menor que diez y suma de tres en tres, ¿cuál es el último número? Déjalo en los comentarios y sígueme, porque en el siguiente sumamos del uno al cien en tres líneas."
+  },
+  "descripcion": "¿Qué imprime este for? Cómo contar de dos en dos en JavaScript con i += 2, por qué el último número no es 10 y cómo sacar los impares.",
+  "hashtags": ["#programacion", "#javascript", "#aprendeaprogramar", "#ciclofor", "#retodecodigo"],
+  "portada": {
+    "titulo": "¿Qué imprime este for?",
+    "frase": "Muchos fallan el último número"
+  }
+}

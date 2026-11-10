@@ -1,0 +1,50 @@
+{
+  "canal": "codigo",
+  "lenguaje": "javascript",
+  "slug": "cuando-usar-for-y-cuando-while",
+  "tema": "Cuándo usar for y cuándo while",
+  "gancho": {
+    "titulo": "¿For o while?",
+    "narracion": "¿Sabías que for y while hacen prácticamente lo mismo, pero no se usan en las mismas situaciones? Con una sola pregunta vas a saber cuál elegir."
+  },
+  "escenas": [
+    {
+      "titulo": "¿Sabes cuántas vueltas? For",
+      "narracion": "Usa for cuando sabes cuántas veces quieres repetir algo. Para mostrar del uno al cinco, todo cabe en una línea: dónde empieza, hasta dónde llega y cuánto avanza. Sabemos exactamente cuántas vueltas son.",
+      "codigo": "for (let i = 1; i <= 5; i++) {\n  console.log(i);\n}",
+      "resaltar": [1],
+      "salida": "1\n2\n3\n4\n5"
+    },
+    {
+      "titulo": "While también puede…",
+      "narracion": "Con while también se puede. Pero mira: el inicio queda arriba, la condición en medio y el avance hasta abajo. Si olvidas esa última línea, el ciclo nunca termina. Cuando sabes las vueltas, for es más claro.",
+      "codigo": "let numero = 1;\nwhile (numero <= 5) {\n  console.log(numero);\n  numero++;\n}",
+      "resaltar": [1, 2, 4],
+      "salida": "1\n2\n3\n4\n5"
+    },
+    {
+      "titulo": "¿Depende de algo? While",
+      "narracion": "Ahora, usa while cuando repites algo mientras se cumpla una condición, y no sabes cuántas veces pasará. Tienes diez pesos y cada semana se duplican. ¿Cuántas semanas para pasar de cien? El ciclo sigue mientras no llegues, y al final te dice: cuatro semanas.",
+      "codigo": "let dinero = 10;\nlet semanas = 0;\nwhile (dinero < 100) {\n  dinero = dinero * 2;\n  semanas++;\n}\nconsole.log(semanas, dinero);",
+      "resaltar": [3],
+      "salida": "4 160"
+    },
+    {
+      "titulo": "La pregunta clave",
+      "narracion": "Recuerda esto. Antes de escribir un ciclo, pregúntate: ¿sé cuántas vueltas va a dar? Si la respuesta es sí, usa for. Si depende de una condición, usa while.",
+      "codigo": "// ¿Sé cuántas vueltas va a dar?\n\n// Sí           → for\n// Depende de algo → while",
+      "resaltar": [1],
+      "archivo": "resumen.js"
+    }
+  ],
+  "cierre": {
+    "titulo": "¿Cuál usarías?",
+    "narracion": "Ahora te toca a ti: para pedir una contraseña hasta que el usuario la escriba bien, ¿usarías for o while? Déjalo en los comentarios y sígueme en DevMorado para aprender programación desde cero."
+  },
+  "descripcion": "¿For o while? Cuándo usar cada ciclo en JavaScript con una sola pregunta: ¿sabes cuántas vueltas va a dar?",
+  "hashtags": ["#programacion", "#javascript", "#aprendeaprogramar", "#ciclowhile", "#ciclofor"],
+  "portada": {
+    "titulo": "¿For o while?",
+    "frase": "Una pregunta y ya sabes cuál"
+  }
+}

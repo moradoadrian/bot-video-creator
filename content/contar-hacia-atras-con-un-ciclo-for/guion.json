@@ -1,0 +1,57 @@
+{
+  "canal": "codigo",
+  "lenguaje": "javascript",
+  "slug": "contar-hacia-atras-con-un-ciclo-for",
+  "tema": "Contar hacia atrás con un ciclo for",
+  "gancho": {
+    "titulo": "Una cuenta regresiva en 3 líneas",
+    "narracion": "Así se programa una cuenta regresiva en tres líneas. Solo tienes que darle la vuelta a tu ciclo for, y hoy te enseño cómo."
+  },
+  "escenas": [
+    {
+      "titulo": "Cambia tres cosas",
+      "narracion": "Para contar hacia atrás, cambias tres cosas. Empiezas en cinco, no en uno. La condición dice: sigue mientras i sea mayor que cero. Y en lugar de sumar, i menos menos le resta uno en cada vuelta.",
+      "codigo": "for (let i = 5; i > 0; i--) {\n  console.log(i);\n}",
+      "resaltar": [1],
+      "salida": "5\n4\n3\n2\n1"
+    },
+    {
+      "titulo": "¿Por qué no sale el cero?",
+      "narracion": "Fíjate en lo que imprime: cinco, cuatro, tres, dos, uno. Cuando i llega a cero, cero ya no es mayor que cero. La condición es falsa, el ciclo termina y el cero nunca se imprime.",
+      "codigo": "for (let i = 5; i > 0; i--) {\n  console.log(i);\n}",
+      "resaltar": [1],
+      "salida": "5\n4\n3\n2\n1"
+    },
+    {
+      "titulo": "Para incluir el cero",
+      "narracion": "Si también quieres ver el cero, usa mayor o igual que cero. Ahora, cuando i vale cero, la condición sigue siendo verdadera y esa última vuelta sí corre.",
+      "codigo": "for (let i = 5; i >= 0; i--) {\n  console.log(i);\n}",
+      "resaltar": [1],
+      "salida": "5\n4\n3\n2\n1\n0"
+    },
+    {
+      "titulo": "El error que nunca termina",
+      "narracion": "Ahora, cuidado con este error. Si dejas i más más, i sube en vez de bajar. Seis, siete, ocho, y siempre es mayor que cero. El ciclo nunca termina. Si cuentas hacia atrás, usa i menos menos.",
+      "codigo": "for (let i = 5; i > 0; i++) {\n  console.log(i);\n}",
+      "resaltar": [1],
+      "salida": "5\n6\n7\n8\n9\n... nunca termina"
+    },
+    {
+      "titulo": "¡Despegue!",
+      "narracion": "Ahora sí, la cuenta regresiva completa. El ciclo cuenta del tres al uno, y cuando termina, la línea de abajo imprime despegue. Como está fuera de las llaves, se ejecuta una sola vez.",
+      "codigo": "for (let i = 3; i > 0; i--) {\n  console.log(i);\n}\nconsole.log(\"¡Despegue!\");",
+      "resaltar": [4],
+      "salida": "3\n2\n1\n¡Despegue!"
+    }
+  ],
+  "cierre": {
+    "titulo": "¿Y de dos en dos?",
+    "narracion": "Guarda este video para tu próxima cuenta regresiva y sígueme para aprender a programar desde cero. En el siguiente te pongo un reto: ¿qué imprime un ciclo for que cuenta de dos en dos?"
+  },
+  "descripcion": "Cómo contar hacia atrás con un ciclo for en JavaScript: empieza en el número alto, usa i-- y cuida la condición para no crear un bucle infinito.",
+  "hashtags": ["#programacion", "#javascript", "#aprendeaprogramar", "#ciclofor", "#codigo"],
+  "portada": {
+    "titulo": "Cuenta regresiva en 3 líneas",
+    "frase": "Un for que va hacia atrás"
+  }
+}

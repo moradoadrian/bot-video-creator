@@ -1,0 +1,1110 @@
+{
+  "conAudio": true,
+  "duraciones": [
+    12.28,
+    17.48,
+    13.87,
+    15.23,
+    15.57,
+    13.32
+  ],
+  "palabras": [
+    [
+      {
+        "texto": "Cuando",
+        "inicio": 0,
+        "fin": 0.24
+      },
+      {
+        "texto": "compras",
+        "inicio": 0.32,
+        "fin": 0.64
+      },
+      {
+        "texto": "en",
+        "inicio": 0.68,
+        "fin": 0.72
+      },
+      {
+        "texto": "una",
+        "inicio": 0.8,
+        "fin": 0.96
+      },
+      {
+        "texto": "tienda",
+        "inicio": 1.04,
+        "fin": 1.28
+      },
+      {
+        "texto": "en",
+        "inicio": 1.32,
+        "fin": 1.36
+      },
+      {
+        "texto": "línea,",
+        "inicio": 1.44,
+        "fin": 2.08
+      },
+      {
+        "texto": "¿dónde",
+        "inicio": 2.16,
+        "fin": 2.4
+      },
+      {
+        "texto": "crees",
+        "inicio": 2.48,
+        "fin": 2.72
+      },
+      {
+        "texto": "que",
+        "inicio": 2.8,
+        "fin": 2.84
+      },
+      {
+        "texto": "se",
+        "inicio": 2.88,
+        "fin": 2.96
+      },
+      {
+        "texto": "guardan",
+        "inicio": 3.04,
+        "fin": 3.28
+      },
+      {
+        "texto": "tus",
+        "inicio": 3.36,
+        "fin": 3.52
+      },
+      {
+        "texto": "datos,",
+        "inicio": 3.6,
+        "fin": 4.24
+      },
+      {
+        "texto": "los",
+        "inicio": 4.32,
+        "fin": 4.4
+      },
+      {
+        "texto": "productos",
+        "inicio": 4.48,
+        "fin": 5.12
+      },
+      {
+        "texto": "y",
+        "inicio": 5.28,
+        "fin": 5.32
+      },
+      {
+        "texto": "tus",
+        "inicio": 5.36,
+        "fin": 5.52
+      },
+      {
+        "texto": "pedidos?",
+        "inicio": 5.6,
+        "fin": 6.4
+      },
+      {
+        "texto": "La",
+        "inicio": 6.72,
+        "fin": 6.8
+      },
+      {
+        "texto": "respuesta",
+        "inicio": 6.88,
+        "fin": 7.36
+      },
+      {
+        "texto": "está",
+        "inicio": 7.48,
+        "fin": 7.68
+      },
+      {
+        "texto": "en",
+        "inicio": 7.72,
+        "fin": 7.76
+      },
+      {
+        "texto": "algo",
+        "inicio": 7.84,
+        "fin": 8.08
+      },
+      {
+        "texto": "que",
+        "inicio": 8.16,
+        "fin": 8.24
+      },
+      {
+        "texto": "todo",
+        "inicio": 8.4,
+        "fin": 8.64
+      },
+      {
+        "texto": "programador",
+        "inicio": 8.72,
+        "fin": 9.28
+      },
+      {
+        "texto": "debe",
+        "inicio": 9.44,
+        "fin": 9.6
+      },
+      {
+        "texto": "conocer:",
+        "inicio": 9.68,
+        "fin": 10.64
+      },
+      {
+        "texto": "las",
+        "inicio": 10.72,
+        "fin": 10.96
+      },
+      {
+        "texto": "bases",
+        "inicio": 11.04,
+        "fin": 11.36
+      },
+      {
+        "texto": "de",
+        "inicio": 11.44,
+        "fin": 11.52
+      },
+      {
+        "texto": "datos.",
+        "inicio": 11.76,
+        "fin": 12.32
+      }
+    ],
+    [
+      {
+        "texto": "Una",
+        "inicio": 0,
+        "fin": 0.24
+      },
+      {
+        "texto": "base",
+        "inicio": 0.36,
+        "fin": 0.48
+      },
+      {
+        "texto": "de",
+        "inicio": 0.52,
+        "fin": 0.56
+      },
+      {
+        "texto": "datos",
+        "inicio": 0.64,
+        "fin": 1.12
+      },
+      {
+        "texto": "es",
+        "inicio": 1.2,
+        "fin": 1.36
+      },
+      {
+        "texto": "un",
+        "inicio": 1.4,
+        "fin": 1.44
+      },
+      {
+        "texto": "lugar",
+        "inicio": 1.48,
+        "fin": 1.76
+      },
+      {
+        "texto": "donde",
+        "inicio": 1.84,
+        "fin": 2
+      },
+      {
+        "texto": "podemos",
+        "inicio": 2.08,
+        "fin": 2.4
+      },
+      {
+        "texto": "almacenar,",
+        "inicio": 2.52,
+        "fin": 3.44
+      },
+      {
+        "texto": "organizar",
+        "inicio": 3.6,
+        "fin": 4.16
+      },
+      {
+        "texto": "y",
+        "inicio": 4.32,
+        "fin": 4.4
+      },
+      {
+        "texto": "consultar",
+        "inicio": 4.48,
+        "fin": 5.04
+      },
+      {
+        "texto": "información",
+        "inicio": 5.12,
+        "fin": 5.76
+      },
+      {
+        "texto": "de",
+        "inicio": 5.84,
+        "fin": 5.92
+      },
+      {
+        "texto": "manera",
+        "inicio": 6,
+        "fin": 6.24
+      },
+      {
+        "texto": "ordenada.",
+        "inicio": 6.4,
+        "fin": 7.12
+      },
+      {
+        "texto": "Imagina",
+        "inicio": 7.44,
+        "fin": 7.92
+      },
+      {
+        "texto": "un",
+        "inicio": 8,
+        "fin": 8.08
+      },
+      {
+        "texto": "archivador:",
+        "inicio": 8.16,
+        "fin": 9.2
+      },
+      {
+        "texto": "tiene",
+        "inicio": 9.24,
+        "fin": 9.44
+      },
+      {
+        "texto": "diferentes",
+        "inicio": 9.52,
+        "fin": 9.92
+      },
+      {
+        "texto": "secciones",
+        "inicio": 9.96,
+        "fin": 10.48
+      },
+      {
+        "texto": "para",
+        "inicio": 10.56,
+        "fin": 10.64
+      },
+      {
+        "texto": "guardar",
+        "inicio": 10.72,
+        "fin": 10.96
+      },
+      {
+        "texto": "clientes,",
+        "inicio": 11.12,
+        "fin": 11.84
+      },
+      {
+        "texto": "productos",
+        "inicio": 12.16,
+        "fin": 12.48
+      },
+      {
+        "texto": "y",
+        "inicio": 12.64,
+        "fin": 12.68
+      },
+      {
+        "texto": "pedidos.",
+        "inicio": 12.72,
+        "fin": 13.28
+      },
+      {
+        "texto": "Una",
+        "inicio": 13.84,
+        "fin": 14
+      },
+      {
+        "texto": "base",
+        "inicio": 14.08,
+        "fin": 14.24
+      },
+      {
+        "texto": "de",
+        "inicio": 14.32,
+        "fin": 14.4
+      },
+      {
+        "texto": "datos",
+        "inicio": 14.64,
+        "fin": 14.88
+      },
+      {
+        "texto": "hace",
+        "inicio": 14.92,
+        "fin": 15.12
+      },
+      {
+        "texto": "algo",
+        "inicio": 15.2,
+        "fin": 15.36
+      },
+      {
+        "texto": "parecido,",
+        "inicio": 15.44,
+        "fin": 16.16
+      },
+      {
+        "texto": "pero",
+        "inicio": 16.24,
+        "fin": 16.4
+      },
+      {
+        "texto": "digitalmente.",
+        "inicio": 16.48,
+        "fin": 17.52
+      }
+    ],
+    [
+      {
+        "texto": "Por",
+        "inicio": 0,
+        "fin": 0.16
+      },
+      {
+        "texto": "ejemplo,",
+        "inicio": 0.2,
+        "fin": 1.04
+      },
+      {
+        "texto": "una",
+        "inicio": 1.16,
+        "fin": 1.28
+      },
+      {
+        "texto": "tienda",
+        "inicio": 1.36,
+        "fin": 1.68
+      },
+      {
+        "texto": "puede",
+        "inicio": 1.76,
+        "fin": 2
+      },
+      {
+        "texto": "tener",
+        "inicio": 2.12,
+        "fin": 2.24
+      },
+      {
+        "texto": "una",
+        "inicio": 2.32,
+        "fin": 2.4
+      },
+      {
+        "texto": "tabla",
+        "inicio": 2.56,
+        "fin": 2.8
+      },
+      {
+        "texto": "de",
+        "inicio": 2.84,
+        "fin": 2.88
+      },
+      {
+        "texto": "productos.",
+        "inicio": 2.96,
+        "fin": 3.6
+      },
+      {
+        "texto": "Las",
+        "inicio": 4,
+        "fin": 4.16
+      },
+      {
+        "texto": "columnas",
+        "inicio": 4.36,
+        "fin": 4.8
+      },
+      {
+        "texto": "representan",
+        "inicio": 5.08,
+        "fin": 5.44
+      },
+      {
+        "texto": "el",
+        "inicio": 5.52,
+        "fin": 5.6
+      },
+      {
+        "texto": "nombre,",
+        "inicio": 5.8,
+        "fin": 6.24
+      },
+      {
+        "texto": "el",
+        "inicio": 6.28,
+        "fin": 6.32
+      },
+      {
+        "texto": "precio",
+        "inicio": 6.48,
+        "fin": 6.96
+      },
+      {
+        "texto": "y",
+        "inicio": 7.04,
+        "fin": 7.08
+      },
+      {
+        "texto": "el",
+        "inicio": 7.12,
+        "fin": 7.2
+      },
+      {
+        "texto": "stock.",
+        "inicio": 7.28,
+        "fin": 7.96
+      },
+      {
+        "texto": "Cada",
+        "inicio": 8.24,
+        "fin": 8.4
+      },
+      {
+        "texto": "fila",
+        "inicio": 8.56,
+        "fin": 8.88
+      },
+      {
+        "texto": "representa",
+        "inicio": 8.96,
+        "fin": 9.44
+      },
+      {
+        "texto": "un",
+        "inicio": 9.48,
+        "fin": 9.52
+      },
+      {
+        "texto": "producto",
+        "inicio": 9.6,
+        "fin": 9.92
+      },
+      {
+        "texto": "diferente.",
+        "inicio": 10,
+        "fin": 10.8
+      },
+      {
+        "texto": "Así",
+        "inicio": 11.04,
+        "fin": 11.28
+      },
+      {
+        "texto": "podemos",
+        "inicio": 11.44,
+        "fin": 11.76
+      },
+      {
+        "texto": "encontrar",
+        "inicio": 11.84,
+        "fin": 12.16
+      },
+      {
+        "texto": "la",
+        "inicio": 12.24,
+        "fin": 12.28
+      },
+      {
+        "texto": "información",
+        "inicio": 12.32,
+        "fin": 12.8
+      },
+      {
+        "texto": "que",
+        "inicio": 12.84,
+        "fin": 12.88
+      },
+      {
+        "texto": "necesitamos.",
+        "inicio": 12.96,
+        "fin": 13.92
+      }
+    ],
+    [
+      {
+        "texto": "Pero",
+        "inicio": 0,
+        "fin": 0.32
+      },
+      {
+        "texto": "¿cómo",
+        "inicio": 0.64,
+        "fin": 0.8
+      },
+      {
+        "texto": "le",
+        "inicio": 0.88,
+        "fin": 0.96
+      },
+      {
+        "texto": "pedimos",
+        "inicio": 1.04,
+        "fin": 1.36
+      },
+      {
+        "texto": "información",
+        "inicio": 1.44,
+        "fin": 2.16
+      },
+      {
+        "texto": "a",
+        "inicio": 2.2,
+        "fin": 2.24
+      },
+      {
+        "texto": "una",
+        "inicio": 2.32,
+        "fin": 2.48
+      },
+      {
+        "texto": "base",
+        "inicio": 2.6,
+        "fin": 2.72
+      },
+      {
+        "texto": "de",
+        "inicio": 2.8,
+        "fin": 2.88
+      },
+      {
+        "texto": "datos?",
+        "inicio": 3.12,
+        "fin": 3.44
+      },
+      {
+        "texto": "Podemos",
+        "inicio": 3.92,
+        "fin": 4.24
+      },
+      {
+        "texto": "utilizar",
+        "inicio": 4.36,
+        "fin": 4.8
+      },
+      {
+        "texto": "SQL,",
+        "inicio": 4.96,
+        "fin": 6
+      },
+      {
+        "texto": "un",
+        "inicio": 6.04,
+        "fin": 6.08
+      },
+      {
+        "texto": "lenguaje",
+        "inicio": 6.12,
+        "fin": 6.56
+      },
+      {
+        "texto": "que",
+        "inicio": 6.64,
+        "fin": 6.72
+      },
+      {
+        "texto": "permite",
+        "inicio": 6.8,
+        "fin": 7.12
+      },
+      {
+        "texto": "consultar",
+        "inicio": 7.2,
+        "fin": 7.92
+      },
+      {
+        "texto": "y",
+        "inicio": 7.96,
+        "fin": 8
+      },
+      {
+        "texto": "modificar",
+        "inicio": 8.08,
+        "fin": 8.56
+      },
+      {
+        "texto": "información.",
+        "inicio": 8.72,
+        "fin": 9.92
+      },
+      {
+        "texto": "Con",
+        "inicio": 9.96,
+        "fin": 10
+      },
+      {
+        "texto": "esta",
+        "inicio": 10.08,
+        "fin": 10.24
+      },
+      {
+        "texto": "instrucción",
+        "inicio": 10.36,
+        "fin": 10.88
+      },
+      {
+        "texto": "le",
+        "inicio": 11.04,
+        "fin": 11.12
+      },
+      {
+        "texto": "estamos",
+        "inicio": 11.2,
+        "fin": 11.44
+      },
+      {
+        "texto": "diciendo",
+        "inicio": 11.48,
+        "fin": 11.84
+      },
+      {
+        "texto": "que",
+        "inicio": 11.92,
+        "fin": 12
+      },
+      {
+        "texto": "queremos",
+        "inicio": 12.08,
+        "fin": 12.4
+      },
+      {
+        "texto": "consultar",
+        "inicio": 12.64,
+        "fin": 13.12
+      },
+      {
+        "texto": "todos",
+        "inicio": 13.2,
+        "fin": 13.52
+      },
+      {
+        "texto": "los",
+        "inicio": 13.6,
+        "fin": 13.68
+      },
+      {
+        "texto": "productos",
+        "inicio": 13.76,
+        "fin": 14.24
+      },
+      {
+        "texto": "de",
+        "inicio": 14.28,
+        "fin": 14.32
+      },
+      {
+        "texto": "nuestra",
+        "inicio": 14.36,
+        "fin": 14.64
+      },
+      {
+        "texto": "tabla.",
+        "inicio": 14.72,
+        "fin": 15.28
+      }
+    ],
+    [
+      {
+        "texto": "Las",
+        "inicio": 0,
+        "fin": 0.24
+      },
+      {
+        "texto": "bases",
+        "inicio": 0.4,
+        "fin": 0.56
+      },
+      {
+        "texto": "de",
+        "inicio": 0.6,
+        "fin": 0.64
+      },
+      {
+        "texto": "datos",
+        "inicio": 0.88,
+        "fin": 1.12
+      },
+      {
+        "texto": "están",
+        "inicio": 1.2,
+        "fin": 1.36
+      },
+      {
+        "texto": "en",
+        "inicio": 1.44,
+        "fin": 1.68
+      },
+      {
+        "texto": "todas",
+        "inicio": 1.76,
+        "fin": 2.08
+      },
+      {
+        "texto": "partes:",
+        "inicio": 2.2,
+        "fin": 2.96
+      },
+      {
+        "texto": "cuando",
+        "inicio": 3,
+        "fin": 3.2
+      },
+      {
+        "texto": "inicias",
+        "inicio": 3.24,
+        "fin": 3.52
+      },
+      {
+        "texto": "sesión",
+        "inicio": 3.64,
+        "fin": 3.92
+      },
+      {
+        "texto": "en",
+        "inicio": 3.96,
+        "fin": 4
+      },
+      {
+        "texto": "una",
+        "inicio": 4.08,
+        "fin": 4.16
+      },
+      {
+        "texto": "aplicación,",
+        "inicio": 4.24,
+        "fin": 5.28
+      },
+      {
+        "texto": "cuando",
+        "inicio": 5.32,
+        "fin": 5.52
+      },
+      {
+        "texto": "compras",
+        "inicio": 5.68,
+        "fin": 6
+      },
+      {
+        "texto": "por",
+        "inicio": 6.04,
+        "fin": 6.08
+      },
+      {
+        "texto": "internet,",
+        "inicio": 6.16,
+        "fin": 7.12
+      },
+      {
+        "texto": "cuando",
+        "inicio": 7.16,
+        "fin": 7.36
+      },
+      {
+        "texto": "consultas",
+        "inicio": 7.52,
+        "fin": 7.84
+      },
+      {
+        "texto": "tu",
+        "inicio": 7.92,
+        "fin": 8
+      },
+      {
+        "texto": "banco",
+        "inicio": 8.12,
+        "fin": 8.48
+      },
+      {
+        "texto": "o",
+        "inicio": 8.64,
+        "fin": 8.72
+      },
+      {
+        "texto": "cuando",
+        "inicio": 8.88,
+        "fin": 9.04
+      },
+      {
+        "texto": "publicas",
+        "inicio": 9.12,
+        "fin": 9.6
+      },
+      {
+        "texto": "en",
+        "inicio": 9.64,
+        "fin": 9.68
+      },
+      {
+        "texto": "redes",
+        "inicio": 9.76,
+        "fin": 9.92
+      },
+      {
+        "texto": "sociales.",
+        "inicio": 10,
+        "fin": 10.84
+      },
+      {
+        "texto": "Detrás",
+        "inicio": 11.12,
+        "fin": 11.44
+      },
+      {
+        "texto": "de",
+        "inicio": 11.48,
+        "fin": 11.52
+      },
+      {
+        "texto": "muchas",
+        "inicio": 11.68,
+        "fin": 11.92
+      },
+      {
+        "texto": "aplicaciones",
+        "inicio": 12,
+        "fin": 12.8
+      },
+      {
+        "texto": "hay",
+        "inicio": 12.88,
+        "fin": 13.04
+      },
+      {
+        "texto": "una",
+        "inicio": 13.12,
+        "fin": 13.2
+      },
+      {
+        "texto": "base",
+        "inicio": 13.28,
+        "fin": 13.52
+      },
+      {
+        "texto": "de",
+        "inicio": 13.56,
+        "fin": 13.6
+      },
+      {
+        "texto": "datos",
+        "inicio": 13.68,
+        "fin": 14
+      },
+      {
+        "texto": "almacenando",
+        "inicio": 14.12,
+        "fin": 14.64
+      },
+      {
+        "texto": "información.",
+        "inicio": 14.8,
+        "fin": 15.52
+      }
+    ],
+    [
+      {
+        "texto": "Ahora",
+        "inicio": 0,
+        "fin": 0.24
+      },
+      {
+        "texto": "que",
+        "inicio": 0.32,
+        "fin": 0.4
+      },
+      {
+        "texto": "sabes",
+        "inicio": 0.48,
+        "fin": 0.8
+      },
+      {
+        "texto": "qué",
+        "inicio": 0.88,
+        "fin": 1.04
+      },
+      {
+        "texto": "es",
+        "inicio": 1.12,
+        "fin": 1.28
+      },
+      {
+        "texto": "una",
+        "inicio": 1.36,
+        "fin": 1.44
+      },
+      {
+        "texto": "base",
+        "inicio": 1.52,
+        "fin": 1.76
+      },
+      {
+        "texto": "de",
+        "inicio": 1.8,
+        "fin": 1.84
+      },
+      {
+        "texto": "datos,",
+        "inicio": 1.92,
+        "fin": 2.56
+      },
+      {
+        "texto": "te",
+        "inicio": 2.64,
+        "fin": 2.72
+      },
+      {
+        "texto": "tengo",
+        "inicio": 2.8,
+        "fin": 2.96
+      },
+      {
+        "texto": "un",
+        "inicio": 3,
+        "fin": 3.04
+      },
+      {
+        "texto": "reto:",
+        "inicio": 3.12,
+        "fin": 3.92
+      },
+      {
+        "texto": "si",
+        "inicio": 4,
+        "fin": 4.08
+      },
+      {
+        "texto": "crearas",
+        "inicio": 4.16,
+        "fin": 4.56
+      },
+      {
+        "texto": "una",
+        "inicio": 4.6,
+        "fin": 4.64
+      },
+      {
+        "texto": "aplicación",
+        "inicio": 4.72,
+        "fin": 5.2
+      },
+      {
+        "texto": "de",
+        "inicio": 5.24,
+        "fin": 5.28
+      },
+      {
+        "texto": "videojuegos,",
+        "inicio": 5.36,
+        "fin": 6.4
+      },
+      {
+        "texto": "¿qué",
+        "inicio": 6.427,
+        "fin": 6.48
+      },
+      {
+        "texto": "información",
+        "inicio": 6.56,
+        "fin": 7.2
+      },
+      {
+        "texto": "guardarías",
+        "inicio": 7.28,
+        "fin": 7.84
+      },
+      {
+        "texto": "en",
+        "inicio": 7.88,
+        "fin": 7.92
+      },
+      {
+        "texto": "tu",
+        "inicio": 8,
+        "fin": 8.08
+      },
+      {
+        "texto": "base",
+        "inicio": 8.2,
+        "fin": 8.32
+      },
+      {
+        "texto": "de",
+        "inicio": 8.36,
+        "fin": 8.4
+      },
+      {
+        "texto": "datos?",
+        "inicio": 8.64,
+        "fin": 9.36
+      },
+      {
+        "texto": "Déjamelo",
+        "inicio": 9.4,
+        "fin": 9.76
+      },
+      {
+        "texto": "en",
+        "inicio": 9.8,
+        "fin": 9.84
+      },
+      {
+        "texto": "los",
+        "inicio": 9.88,
+        "fin": 9.92
+      },
+      {
+        "texto": "comentarios",
+        "inicio": 10,
+        "fin": 10.64
+      },
+      {
+        "texto": "y",
+        "inicio": 10.72,
+        "fin": 10.8
+      },
+      {
+        "texto": "sígueme",
+        "inicio": 10.84,
+        "fin": 11.28
+      },
+      {
+        "texto": "para",
+        "inicio": 11.36,
+        "fin": 11.44
+      },
+      {
+        "texto": "aprender",
+        "inicio": 11.52,
+        "fin": 11.84
+      },
+      {
+        "texto": "programación",
+        "inicio": 11.92,
+        "fin": 12.56
+      },
+      {
+        "texto": "desde",
+        "inicio": 12.64,
+        "fin": 12.88
+      },
+      {
+        "texto": "cero.",
+        "inicio": 12.96,
+        "fin": 13.36
+      }
+    ]
+  ]
+}

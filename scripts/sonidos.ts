@@ -43,8 +43,20 @@ const resultado = generar(0.13, (t) => {
   return Math.sin(2 * Math.PI * tono * t) * Math.exp(-(t < 0.055 ? t : t - 0.055) * 32) * 0.7;
 });
 
+// Ruido filtrado que se abre y se cierra: el "fuuush" de las transiciones.
+// Va después de los otros para no cambiar la secuencia de ruido de la tecla.
+const DUR_WHOOSH = 0.4;
+let filtrado = 0;
+const whoosh = generar(DUR_WHOOSH, (t) => {
+  const p = t / DUR_WHOOSH;
+  const forma = Math.sin(Math.PI * p);
+  filtrado += (0.03 + 0.3 * forma) * (ruido() - filtrado);
+  return filtrado * forma ** 2 * 1.8;
+});
+
 const dir = path.join(RAIZ, 'public', 'sfx');
 mkdirSync(dir, { recursive: true });
 writeFileSync(path.join(dir, 'tecla.wav'), wav(tecla));
 writeFileSync(path.join(dir, 'resultado.wav'), wav(resultado));
+writeFileSync(path.join(dir, 'whoosh.wav'), wav(whoosh));
 console.log('✔ Sonidos en public/sfx. Actívalos con "sonidos": true en config/marca-codigo.json');
