@@ -2,9 +2,11 @@ import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
 import vm from 'node:vm';
 import { z } from 'zod';
+import { MAX_COLUMNAS_CONSOLA, inicioDePasos, medidasDepurador, tiemposDePasos } from '../src/depurador';
 import { MAX_SALIDA_VISIBLE, medidasEditor } from '../src/medidas';
 import { clavesDe, momentosClave } from '../src/momentos';
 import { Canal, EscenaCodigo, Guion, GuionCodigo, ICONOS, ICONOS_CODIGO, Marca, Timing, Visual } from '../src/types';
+import { trazar } from './traza';
 
 export const RAIZ = path.resolve(__dirname, '..');
 export const dirContenido = (slug: string) => path.join(RAIZ, 'content', slug);
@@ -82,11 +84,20 @@ export const GuionCodigoSchema = z.object({
         salida: z.string().optional(),
         archivo: z.string().max(30).optional(),
         visual: VisualSchema.optional(),
+        depurar: z
+          .object({
+            marcas: z
+              .array(z.object({ frase: z.string().min(1), linea: z.number().int().min(0), vez: z.number().int().min(1).optional() }))
+              .optional(),
+          })
+          .optional(),
       })
-        .refine((e) => !(e.codigo && e.visual), 'Una escena lleva codigo o visual, no los dos'),
+        .refine((e) => !(e.codigo && e.visual), 'Una escena lleva codigo o visual, no los dos')
+        .refine((e) => !(e.depurar && e.archivo), 'depurar ejecuta el código: no se combina con archivo (código ilustrativo)'),
     )
     .min(3)
     .max(7),
+  etiqueta: z.string().max(30).optional(),
   portada: z.object({ titulo: z.string().max(40).optional(), frase: z.string().max(40).optional() }).optional(),
 });
 
@@ -184,21 +195,51 @@ export const ejecutar = (codigo: string): { salida: string; error?: string; time
   }
 };
 
+/** Avisos propios de una escena animada: la traza debe salir, caber y seguir el ritmo de la voz. */
+const verificarDepurador = (e: EscenaCodigo, n: string, duracionSeg: number): string[] => {
+  const { traza, error } = trazar(e.codigo ?? '');
+  if (!traza) return [`${n}: no se puede animar la ejecución (${error}). Se mostrará el editor normal.`];
+  const avisos: string[] = [];
+  const lineas = (e.codigo ?? '').split('\n');
+  if (medidasDepurador(lineas, traza).desborda) {
+    avisos.push(`${n}: el código y el panel de variables tapan el subtítulo. Quita líneas de código o variables.`);
+  }
+  if (traza.salida.some((l) => l.length > MAX_COLUMNAS_CONSOLA)) {
+    avisos.push(`${n}: una línea de consola pasa de ${MAX_COLUMNAS_CONSOLA} caracteres y se cortaría en el depurador.`);
+  }
+  const { tiempos, problemas } = tiemposDePasos(traza, e.depurar?.marcas ?? [], e.narracion, duracionSeg, inicioDePasos(lineas.length));
+  for (const p of problemas) avisos.push(`${n}: ${p}.`);
+  if (tiempos.some((t, i) => i > 0 && t - tiempos[i - 1] < 0.2)) {
+    avisos.push(`${n}: algunos pasos duran menos de 0.2 s y no se alcanzarían a ver. Alarga la narración o mueve las marcas.`);
+  }
+  return avisos;
+};
+
+/** Calcula los pasos de las escenas animadas; la plantilla no puede ejecutar código por su cuenta. */
+export const agregarTrazas = (g: GuionCodigo): GuionCodigo => ({
+  ...g,
+  escenas: g.escenas.map((e) => (e.depurar && e.codigo ? { ...e, traza: trazar(e.codigo).traza } : e)),
+});
+
 /**
  * Revisa que la salida de cada escena sea la que imprime su código y que todo quepa en pantalla.
  * Si corregir = true, reemplaza la salida por la real. Devuelve avisos legibles.
  */
-export const verificarCodigo = (escenas: EscenaCodigo[], corregir: boolean): string[] => {
+export const verificarCodigo = (escenas: EscenaCodigo[], corregir: boolean, duraciones?: number[]): string[] => {
   const avisos: string[] = [];
   escenas.forEach((e, i) => {
     if (!e.codigo) return;
     const n = `Escena ${i + 1} (${e.titulo})`;
     const lineas = e.codigo.split('\n');
     const nSalida = (e.salida ?? '').split('\n').filter((l) => l.length).length;
-    if (medidasEditor(lineas, nSalida).desborda) {
-      avisos.push(`${n}: el código y la consola tapan el subtítulo. Quita líneas de código o de salida.`);
+    if (e.depurar) {
+      avisos.push(...verificarDepurador(e, n, duraciones?.[i] ?? Math.max(2.5, e.narracion.length / 15)));
+    } else {
+      if (medidasEditor(lineas, nSalida).desborda) {
+        avisos.push(`${n}: el código y la consola tapan el subtítulo. Quita líneas de código o de salida.`);
+      }
+      if (nSalida > MAX_SALIDA_VISIBLE) avisos.push(`${n}: la consola solo muestra las últimas ${MAX_SALIDA_VISIBLE} líneas de salida.`);
     }
-    if (nSalida > MAX_SALIDA_VISIBLE) avisos.push(`${n}: la consola solo muestra las últimas ${MAX_SALIDA_VISIBLE} líneas de salida.`);
     const fuera = (e.resaltar ?? []).filter((l) => l > lineas.length);
     if (fuera.length) avisos.push(`${n}: resaltar apunta a líneas que no existen: ${fuera.join(', ')}.`);
     if (e.archivo) return; // código ilustrativo (JSX, Vue, Angular…): no corre en node:vm

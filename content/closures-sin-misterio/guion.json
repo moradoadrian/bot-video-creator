@@ -1,0 +1,87 @@
+{
+  "canal": "codigo",
+  "lenguaje": "javascript",
+  "etiqueta": "JavaScript avanzado",
+  "slug": "closures-sin-misterio",
+  "tema": "Closures sin misterio",
+  "gancho": {
+    "titulo": "Esta variable no muere",
+    "narracion": "Esta variable debería desaparecer cuando su función termina, pero sigue viva. Vamos a ver el código corriendo para descubrir por qué. Se llama closure."
+  },
+  "escenas": [
+    {
+      "titulo": "Nace y desaparece",
+      "narracion": "Primero llamamos a crear contador. Adentro nace la variable cuenta, que vale cero. Luego la función regresa otra función, y aquí viene lo importante: ya terminó. Mira el panel de variables, cuenta ya no aparece. Solo quedó contar.",
+      "codigo": "function crearContador() {\n  let cuenta = 0;\n  return function () {\n    cuenta++;\n    return cuenta;\n  };\n}\nconst contar = crearContador();",
+      "depurar": {
+        "marcas": [
+          { "frase": "Primero llamamos", "linea": 8 },
+          { "frase": "Adentro nace", "linea": 2 },
+          { "frase": "Luego la función", "linea": 3 },
+          { "frase": "ya terminó", "linea": 8, "vez": 2 },
+          { "frase": "Solo quedó", "linea": 0 }
+        ]
+      }
+    },
+    {
+      "titulo": "Y vuelve a aparecer",
+      "narracion": "Ya tenemos el contador listo, igual que hace un momento. Ahora llamamos a contar. Mira: cuenta regresó, y es la misma de antes, por eso sube a uno. La etiqueta dice recordada: la función interna se llevó su variable como en una mochila. La llamamos otra vez, y cuenta sube a dos. Nada se reinició.",
+      "codigo": "function crearContador() {\n  let cuenta = 0;\n  return function () {\n    cuenta++;\n    return cuenta;\n  };\n}\nconst contar = crearContador();\nconsole.log(contar());\nconsole.log(contar());",
+      "salida": "1\n2",
+      "depurar": {
+        "marcas": [
+          { "frase": "Ahora llamamos", "linea": 9 },
+          { "frase": "Mira: cuenta", "linea": 4 },
+          { "frase": "La etiqueta", "linea": 5 },
+          { "frase": "La llamamos otra", "linea": 10 },
+          { "frase": "y cuenta sube", "linea": 4, "vez": 2 },
+          { "frase": "Nada se", "linea": 10, "vez": 2 }
+        ]
+      }
+    },
+    {
+      "titulo": "Cada una, su mochila",
+      "narracion": "Si creas dos contadores, cada uno se lleva su propia cuenta. La letra a llega a dos, pero cuando llamamos a be, empieza en uno. No comparten nada.",
+      "codigo": "function crearContador() {\n  let cuenta = 0;\n  return () => ++cuenta;\n}\nconst a = crearContador();\nconst b = crearContador();\nconsole.log(a());\nconsole.log(a());\nconsole.log(b());",
+      "salida": "1\n2\n1",
+      "depurar": {
+        "marcas": [
+          { "frase": "La letra a", "linea": 7 },
+          { "frase": "cuando llamamos a be", "linea": 9 },
+          { "frase": "No comparten", "linea": 0 }
+        ]
+      }
+    },
+    {
+      "titulo": "El error clásico: var",
+      "narracion": "Aquí está la trampa más famosa. Guardamos tres funciones en un ciclo con var. Todas recuerdan la misma i, y esa i ya terminó en tres. Por eso, cuando las llamamos al final, las tres imprimen tres.",
+      "codigo": "var fns = [];\nfor (var i = 0; i < 3; i++) {\n  fns.push(() => i);\n}\nconsole.log(fns[0]());\nconsole.log(fns[1]());\nconsole.log(fns[2]());",
+      "salida": "3\n3\n3",
+      "depurar": {
+        "marcas": [
+          { "frase": "Guardamos tres", "linea": 1 },
+          { "frase": "Por eso, cuando", "linea": 5 }
+        ]
+      }
+    },
+    {
+      "titulo": "La solución: let",
+      "narracion": "La solución es una sola palabra: cambia var por let. Con let, cada vuelta del ciclo crea una i nueva, y cada función se lleva la suya. Ahora, al llamarlas una por una, imprimen cero, uno y dos. Cada función recordó su propia vuelta.",
+      "codigo": "var fns = [];\nfor (let i = 0; i < 3; i++) {\n  fns.push(() => i);\n}\nconsole.log(fns[0]());\nconsole.log(fns[1]());\nconsole.log(fns[2]());",
+      "salida": "0\n1\n2",
+      "depurar": {
+        "marcas": [
+          { "frase": "Con let", "linea": 2 },
+          { "frase": "Ahora, al llamarlas", "linea": 5 }
+        ]
+      }
+    }
+  ],
+  "cierre": {
+    "titulo": "¿Quién corre primero?",
+    "narracion": "Guarda este video y sígueme para ver más código por dentro. En el siguiente te respondo esto: ¿por qué un temporizador en cero no se ejecuta primero?"
+  },
+  "descripcion": "Qué es un closure en JavaScript, visto con el código corriendo paso a paso: por qué una variable sobrevive a su función y el error clásico de var en un ciclo.",
+  "hashtags": ["#programacion", "#javascript", "#closures", "#aprendeaprogramar", "#codigo"],
+  "portada": { "titulo": "Closures sin misterio", "frase": "La variable que no muere" }
+}

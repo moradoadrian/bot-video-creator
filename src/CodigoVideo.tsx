@@ -17,6 +17,7 @@ import {
   useVideoConfig,
 } from 'remotion';
 import { framesPorBloque, trozos } from './FiestaVideo';
+import { EditorDepurador } from './components/EditorDepurador';
 import { Personaje } from './components/Personaje';
 import { LineaCodigo, SINTAXIS } from './components/Resaltado';
 import { MAX_SALIDA_VISIBLE, medidasEditor } from './medidas';
@@ -24,19 +25,13 @@ import { agruparPalabras, indiceActual } from './subtitulos';
 import { VisualVista } from './components/Visual';
 import { golpesDeCamara, zoomCamara } from './camara';
 import { clavesDe, momentosClave } from './momentos';
-import { EDITOR, FONDO, MONO, TENUE, TEXTO, TINTA, TITULO } from './tema';
+import { EDITOR, FONDO, MONO, SIN_LIGADURAS, TENUE, TEXTO, TINTA, TITULO, segAFrames } from './temaCodigo';
 import { CodigoProps, ConfigPersonaje, EscenaCodigo, Palabra, Visual } from './types';
 
-
-/** Sin ligaduras: un principiante debe ver <= y ++ tal cual se escriben. */
-const SIN_LIGADURAS = { fontVariantLigatures: 'none' as const, fontFeatureSettings: '"liga" 0, "calt" 0' };
-
 type Bloque =
-  | { tipo: 'gancho'; titulo: string; narracion: string; codigo?: string; visual?: Visual }
+  | { tipo: 'gancho'; titulo: string; narracion: string; codigo?: string; visual?: Visual; etiqueta?: string }
   | { tipo: 'cierre'; titulo: string; narracion: string }
   | ({ tipo: 'escena'; numero: number } & EscenaCodigo);
-
-const segAFrames = (s: number, fps: number) => Math.round(s * fps);
 
 /** Fondo con cuadrícula de puntos, muy tenue. */
 const Fondo: React.FC = () => (
@@ -468,7 +463,9 @@ const BloqueVista: React.FC<{
   );
 
   if (b.tipo === 'escena') {
-    const momentos = b.codigo
+    const momentos = b.traza
+      ? []
+      : b.codigo
       ? (() => {
           const te = tiemposEditor(b, duracionSeg);
           return [...(b.resaltar?.length ? [te.tResaltar] : []), ...(te.salida.length ? [te.tSalida] : [])];
@@ -509,7 +506,9 @@ const BloqueVista: React.FC<{
             {b.titulo}
           </div>
         </div>
-        {b.codigo ? (
+        {b.codigo && b.traza ? (
+          <EditorDepurador e={b} duracionSeg={duracionSeg} acento={acento} archivo={b.archivo ?? archivo} sonidos={sonidos} palabras={palabras} />
+        ) : b.codigo ? (
           <Editor e={b} duracionSeg={duracionSeg} acento={acento} archivo={b.archivo ?? archivo} sonidos={sonidos} />
         ) : b.visual ? (
           visual(b.visual, 390, 900)
@@ -530,7 +529,7 @@ const BloqueVista: React.FC<{
       momentos,
       <>
         <div style={{ position: 'absolute', top: 210, left: 70, right: 160, display: 'flex', flexDirection: 'column', gap: 34 }}>
-          <EtiquetaGlitch texto="// JavaScript desde cero" color={acento} />
+          <EtiquetaGlitch texto={`// ${b.etiqueta ?? 'JavaScript desde cero'}`} color={acento} />
           <TituloPorPalabras
             texto={b.titulo}
             acento={acento}
@@ -606,7 +605,7 @@ const Progreso: React.FC<{ color: string }> = ({ color }) => {
 
 export const CodigoVideo: React.FC<CodigoProps> = ({ guion, timing, marca }) => {
   const bloques: Bloque[] = [
-    { tipo: 'gancho', ...guion.gancho, codigo: guion.escenas.find((e) => e.codigo)?.codigo },
+    { tipo: 'gancho', ...guion.gancho, codigo: guion.escenas.find((e) => e.codigo)?.codigo, etiqueta: guion.etiqueta },
     ...guion.escenas.map((e, i) => ({ tipo: 'escena' as const, numero: i + 1, ...e })),
     { tipo: 'cierre', ...guion.cierre },
   ];

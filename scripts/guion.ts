@@ -4,6 +4,7 @@
  * Código:  npm run guion:codigo -- "diferencia entre while y do while"
  */
 import path from 'node:path';
+import { MAX_COLUMNAS_CONSOLA } from '../src/depurador';
 import { Canal, ICONOS } from '../src/types';
 import { MAX_COLUMNAS, MAX_LINEAS, dirContenido, escribirJson, parsearGuion, requiereEnv, slugify, verificarCodigo } from './lib';
 
@@ -45,11 +46,30 @@ ${FORMATO}
 Responde SOLO con un objeto JSON válido, sin texto adicional:
 {"canal":"codigo","lenguaje":"javascript","slug":"...","tema":"...","gancho":{"titulo":"...","narracion":"..."},"escenas":[{"titulo":"...","narracion":"...","codigo":"...","resaltar":[1],"salida":"..."}],"cierre":{"titulo":"...","narracion":"..."},"descripcion":"...","hashtags":["#..."]}`;
 
+const SISTEMA_AVANZADO = `Eres guionista de un canal de TikTok en español de México que muestra JavaScript por dentro, con el código corriendo paso a paso.
+El público ya sabe variables, ciclos y funciones, y quiere entender lo que pasa debajo. Los ejemplos van en JavaScript síncrono: el depurador no sigue async, await ni generadores.
+
+Reglas del formato:
+${FORMATO}
+- 3 a 5 "escenas", cada una un paso de la explicación, con narración de 30 a 50 palabras y un título en pantalla de máximo 4 palabras.
+- Ve directo al mecanismo, sin explicar lo básico. Define solo el término avanzado que estás enseñando, con una analogía cotidiana cuando ayude.
+- "codigo": ejemplo corto y correcto, máximo ${MAX_LINEAS} líneas y máximo ${MAX_COLUMNAS - 4} caracteres por línea, sangría de 2 espacios. Usa pocas variables a la vez: el panel muestra unas 3 o 4.
+- Usa console.log para mostrar resultados. "salida" = exactamente lo que imprime el código. Cada línea impresa debe tener máximo ${MAX_COLUMNAS_CONSOLA} caracteres.
+- "depurar": en cada escena con código, para animar la ejecución real. "marcas" une la narración con la ejecución: cuando la voz dice "frase" (texto exacto de esa narración), el programa llega a la vez número "vez" que corre "linea". "linea": 0 es el programa ya terminado. Pon una marca en cada momento clave, en el orden en que suceden.
+- La narración debe nombrar lo que se ve en el panel de variables. Las variables que sobreviven a su función aparecen con la etiqueta "recordada".
+- La narración se lee en voz alta: NO incluyas símbolos ni código literal.
+- Incluye al menos una escena con un error real que comete quien ya programa, y cómo evitarlo.
+- Termina el cierre sugiriendo el siguiente tema relacionado como pregunta.
+
+Responde SOLO con un objeto JSON válido, sin texto adicional:
+{"canal":"codigo","lenguaje":"javascript","etiqueta":"JavaScript avanzado","slug":"...","tema":"...","gancho":{"titulo":"...","narracion":"..."},"escenas":[{"titulo":"...","narracion":"...","codigo":"...","salida":"...","depurar":{"marcas":[{"frase":"...","linea":1,"vez":1}]}}],"cierre":{"titulo":"...","narracion":"..."},"descripcion":"...","hashtags":["#..."]}`;
+
 async function main() {
   const args = process.argv.slice(2);
   const canal: Canal = args.includes('--canal=codigo') ? 'codigo' : 'fiestas';
-  const tema = args.filter((a) => !a.startsWith('--canal=')).join(' ').trim();
-  if (!tema) throw new Error('Uso: npm run guion -- "tema"   o   npm run guion:codigo -- "tema"');
+  const avanzado = args.includes('--nivel=avanzado');
+  const tema = args.filter((a) => !a.startsWith('--canal=') && !a.startsWith('--nivel=')).join(' ').trim();
+  if (!tema) throw new Error('Uso: npm run guion -- "tema"   o   npm run guion:codigo -- "tema"   o   npm run guion:avanzado -- "tema"');
   const apiKey = requiereEnv('ANTHROPIC_API_KEY');
   const modelo = process.env.CLAUDE_MODEL || 'claude-sonnet-5-5';
   const slug = slugify(tema);
@@ -66,7 +86,7 @@ async function main() {
     body: JSON.stringify({
       model: modelo,
       max_tokens: 3000,
-      system: canal === 'codigo' ? SISTEMA_CODIGO : SISTEMA_FIESTAS,
+      system: canal !== 'codigo' ? SISTEMA_FIESTAS : avanzado ? SISTEMA_AVANZADO : SISTEMA_CODIGO,
       messages: [{ role: 'user', content: `Tema: ${tema}\nUsa "${slug}" como slug.` }],
     }),
   });

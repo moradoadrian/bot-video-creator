@@ -85,6 +85,32 @@ npm run render -- diferencia-entre-while-y-do-while
   - Cada elemento: `{ "texto": "Backend", "detalle": "Valida y procesa", "icono": "servidor", "clave": "valida" }`. Íconos: `pantalla`, `servidor`, `base-datos`, `api`, `cursor`, `imagen`, `formulario`, `menu`, `engrane`, `escudo`, `lista`, `capas`, `check`, `carrito`, `codigo`, `rayo`, `gota`, `usuario`, `nube`, `candado`. Ejemplo completo: `content/frontend-vs-backend-que-es-cada-uno/guion.json`.
 - Opcional, para la portada: `"portada": { "titulo": "...", "frase": "..." }`. Sin esto usa el título del gancho.
 
+## Depurador visual
+
+Agrega `depurar` a una escena con código para mostrarla corriendo: la línea activa avanza, el panel enseña las variables y la consola se llena en el momento real. Los pasos salen de ejecutar el código de verdad, no se escriben a mano.
+
+```json
+{
+  "titulo": "Y vuelve a aparecer",
+  "narracion": "Ahora llamamos a contar. Mira: cuenta regresó.",
+  "codigo": "...",
+  "depurar": {
+    "marcas": [
+      { "frase": "Ahora llamamos", "linea": 9 },
+      { "frase": "Mira: cuenta", "linea": 4, "vez": 1 }
+    ]
+  }
+}
+```
+
+- Cada marca dice: cuando la voz diga `frase`, la ejecución llega a la vez número `vez` (1 por defecto) que corre `linea`. `"linea": 0` es el programa terminado. Sin marcas, los pasos se reparten parejo.
+- Una variable que sobrevive a su función sale con la etiqueta **recordada** (un closure).
+- `render` avisa si una marca no sirve, si los pasos van muy rápido o si el panel taparía el subtítulo.
+- No sigue `async`, `await` ni generadores, ni código que dé más de 300 pasos: esa escena usa el editor normal y `render` te avisa.
+- La animación solo se ve con `npm run preview` o `npm run render`: `npm run studio` muestra el editor normal.
+- `"etiqueta": "JavaScript avanzado"` en el guion cambia el texto sobre el título del gancho.
+- `npm run guion:avanzado -- "tema"` escribe guiones para este formato. Temas en `temas-codigo.md`.
+
 ## Personaje
 
 La imagen y sus coordenadas están en `personaje` dentro de `config/marca-codigo.json`. Si cambias o recortas la imagen, actualiza `ancho` y `alto`, el círculo de la `cara` y la posición de la `boca`, todo en píxeles de la imagen original.
@@ -95,6 +121,9 @@ La imagen y sus coordenadas están en `personaje` dentro de `config/marca-codigo
 |---|---|
 | `src/FiestaVideo.tsx` | Plantilla fiestas: gancho, tips numerados, cierre con CTA, subtítulos |
 | `src/CodigoVideo.tsx` | Plantilla código: editor con resaltado de sintaxis, línea activa, consola, subtítulos |
+| `src/components/EditorDepurador.tsx` | Editor animado del depurador visual: línea activa, variables y consola |
+| `src/depurador.ts` | Tiempos y medidas del depurador, compartidos con los validadores |
+| `scripts/traza.ts` | Instrumenta el código con acorn y registra cada paso de su ejecución |
 | `src/Portada.tsx` | Portada del canal código |
 | `src/medidas.ts` | Tamaño del código en pantalla, compartido con los validadores |
 | `src/subtitulos.ts` | Convierte los tiempos de la voz en subtítulos palabra por palabra |

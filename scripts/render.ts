@@ -7,7 +7,7 @@ import { bundle } from '@remotion/bundler';
 import { renderMedia, selectComposition } from '@remotion/renderer';
 import { mkdirSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
-import { RAIZ, canalDe, leerGuion, leerMarca, leerTiming, timingEstimado, verificarCodigo, verificarVisuales } from './lib';
+import { RAIZ, agregarTrazas, canalDe, leerGuion, leerMarca, leerTiming, timingEstimado, verificarCodigo, verificarVisuales } from './lib';
 
 async function main() {
   const slug = process.argv.slice(2).find((a) => !a.startsWith('--'));
@@ -18,8 +18,15 @@ async function main() {
   const timing = sinVoz ? timingEstimado(guion) : leerTiming(slug, guion);
   if (!timing.conAudio && !sinVoz) console.warn('⚠ No hay voz generada; se renderiza sin audio. Corre: npm run voz -- ' + slug);
   const canal = canalDe(guion);
-  if (guion.canal === 'codigo') for (const a of [...verificarCodigo(guion.escenas, false), ...verificarVisuales(guion)]) console.warn('⚠', a);
-  const inputProps = { guion, timing, marca: leerMarca(canal) } as Record<string, unknown>;
+  if (guion.canal === 'codigo') {
+    // duraciones trae primero el gancho; las escenas empiezan en el índice 1
+    for (const a of [...verificarCodigo(guion.escenas, false, timing.duraciones.slice(1)), ...verificarVisuales(guion)]) console.warn('⚠', a);
+  }
+  const inputProps = {
+    guion: guion.canal === 'codigo' ? agregarTrazas(guion) : guion,
+    timing,
+    marca: leerMarca(canal),
+  } as Record<string, unknown>;
 
   console.log('  Empaquetando…');
   const serveUrl = await bundle({ entryPoint: path.join(RAIZ, 'src', 'index.ts'), publicDir: path.join(RAIZ, 'public') });

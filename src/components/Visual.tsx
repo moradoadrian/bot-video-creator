@@ -1,7 +1,7 @@
 import React from 'react';
 import { interpolate, spring, useCurrentFrame, useVideoConfig } from 'remotion';
 import { clavesDe, momentosClave } from '../momentos';
-import { BORDE, EDITOR, FONDO, MONO, TENUE, TEXTO, TINTA, TITULO } from '../tema';
+import { BORDE, EDITOR, FONDO, MONO, TENUE, TEXTO, TINTA, TITULO } from '../temaCodigo';
 import { ItemVisual, Palabra, Visual } from '../types';
 import { IconoCirculo } from './IconosCodigo';
 
