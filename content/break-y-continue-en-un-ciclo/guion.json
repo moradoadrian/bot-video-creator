@@ -1,0 +1,50 @@
+{
+  "canal": "codigo",
+  "lenguaje": "javascript",
+  "slug": "break-y-continue-en-un-ciclo",
+  "tema": "break y continue en un ciclo",
+  "gancho": {
+    "titulo": "¿Qué imprime esto?",
+    "narracion": "Una palabra corta tu ciclo y otra se salta una vuelta. ¿Qué imprime esto? Casi todos ponen un número de más. Vamos a ver si tú le atinas."
+  },
+  "escenas": [
+    {
+      "titulo": "Tu turno",
+      "narracion": "Míralo bien. Este for cuenta del uno al seis, pero adentro tiene dos trampas: un continue cuando i vale dos, y un break cuando i vale cinco. ¿Qué números imprime? Tienes tres segundos. Tres. Dos. Uno.",
+      "codigo": "for (let i = 1; i <= 6; i++) {\n  if (i === 2) continue;\n  if (i === 5) break;\n  console.log(i);\n}",
+      "resaltar": [2, 3],
+      "archivo": "reto.js"
+    },
+    {
+      "titulo": "continue: salta una vuelta",
+      "narracion": "Primero, continue. Significa: sáltate lo que queda de esta vuelta y pasa a la siguiente. Aquí, cuando i vale dos, el continue se brinca el console log. Por eso imprime uno, tres y cuatro. El dos desaparece, pero el ciclo sigue vivo.",
+      "codigo": "for (let i = 1; i <= 4; i++) {\n  if (i === 2) continue;\n  console.log(i);\n}",
+      "resaltar": [2],
+      "salida": "1\n3\n4"
+    },
+    {
+      "titulo": "break: termina el ciclo",
+      "narracion": "Ahora, break. Este es más drástico: termina el ciclo completo en ese instante. Cuando i vale tres, el break lo corta todo. Solo se imprimen el uno y el dos. El tres y el cuatro ya nunca llegan.",
+      "codigo": "for (let i = 1; i <= 4; i++) {\n  if (i === 3) break;\n  console.log(i);\n}",
+      "resaltar": [2],
+      "salida": "1\n2"
+    },
+    {
+      "titulo": "La respuesta: 1, 3, 4",
+      "narracion": "Volvamos al reto. Con el uno, nada lo detiene y se imprime. Con el dos, continue se salta la vuelta. El tres y el cuatro se imprimen normal. Y al llegar al cinco, break termina el ciclo. El seis jamás se imprime, aunque la condición lo permitía.",
+      "codigo": "for (let i = 1; i <= 6; i++) {\n  if (i === 2) continue;\n  if (i === 5) break;\n  console.log(i);\n}",
+      "resaltar": [2, 3],
+      "salida": "1\n3\n4"
+    }
+  ],
+  "cierre": {
+    "titulo": "¿Pusiste el 6?",
+    "narracion": "Recuerda: continue se salta una vuelta, break termina el ciclo. Si respondiste uno, tres, cuatro y seis, caíste en la trampa más común. Cuéntame en los comentarios qué pusiste y sígueme, porque en el siguiente vemos el bucle infinito: cómo se crea y cómo evitarlo."
+  },
+  "descripcion": "¿Qué imprime este ciclo? La diferencia entre break y continue en JavaScript: uno termina el ciclo completo y el otro solo se salta una vuelta.",
+  "hashtags": ["#programacion", "#javascript", "#aprendeaprogramar", "#ciclofor", "#retodecodigo"],
+  "portada": {
+    "titulo": "¿Qué imprime esto?",
+    "frase": "break y continue: casi todos fallan"
+  }
+}

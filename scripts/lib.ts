@@ -5,7 +5,7 @@ import { z } from 'zod';
 import { MAX_COLUMNAS_CONSOLA, inicioDePasos, medidasDepurador, tiemposDePasos } from '../src/depurador';
 import { MAX_SALIDA_VISIBLE, medidasEditor } from '../src/medidas';
 import { clavesDe, momentosClave } from '../src/momentos';
-import { Canal, EscenaCodigo, Guion, GuionCodigo, ICONOS, ICONOS_CODIGO, Marca, Timing, Visual } from '../src/types';
+import { Canal, EscenaCodigo, Guion, GuionCodigo, ICONOS, ICONOS_CODIGO, Marca, VEREDICTOS, Timing, Visual } from '../src/types';
 import { trazar } from './traza';
 
 export const RAIZ = path.resolve(__dirname, '..');
@@ -57,6 +57,23 @@ const VisualSchema = z.discriminatedUnion('tipo', [
   }),
   z.object({ tipo: z.literal('suma'), partes: z.array(Item).min(2).max(3), resultado: Item }),
   z.object({ tipo: z.literal('versus'), lados: z.tuple([Item, Item]) }),
+  z.object({
+    tipo: z.literal('recorrido'),
+    pasos: z.array(Item).min(2).max(5),
+    regreso: z.object({ texto: z.string().max(20), clave: z.string().optional() }).optional(),
+    final: Item.optional(),
+  }),
+  z.object({
+    tipo: z.literal('red'),
+    centro: Item,
+    nodos: z.array(Item).min(2).max(6),
+    falla: z.object({ texto: z.string().max(24), clave: z.string().optional() }).optional(),
+  }),
+  z.object({ tipo: z.literal('cascada'), fichas: z.array(Item).min(2).max(5), final: Item.optional() }),
+  z.object({
+    tipo: z.literal('verificar'),
+    items: z.array(Item.extend({ veredicto: z.enum(VEREDICTOS), claveVeredicto: z.string().min(1) })).min(2).max(4),
+  }),
 ]);
 
 export const GuionFiestasSchema = z.object({

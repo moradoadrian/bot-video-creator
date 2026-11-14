@@ -1,0 +1,89 @@
+{
+  "canal": "codigo",
+  "lenguaje": "javascript",
+  "slug": "el-ceo-de-nvidia-renuncio-que-pasa-ahora",
+  "tema": "El CEO de NVIDIA renunció: qué pasa ahora",
+  "etiqueta": "Noticia tech",
+  "gancho": {
+    "titulo": "NVIDIA se quedó sin CEO",
+    "narracion": "El CEO de NVIDIA renunció esta semana. La empresa que fabrica los chips de casi toda la inteligencia artificial se quedó sin el jefe que la dirigió treinta y tres años. ¿Qué pasa ahora?",
+    "visual": {
+      "tipo": "versus",
+      "lados": [
+        { "texto": "Jensen Huang", "detalle": "CEO desde 1993", "icono": "usuario", "clave": "renunció" },
+        { "texto": "NVIDIA", "detalle": "Sin CEO definitivo", "icono": "servidor", "clave": "empresa" }
+      ]
+    }
+  },
+  "escenas": [
+    {
+      "titulo": "¿Qué pasó?",
+      "narracion": "El jueves, Jensen Huang, cofundador y CEO desde mil novecientos noventa y tres, dejó el cargo con efecto inmediato, en medio de un escándalo. La directora financiera, Colette Kress, quedó como CEO interina, y el consejo ya busca a alguien definitivo.",
+      "visual": {
+        "tipo": "flujo",
+        "pasos": [
+          { "texto": "Jensen Huang", "detalle": "Renunció el jueves", "icono": "usuario", "clave": "Jensen" },
+          { "texto": "Colette Kress", "detalle": "CEO interina", "icono": "usuario", "clave": "Colette" },
+          { "texto": "Nuevo CEO", "detalle": "El consejo lo busca", "icono": "lista", "clave": "busca" }
+        ]
+      }
+    },
+    {
+      "titulo": "¿Qué hace NVIDIA?",
+      "narracion": "¿Y por qué importa tanto? NVIDIA diseña las GPU: chips que hacen miles de cálculos al mismo tiempo. Nacieron para los videojuegos, pero resultaron perfectas para entrenar inteligencia artificial.",
+      "visual": {
+        "tipo": "tarjetas",
+        "items": [
+          { "texto": "GPU", "detalle": "Miles de cálculos a la vez", "icono": "rayo" },
+          { "texto": "Videojuegos", "detalle": "Para eso nacieron", "icono": "imagen" },
+          { "texto": "Entrenar IA", "detalle": "Ahí se volvieron clave", "icono": "engrane", "clave": "entrenar" }
+        ]
+      }
+    },
+    {
+      "titulo": "Domina los chips de IA",
+      "narracion": "Hoy NVIDIA controla alrededor del noventa por ciento de los chips avanzados de inteligencia artificial. Sus chips llenan los centros de datos, ahí se entrenan los modelos, y esos modelos llegan a las aplicaciones que usas todos los días.",
+      "visual": {
+        "tipo": "flujo",
+        "pasos": [
+          { "texto": "Chips NVIDIA", "detalle": "Cerca del 90% del mercado", "icono": "rayo", "clave": "chips" },
+          { "texto": "Centros de datos", "detalle": "Llenos de esos chips", "icono": "servidor", "clave": "centros" },
+          { "texto": "Modelos de IA", "detalle": "Ahí se entrenan", "icono": "engrane", "clave": "modelos" },
+          { "texto": "Tus aplicaciones", "detalle": "Las que usas a diario", "icono": "pantalla", "clave": "aplicaciones" }
+        ]
+      }
+    },
+    {
+      "titulo": "El mercado se asustó",
+      "narracion": "Por eso el mercado se asustó. El jueves la acción llegó a caer más de catorce por ciento, y en una semana la empresa perdió unos quinientos mil millones de dólares de valor. Y este martes diecisiete presenta resultados: la primera gran prueba sin su fundador.",
+      "visual": {
+        "tipo": "tarjetas",
+        "items": [
+          { "texto": "Más de 14%", "detalle": "Caída máxima del jueves", "icono": "rayo", "clave": "catorce" },
+          { "texto": "$500 mil millones", "detalle": "Valor perdido en una semana", "icono": "gota", "clave": "quinientos" },
+          { "texto": "Martes 17", "detalle": "Presenta resultados", "icono": "lista", "clave": "martes" }
+        ]
+      }
+    },
+    {
+      "titulo": "¿Te afecta como programador?",
+      "narracion": "¿Y a ti, como programador? Tu código no cambia mañana: los chips que ya están instalados siguen funcionando. Lo que queda en duda es el rumbo: quién decide los próximos chips, cuánto van a costar y qué tan rápido avanza la IA que usas para programar.",
+      "visual": {
+        "tipo": "tarjetas",
+        "items": [
+          { "texto": "Tu código", "detalle": "Sigue igual por ahora", "icono": "codigo", "clave": "código" },
+          { "texto": "Próximos chips", "detalle": "¿Quién los decide?", "icono": "rayo", "clave": "próximos" },
+          { "texto": "Precios", "detalle": "¿Cuánto van a costar?", "icono": "carrito", "clave": "costar" },
+          { "texto": "Ritmo de la IA", "detalle": "¿Qué tan rápido avanza?", "icono": "nube", "clave": "rápido" }
+        ]
+      }
+    }
+  ],
+  "cierre": {
+    "titulo": "¿Aguanta sin su fundador?",
+    "narracion": "Ahora dime: ¿crees que NVIDIA puede mantener su ventaja sin Jensen Huang? Te leo en los comentarios. Y sígueme en DevMorado para entender la tecnología sin complicaciones."
+  },
+  "descripcion": "Jensen Huang renunció como CEO de NVIDIA, la empresa que fabrica cerca del 90% de los chips avanzados de IA. Qué pasó, qué hace NVIDIA y qué cambia para quienes programamos.",
+  "hashtags": ["#NVIDIA", "#JensenHuang", "#InteligenciaArtificial", "#IA", "#NoticiasTech", "#Tecnologia", "#Programacion", "#DevMorado"],
+  "portada": { "titulo": "NVIDIA SIN CEO", "frase": "¿Qué pasa ahora con la IA?" }
+}

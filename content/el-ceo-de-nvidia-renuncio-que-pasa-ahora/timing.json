@@ -1,0 +1,1338 @@
+{
+  "conAudio": true,
+  "duraciones": [
+    11.47,
+    15.8,
+    11.89,
+    13.64,
+    15.8,
+    15.23,
+    9.95
+  ],
+  "palabras": [
+    [
+      {
+        "texto": "El",
+        "inicio": 0,
+        "fin": 0.24
+      },
+      {
+        "texto": "CEO",
+        "inicio": 0.32,
+        "fin": 1.04
+      },
+      {
+        "texto": "de",
+        "inicio": 1.12,
+        "fin": 1.2
+      },
+      {
+        "texto": "NVIDIA",
+        "inicio": 1.28,
+        "fin": 1.84
+      },
+      {
+        "texto": "renunció",
+        "inicio": 1.92,
+        "fin": 2.4
+      },
+      {
+        "texto": "esta",
+        "inicio": 2.52,
+        "fin": 2.64
+      },
+      {
+        "texto": "semana.",
+        "inicio": 2.72,
+        "fin": 3.52
+      },
+      {
+        "texto": "La",
+        "inicio": 3.56,
+        "fin": 3.6
+      },
+      {
+        "texto": "empresa",
+        "inicio": 3.76,
+        "fin": 3.92
+      },
+      {
+        "texto": "que",
+        "inicio": 3.96,
+        "fin": 4
+      },
+      {
+        "texto": "fabrica",
+        "inicio": 4.08,
+        "fin": 4.4
+      },
+      {
+        "texto": "los",
+        "inicio": 4.48,
+        "fin": 4.56
+      },
+      {
+        "texto": "chips",
+        "inicio": 4.64,
+        "fin": 4.88
+      },
+      {
+        "texto": "de",
+        "inicio": 4.96,
+        "fin": 5.04
+      },
+      {
+        "texto": "casi",
+        "inicio": 5.173,
+        "fin": 5.44
+      },
+      {
+        "texto": "toda",
+        "inicio": 5.48,
+        "fin": 5.68
+      },
+      {
+        "texto": "la",
+        "inicio": 5.76,
+        "fin": 5.8
+      },
+      {
+        "texto": "inteligencia",
+        "inicio": 5.84,
+        "fin": 6.32
+      },
+      {
+        "texto": "artificial",
+        "inicio": 6.4,
+        "fin": 6.88
+      },
+      {
+        "texto": "se",
+        "inicio": 7.12,
+        "fin": 7.2
+      },
+      {
+        "texto": "quedó",
+        "inicio": 7.28,
+        "fin": 7.44
+      },
+      {
+        "texto": "sin",
+        "inicio": 7.52,
+        "fin": 7.6
+      },
+      {
+        "texto": "el",
+        "inicio": 7.64,
+        "fin": 7.68
+      },
+      {
+        "texto": "jefe",
+        "inicio": 7.76,
+        "fin": 8
+      },
+      {
+        "texto": "que",
+        "inicio": 8.08,
+        "fin": 8.16
+      },
+      {
+        "texto": "la",
+        "inicio": 8.2,
+        "fin": 8.24
+      },
+      {
+        "texto": "dirigió",
+        "inicio": 8.32,
+        "fin": 8.72
+      },
+      {
+        "texto": "treinta",
+        "inicio": 8.8,
+        "fin": 9.12
+      },
+      {
+        "texto": "y",
+        "inicio": 9.2,
+        "fin": 9.28
+      },
+      {
+        "texto": "tres",
+        "inicio": 9.36,
+        "fin": 9.6
+      },
+      {
+        "texto": "años.",
+        "inicio": 9.68,
+        "fin": 10.48
+      },
+      {
+        "texto": "¿Qué",
+        "inicio": 10.533,
+        "fin": 10.64
+      },
+      {
+        "texto": "pasa",
+        "inicio": 10.72,
+        "fin": 10.88
+      },
+      {
+        "texto": "ahora?",
+        "inicio": 10.96,
+        "fin": 11.52
+      }
+    ],
+    [
+      {
+        "texto": "El",
+        "inicio": 0,
+        "fin": 0.16
+      },
+      {
+        "texto": "jueves,",
+        "inicio": 0.2,
+        "fin": 0.88
+      },
+      {
+        "texto": "Jensen",
+        "inicio": 0.92,
+        "fin": 1.28
+      },
+      {
+        "texto": "Huang,",
+        "inicio": 1.36,
+        "fin": 1.84
+      },
+      {
+        "texto": "cofundador",
+        "inicio": 1.92,
+        "fin": 2.48
+      },
+      {
+        "texto": "y",
+        "inicio": 2.56,
+        "fin": 2.64
+      },
+      {
+        "texto": "CEO",
+        "inicio": 2.72,
+        "fin": 3.2
+      },
+      {
+        "texto": "desde",
+        "inicio": 3.28,
+        "fin": 3.44
+      },
+      {
+        "texto": "mil",
+        "inicio": 3.52,
+        "fin": 3.6
+      },
+      {
+        "texto": "novecientos",
+        "inicio": 3.68,
+        "fin": 4.2
+      },
+      {
+        "texto": "noventa",
+        "inicio": 4.24,
+        "fin": 4.56
+      },
+      {
+        "texto": "y",
+        "inicio": 4.6,
+        "fin": 4.64
+      },
+      {
+        "texto": "tres,",
+        "inicio": 4.72,
+        "fin": 5.28
+      },
+      {
+        "texto": "dejó",
+        "inicio": 5.36,
+        "fin": 5.52
+      },
+      {
+        "texto": "el",
+        "inicio": 5.6,
+        "fin": 5.68
+      },
+      {
+        "texto": "cargo",
+        "inicio": 5.8,
+        "fin": 5.92
+      },
+      {
+        "texto": "con",
+        "inicio": 6,
+        "fin": 6.08
+      },
+      {
+        "texto": "efecto",
+        "inicio": 6.16,
+        "fin": 6.52
+      },
+      {
+        "texto": "inmediato,",
+        "inicio": 6.56,
+        "fin": 7.44
+      },
+      {
+        "texto": "en",
+        "inicio": 7.52,
+        "fin": 7.6
+      },
+      {
+        "texto": "medio",
+        "inicio": 7.68,
+        "fin": 7.84
+      },
+      {
+        "texto": "de",
+        "inicio": 7.88,
+        "fin": 7.92
+      },
+      {
+        "texto": "un",
+        "inicio": 8,
+        "fin": 8.08
+      },
+      {
+        "texto": "escándalo.",
+        "inicio": 8.2,
+        "fin": 9.2
+      },
+      {
+        "texto": "La",
+        "inicio": 9.24,
+        "fin": 9.28
+      },
+      {
+        "texto": "directora",
+        "inicio": 9.36,
+        "fin": 9.68
+      },
+      {
+        "texto": "financiera,",
+        "inicio": 9.76,
+        "fin": 10.48
+      },
+      {
+        "texto": "Colette",
+        "inicio": 10.52,
+        "fin": 10.8
+      },
+      {
+        "texto": "Kress,",
+        "inicio": 10.88,
+        "fin": 11.36
+      },
+      {
+        "texto": "quedó",
+        "inicio": 11.4,
+        "fin": 11.6
+      },
+      {
+        "texto": "como",
+        "inicio": 11.68,
+        "fin": 11.84
+      },
+      {
+        "texto": "CEO",
+        "inicio": 11.92,
+        "fin": 12.32
+      },
+      {
+        "texto": "interina,",
+        "inicio": 12.4,
+        "fin": 13.12
+      },
+      {
+        "texto": "y",
+        "inicio": 13.16,
+        "fin": 13.2
+      },
+      {
+        "texto": "el",
+        "inicio": 13.24,
+        "fin": 13.28
+      },
+      {
+        "texto": "consejo",
+        "inicio": 13.36,
+        "fin": 13.92
+      },
+      {
+        "texto": "ya",
+        "inicio": 14,
+        "fin": 14.16
+      },
+      {
+        "texto": "busca",
+        "inicio": 14.28,
+        "fin": 14.56
+      },
+      {
+        "texto": "a",
+        "inicio": 14.6,
+        "fin": 14.64
+      },
+      {
+        "texto": "alguien",
+        "inicio": 14.72,
+        "fin": 14.92
+      },
+      {
+        "texto": "definitivo.",
+        "inicio": 14.96,
+        "fin": 15.84
+      }
+    ],
+    [
+      {
+        "texto": "¿Y",
+        "inicio": 0,
+        "fin": 0.16
+      },
+      {
+        "texto": "por",
+        "inicio": 0.24,
+        "fin": 0.32
+      },
+      {
+        "texto": "qué",
+        "inicio": 0.4,
+        "fin": 0.48
+      },
+      {
+        "texto": "importa",
+        "inicio": 0.64,
+        "fin": 0.88
+      },
+      {
+        "texto": "tanto?",
+        "inicio": 0.96,
+        "fin": 1.44
+      },
+      {
+        "texto": "NVIDIA",
+        "inicio": 2,
+        "fin": 2.4
+      },
+      {
+        "texto": "diseña",
+        "inicio": 2.48,
+        "fin": 2.8
+      },
+      {
+        "texto": "las",
+        "inicio": 2.88,
+        "fin": 2.96
+      },
+      {
+        "texto": "GPU:",
+        "inicio": 3.04,
+        "fin": 3.92
+      },
+      {
+        "texto": "chips",
+        "inicio": 3.96,
+        "fin": 4.24
+      },
+      {
+        "texto": "que",
+        "inicio": 4.28,
+        "fin": 4.32
+      },
+      {
+        "texto": "hacen",
+        "inicio": 4.4,
+        "fin": 4.64
+      },
+      {
+        "texto": "miles",
+        "inicio": 4.8,
+        "fin": 5.04
+      },
+      {
+        "texto": "de",
+        "inicio": 5.12,
+        "fin": 5.2
+      },
+      {
+        "texto": "cálculos",
+        "inicio": 5.28,
+        "fin": 5.68
+      },
+      {
+        "texto": "al",
+        "inicio": 5.76,
+        "fin": 5.84
+      },
+      {
+        "texto": "mismo",
+        "inicio": 5.92,
+        "fin": 6.08
+      },
+      {
+        "texto": "tiempo.",
+        "inicio": 6.16,
+        "fin": 6.96
+      },
+      {
+        "texto": "Nacieron",
+        "inicio": 7.013,
+        "fin": 7.36
+      },
+      {
+        "texto": "para",
+        "inicio": 7.44,
+        "fin": 7.52
+      },
+      {
+        "texto": "los",
+        "inicio": 7.56,
+        "fin": 7.6
+      },
+      {
+        "texto": "videojuegos,",
+        "inicio": 7.68,
+        "fin": 8.4
+      },
+      {
+        "texto": "pero",
+        "inicio": 8.48,
+        "fin": 8.64
+      },
+      {
+        "texto": "resultaron",
+        "inicio": 8.8,
+        "fin": 9.28
+      },
+      {
+        "texto": "perfectas",
+        "inicio": 9.52,
+        "fin": 9.92
+      },
+      {
+        "texto": "para",
+        "inicio": 10,
+        "fin": 10.08
+      },
+      {
+        "texto": "entrenar",
+        "inicio": 10.16,
+        "fin": 10.48
+      },
+      {
+        "texto": "inteligencia",
+        "inicio": 10.56,
+        "fin": 11.04
+      },
+      {
+        "texto": "artificial.",
+        "inicio": 11.12,
+        "fin": 11.92
+      }
+    ],
+    [
+      {
+        "texto": "Hoy",
+        "inicio": 0,
+        "fin": 0.24
+      },
+      {
+        "texto": "NVIDIA",
+        "inicio": 0.4,
+        "fin": 0.8
+      },
+      {
+        "texto": "controla",
+        "inicio": 1,
+        "fin": 1.253
+      },
+      {
+        "texto": "alrededor",
+        "inicio": 1.307,
+        "fin": 1.76
+      },
+      {
+        "texto": "del",
+        "inicio": 1.84,
+        "fin": 2
+      },
+      {
+        "texto": "noventa",
+        "inicio": 2.08,
+        "fin": 2.56
+      },
+      {
+        "texto": "por",
+        "inicio": 2.64,
+        "fin": 2.8
+      },
+      {
+        "texto": "ciento",
+        "inicio": 2.88,
+        "fin": 3.12
+      },
+      {
+        "texto": "de",
+        "inicio": 3.2,
+        "fin": 3.28
+      },
+      {
+        "texto": "los",
+        "inicio": 3.36,
+        "fin": 3.44
+      },
+      {
+        "texto": "chips",
+        "inicio": 3.52,
+        "fin": 3.76
+      },
+      {
+        "texto": "avanzados",
+        "inicio": 3.8,
+        "fin": 4.24
+      },
+      {
+        "texto": "de",
+        "inicio": 4.28,
+        "fin": 4.32
+      },
+      {
+        "texto": "inteligencia",
+        "inicio": 4.4,
+        "fin": 4.88
+      },
+      {
+        "texto": "artificial.",
+        "inicio": 4.96,
+        "fin": 5.76
+      },
+      {
+        "texto": "Sus",
+        "inicio": 6,
+        "fin": 6.16
+      },
+      {
+        "texto": "chips",
+        "inicio": 6.24,
+        "fin": 6.56
+      },
+      {
+        "texto": "llenan",
+        "inicio": 6.64,
+        "fin": 6.88
+      },
+      {
+        "texto": "los",
+        "inicio": 6.96,
+        "fin": 7.04
+      },
+      {
+        "texto": "centros",
+        "inicio": 7.16,
+        "fin": 7.36
+      },
+      {
+        "texto": "de",
+        "inicio": 7.44,
+        "fin": 7.48
+      },
+      {
+        "texto": "datos,",
+        "inicio": 7.52,
+        "fin": 8.16
+      },
+      {
+        "texto": "ahí",
+        "inicio": 8.24,
+        "fin": 8.48
+      },
+      {
+        "texto": "se",
+        "inicio": 8.52,
+        "fin": 8.56
+      },
+      {
+        "texto": "entrenan",
+        "inicio": 8.64,
+        "fin": 8.96
+      },
+      {
+        "texto": "los",
+        "inicio": 9,
+        "fin": 9.04
+      },
+      {
+        "texto": "modelos,",
+        "inicio": 9.12,
+        "fin": 9.84
+      },
+      {
+        "texto": "y",
+        "inicio": 9.92,
+        "fin": 10
+      },
+      {
+        "texto": "esos",
+        "inicio": 10.08,
+        "fin": 10.24
+      },
+      {
+        "texto": "modelos",
+        "inicio": 10.32,
+        "fin": 10.72
+      },
+      {
+        "texto": "llegan",
+        "inicio": 10.88,
+        "fin": 11.12
+      },
+      {
+        "texto": "a",
+        "inicio": 11.16,
+        "fin": 11.2
+      },
+      {
+        "texto": "las",
+        "inicio": 11.28,
+        "fin": 11.36
+      },
+      {
+        "texto": "aplicaciones",
+        "inicio": 11.44,
+        "fin": 11.92
+      },
+      {
+        "texto": "que",
+        "inicio": 12,
+        "fin": 12.08
+      },
+      {
+        "texto": "usas",
+        "inicio": 12.16,
+        "fin": 12.4
+      },
+      {
+        "texto": "todos",
+        "inicio": 12.56,
+        "fin": 12.88
+      },
+      {
+        "texto": "los",
+        "inicio": 12.96,
+        "fin": 13.04
+      },
+      {
+        "texto": "días.",
+        "inicio": 13.08,
+        "fin": 13.68
+      }
+    ],
+    [
+      {
+        "texto": "Por",
+        "inicio": 0,
+        "fin": 0.16
+      },
+      {
+        "texto": "eso",
+        "inicio": 0.24,
+        "fin": 0.32
+      },
+      {
+        "texto": "el",
+        "inicio": 0.36,
+        "fin": 0.4
+      },
+      {
+        "texto": "mercado",
+        "inicio": 0.48,
+        "fin": 0.8
+      },
+      {
+        "texto": "se",
+        "inicio": 0.84,
+        "fin": 0.88
+      },
+      {
+        "texto": "asustó.",
+        "inicio": 0.96,
+        "fin": 1.44
+      },
+      {
+        "texto": "El",
+        "inicio": 1.84,
+        "fin": 1.92
+      },
+      {
+        "texto": "jueves",
+        "inicio": 2,
+        "fin": 2.4
+      },
+      {
+        "texto": "la",
+        "inicio": 2.48,
+        "fin": 2.56
+      },
+      {
+        "texto": "acción",
+        "inicio": 2.72,
+        "fin": 2.88
+      },
+      {
+        "texto": "llegó",
+        "inicio": 2.933,
+        "fin": 3.067
+      },
+      {
+        "texto": "a",
+        "inicio": 3.093,
+        "fin": 3.12
+      },
+      {
+        "texto": "caer",
+        "inicio": 3.2,
+        "fin": 3.36
+      },
+      {
+        "texto": "más",
+        "inicio": 3.52,
+        "fin": 3.68
+      },
+      {
+        "texto": "de",
+        "inicio": 3.76,
+        "fin": 3.84
+      },
+      {
+        "texto": "catorce",
+        "inicio": 3.92,
+        "fin": 4.4
+      },
+      {
+        "texto": "por",
+        "inicio": 4.48,
+        "fin": 4.64
+      },
+      {
+        "texto": "ciento,",
+        "inicio": 4.72,
+        "fin": 5.44
+      },
+      {
+        "texto": "y",
+        "inicio": 5.48,
+        "fin": 5.52
+      },
+      {
+        "texto": "en",
+        "inicio": 5.56,
+        "fin": 5.6
+      },
+      {
+        "texto": "una",
+        "inicio": 5.68,
+        "fin": 5.76
+      },
+      {
+        "texto": "semana",
+        "inicio": 5.84,
+        "fin": 6.16
+      },
+      {
+        "texto": "la",
+        "inicio": 6.24,
+        "fin": 6.32
+      },
+      {
+        "texto": "empresa",
+        "inicio": 6.48,
+        "fin": 6.64
+      },
+      {
+        "texto": "perdió",
+        "inicio": 6.72,
+        "fin": 6.96
+      },
+      {
+        "texto": "unos",
+        "inicio": 7.04,
+        "fin": 7.28
+      },
+      {
+        "texto": "quinientos",
+        "inicio": 7.44,
+        "fin": 8
+      },
+      {
+        "texto": "mil",
+        "inicio": 8.16,
+        "fin": 8.32
+      },
+      {
+        "texto": "millones",
+        "inicio": 8.48,
+        "fin": 8.88
+      },
+      {
+        "texto": "de",
+        "inicio": 8.96,
+        "fin": 9
+      },
+      {
+        "texto": "dólares",
+        "inicio": 9.04,
+        "fin": 9.36
+      },
+      {
+        "texto": "de",
+        "inicio": 9.4,
+        "fin": 9.44
+      },
+      {
+        "texto": "valor.",
+        "inicio": 9.52,
+        "fin": 10.12
+      },
+      {
+        "texto": "Y",
+        "inicio": 10.4,
+        "fin": 10.48
+      },
+      {
+        "texto": "este",
+        "inicio": 10.56,
+        "fin": 10.64
+      },
+      {
+        "texto": "martes",
+        "inicio": 10.72,
+        "fin": 10.96
+      },
+      {
+        "texto": "diecisiete",
+        "inicio": 11.04,
+        "fin": 11.52
+      },
+      {
+        "texto": "presenta",
+        "inicio": 11.68,
+        "fin": 12.04
+      },
+      {
+        "texto": "resultados:",
+        "inicio": 12.08,
+        "fin": 13.12
+      },
+      {
+        "texto": "la",
+        "inicio": 13.2,
+        "fin": 13.28
+      },
+      {
+        "texto": "primera",
+        "inicio": 13.36,
+        "fin": 13.68
+      },
+      {
+        "texto": "gran",
+        "inicio": 13.84,
+        "fin": 14.08
+      },
+      {
+        "texto": "prueba",
+        "inicio": 14.16,
+        "fin": 14.48
+      },
+      {
+        "texto": "sin",
+        "inicio": 14.72,
+        "fin": 14.88
+      },
+      {
+        "texto": "su",
+        "inicio": 14.96,
+        "fin": 15.04
+      },
+      {
+        "texto": "fundador.",
+        "inicio": 15.16,
+        "fin": 15.84
+      }
+    ],
+    [
+      {
+        "texto": "¿Y",
+        "inicio": 0,
+        "fin": 0.12
+      },
+      {
+        "texto": "a",
+        "inicio": 0.16,
+        "fin": 0.2
+      },
+      {
+        "texto": "ti,",
+        "inicio": 0.24,
+        "fin": 0.64
+      },
+      {
+        "texto": "como",
+        "inicio": 0.72,
+        "fin": 0.8
+      },
+      {
+        "texto": "programador?",
+        "inicio": 0.88,
+        "fin": 1.52
+      },
+      {
+        "texto": "Tu",
+        "inicio": 2,
+        "fin": 2.08
+      },
+      {
+        "texto": "código",
+        "inicio": 2.16,
+        "fin": 2.48
+      },
+      {
+        "texto": "no",
+        "inicio": 2.56,
+        "fin": 2.64
+      },
+      {
+        "texto": "cambia",
+        "inicio": 2.72,
+        "fin": 2.96
+      },
+      {
+        "texto": "mañana:",
+        "inicio": 3.04,
+        "fin": 3.76
+      },
+      {
+        "texto": "los",
+        "inicio": 3.84,
+        "fin": 3.92
+      },
+      {
+        "texto": "chips",
+        "inicio": 4,
+        "fin": 4.16
+      },
+      {
+        "texto": "que",
+        "inicio": 4.24,
+        "fin": 4.32
+      },
+      {
+        "texto": "ya",
+        "inicio": 4.4,
+        "fin": 4.48
+      },
+      {
+        "texto": "están",
+        "inicio": 4.56,
+        "fin": 4.72
+      },
+      {
+        "texto": "instalados",
+        "inicio": 4.8,
+        "fin": 5.36
+      },
+      {
+        "texto": "siguen",
+        "inicio": 5.44,
+        "fin": 5.68
+      },
+      {
+        "texto": "funcionando.",
+        "inicio": 5.76,
+        "fin": 6.8
+      },
+      {
+        "texto": "Lo",
+        "inicio": 6.84,
+        "fin": 6.88
+      },
+      {
+        "texto": "que",
+        "inicio": 6.96,
+        "fin": 7
+      },
+      {
+        "texto": "queda",
+        "inicio": 7.04,
+        "fin": 7.2
+      },
+      {
+        "texto": "en",
+        "inicio": 7.24,
+        "fin": 7.28
+      },
+      {
+        "texto": "duda",
+        "inicio": 7.36,
+        "fin": 7.68
+      },
+      {
+        "texto": "es",
+        "inicio": 7.76,
+        "fin": 7.84
+      },
+      {
+        "texto": "el",
+        "inicio": 7.92,
+        "fin": 8
+      },
+      {
+        "texto": "rumbo:",
+        "inicio": 8.12,
+        "fin": 8.88
+      },
+      {
+        "texto": "quién",
+        "inicio": 8.92,
+        "fin": 9.12
+      },
+      {
+        "texto": "decide",
+        "inicio": 9.24,
+        "fin": 9.44
+      },
+      {
+        "texto": "los",
+        "inicio": 9.52,
+        "fin": 9.68
+      },
+      {
+        "texto": "próximos",
+        "inicio": 9.72,
+        "fin": 10.08
+      },
+      {
+        "texto": "chips,",
+        "inicio": 10.16,
+        "fin": 10.72
+      },
+      {
+        "texto": "cuánto",
+        "inicio": 10.8,
+        "fin": 11.04
+      },
+      {
+        "texto": "van",
+        "inicio": 11.12,
+        "fin": 11.2
+      },
+      {
+        "texto": "a",
+        "inicio": 11.24,
+        "fin": 11.28
+      },
+      {
+        "texto": "costar",
+        "inicio": 11.36,
+        "fin": 11.68
+      },
+      {
+        "texto": "y",
+        "inicio": 12,
+        "fin": 12.08
+      },
+      {
+        "texto": "qué",
+        "inicio": 12.24,
+        "fin": 12.32
+      },
+      {
+        "texto": "tan",
+        "inicio": 12.4,
+        "fin": 12.56
+      },
+      {
+        "texto": "rápido",
+        "inicio": 12.64,
+        "fin": 12.96
+      },
+      {
+        "texto": "avanza",
+        "inicio": 13,
+        "fin": 13.28
+      },
+      {
+        "texto": "la",
+        "inicio": 13.36,
+        "fin": 13.44
+      },
+      {
+        "texto": "IA",
+        "inicio": 13.52,
+        "fin": 13.84
+      },
+      {
+        "texto": "que",
+        "inicio": 13.92,
+        "fin": 14
+      },
+      {
+        "texto": "usas",
+        "inicio": 14.08,
+        "fin": 14.32
+      },
+      {
+        "texto": "para",
+        "inicio": 14.4,
+        "fin": 14.48
+      },
+      {
+        "texto": "programar.",
+        "inicio": 14.64,
+        "fin": 15.28
+      }
+    ],
+    [
+      {
+        "texto": "Ahora",
+        "inicio": 0,
+        "fin": 0.24
+      },
+      {
+        "texto": "dime:",
+        "inicio": 0.32,
+        "fin": 0.76
+      },
+      {
+        "texto": "¿crees",
+        "inicio": 0.96,
+        "fin": 1.2
+      },
+      {
+        "texto": "que",
+        "inicio": 1.28,
+        "fin": 1.36
+      },
+      {
+        "texto": "NVIDIA",
+        "inicio": 1.44,
+        "fin": 1.84
+      },
+      {
+        "texto": "puede",
+        "inicio": 1.88,
+        "fin": 2.08
+      },
+      {
+        "texto": "mantener",
+        "inicio": 2.16,
+        "fin": 2.48
+      },
+      {
+        "texto": "su",
+        "inicio": 2.56,
+        "fin": 2.64
+      },
+      {
+        "texto": "ventaja",
+        "inicio": 2.76,
+        "fin": 3.12
+      },
+      {
+        "texto": "sin",
+        "inicio": 3.2,
+        "fin": 3.44
+      },
+      {
+        "texto": "Jensen",
+        "inicio": 3.52,
+        "fin": 3.84
+      },
+      {
+        "texto": "Huang?",
+        "inicio": 3.92,
+        "fin": 4.24
+      },
+      {
+        "texto": "Te",
+        "inicio": 4.72,
+        "fin": 4.8
+      },
+      {
+        "texto": "leo",
+        "inicio": 4.88,
+        "fin": 4.96
+      },
+      {
+        "texto": "en",
+        "inicio": 5,
+        "fin": 5.04
+      },
+      {
+        "texto": "los",
+        "inicio": 5.08,
+        "fin": 5.12
+      },
+      {
+        "texto": "comentarios.",
+        "inicio": 5.2,
+        "fin": 5.96
+      },
+      {
+        "texto": "Y",
+        "inicio": 6.16,
+        "fin": 6.2
+      },
+      {
+        "texto": "sígueme",
+        "inicio": 6.24,
+        "fin": 6.56
+      },
+      {
+        "texto": "en",
+        "inicio": 6.6,
+        "fin": 6.64
+      },
+      {
+        "texto": "DevMorado",
+        "inicio": 6.72,
+        "fin": 7.28
+      },
+      {
+        "texto": "para",
+        "inicio": 7.36,
+        "fin": 7.44
+      },
+      {
+        "texto": "entender",
+        "inicio": 7.52,
+        "fin": 7.84
+      },
+      {
+        "texto": "la",
+        "inicio": 7.88,
+        "fin": 7.92
+      },
+      {
+        "texto": "tecnología",
+        "inicio": 8,
+        "fin": 8.56
+      },
+      {
+        "texto": "sin",
+        "inicio": 8.72,
+        "fin": 8.88
+      },
+      {
+        "texto": "complicaciones.",
+        "inicio": 9,
+        "fin": 10
+      }
+    ]
+  ]
+}

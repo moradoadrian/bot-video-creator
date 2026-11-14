@@ -1,0 +1,160 @@
+{
+  "canal": "codigo",
+  "lenguaje": "javascript",
+  "slug": "estados-unidos-detuvo-sus-vuelos",
+  "tema": "¡Estados Unidos detuvo sus vuelos! La falla de comunicación de la FAA del 13 de noviembre",
+  "etiqueta": "Noticia · 13 nov 2026",
+  "gancho": {
+    "titulo": "¡Estados Unidos detuvo sus vuelos!",
+    "narracion": "¿Te imaginas llegar al aeropuerto con tu boleto en la mano y descubrir que ningún avión puede despegar? Eso acaba de pasar en Estados Unidos. Y la causa fue una falla de comunicación.",
+    "visual": {
+      "tipo": "versus",
+      "lados": [
+        { "texto": "Tu boleto", "detalle": "Listo para volar", "icono": "formulario", "clave": "boleto" },
+        { "texto": "Tu vuelo", "detalle": "En tierra", "icono": "avion", "clave": "ningun avion" }
+      ]
+    }
+  },
+  "escenas": [
+    {
+      "titulo": "¿Qué pasó?",
+      "narracion": "Hoy, viernes trece de noviembre, la FAA, la agencia que regula la aviación en Estados Unidos, reportó una falla de comunicación en varios centros de control de tráfico aéreo. Desde ahí se coordinan los despegues, los aterrizajes y los aviones que cruzan de una región a otra. Cuando esa comunicación se cayó, la FAA ordenó un paro nacional de salidas.",
+      "visual": {
+        "tipo": "red",
+        "centro": { "texto": "Control aéreo", "detalle": "Centros de la FAA", "icono": "torre", "clave": "centros de control" },
+        "nodos": [
+          { "texto": "Despegues", "icono": "avion", "clave": "despegues" },
+          { "texto": "Aterrizajes", "icono": "avion", "clave": "aterrizajes" },
+          { "texto": "Aviones en ruta", "detalle": "Entre regiones", "icono": "antena", "clave": "aviones que cruzan" }
+        ],
+        "falla": { "texto": "Sin comunicación", "clave": "se cayo" }
+      }
+    },
+    {
+      "titulo": "¿Por qué dejarlos en tierra?",
+      "narracion": "¿Y por qué detener todo? Porque si los controladores pierden comunicación, ya no es una simple falla informática: es un problema de seguridad. Por eso la orden fue mantener los aviones en tierra. Ojo: los que ya estaban volando sí podían seguir y aterrizar. El paro afectó a las salidas.",
+      "visual": {
+        "tipo": "flujo",
+        "pasos": [
+          { "texto": "Controladores", "detalle": "Pierden comunicación", "icono": "antena", "clave": "controladores" },
+          { "texto": "Riesgo de seguridad", "detalle": "Ya no es solo informática", "icono": "escudo", "clave": "seguridad" },
+          { "texto": "Aviones en tierra", "detalle": "No hay despegues", "icono": "avion", "clave": "en tierra" }
+        ],
+        "final": { "texto": "En el aire: aterrizan", "detalle": "Solo se frenan salidas", "icono": "check", "clave": "aterrizar" }
+      }
+    },
+    {
+      "titulo": "Miles de pasajeros",
+      "narracion": "Las consecuencias fueron enormes. Los datos de seguimiento de vuelos reportaron miles de cancelaciones y retrasos. Y no solo de gente que salía de vacaciones: también conexiones perdidas, viajes de trabajo y vuelos internacionales. Entre las aerolíneas afectadas están American, United, Delta, Southwest y JetBlue.",
+      "visual": {
+        "tipo": "tarjetas",
+        "items": [
+          { "texto": "Vacaciones", "icono": "usuario", "clave": "vacaciones" },
+          { "texto": "Conexiones", "detalle": "Vuelos que se pierden", "icono": "api", "clave": "conexiones" },
+          { "texto": "Trabajo", "detalle": "Viajes de negocios", "icono": "formulario", "clave": "trabajo" },
+          { "texto": "Internacionales", "detalle": "Hacia otros países", "icono": "avion", "clave": "internacionales" }
+        ],
+        "etiquetas": {
+          "titulo": "Aerolíneas afectadas",
+          "lista": ["American", "United", "Delta", "Southwest", "JetBlue"],
+          "clave": "aerolineas"
+        }
+      }
+    },
+    {
+      "titulo": "Retrasos en cadena",
+      "narracion": "Y aunque el paro ya se levantó, nada vuelve a la normalidad de inmediato. Un vuelo cancelado deja al avión en la ciudad equivocada. Su tripulación tampoco llega a tiempo a su siguiente vuelo. Los horarios se descuadran y el retraso se contagia a otros aeropuertos. Una sola cancelación puede provocar retrasos durante horas.",
+      "visual": {
+        "tipo": "cascada",
+        "fichas": [
+          { "texto": "Vuelo cancelado", "icono": "avion", "clave": "vuelo cancelado" },
+          { "texto": "Avión fuera de lugar", "detalle": "En la ciudad equivocada", "icono": "alerta", "clave": "ciudad equivocada" },
+          { "texto": "Tripulación tarde", "detalle": "No llega a su vuelo", "icono": "usuario", "clave": "tripulacion" },
+          { "texto": "Horarios descuadrados", "icono": "reloj", "clave": "horarios" },
+          { "texto": "Otros aeropuertos", "detalle": "El retraso se contagia", "icono": "torre", "clave": "otros aeropuertos" }
+        ],
+        "final": { "texto": "Retrasos por horas", "icono": "reloj", "clave": "durante horas" }
+      }
+    },
+    {
+      "titulo": "¿Fue un ciberataque?",
+      "narracion": "La gran pregunta: ¿fue un ciberataque? El Departamento de Seguridad Nacional dijo que no hay ninguna evidencia de un ataque. Lo que sí se sabe: hubo una falla en las telecomunicaciones de los centros de control, y eso está confirmado. Según fuentes de CBS, una actualización de la red provocó un reinicio, pero no es oficial. ¿Y el rumor de que la inteligencia artificial lo causó? Nada lo confirma.",
+      "visual": {
+        "tipo": "verificar",
+        "items": [
+          {
+            "texto": "Ciberataque",
+            "detalle": "Lo que se rumoró",
+            "icono": "candado",
+            "clave": "ciberataque",
+            "veredicto": "sin-pruebas",
+            "claveVeredicto": "ninguna evidencia"
+          },
+          {
+            "texto": "Falla en telecom",
+            "detalle": "En los centros de control",
+            "icono": "antena",
+            "clave": "telecomunicaciones",
+            "veredicto": "confirmado",
+            "claveVeredicto": "esta confirmado"
+          },
+          {
+            "texto": "Actualización de red",
+            "detalle": "Que causó un reinicio",
+            "icono": "engrane",
+            "clave": "actualizacion",
+            "veredicto": "sin-pruebas",
+            "claveVeredicto": "no es oficial"
+          },
+          {
+            "texto": "La IA lo provocó",
+            "detalle": "Rumor en internet",
+            "icono": "rayo",
+            "clave": "inteligencia artificial",
+            "veredicto": "sin-pruebas",
+            "claveVeredicto": "nada lo confirma"
+          }
+        ]
+      }
+    },
+    {
+      "titulo": "El verdadero problema",
+      "narracion": "Y aquí está la lección tecnológica. Uno de los sistemas de transporte más grandes del mundo depende de redes, servidores y software. Y no es la primera vez: en enero de dos mil veintitrés, otra falla de la FAA también paró los vuelos de todo el país. No basta con sistemas modernos. Hace falta redundancia, respaldos independientes, monitoreo constante y un plan de recuperación. La tecnología debe estar lista para cuando algo sale mal.",
+      "visual": {
+        "tipo": "tarjetas",
+        "items": [
+          { "texto": "Redundancia", "detalle": "Más de un camino", "icono": "capas", "clave": "redundancia" },
+          { "texto": "Respaldos", "detalle": "Independientes", "icono": "base-datos", "clave": "respaldos" },
+          { "texto": "Monitoreo", "detalle": "Constante", "icono": "pantalla", "clave": "monitoreo" },
+          { "texto": "Recuperación", "detalle": "Un plan ante fallos", "icono": "escudo", "clave": "recuperacion" }
+        ]
+      }
+    },
+    {
+      "titulo": "¿Y México?",
+      "narracion": "¿Y esto afecta a México? Sí. Muchos vuelos desde México conectan en aeropuertos como Dallas, Houston, Los Ángeles, Chicago o Nueva York. Si esos aeropuertos se detienen, tu conexión también. Así que, si tienes vuelo, revisa su estado directamente con tu aerolínea.",
+      "visual": {
+        "tipo": "red",
+        "centro": { "texto": "Tu vuelo", "detalle": "Desde México", "icono": "avion", "clave": "vuelos desde mexico" },
+        "nodos": [
+          { "texto": "Dallas", "icono": "torre", "clave": "dallas" },
+          { "texto": "Houston", "icono": "torre", "clave": "houston" },
+          { "texto": "Los Ángeles", "icono": "torre", "clave": "los angeles" },
+          { "texto": "Chicago", "icono": "torre", "clave": "chicago" },
+          { "texto": "Nueva York", "icono": "torre", "clave": "nueva york" }
+        ],
+        "falla": { "texto": "Conexión en riesgo", "clave": "se detienen" }
+      }
+    }
+  ],
+  "cierre": {
+    "titulo": "¿Tú qué opinas?",
+    "narracion": "Hoy dependemos de la tecnología para casi todo, y una falla de comunicación puede dejar en tierra a todo un país. Dime en los comentarios: ¿los sistemas críticos deberían depender tanto de una infraestructura centralizada? Soy DevMorado, y aquí hablamos de tecnología y de las noticias que cambian el mundo."
+  },
+  "descripcion": "El 13 de noviembre de 2026 la FAA ordenó un paro nacional de salidas de vuelos en Estados Unidos por una falla de comunicación en sus centros de control de tráfico aéreo. Te explico qué pasó, por qué se generan retrasos en cadena, qué hay de los rumores de ciberataque y cómo puede afectar a los vuelos desde México.",
+  "hashtags": ["#faa", "#vuelos", "#aeropuerto", "#estadosunidos", "#tecnologia", "#noticias", "#DevMorado"],
+  "portada": {
+    "titulo": "¡EE. UU. detuvo sus vuelos!",
+    "frase": "La falla que dejó aviones en tierra"
+  }
+}

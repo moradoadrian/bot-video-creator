@@ -1,0 +1,212 @@
+{
+  "canal": "codigo",
+  "lenguaje": "javascript",
+  "slug": "por-que-se-cayo-outlook",
+  "tema": "¿Por qué se cayó Outlook? Lo que pasó con Microsoft el 12 de noviembre",
+  "etiqueta": "Noticia · 12 nov 2026",
+  "gancho": {
+    "titulo": "¿Por qué se cayó Outlook?",
+    "narracion": "Hoy, doce de noviembre, Outlook se cayó para miles de personas: más de ciento treinta mil reportes solo en Estados Unidos. Y no era tu internet: eran servidores de Microsoft que dejaron de responder.",
+    "visual": {
+      "tipo": "versus",
+      "lados": [
+        {
+          "texto": "Tu internet",
+          "detalle": "Funcionando",
+          "icono": "pantalla",
+          "clave": "tu internet"
+        },
+        {
+          "texto": "Servidores Microsoft",
+          "detalle": "Sin responder",
+          "icono": "servidor",
+          "clave": "servidores"
+        }
+      ]
+    }
+  },
+  "escenas": [
+    {
+      "titulo": "No fue solo Outlook",
+      "narracion": "Y no fue solo el correo. También fallaron Teams, Copilot y otros servicios. El origen común: Exchange Online, el sistema que maneja los buzones de correo en la nube.",
+      "visual": {
+        "tipo": "tarjetas",
+        "items": [
+          {
+            "texto": "Outlook",
+            "detalle": "Correo",
+            "icono": "pantalla",
+            "clave": "correo"
+          },
+          {
+            "texto": "Teams",
+            "detalle": "Reuniones y chat",
+            "icono": "usuario",
+            "clave": "teams"
+          },
+          {
+            "texto": "Copilot",
+            "detalle": "Asistente de IA",
+            "icono": "rayo",
+            "clave": "copilot"
+          },
+          {
+            "texto": "Microsoft 365",
+            "detalle": "Otros servicios",
+            "icono": "capas",
+            "clave": "otros servicios"
+          },
+          {
+            "texto": "Exchange Online",
+            "detalle": "El origen común",
+            "icono": "nube",
+            "clave": "exchange"
+          }
+        ]
+      }
+    },
+    {
+      "titulo": "Una falla en cadena",
+      "narracion": "Varios servidores quedaron fuera de servicio sin aviso. Imagina diez servidores: si tres dejan de responder, los otros siete reciben toda esa carga, se saturan y también pueden caer. Una falla en cadena.",
+      "visual": {
+        "tipo": "flujo",
+        "pasos": [
+          {
+            "texto": "Servidores caen",
+            "detalle": "Sin aviso",
+            "icono": "servidor",
+            "clave": "fuera de servicio"
+          },
+          {
+            "texto": "Más carga",
+            "detalle": "Para los que quedan",
+            "icono": "rayo",
+            "clave": "toda esa carga"
+          },
+          {
+            "texto": "Se saturan",
+            "detalle": "Y también caen",
+            "icono": "engrane",
+            "clave": "se saturan"
+          }
+        ],
+        "regreso": {
+          "texto": "Y vuelve a empezar",
+          "clave": "en cadena"
+        }
+      }
+    },
+    {
+      "titulo": "Lo que hizo Microsoft",
+      "narracion": "Microsoft pausó sus despliegues, movió el tráfico a otras rutas y reinició los servidores. Pero algunos, al volver a recibir tráfico, fallaban otra vez.",
+      "visual": {
+        "tipo": "tarjetas",
+        "items": [
+          {
+            "texto": "Pausar despliegues",
+            "detalle": "Nada de cambios nuevos",
+            "icono": "engrane",
+            "clave": "pauso"
+          },
+          {
+            "texto": "Mover el tráfico",
+            "detalle": "Hacia otras rutas",
+            "icono": "nube",
+            "clave": "movio"
+          },
+          {
+            "texto": "Reiniciar servidores",
+            "detalle": "Volver a encenderlos",
+            "icono": "servidor",
+            "clave": "reinicio"
+          }
+        ]
+      }
+    },
+    {
+      "titulo": "La pista: los chequeos",
+      "narracion": "La pista: las comprobaciones de salud, pruebas automáticas que revisan si un servidor está bien. Muchos las fallaban y quedaban fuera. Con un cambio de configuración, Microsoft recuperó parte de ellos, aunque al grabar este video la recuperación seguía lenta.",
+      "visual": {
+        "tipo": "flujo",
+        "pasos": [
+          {
+            "texto": "Chequeo de salud",
+            "detalle": "¿Este servidor está bien?",
+            "icono": "check",
+            "clave": "comprobaciones"
+          },
+          {
+            "texto": "Falla el chequeo",
+            "detalle": "Lo marca como enfermo",
+            "icono": "servidor",
+            "clave": "fallaban"
+          },
+          {
+            "texto": "Queda fuera",
+            "detalle": "Ya no recibe tráfico",
+            "icono": "candado",
+            "clave": "fuera"
+          }
+        ],
+        "final": {
+          "texto": "Nueva configuración",
+          "detalle": "Recuperación lenta",
+          "icono": "engrane",
+          "clave": "configuracion"
+        }
+      }
+    },
+    {
+      "titulo": "La lección para ti",
+      "narracion": "La lección: tu aplicación no es solo tu código. Depende de servidores, redes, bases de datos, monitoreo y recuperación. No basta con preguntarte si funciona. Pregúntate: ¿qué pasa cuando algo falla?",
+      "visual": {
+        "tipo": "tarjetas",
+        "items": [
+          {
+            "texto": "Servidores",
+            "icono": "servidor",
+            "clave": "servidores"
+          },
+          {
+            "texto": "Redes",
+            "icono": "nube",
+            "clave": "redes"
+          },
+          {
+            "texto": "Bases de datos",
+            "icono": "base-datos",
+            "clave": "bases de datos"
+          },
+          {
+            "texto": "Monitoreo",
+            "icono": "pantalla",
+            "clave": "monitoreo"
+          },
+          {
+            "texto": "Recuperación",
+            "icono": "escudo",
+            "clave": "recuperacion"
+          }
+        ]
+      }
+    }
+  ],
+  "cierre": {
+    "titulo": "¿Tú qué harías?",
+    "narracion": "Si le pasa a Microsoft, le pasa a cualquiera. Dime en los comentarios: si tu app tuviera millones de usuarios y un servidor dejara de responder, ¿qué harías? Sígueme en DevMorado."
+  },
+  "descripcion": "El 12 de noviembre de 2026 Outlook, Teams y Copilot fallaron por un problema en Exchange Online. Te explico qué pasó según Microsoft, por qué fue una falla en cadena y qué lección deja para quien programa.",
+  "hashtags": [
+    "#outlook",
+    "#microsoft",
+    "#caidaoutlook",
+    "#microsoft365",
+    "#programacion",
+    "#tecnologia",
+    "#DevMorado"
+  ],
+  "portada": {
+    "titulo": "¿Por qué se cayó Outlook?",
+    "frase": "Lo que pasó dentro de Microsoft"
+  }
+}

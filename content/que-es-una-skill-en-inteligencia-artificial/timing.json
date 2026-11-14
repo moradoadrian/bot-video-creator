@@ -1,0 +1,1253 @@
+{
+  "conAudio": true,
+  "duraciones": [
+    8.36,
+    14.03,
+    11.08,
+    13.17,
+    14.68,
+    9.64,
+    14.92
+  ],
+  "palabras": [
+    [
+      {
+        "texto": "¿Sabías",
+        "inicio": 0,
+        "fin": 0.4
+      },
+      {
+        "texto": "que",
+        "inicio": 0.48,
+        "fin": 0.56
+      },
+      {
+        "texto": "puedes",
+        "inicio": 0.587,
+        "fin": 0.8
+      },
+      {
+        "texto": "enseñarle",
+        "inicio": 0.92,
+        "fin": 1.36
+      },
+      {
+        "texto": "nuevas",
+        "inicio": 1.44,
+        "fin": 1.84
+      },
+      {
+        "texto": "habilidades",
+        "inicio": 1.92,
+        "fin": 2.48
+      },
+      {
+        "texto": "a",
+        "inicio": 2.56,
+        "fin": 2.6
+      },
+      {
+        "texto": "una",
+        "inicio": 2.64,
+        "fin": 2.72
+      },
+      {
+        "texto": "inteligencia",
+        "inicio": 2.8,
+        "fin": 3.28
+      },
+      {
+        "texto": "artificial",
+        "inicio": 3.36,
+        "fin": 3.92
+      },
+      {
+        "texto": "sin",
+        "inicio": 4.16,
+        "fin": 4.32
+      },
+      {
+        "texto": "entrenar",
+        "inicio": 4.4,
+        "fin": 4.8
+      },
+      {
+        "texto": "un",
+        "inicio": 4.88,
+        "fin": 4.96
+      },
+      {
+        "texto": "modelo",
+        "inicio": 5.12,
+        "fin": 5.28
+      },
+      {
+        "texto": "desde",
+        "inicio": 5.36,
+        "fin": 5.52
+      },
+      {
+        "texto": "cero?",
+        "inicio": 5.6,
+        "fin": 6.16
+      },
+      {
+        "texto": "Eso",
+        "inicio": 6.48,
+        "fin": 6.64
+      },
+      {
+        "texto": "se",
+        "inicio": 6.72,
+        "fin": 6.8
+      },
+      {
+        "texto": "conoce",
+        "inicio": 6.88,
+        "fin": 7.2
+      },
+      {
+        "texto": "como",
+        "inicio": 7.28,
+        "fin": 7.44
+      },
+      {
+        "texto": "una",
+        "inicio": 7.52,
+        "fin": 7.68
+      },
+      {
+        "texto": "Skill.",
+        "inicio": 7.76,
+        "fin": 8.4
+      }
+    ],
+    [
+      {
+        "texto": "Una",
+        "inicio": 0,
+        "fin": 0.24
+      },
+      {
+        "texto": "Skill,",
+        "inicio": 0.48,
+        "fin": 0.96
+      },
+      {
+        "texto": "o",
+        "inicio": 1.04,
+        "fin": 1.12
+      },
+      {
+        "texto": "habilidad,",
+        "inicio": 1.2,
+        "fin": 2
+      },
+      {
+        "texto": "es",
+        "inicio": 2.08,
+        "fin": 2.16
+      },
+      {
+        "texto": "un",
+        "inicio": 2.24,
+        "fin": 2.32
+      },
+      {
+        "texto": "paquete",
+        "inicio": 2.4,
+        "fin": 2.72
+      },
+      {
+        "texto": "de",
+        "inicio": 2.76,
+        "fin": 2.8
+      },
+      {
+        "texto": "instrucciones",
+        "inicio": 2.92,
+        "fin": 3.52
+      },
+      {
+        "texto": "que",
+        "inicio": 3.6,
+        "fin": 3.68
+      },
+      {
+        "texto": "le",
+        "inicio": 3.72,
+        "fin": 3.76
+      },
+      {
+        "texto": "enseña",
+        "inicio": 3.88,
+        "fin": 4.24
+      },
+      {
+        "texto": "a",
+        "inicio": 4.28,
+        "fin": 4.32
+      },
+      {
+        "texto": "una",
+        "inicio": 4.4,
+        "fin": 4.56
+      },
+      {
+        "texto": "IA",
+        "inicio": 4.64,
+        "fin": 5.04
+      },
+      {
+        "texto": "cómo",
+        "inicio": 5.12,
+        "fin": 5.36
+      },
+      {
+        "texto": "hacer",
+        "inicio": 5.4,
+        "fin": 5.68
+      },
+      {
+        "texto": "una",
+        "inicio": 5.76,
+        "fin": 5.84
+      },
+      {
+        "texto": "tarea",
+        "inicio": 5.92,
+        "fin": 6.08
+      },
+      {
+        "texto": "específica.",
+        "inicio": 6.16,
+        "fin": 7.28
+      },
+      {
+        "texto": "Junta",
+        "inicio": 7.36,
+        "fin": 7.52
+      },
+      {
+        "texto": "las",
+        "inicio": 7.6,
+        "fin": 7.68
+      },
+      {
+        "texto": "instrucciones,",
+        "inicio": 7.8,
+        "fin": 8.72
+      },
+      {
+        "texto": "las",
+        "inicio": 8.76,
+        "fin": 8.8
+      },
+      {
+        "texto": "buenas",
+        "inicio": 8.88,
+        "fin": 9.12
+      },
+      {
+        "texto": "prácticas",
+        "inicio": 9.2,
+        "fin": 9.84
+      },
+      {
+        "texto": "y",
+        "inicio": 9.92,
+        "fin": 9.96
+      },
+      {
+        "texto": "los",
+        "inicio": 10,
+        "fin": 10.08
+      },
+      {
+        "texto": "procedimientos",
+        "inicio": 10.16,
+        "fin": 10.96
+      },
+      {
+        "texto": "en",
+        "inicio": 11.04,
+        "fin": 11.28
+      },
+      {
+        "texto": "un",
+        "inicio": 11.36,
+        "fin": 11.44
+      },
+      {
+        "texto": "solo",
+        "inicio": 11.52,
+        "fin": 11.68
+      },
+      {
+        "texto": "lugar.",
+        "inicio": 11.76,
+        "fin": 12.48
+      },
+      {
+        "texto": "Y",
+        "inicio": 12.52,
+        "fin": 12.56
+      },
+      {
+        "texto": "eso",
+        "inicio": 12.84,
+        "fin": 13.12
+      },
+      {
+        "texto": "es",
+        "inicio": 13.2,
+        "fin": 13.28
+      },
+      {
+        "texto": "una",
+        "inicio": 13.36,
+        "fin": 13.44
+      },
+      {
+        "texto": "Skill.",
+        "inicio": 13.52,
+        "fin": 14.08
+      }
+    ],
+    [
+      {
+        "texto": "Por",
+        "inicio": 0,
+        "fin": 0.16
+      },
+      {
+        "texto": "ejemplo,",
+        "inicio": 0.2,
+        "fin": 0.88
+      },
+      {
+        "texto": "puedes",
+        "inicio": 0.96,
+        "fin": 1.2
+      },
+      {
+        "texto": "crear",
+        "inicio": 1.28,
+        "fin": 1.52
+      },
+      {
+        "texto": "una",
+        "inicio": 1.6,
+        "fin": 1.68
+      },
+      {
+        "texto": "Skill",
+        "inicio": 1.88,
+        "fin": 2.08
+      },
+      {
+        "texto": "para",
+        "inicio": 2.16,
+        "fin": 2.24
+      },
+      {
+        "texto": "que",
+        "inicio": 2.32,
+        "fin": 2.4
+      },
+      {
+        "texto": "la",
+        "inicio": 2.48,
+        "fin": 2.56
+      },
+      {
+        "texto": "IA",
+        "inicio": 2.64,
+        "fin": 2.96
+      },
+      {
+        "texto": "genere",
+        "inicio": 3.04,
+        "fin": 3.28
+      },
+      {
+        "texto": "documentación",
+        "inicio": 3.48,
+        "fin": 3.92
+      },
+      {
+        "texto": "de",
+        "inicio": 3.96,
+        "fin": 4
+      },
+      {
+        "texto": "tu",
+        "inicio": 4.08,
+        "fin": 4.24
+      },
+      {
+        "texto": "código,",
+        "inicio": 4.4,
+        "fin": 4.96
+      },
+      {
+        "texto": "revise",
+        "inicio": 5.04,
+        "fin": 5.36
+      },
+      {
+        "texto": "errores",
+        "inicio": 5.48,
+        "fin": 5.76
+      },
+      {
+        "texto": "en",
+        "inicio": 5.8,
+        "fin": 5.84
+      },
+      {
+        "texto": "tus",
+        "inicio": 5.88,
+        "fin": 6
+      },
+      {
+        "texto": "proyectos,",
+        "inicio": 6.08,
+        "fin": 7.04
+      },
+      {
+        "texto": "cree",
+        "inicio": 7.08,
+        "fin": 7.28
+      },
+      {
+        "texto": "componentes",
+        "inicio": 7.52,
+        "fin": 7.84
+      },
+      {
+        "texto": "de",
+        "inicio": 7.88,
+        "fin": 7.92
+      },
+      {
+        "texto": "Angular",
+        "inicio": 8,
+        "fin": 8.56
+      },
+      {
+        "texto": "o",
+        "inicio": 8.64,
+        "fin": 8.72
+      },
+      {
+        "texto": "analice",
+        "inicio": 8.8,
+        "fin": 9.2
+      },
+      {
+        "texto": "archivos",
+        "inicio": 9.32,
+        "fin": 9.76
+      },
+      {
+        "texto": "y",
+        "inicio": 9.8,
+        "fin": 9.84
+      },
+      {
+        "texto": "genere",
+        "inicio": 9.92,
+        "fin": 10.16
+      },
+      {
+        "texto": "reportes.",
+        "inicio": 10.24,
+        "fin": 11.12
+      }
+    ],
+    [
+      {
+        "texto": "Por",
+        "inicio": 0,
+        "fin": 0.16
+      },
+      {
+        "texto": "dentro,",
+        "inicio": 0.28,
+        "fin": 0.72
+      },
+      {
+        "texto": "una",
+        "inicio": 0.8,
+        "fin": 0.96
+      },
+      {
+        "texto": "Skill",
+        "inicio": 1.16,
+        "fin": 1.36
+      },
+      {
+        "texto": "suele",
+        "inicio": 1.4,
+        "fin": 1.6
+      },
+      {
+        "texto": "ser",
+        "inicio": 1.68,
+        "fin": 1.84
+      },
+      {
+        "texto": "una",
+        "inicio": 1.88,
+        "fin": 1.92
+      },
+      {
+        "texto": "carpeta",
+        "inicio": 2,
+        "fin": 2.48
+      },
+      {
+        "texto": "con",
+        "inicio": 2.56,
+        "fin": 2.64
+      },
+      {
+        "texto": "un",
+        "inicio": 2.72,
+        "fin": 2.76
+      },
+      {
+        "texto": "archivo",
+        "inicio": 2.8,
+        "fin": 3.12
+      },
+      {
+        "texto": "llamado",
+        "inicio": 3.2,
+        "fin": 3.6
+      },
+      {
+        "texto": "SKILL",
+        "inicio": 3.84,
+        "fin": 4.24
+      },
+      {
+        "texto": "punto",
+        "inicio": 4.32,
+        "fin": 4.56
+      },
+      {
+        "texto": "md.",
+        "inicio": 4.8,
+        "fin": 5.2
+      },
+      {
+        "texto": "Arriba",
+        "inicio": 5.76,
+        "fin": 6.16
+      },
+      {
+        "texto": "lleva",
+        "inicio": 6.2,
+        "fin": 6.4
+      },
+      {
+        "texto": "un",
+        "inicio": 6.48,
+        "fin": 6.56
+      },
+      {
+        "texto": "nombre",
+        "inicio": 6.72,
+        "fin": 6.88
+      },
+      {
+        "texto": "y",
+        "inicio": 6.92,
+        "fin": 6.96
+      },
+      {
+        "texto": "una",
+        "inicio": 7.04,
+        "fin": 7.12
+      },
+      {
+        "texto": "descripción:",
+        "inicio": 7.2,
+        "fin": 8.08
+      },
+      {
+        "texto": "así",
+        "inicio": 8.16,
+        "fin": 8.4
+      },
+      {
+        "texto": "la",
+        "inicio": 8.44,
+        "fin": 8.48
+      },
+      {
+        "texto": "IA",
+        "inicio": 8.56,
+        "fin": 8.8
+      },
+      {
+        "texto": "sabe",
+        "inicio": 8.88,
+        "fin": 9.12
+      },
+      {
+        "texto": "cuándo",
+        "inicio": 9.2,
+        "fin": 9.44
+      },
+      {
+        "texto": "usarla.",
+        "inicio": 9.52,
+        "fin": 9.92
+      },
+      {
+        "texto": "Abajo",
+        "inicio": 10.4,
+        "fin": 10.8
+      },
+      {
+        "texto": "van",
+        "inicio": 10.96,
+        "fin": 11.04
+      },
+      {
+        "texto": "las",
+        "inicio": 11.12,
+        "fin": 11.2
+      },
+      {
+        "texto": "instrucciones,",
+        "inicio": 11.28,
+        "fin": 12.16
+      },
+      {
+        "texto": "paso",
+        "inicio": 12.24,
+        "fin": 12.48
+      },
+      {
+        "texto": "a",
+        "inicio": 12.52,
+        "fin": 12.56
+      },
+      {
+        "texto": "paso.",
+        "inicio": 12.64,
+        "fin": 13.2
+      }
+    ],
+    [
+      {
+        "texto": "Imagina",
+        "inicio": 0,
+        "fin": 0.4
+      },
+      {
+        "texto": "que",
+        "inicio": 0.44,
+        "fin": 0.48
+      },
+      {
+        "texto": "usas",
+        "inicio": 0.56,
+        "fin": 0.8
+      },
+      {
+        "texto": "Claude",
+        "inicio": 0.88,
+        "fin": 1.2
+      },
+      {
+        "texto": "con",
+        "inicio": 1.28,
+        "fin": 1.36
+      },
+      {
+        "texto": "una",
+        "inicio": 1.44,
+        "fin": 1.52
+      },
+      {
+        "texto": "Skill",
+        "inicio": 1.6,
+        "fin": 1.84
+      },
+      {
+        "texto": "de",
+        "inicio": 1.88,
+        "fin": 1.92
+      },
+      {
+        "texto": "Angular.",
+        "inicio": 2,
+        "fin": 2.68
+      },
+      {
+        "texto": "Tú",
+        "inicio": 2.88,
+        "fin": 3
+      },
+      {
+        "texto": "le",
+        "inicio": 3.04,
+        "fin": 3.08
+      },
+      {
+        "texto": "pides",
+        "inicio": 3.12,
+        "fin": 3.36
+      },
+      {
+        "texto": "un",
+        "inicio": 3.4,
+        "fin": 3.44
+      },
+      {
+        "texto": "componente.",
+        "inicio": 3.52,
+        "fin": 4.16
+      },
+      {
+        "texto": "Claude",
+        "inicio": 4.56,
+        "fin": 4.88
+      },
+      {
+        "texto": "detecta",
+        "inicio": 4.96,
+        "fin": 5.4
+      },
+      {
+        "texto": "que",
+        "inicio": 5.44,
+        "fin": 5.52
+      },
+      {
+        "texto": "esa",
+        "inicio": 5.64,
+        "fin": 5.76
+      },
+      {
+        "texto": "Skill",
+        "inicio": 5.96,
+        "fin": 6.16
+      },
+      {
+        "texto": "sirve",
+        "inicio": 6.2,
+        "fin": 6.48
+      },
+      {
+        "texto": "para",
+        "inicio": 6.56,
+        "fin": 6.64
+      },
+      {
+        "texto": "la",
+        "inicio": 6.72,
+        "fin": 6.76
+      },
+      {
+        "texto": "tarea",
+        "inicio": 6.8,
+        "fin": 7.2
+      },
+      {
+        "texto": "y",
+        "inicio": 7.28,
+        "fin": 7.36
+      },
+      {
+        "texto": "la",
+        "inicio": 7.4,
+        "fin": 7.44
+      },
+      {
+        "texto": "carga.",
+        "inicio": 7.52,
+        "fin": 7.92
+      },
+      {
+        "texto": "Sigue",
+        "inicio": 8.32,
+        "fin": 8.56
+      },
+      {
+        "texto": "sus",
+        "inicio": 8.64,
+        "fin": 8.72
+      },
+      {
+        "texto": "instrucciones",
+        "inicio": 8.84,
+        "fin": 9.36
+      },
+      {
+        "texto": "y",
+        "inicio": 9.4,
+        "fin": 9.44
+      },
+      {
+        "texto": "buenas",
+        "inicio": 9.48,
+        "fin": 9.68
+      },
+      {
+        "texto": "prácticas,",
+        "inicio": 9.76,
+        "fin": 10.48
+      },
+      {
+        "texto": "y",
+        "inicio": 10.56,
+        "fin": 10.6
+      },
+      {
+        "texto": "te",
+        "inicio": 10.64,
+        "fin": 10.72
+      },
+      {
+        "texto": "entrega",
+        "inicio": 10.8,
+        "fin": 11.04
+      },
+      {
+        "texto": "el",
+        "inicio": 11.08,
+        "fin": 11.12
+      },
+      {
+        "texto": "código",
+        "inicio": 11.2,
+        "fin": 11.52
+      },
+      {
+        "texto": "como",
+        "inicio": 11.6,
+        "fin": 11.84
+      },
+      {
+        "texto": "tú",
+        "inicio": 12,
+        "fin": 12.08
+      },
+      {
+        "texto": "lo",
+        "inicio": 12.16,
+        "fin": 12.24
+      },
+      {
+        "texto": "quieres,",
+        "inicio": 12.32,
+        "fin": 12.88
+      },
+      {
+        "texto": "sin",
+        "inicio": 12.96,
+        "fin": 13.12
+      },
+      {
+        "texto": "que",
+        "inicio": 13.2,
+        "fin": 13.28
+      },
+      {
+        "texto": "se",
+        "inicio": 13.32,
+        "fin": 13.36
+      },
+      {
+        "texto": "lo",
+        "inicio": 13.4,
+        "fin": 13.44
+      },
+      {
+        "texto": "expliques",
+        "inicio": 13.56,
+        "fin": 13.92
+      },
+      {
+        "texto": "cada",
+        "inicio": 13.973,
+        "fin": 14.08
+      },
+      {
+        "texto": "vez.",
+        "inicio": 14.16,
+        "fin": 14.72
+      }
+    ],
+    [
+      {
+        "texto": "Es",
+        "inicio": 0,
+        "fin": 0.16
+      },
+      {
+        "texto": "como",
+        "inicio": 0.28,
+        "fin": 0.4
+      },
+      {
+        "texto": "darle",
+        "inicio": 0.48,
+        "fin": 0.64
+      },
+      {
+        "texto": "un",
+        "inicio": 0.68,
+        "fin": 0.72
+      },
+      {
+        "texto": "manual",
+        "inicio": 0.8,
+        "fin": 1.04
+      },
+      {
+        "texto": "de",
+        "inicio": 1.08,
+        "fin": 1.12
+      },
+      {
+        "texto": "trabajo",
+        "inicio": 1.2,
+        "fin": 1.52
+      },
+      {
+        "texto": "especializado.",
+        "inicio": 1.6,
+        "fin": 2.72
+      },
+      {
+        "texto": "Sin",
+        "inicio": 2.84,
+        "fin": 2.96
+      },
+      {
+        "texto": "Skill,",
+        "inicio": 3.16,
+        "fin": 3.52
+      },
+      {
+        "texto": "le",
+        "inicio": 3.56,
+        "fin": 3.6
+      },
+      {
+        "texto": "explicas",
+        "inicio": 3.68,
+        "fin": 4.16
+      },
+      {
+        "texto": "todo",
+        "inicio": 4.32,
+        "fin": 4.64
+      },
+      {
+        "texto": "cada",
+        "inicio": 4.72,
+        "fin": 4.96
+      },
+      {
+        "texto": "vez",
+        "inicio": 5.04,
+        "fin": 5.12
+      },
+      {
+        "texto": "que",
+        "inicio": 5.16,
+        "fin": 5.2
+      },
+      {
+        "texto": "le",
+        "inicio": 5.28,
+        "fin": 5.36
+      },
+      {
+        "texto": "pides",
+        "inicio": 5.44,
+        "fin": 5.68
+      },
+      {
+        "texto": "algo.",
+        "inicio": 5.8,
+        "fin": 6.32
+      },
+      {
+        "texto": "Con",
+        "inicio": 6.4,
+        "fin": 6.48
+      },
+      {
+        "texto": "Skill,",
+        "inicio": 6.56,
+        "fin": 7.12
+      },
+      {
+        "texto": "el",
+        "inicio": 7.16,
+        "fin": 7.2
+      },
+      {
+        "texto": "manual",
+        "inicio": 7.28,
+        "fin": 7.6
+      },
+      {
+        "texto": "ya",
+        "inicio": 7.68,
+        "fin": 7.76
+      },
+      {
+        "texto": "está",
+        "inicio": 7.84,
+        "fin": 8
+      },
+      {
+        "texto": "listo",
+        "inicio": 8.16,
+        "fin": 8.48
+      },
+      {
+        "texto": "y",
+        "inicio": 8.52,
+        "fin": 8.56
+      },
+      {
+        "texto": "la",
+        "inicio": 8.64,
+        "fin": 8.72
+      },
+      {
+        "texto": "IA",
+        "inicio": 8.8,
+        "fin": 8.96
+      },
+      {
+        "texto": "lo",
+        "inicio": 9.04,
+        "fin": 9.12
+      },
+      {
+        "texto": "sigue.",
+        "inicio": 9.2,
+        "fin": 9.68
+      }
+    ],
+    [
+      {
+        "texto": "En",
+        "inicio": 0,
+        "fin": 0.16
+      },
+      {
+        "texto": "pocas",
+        "inicio": 0.187,
+        "fin": 0.4
+      },
+      {
+        "texto": "palabras:",
+        "inicio": 0.48,
+        "fin": 1.28
+      },
+      {
+        "texto": "una",
+        "inicio": 1.36,
+        "fin": 1.44
+      },
+      {
+        "texto": "Skill",
+        "inicio": 1.52,
+        "fin": 2
+      },
+      {
+        "texto": "le",
+        "inicio": 2.08,
+        "fin": 2.16
+      },
+      {
+        "texto": "da",
+        "inicio": 2.24,
+        "fin": 2.32
+      },
+      {
+        "texto": "a",
+        "inicio": 2.36,
+        "fin": 2.4
+      },
+      {
+        "texto": "la",
+        "inicio": 2.48,
+        "fin": 2.56
+      },
+      {
+        "texto": "IA",
+        "inicio": 2.64,
+        "fin": 2.96
+      },
+      {
+        "texto": "instrucciones",
+        "inicio": 3.04,
+        "fin": 3.68
+      },
+      {
+        "texto": "especializadas",
+        "inicio": 3.76,
+        "fin": 4.56
+      },
+      {
+        "texto": "para",
+        "inicio": 4.64,
+        "fin": 4.72
+      },
+      {
+        "texto": "hacer",
+        "inicio": 4.76,
+        "fin": 5.04
+      },
+      {
+        "texto": "mejor",
+        "inicio": 5.12,
+        "fin": 5.36
+      },
+      {
+        "texto": "ciertas",
+        "inicio": 5.52,
+        "fin": 5.92
+      },
+      {
+        "texto": "tareas.",
+        "inicio": 5.96,
+        "fin": 6.88
+      },
+      {
+        "texto": "¿Ya",
+        "inicio": 6.933,
+        "fin": 7.04
+      },
+      {
+        "texto": "conocías",
+        "inicio": 7.12,
+        "fin": 7.44
+      },
+      {
+        "texto": "las",
+        "inicio": 7.52,
+        "fin": 7.6
+      },
+      {
+        "texto": "Skills",
+        "inicio": 7.68,
+        "fin": 8.24
+      },
+      {
+        "texto": "o",
+        "inicio": 8.32,
+        "fin": 8.56
+      },
+      {
+        "texto": "es",
+        "inicio": 8.64,
+        "fin": 8.72
+      },
+      {
+        "texto": "la",
+        "inicio": 8.8,
+        "fin": 8.88
+      },
+      {
+        "texto": "primera",
+        "inicio": 8.96,
+        "fin": 9.2
+      },
+      {
+        "texto": "vez",
+        "inicio": 9.28,
+        "fin": 9.36
+      },
+      {
+        "texto": "que",
+        "inicio": 9.4,
+        "fin": 9.44
+      },
+      {
+        "texto": "escuchas",
+        "inicio": 9.52,
+        "fin": 9.84
+      },
+      {
+        "texto": "este",
+        "inicio": 9.96,
+        "fin": 10.08
+      },
+      {
+        "texto": "término?",
+        "inicio": 10.133,
+        "fin": 10.88
+      },
+      {
+        "texto": "Sígueme",
+        "inicio": 10.92,
+        "fin": 11.2
+      },
+      {
+        "texto": "en",
+        "inicio": 11.24,
+        "fin": 11.28
+      },
+      {
+        "texto": "DevMorado",
+        "inicio": 11.36,
+        "fin": 11.92
+      },
+      {
+        "texto": "para",
+        "inicio": 12,
+        "fin": 12.08
+      },
+      {
+        "texto": "aprender",
+        "inicio": 12.16,
+        "fin": 12.56
+      },
+      {
+        "texto": "más",
+        "inicio": 12.6,
+        "fin": 12.72
+      },
+      {
+        "texto": "de",
+        "inicio": 12.8,
+        "fin": 12.84
+      },
+      {
+        "texto": "inteligencia",
+        "inicio": 12.88,
+        "fin": 13.36
+      },
+      {
+        "texto": "artificial",
+        "inicio": 13.44,
+        "fin": 14
+      },
+      {
+        "texto": "y",
+        "inicio": 14.027,
+        "fin": 14.053
+      },
+      {
+        "texto": "programación.",
+        "inicio": 14.08,
+        "fin": 14.96
+      }
+    ]
+  ]
+}

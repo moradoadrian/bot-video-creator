@@ -1,0 +1,2419 @@
+{
+  "conAudio": true,
+  "duraciones": [
+    10.92,
+    22.44,
+    17.63,
+    20.04,
+    18.91,
+    24.45,
+    27.64,
+    16.77,
+    18.36
+  ],
+  "palabras": [
+    [
+      {
+        "texto": "¿Te",
+        "inicio": 0,
+        "fin": 0.08
+      },
+      {
+        "texto": "imaginas",
+        "inicio": 0.16,
+        "fin": 0.56
+      },
+      {
+        "texto": "llegar",
+        "inicio": 0.613,
+        "fin": 0.8
+      },
+      {
+        "texto": "al",
+        "inicio": 0.84,
+        "fin": 0.88
+      },
+      {
+        "texto": "aeropuerto",
+        "inicio": 0.96,
+        "fin": 1.52
+      },
+      {
+        "texto": "con",
+        "inicio": 1.6,
+        "fin": 1.68
+      },
+      {
+        "texto": "tu",
+        "inicio": 1.76,
+        "fin": 1.84
+      },
+      {
+        "texto": "boleto",
+        "inicio": 1.96,
+        "fin": 2.16
+      },
+      {
+        "texto": "en",
+        "inicio": 2.2,
+        "fin": 2.24
+      },
+      {
+        "texto": "la",
+        "inicio": 2.28,
+        "fin": 2.32
+      },
+      {
+        "texto": "mano",
+        "inicio": 2.4,
+        "fin": 2.72
+      },
+      {
+        "texto": "y",
+        "inicio": 2.88,
+        "fin": 2.96
+      },
+      {
+        "texto": "descubrir",
+        "inicio": 3.08,
+        "fin": 3.52
+      },
+      {
+        "texto": "que",
+        "inicio": 3.6,
+        "fin": 3.68
+      },
+      {
+        "texto": "ningún",
+        "inicio": 3.76,
+        "fin": 4.16
+      },
+      {
+        "texto": "avión",
+        "inicio": 4.24,
+        "fin": 4.56
+      },
+      {
+        "texto": "puede",
+        "inicio": 4.6,
+        "fin": 4.8
+      },
+      {
+        "texto": "despegar?",
+        "inicio": 4.92,
+        "fin": 5.72
+      },
+      {
+        "texto": "Eso",
+        "inicio": 6.08,
+        "fin": 6.32
+      },
+      {
+        "texto": "acaba",
+        "inicio": 6.44,
+        "fin": 6.72
+      },
+      {
+        "texto": "de",
+        "inicio": 6.76,
+        "fin": 6.8
+      },
+      {
+        "texto": "pasar",
+        "inicio": 6.88,
+        "fin": 7.12
+      },
+      {
+        "texto": "en",
+        "inicio": 7.16,
+        "fin": 7.2
+      },
+      {
+        "texto": "Estados",
+        "inicio": 7.28,
+        "fin": 7.6
+      },
+      {
+        "texto": "Unidos.",
+        "inicio": 7.68,
+        "fin": 8.4
+      },
+      {
+        "texto": "Y",
+        "inicio": 8.44,
+        "fin": 8.48
+      },
+      {
+        "texto": "la",
+        "inicio": 8.56,
+        "fin": 8.6
+      },
+      {
+        "texto": "causa",
+        "inicio": 8.64,
+        "fin": 9.04
+      },
+      {
+        "texto": "fue",
+        "inicio": 9.2,
+        "fin": 9.28
+      },
+      {
+        "texto": "una",
+        "inicio": 9.36,
+        "fin": 9.6
+      },
+      {
+        "texto": "falla",
+        "inicio": 9.72,
+        "fin": 9.92
+      },
+      {
+        "texto": "de",
+        "inicio": 9.96,
+        "fin": 10
+      },
+      {
+        "texto": "comunicación.",
+        "inicio": 10.08,
+        "fin": 10.96
+      }
+    ],
+    [
+      {
+        "texto": "Hoy,",
+        "inicio": 0,
+        "fin": 0.48
+      },
+      {
+        "texto": "viernes",
+        "inicio": 0.56,
+        "fin": 0.96
+      },
+      {
+        "texto": "trece",
+        "inicio": 1.04,
+        "fin": 1.28
+      },
+      {
+        "texto": "de",
+        "inicio": 1.36,
+        "fin": 1.44
+      },
+      {
+        "texto": "noviembre,",
+        "inicio": 1.52,
+        "fin": 2.24
+      },
+      {
+        "texto": "la",
+        "inicio": 2.32,
+        "fin": 2.4
+      },
+      {
+        "texto": "FAA,",
+        "inicio": 2.64,
+        "fin": 3.6
+      },
+      {
+        "texto": "la",
+        "inicio": 3.68,
+        "fin": 3.72
+      },
+      {
+        "texto": "agencia",
+        "inicio": 3.76,
+        "fin": 4.16
+      },
+      {
+        "texto": "que",
+        "inicio": 4.24,
+        "fin": 4.32
+      },
+      {
+        "texto": "regula",
+        "inicio": 4.4,
+        "fin": 4.64
+      },
+      {
+        "texto": "la",
+        "inicio": 4.72,
+        "fin": 4.76
+      },
+      {
+        "texto": "aviación",
+        "inicio": 4.8,
+        "fin": 5.2
+      },
+      {
+        "texto": "en",
+        "inicio": 5.28,
+        "fin": 5.36
+      },
+      {
+        "texto": "Estados",
+        "inicio": 5.44,
+        "fin": 5.68
+      },
+      {
+        "texto": "Unidos,",
+        "inicio": 5.76,
+        "fin": 6.36
+      },
+      {
+        "texto": "reportó",
+        "inicio": 6.56,
+        "fin": 6.96
+      },
+      {
+        "texto": "una",
+        "inicio": 7.04,
+        "fin": 7.12
+      },
+      {
+        "texto": "falla",
+        "inicio": 7.28,
+        "fin": 7.52
+      },
+      {
+        "texto": "de",
+        "inicio": 7.56,
+        "fin": 7.6
+      },
+      {
+        "texto": "comunicación",
+        "inicio": 7.68,
+        "fin": 8.32
+      },
+      {
+        "texto": "en",
+        "inicio": 8.4,
+        "fin": 8.64
+      },
+      {
+        "texto": "varios",
+        "inicio": 8.72,
+        "fin": 8.96
+      },
+      {
+        "texto": "centros",
+        "inicio": 9.08,
+        "fin": 9.36
+      },
+      {
+        "texto": "de",
+        "inicio": 9.4,
+        "fin": 9.44
+      },
+      {
+        "texto": "control",
+        "inicio": 9.52,
+        "fin": 9.84
+      },
+      {
+        "texto": "de",
+        "inicio": 9.88,
+        "fin": 9.92
+      },
+      {
+        "texto": "tráfico",
+        "inicio": 10,
+        "fin": 10.32
+      },
+      {
+        "texto": "aéreo.",
+        "inicio": 10.4,
+        "fin": 11.28
+      },
+      {
+        "texto": "Desde",
+        "inicio": 11.4,
+        "fin": 11.52
+      },
+      {
+        "texto": "ahí",
+        "inicio": 11.56,
+        "fin": 11.76
+      },
+      {
+        "texto": "se",
+        "inicio": 11.84,
+        "fin": 12
+      },
+      {
+        "texto": "coordinan",
+        "inicio": 12.04,
+        "fin": 12.4
+      },
+      {
+        "texto": "los",
+        "inicio": 12.48,
+        "fin": 12.56
+      },
+      {
+        "texto": "despegues,",
+        "inicio": 12.68,
+        "fin": 13.36
+      },
+      {
+        "texto": "los",
+        "inicio": 13.44,
+        "fin": 13.52
+      },
+      {
+        "texto": "aterrizajes",
+        "inicio": 13.6,
+        "fin": 14.32
+      },
+      {
+        "texto": "y",
+        "inicio": 14.64,
+        "fin": 14.72
+      },
+      {
+        "texto": "los",
+        "inicio": 14.76,
+        "fin": 14.8
+      },
+      {
+        "texto": "aviones",
+        "inicio": 14.88,
+        "fin": 15.12
+      },
+      {
+        "texto": "que",
+        "inicio": 15.2,
+        "fin": 15.36
+      },
+      {
+        "texto": "cruzan",
+        "inicio": 15.413,
+        "fin": 15.68
+      },
+      {
+        "texto": "de",
+        "inicio": 15.76,
+        "fin": 15.84
+      },
+      {
+        "texto": "una",
+        "inicio": 15.92,
+        "fin": 16
+      },
+      {
+        "texto": "región",
+        "inicio": 16.08,
+        "fin": 16.32
+      },
+      {
+        "texto": "a",
+        "inicio": 16.36,
+        "fin": 16.4
+      },
+      {
+        "texto": "otra.",
+        "inicio": 16.48,
+        "fin": 17.28
+      },
+      {
+        "texto": "Cuando",
+        "inicio": 17.32,
+        "fin": 17.52
+      },
+      {
+        "texto": "esa",
+        "inicio": 17.6,
+        "fin": 17.68
+      },
+      {
+        "texto": "comunicación",
+        "inicio": 17.76,
+        "fin": 18.32
+      },
+      {
+        "texto": "se",
+        "inicio": 18.4,
+        "fin": 18.48
+      },
+      {
+        "texto": "cayó,",
+        "inicio": 18.56,
+        "fin": 19.12
+      },
+      {
+        "texto": "la",
+        "inicio": 19.2,
+        "fin": 19.28
+      },
+      {
+        "texto": "FAA",
+        "inicio": 19.44,
+        "fin": 20.08
+      },
+      {
+        "texto": "ordenó",
+        "inicio": 20.24,
+        "fin": 20.64
+      },
+      {
+        "texto": "un",
+        "inicio": 20.72,
+        "fin": 20.8
+      },
+      {
+        "texto": "paro",
+        "inicio": 20.88,
+        "fin": 21.04
+      },
+      {
+        "texto": "nacional",
+        "inicio": 21.12,
+        "fin": 21.6
+      },
+      {
+        "texto": "de",
+        "inicio": 21.64,
+        "fin": 21.68
+      },
+      {
+        "texto": "salidas.",
+        "inicio": 21.76,
+        "fin": 22.48
+      }
+    ],
+    [
+      {
+        "texto": "¿Y",
+        "inicio": 0,
+        "fin": 0.08
+      },
+      {
+        "texto": "por",
+        "inicio": 0.16,
+        "fin": 0.32
+      },
+      {
+        "texto": "qué",
+        "inicio": 0.36,
+        "fin": 0.4
+      },
+      {
+        "texto": "detener",
+        "inicio": 0.48,
+        "fin": 0.8
+      },
+      {
+        "texto": "todo?",
+        "inicio": 0.96,
+        "fin": 1.28
+      },
+      {
+        "texto": "Porque",
+        "inicio": 1.76,
+        "fin": 1.92
+      },
+      {
+        "texto": "si",
+        "inicio": 2,
+        "fin": 2.08
+      },
+      {
+        "texto": "los",
+        "inicio": 2.16,
+        "fin": 2.24
+      },
+      {
+        "texto": "controladores",
+        "inicio": 2.4,
+        "fin": 2.88
+      },
+      {
+        "texto": "pierden",
+        "inicio": 2.96,
+        "fin": 3.28
+      },
+      {
+        "texto": "comunicación,",
+        "inicio": 3.36,
+        "fin": 4.24
+      },
+      {
+        "texto": "ya",
+        "inicio": 4.32,
+        "fin": 4.4
+      },
+      {
+        "texto": "no",
+        "inicio": 4.48,
+        "fin": 4.56
+      },
+      {
+        "texto": "es",
+        "inicio": 4.6,
+        "fin": 4.64
+      },
+      {
+        "texto": "una",
+        "inicio": 4.72,
+        "fin": 4.88
+      },
+      {
+        "texto": "simple",
+        "inicio": 4.96,
+        "fin": 5.28
+      },
+      {
+        "texto": "falla",
+        "inicio": 5.36,
+        "fin": 5.56
+      },
+      {
+        "texto": "informática:",
+        "inicio": 5.6,
+        "fin": 6.64
+      },
+      {
+        "texto": "es",
+        "inicio": 6.72,
+        "fin": 6.8
+      },
+      {
+        "texto": "un",
+        "inicio": 6.88,
+        "fin": 6.96
+      },
+      {
+        "texto": "problema",
+        "inicio": 7.04,
+        "fin": 7.44
+      },
+      {
+        "texto": "de",
+        "inicio": 7.52,
+        "fin": 7.56
+      },
+      {
+        "texto": "seguridad.",
+        "inicio": 7.6,
+        "fin": 8.64
+      },
+      {
+        "texto": "Por",
+        "inicio": 8.68,
+        "fin": 8.72
+      },
+      {
+        "texto": "eso",
+        "inicio": 8.8,
+        "fin": 8.88
+      },
+      {
+        "texto": "la",
+        "inicio": 8.96,
+        "fin": 9.04
+      },
+      {
+        "texto": "orden",
+        "inicio": 9.12,
+        "fin": 9.36
+      },
+      {
+        "texto": "fue",
+        "inicio": 9.44,
+        "fin": 9.68
+      },
+      {
+        "texto": "mantener",
+        "inicio": 9.76,
+        "fin": 10.32
+      },
+      {
+        "texto": "los",
+        "inicio": 10.4,
+        "fin": 10.48
+      },
+      {
+        "texto": "aviones",
+        "inicio": 10.56,
+        "fin": 10.88
+      },
+      {
+        "texto": "en",
+        "inicio": 10.96,
+        "fin": 11.04
+      },
+      {
+        "texto": "tierra.",
+        "inicio": 11.08,
+        "fin": 11.76
+      },
+      {
+        "texto": "Ojo:",
+        "inicio": 11.84,
+        "fin": 12.4
+      },
+      {
+        "texto": "los",
+        "inicio": 12.48,
+        "fin": 12.56
+      },
+      {
+        "texto": "que",
+        "inicio": 12.64,
+        "fin": 12.72
+      },
+      {
+        "texto": "ya",
+        "inicio": 12.8,
+        "fin": 12.88
+      },
+      {
+        "texto": "estaban",
+        "inicio": 12.96,
+        "fin": 13.28
+      },
+      {
+        "texto": "volando",
+        "inicio": 13.36,
+        "fin": 13.84
+      },
+      {
+        "texto": "sí",
+        "inicio": 13.92,
+        "fin": 14
+      },
+      {
+        "texto": "podían",
+        "inicio": 14.16,
+        "fin": 14.48
+      },
+      {
+        "texto": "seguir",
+        "inicio": 14.56,
+        "fin": 14.8
+      },
+      {
+        "texto": "y",
+        "inicio": 14.827,
+        "fin": 14.853
+      },
+      {
+        "texto": "aterrizar.",
+        "inicio": 14.88,
+        "fin": 15.76
+      },
+      {
+        "texto": "El",
+        "inicio": 15.84,
+        "fin": 15.92
+      },
+      {
+        "texto": "paro",
+        "inicio": 16,
+        "fin": 16.32
+      },
+      {
+        "texto": "afectó",
+        "inicio": 16.4,
+        "fin": 16.72
+      },
+      {
+        "texto": "a",
+        "inicio": 16.747,
+        "fin": 16.773
+      },
+      {
+        "texto": "las",
+        "inicio": 16.8,
+        "fin": 16.88
+      },
+      {
+        "texto": "salidas.",
+        "inicio": 17,
+        "fin": 17.68
+      }
+    ],
+    [
+      {
+        "texto": "Las",
+        "inicio": 0,
+        "fin": 0.16
+      },
+      {
+        "texto": "consecuencias",
+        "inicio": 0.24,
+        "fin": 0.88
+      },
+      {
+        "texto": "fueron",
+        "inicio": 0.92,
+        "fin": 1.2
+      },
+      {
+        "texto": "enormes.",
+        "inicio": 1.36,
+        "fin": 2.36
+      },
+      {
+        "texto": "Los",
+        "inicio": 2.56,
+        "fin": 2.72
+      },
+      {
+        "texto": "datos",
+        "inicio": 2.84,
+        "fin": 2.96
+      },
+      {
+        "texto": "de",
+        "inicio": 3.04,
+        "fin": 3.08
+      },
+      {
+        "texto": "seguimiento",
+        "inicio": 3.12,
+        "fin": 3.6
+      },
+      {
+        "texto": "de",
+        "inicio": 3.64,
+        "fin": 3.68
+      },
+      {
+        "texto": "vuelos",
+        "inicio": 3.76,
+        "fin": 4.16
+      },
+      {
+        "texto": "reportaron",
+        "inicio": 4.36,
+        "fin": 4.88
+      },
+      {
+        "texto": "miles",
+        "inicio": 5.04,
+        "fin": 5.36
+      },
+      {
+        "texto": "de",
+        "inicio": 5.44,
+        "fin": 5.48
+      },
+      {
+        "texto": "cancelaciones",
+        "inicio": 5.52,
+        "fin": 6.24
+      },
+      {
+        "texto": "y",
+        "inicio": 6.28,
+        "fin": 6.32
+      },
+      {
+        "texto": "retrasos.",
+        "inicio": 6.4,
+        "fin": 7.16
+      },
+      {
+        "texto": "Y",
+        "inicio": 7.36,
+        "fin": 7.44
+      },
+      {
+        "texto": "no",
+        "inicio": 7.48,
+        "fin": 7.52
+      },
+      {
+        "texto": "solo",
+        "inicio": 7.6,
+        "fin": 7.76
+      },
+      {
+        "texto": "de",
+        "inicio": 7.8,
+        "fin": 7.84
+      },
+      {
+        "texto": "gente",
+        "inicio": 7.92,
+        "fin": 8.08
+      },
+      {
+        "texto": "que",
+        "inicio": 8.16,
+        "fin": 8.24
+      },
+      {
+        "texto": "salía",
+        "inicio": 8.32,
+        "fin": 8.48
+      },
+      {
+        "texto": "de",
+        "inicio": 8.56,
+        "fin": 8.6
+      },
+      {
+        "texto": "vacaciones:",
+        "inicio": 8.64,
+        "fin": 9.6
+      },
+      {
+        "texto": "también",
+        "inicio": 9.64,
+        "fin": 9.92
+      },
+      {
+        "texto": "conexiones",
+        "inicio": 10,
+        "fin": 10.4
+      },
+      {
+        "texto": "perdidas,",
+        "inicio": 10.48,
+        "fin": 11.2
+      },
+      {
+        "texto": "viajes",
+        "inicio": 11.28,
+        "fin": 11.52
+      },
+      {
+        "texto": "de",
+        "inicio": 11.56,
+        "fin": 11.6
+      },
+      {
+        "texto": "trabajo",
+        "inicio": 11.68,
+        "fin": 12.24
+      },
+      {
+        "texto": "y",
+        "inicio": 12.32,
+        "fin": 12.4
+      },
+      {
+        "texto": "vuelos",
+        "inicio": 12.48,
+        "fin": 12.72
+      },
+      {
+        "texto": "internacionales.",
+        "inicio": 12.8,
+        "fin": 13.88
+      },
+      {
+        "texto": "Entre",
+        "inicio": 14.08,
+        "fin": 14.32
+      },
+      {
+        "texto": "las",
+        "inicio": 14.4,
+        "fin": 14.48
+      },
+      {
+        "texto": "aerolíneas",
+        "inicio": 14.52,
+        "fin": 14.96
+      },
+      {
+        "texto": "afectadas",
+        "inicio": 15.04,
+        "fin": 15.6
+      },
+      {
+        "texto": "están",
+        "inicio": 15.72,
+        "fin": 16.08
+      },
+      {
+        "texto": "American,",
+        "inicio": 16.16,
+        "fin": 16.88
+      },
+      {
+        "texto": "United,",
+        "inicio": 16.96,
+        "fin": 17.76
+      },
+      {
+        "texto": "Delta,",
+        "inicio": 18,
+        "fin": 18.4
+      },
+      {
+        "texto": "Southwest",
+        "inicio": 18.48,
+        "fin": 19.12
+      },
+      {
+        "texto": "y",
+        "inicio": 19.2,
+        "fin": 19.28
+      },
+      {
+        "texto": "JetBlue.",
+        "inicio": 19.36,
+        "fin": 20.08
+      }
+    ],
+    [
+      {
+        "texto": "Y",
+        "inicio": 0,
+        "fin": 0.08
+      },
+      {
+        "texto": "aunque",
+        "inicio": 0.12,
+        "fin": 0.32
+      },
+      {
+        "texto": "el",
+        "inicio": 0.4,
+        "fin": 0.48
+      },
+      {
+        "texto": "paro",
+        "inicio": 0.56,
+        "fin": 0.72
+      },
+      {
+        "texto": "ya",
+        "inicio": 0.8,
+        "fin": 0.88
+      },
+      {
+        "texto": "se",
+        "inicio": 0.92,
+        "fin": 0.96
+      },
+      {
+        "texto": "levantó,",
+        "inicio": 1.04,
+        "fin": 1.92
+      },
+      {
+        "texto": "nada",
+        "inicio": 2.08,
+        "fin": 2.32
+      },
+      {
+        "texto": "vuelve",
+        "inicio": 2.4,
+        "fin": 2.64
+      },
+      {
+        "texto": "a",
+        "inicio": 2.667,
+        "fin": 2.693
+      },
+      {
+        "texto": "la",
+        "inicio": 2.72,
+        "fin": 2.76
+      },
+      {
+        "texto": "normalidad",
+        "inicio": 2.8,
+        "fin": 3.28
+      },
+      {
+        "texto": "de",
+        "inicio": 3.32,
+        "fin": 3.36
+      },
+      {
+        "texto": "inmediato.",
+        "inicio": 3.44,
+        "fin": 4
+      },
+      {
+        "texto": "Un",
+        "inicio": 4.48,
+        "fin": 4.56
+      },
+      {
+        "texto": "vuelo",
+        "inicio": 4.613,
+        "fin": 4.76
+      },
+      {
+        "texto": "cancelado",
+        "inicio": 4.8,
+        "fin": 5.36
+      },
+      {
+        "texto": "deja",
+        "inicio": 5.44,
+        "fin": 5.6
+      },
+      {
+        "texto": "al",
+        "inicio": 5.68,
+        "fin": 5.76
+      },
+      {
+        "texto": "avión",
+        "inicio": 5.8,
+        "fin": 6
+      },
+      {
+        "texto": "en",
+        "inicio": 6.04,
+        "fin": 6.08
+      },
+      {
+        "texto": "la",
+        "inicio": 6.12,
+        "fin": 6.16
+      },
+      {
+        "texto": "ciudad",
+        "inicio": 6.24,
+        "fin": 6.48
+      },
+      {
+        "texto": "equivocada.",
+        "inicio": 6.6,
+        "fin": 7.32
+      },
+      {
+        "texto": "Su",
+        "inicio": 7.52,
+        "fin": 7.6
+      },
+      {
+        "texto": "tripulación",
+        "inicio": 7.68,
+        "fin": 8.24
+      },
+      {
+        "texto": "tampoco",
+        "inicio": 8.32,
+        "fin": 8.8
+      },
+      {
+        "texto": "llega",
+        "inicio": 8.84,
+        "fin": 9.04
+      },
+      {
+        "texto": "a",
+        "inicio": 9.08,
+        "fin": 9.12
+      },
+      {
+        "texto": "tiempo",
+        "inicio": 9.2,
+        "fin": 9.44
+      },
+      {
+        "texto": "a",
+        "inicio": 9.48,
+        "fin": 9.52
+      },
+      {
+        "texto": "su",
+        "inicio": 9.56,
+        "fin": 9.6
+      },
+      {
+        "texto": "siguiente",
+        "inicio": 9.68,
+        "fin": 10
+      },
+      {
+        "texto": "vuelo.",
+        "inicio": 10.08,
+        "fin": 10.4
+      },
+      {
+        "texto": "Los",
+        "inicio": 10.8,
+        "fin": 10.96
+      },
+      {
+        "texto": "horarios",
+        "inicio": 11,
+        "fin": 11.28
+      },
+      {
+        "texto": "se",
+        "inicio": 11.36,
+        "fin": 11.44
+      },
+      {
+        "texto": "descuadran",
+        "inicio": 11.56,
+        "fin": 12.08
+      },
+      {
+        "texto": "y",
+        "inicio": 12.16,
+        "fin": 12.24
+      },
+      {
+        "texto": "el",
+        "inicio": 12.28,
+        "fin": 12.32
+      },
+      {
+        "texto": "retraso",
+        "inicio": 12.4,
+        "fin": 12.8
+      },
+      {
+        "texto": "se",
+        "inicio": 12.88,
+        "fin": 12.96
+      },
+      {
+        "texto": "contagia",
+        "inicio": 13.12,
+        "fin": 13.52
+      },
+      {
+        "texto": "a",
+        "inicio": 13.6,
+        "fin": 13.68
+      },
+      {
+        "texto": "otros",
+        "inicio": 13.84,
+        "fin": 14
+      },
+      {
+        "texto": "aeropuertos.",
+        "inicio": 14.04,
+        "fin": 14.96
+      },
+      {
+        "texto": "Una",
+        "inicio": 15.2,
+        "fin": 15.36
+      },
+      {
+        "texto": "sola",
+        "inicio": 15.52,
+        "fin": 15.76
+      },
+      {
+        "texto": "cancelación",
+        "inicio": 15.84,
+        "fin": 16.4
+      },
+      {
+        "texto": "puede",
+        "inicio": 16.48,
+        "fin": 16.64
+      },
+      {
+        "texto": "provocar",
+        "inicio": 16.72,
+        "fin": 17.04
+      },
+      {
+        "texto": "retrasos",
+        "inicio": 17.12,
+        "fin": 17.6
+      },
+      {
+        "texto": "durante",
+        "inicio": 17.68,
+        "fin": 18.08
+      },
+      {
+        "texto": "horas.",
+        "inicio": 18.24,
+        "fin": 18.96
+      }
+    ],
+    [
+      {
+        "texto": "La",
+        "inicio": 0,
+        "fin": 0.16
+      },
+      {
+        "texto": "gran",
+        "inicio": 0.24,
+        "fin": 0.4
+      },
+      {
+        "texto": "pregunta:",
+        "inicio": 0.48,
+        "fin": 0.96
+      },
+      {
+        "texto": "¿fue",
+        "inicio": 1.36,
+        "fin": 1.6
+      },
+      {
+        "texto": "un",
+        "inicio": 1.68,
+        "fin": 1.76
+      },
+      {
+        "texto": "ciberataque?",
+        "inicio": 1.84,
+        "fin": 2.56
+      },
+      {
+        "texto": "El",
+        "inicio": 3.04,
+        "fin": 3.12
+      },
+      {
+        "texto": "Departamento",
+        "inicio": 3.28,
+        "fin": 3.68
+      },
+      {
+        "texto": "de",
+        "inicio": 3.76,
+        "fin": 3.8
+      },
+      {
+        "texto": "Seguridad",
+        "inicio": 3.84,
+        "fin": 4.24
+      },
+      {
+        "texto": "Nacional",
+        "inicio": 4.32,
+        "fin": 4.8
+      },
+      {
+        "texto": "dijo",
+        "inicio": 4.88,
+        "fin": 5.12
+      },
+      {
+        "texto": "que",
+        "inicio": 5.2,
+        "fin": 5.28
+      },
+      {
+        "texto": "no",
+        "inicio": 5.44,
+        "fin": 5.6
+      },
+      {
+        "texto": "hay",
+        "inicio": 5.68,
+        "fin": 5.76
+      },
+      {
+        "texto": "ninguna",
+        "inicio": 5.84,
+        "fin": 6.24
+      },
+      {
+        "texto": "evidencia",
+        "inicio": 6.32,
+        "fin": 6.8
+      },
+      {
+        "texto": "de",
+        "inicio": 6.84,
+        "fin": 6.88
+      },
+      {
+        "texto": "un",
+        "inicio": 6.96,
+        "fin": 7.04
+      },
+      {
+        "texto": "ataque.",
+        "inicio": 7.16,
+        "fin": 7.52
+      },
+      {
+        "texto": "Lo",
+        "inicio": 8,
+        "fin": 8.08
+      },
+      {
+        "texto": "que",
+        "inicio": 8.16,
+        "fin": 8.24
+      },
+      {
+        "texto": "sí",
+        "inicio": 8.32,
+        "fin": 8.4
+      },
+      {
+        "texto": "se",
+        "inicio": 8.48,
+        "fin": 8.56
+      },
+      {
+        "texto": "sabe:",
+        "inicio": 8.64,
+        "fin": 9.28
+      },
+      {
+        "texto": "hubo",
+        "inicio": 9.36,
+        "fin": 9.52
+      },
+      {
+        "texto": "una",
+        "inicio": 9.64,
+        "fin": 9.76
+      },
+      {
+        "texto": "falla",
+        "inicio": 9.84,
+        "fin": 10.08
+      },
+      {
+        "texto": "en",
+        "inicio": 10.12,
+        "fin": 10.16
+      },
+      {
+        "texto": "las",
+        "inicio": 10.24,
+        "fin": 10.32
+      },
+      {
+        "texto": "telecomunicaciones",
+        "inicio": 10.44,
+        "fin": 11.28
+      },
+      {
+        "texto": "de",
+        "inicio": 11.32,
+        "fin": 11.36
+      },
+      {
+        "texto": "los",
+        "inicio": 11.4,
+        "fin": 11.44
+      },
+      {
+        "texto": "centros",
+        "inicio": 11.52,
+        "fin": 11.84
+      },
+      {
+        "texto": "de",
+        "inicio": 11.88,
+        "fin": 11.92
+      },
+      {
+        "texto": "control,",
+        "inicio": 12.12,
+        "fin": 12.56
+      },
+      {
+        "texto": "y",
+        "inicio": 12.6,
+        "fin": 12.64
+      },
+      {
+        "texto": "eso",
+        "inicio": 12.72,
+        "fin": 12.96
+      },
+      {
+        "texto": "está",
+        "inicio": 13.12,
+        "fin": 13.32
+      },
+      {
+        "texto": "confirmado.",
+        "inicio": 13.36,
+        "fin": 14
+      },
+      {
+        "texto": "Según",
+        "inicio": 14.4,
+        "fin": 14.64
+      },
+      {
+        "texto": "fuentes",
+        "inicio": 14.68,
+        "fin": 14.96
+      },
+      {
+        "texto": "de",
+        "inicio": 15,
+        "fin": 15.04
+      },
+      {
+        "texto": "CBS,",
+        "inicio": 15.12,
+        "fin": 15.84
+      },
+      {
+        "texto": "una",
+        "inicio": 15.92,
+        "fin": 16
+      },
+      {
+        "texto": "actualización",
+        "inicio": 16.16,
+        "fin": 16.72
+      },
+      {
+        "texto": "de",
+        "inicio": 16.8,
+        "fin": 16.88
+      },
+      {
+        "texto": "la",
+        "inicio": 16.92,
+        "fin": 16.96
+      },
+      {
+        "texto": "red",
+        "inicio": 17.04,
+        "fin": 17.28
+      },
+      {
+        "texto": "provocó",
+        "inicio": 17.36,
+        "fin": 17.68
+      },
+      {
+        "texto": "un",
+        "inicio": 17.72,
+        "fin": 17.76
+      },
+      {
+        "texto": "reinicio,",
+        "inicio": 17.84,
+        "fin": 18.56
+      },
+      {
+        "texto": "pero",
+        "inicio": 18.64,
+        "fin": 18.8
+      },
+      {
+        "texto": "no",
+        "inicio": 18.96,
+        "fin": 19.12
+      },
+      {
+        "texto": "es",
+        "inicio": 19.2,
+        "fin": 19.28
+      },
+      {
+        "texto": "oficial.",
+        "inicio": 19.36,
+        "fin": 20.04
+      },
+      {
+        "texto": "¿Y",
+        "inicio": 20.32,
+        "fin": 20.4
+      },
+      {
+        "texto": "el",
+        "inicio": 20.48,
+        "fin": 20.56
+      },
+      {
+        "texto": "rumor",
+        "inicio": 20.64,
+        "fin": 20.88
+      },
+      {
+        "texto": "de",
+        "inicio": 20.92,
+        "fin": 20.96
+      },
+      {
+        "texto": "que",
+        "inicio": 21.04,
+        "fin": 21.12
+      },
+      {
+        "texto": "la",
+        "inicio": 21.16,
+        "fin": 21.2
+      },
+      {
+        "texto": "inteligencia",
+        "inicio": 21.28,
+        "fin": 21.68
+      },
+      {
+        "texto": "artificial",
+        "inicio": 21.76,
+        "fin": 22.24
+      },
+      {
+        "texto": "lo",
+        "inicio": 22.28,
+        "fin": 22.32
+      },
+      {
+        "texto": "causó?",
+        "inicio": 22.4,
+        "fin": 22.8
+      },
+      {
+        "texto": "Nada",
+        "inicio": 23.28,
+        "fin": 23.6
+      },
+      {
+        "texto": "lo",
+        "inicio": 23.64,
+        "fin": 23.68
+      },
+      {
+        "texto": "confirma.",
+        "inicio": 23.76,
+        "fin": 24.48
+      }
+    ],
+    [
+      {
+        "texto": "Y",
+        "inicio": 0,
+        "fin": 0.08
+      },
+      {
+        "texto": "aquí",
+        "inicio": 0.2,
+        "fin": 0.36
+      },
+      {
+        "texto": "está",
+        "inicio": 0.4,
+        "fin": 0.64
+      },
+      {
+        "texto": "la",
+        "inicio": 0.68,
+        "fin": 0.72
+      },
+      {
+        "texto": "lección",
+        "inicio": 0.8,
+        "fin": 1.12
+      },
+      {
+        "texto": "tecnológica.",
+        "inicio": 1.16,
+        "fin": 2.16
+      },
+      {
+        "texto": "Uno",
+        "inicio": 2.48,
+        "fin": 2.64
+      },
+      {
+        "texto": "de",
+        "inicio": 2.68,
+        "fin": 2.72
+      },
+      {
+        "texto": "los",
+        "inicio": 2.76,
+        "fin": 2.8
+      },
+      {
+        "texto": "sistemas",
+        "inicio": 2.88,
+        "fin": 3.28
+      },
+      {
+        "texto": "de",
+        "inicio": 3.32,
+        "fin": 3.36
+      },
+      {
+        "texto": "transporte",
+        "inicio": 3.44,
+        "fin": 3.92
+      },
+      {
+        "texto": "más",
+        "inicio": 4.16,
+        "fin": 4.32
+      },
+      {
+        "texto": "grandes",
+        "inicio": 4.4,
+        "fin": 4.72
+      },
+      {
+        "texto": "del",
+        "inicio": 4.8,
+        "fin": 4.88
+      },
+      {
+        "texto": "mundo",
+        "inicio": 4.96,
+        "fin": 5.28
+      },
+      {
+        "texto": "depende",
+        "inicio": 5.44,
+        "fin": 5.76
+      },
+      {
+        "texto": "de",
+        "inicio": 5.84,
+        "fin": 5.92
+      },
+      {
+        "texto": "redes,",
+        "inicio": 6,
+        "fin": 6.56
+      },
+      {
+        "texto": "servidores",
+        "inicio": 6.68,
+        "fin": 7.28
+      },
+      {
+        "texto": "y",
+        "inicio": 7.44,
+        "fin": 7.48
+      },
+      {
+        "texto": "software.",
+        "inicio": 7.52,
+        "fin": 8.24
+      },
+      {
+        "texto": "Y",
+        "inicio": 8.48,
+        "fin": 8.56
+      },
+      {
+        "texto": "no",
+        "inicio": 8.64,
+        "fin": 8.72
+      },
+      {
+        "texto": "es",
+        "inicio": 8.76,
+        "fin": 8.8
+      },
+      {
+        "texto": "la",
+        "inicio": 8.84,
+        "fin": 8.88
+      },
+      {
+        "texto": "primera",
+        "inicio": 8.96,
+        "fin": 9.2
+      },
+      {
+        "texto": "vez:",
+        "inicio": 9.28,
+        "fin": 9.92
+      },
+      {
+        "texto": "en",
+        "inicio": 10,
+        "fin": 10.08
+      },
+      {
+        "texto": "enero",
+        "inicio": 10.2,
+        "fin": 10.4
+      },
+      {
+        "texto": "de",
+        "inicio": 10.44,
+        "fin": 10.48
+      },
+      {
+        "texto": "dos",
+        "inicio": 10.56,
+        "fin": 10.64
+      },
+      {
+        "texto": "mil",
+        "inicio": 10.72,
+        "fin": 10.8
+      },
+      {
+        "texto": "veintitrés,",
+        "inicio": 10.88,
+        "fin": 11.6
+      },
+      {
+        "texto": "otra",
+        "inicio": 11.68,
+        "fin": 11.84
+      },
+      {
+        "texto": "falla",
+        "inicio": 11.92,
+        "fin": 12.16
+      },
+      {
+        "texto": "de",
+        "inicio": 12.24,
+        "fin": 12.28
+      },
+      {
+        "texto": "la",
+        "inicio": 12.32,
+        "fin": 12.4
+      },
+      {
+        "texto": "FAA",
+        "inicio": 12.56,
+        "fin": 13.2
+      },
+      {
+        "texto": "también",
+        "inicio": 13.36,
+        "fin": 13.76
+      },
+      {
+        "texto": "paró",
+        "inicio": 13.84,
+        "fin": 14.04
+      },
+      {
+        "texto": "los",
+        "inicio": 14.08,
+        "fin": 14.16
+      },
+      {
+        "texto": "vuelos",
+        "inicio": 14.24,
+        "fin": 14.48
+      },
+      {
+        "texto": "de",
+        "inicio": 14.6,
+        "fin": 14.72
+      },
+      {
+        "texto": "todo",
+        "inicio": 14.8,
+        "fin": 14.88
+      },
+      {
+        "texto": "el",
+        "inicio": 14.96,
+        "fin": 15.04
+      },
+      {
+        "texto": "país.",
+        "inicio": 15.12,
+        "fin": 15.76
+      },
+      {
+        "texto": "No",
+        "inicio": 16.08,
+        "fin": 16.16
+      },
+      {
+        "texto": "basta",
+        "inicio": 16.24,
+        "fin": 16.56
+      },
+      {
+        "texto": "con",
+        "inicio": 16.64,
+        "fin": 16.72
+      },
+      {
+        "texto": "sistemas",
+        "inicio": 16.84,
+        "fin": 17.12
+      },
+      {
+        "texto": "modernos.",
+        "inicio": 17.2,
+        "fin": 17.92
+      },
+      {
+        "texto": "Hace",
+        "inicio": 18.08,
+        "fin": 18.32
+      },
+      {
+        "texto": "falta",
+        "inicio": 18.36,
+        "fin": 18.56
+      },
+      {
+        "texto": "redundancia,",
+        "inicio": 18.64,
+        "fin": 19.6
+      },
+      {
+        "texto": "respaldos",
+        "inicio": 19.72,
+        "fin": 20.08
+      },
+      {
+        "texto": "independientes,",
+        "inicio": 20.16,
+        "fin": 21.28
+      },
+      {
+        "texto": "monitoreo",
+        "inicio": 21.36,
+        "fin": 21.76
+      },
+      {
+        "texto": "constante",
+        "inicio": 21.84,
+        "fin": 22.48
+      },
+      {
+        "texto": "y",
+        "inicio": 22.64,
+        "fin": 22.72
+      },
+      {
+        "texto": "un",
+        "inicio": 22.76,
+        "fin": 22.8
+      },
+      {
+        "texto": "plan",
+        "inicio": 22.96,
+        "fin": 23.12
+      },
+      {
+        "texto": "de",
+        "inicio": 23.16,
+        "fin": 23.2
+      },
+      {
+        "texto": "recuperación.",
+        "inicio": 23.28,
+        "fin": 24.16
+      },
+      {
+        "texto": "La",
+        "inicio": 24.4,
+        "fin": 24.48
+      },
+      {
+        "texto": "tecnología",
+        "inicio": 24.56,
+        "fin": 25.12
+      },
+      {
+        "texto": "debe",
+        "inicio": 25.28,
+        "fin": 25.44
+      },
+      {
+        "texto": "estar",
+        "inicio": 25.52,
+        "fin": 25.76
+      },
+      {
+        "texto": "lista",
+        "inicio": 25.84,
+        "fin": 26.08
+      },
+      {
+        "texto": "para",
+        "inicio": 26.16,
+        "fin": 26.32
+      },
+      {
+        "texto": "cuando",
+        "inicio": 26.4,
+        "fin": 26.64
+      },
+      {
+        "texto": "algo",
+        "inicio": 26.76,
+        "fin": 26.88
+      },
+      {
+        "texto": "sale",
+        "inicio": 26.96,
+        "fin": 27.12
+      },
+      {
+        "texto": "mal.",
+        "inicio": 27.2,
+        "fin": 27.68
+      }
+    ],
+    [
+      {
+        "texto": "¿Y",
+        "inicio": 0,
+        "fin": 0.12
+      },
+      {
+        "texto": "esto",
+        "inicio": 0.16,
+        "fin": 0.4
+      },
+      {
+        "texto": "afecta",
+        "inicio": 0.48,
+        "fin": 0.76
+      },
+      {
+        "texto": "a",
+        "inicio": 0.8,
+        "fin": 0.84
+      },
+      {
+        "texto": "México?",
+        "inicio": 0.88,
+        "fin": 1.76
+      },
+      {
+        "texto": "Sí.",
+        "inicio": 1.92,
+        "fin": 2.44
+      },
+      {
+        "texto": "Muchos",
+        "inicio": 2.72,
+        "fin": 2.96
+      },
+      {
+        "texto": "vuelos",
+        "inicio": 3.04,
+        "fin": 3.28
+      },
+      {
+        "texto": "desde",
+        "inicio": 3.36,
+        "fin": 3.52
+      },
+      {
+        "texto": "México",
+        "inicio": 3.6,
+        "fin": 4
+      },
+      {
+        "texto": "conectan",
+        "inicio": 4.08,
+        "fin": 4.48
+      },
+      {
+        "texto": "en",
+        "inicio": 4.52,
+        "fin": 4.56
+      },
+      {
+        "texto": "aeropuertos",
+        "inicio": 4.6,
+        "fin": 5.2
+      },
+      {
+        "texto": "como",
+        "inicio": 5.32,
+        "fin": 5.44
+      },
+      {
+        "texto": "Dallas,",
+        "inicio": 5.52,
+        "fin": 6.08
+      },
+      {
+        "texto": "Houston,",
+        "inicio": 6.16,
+        "fin": 6.76
+      },
+      {
+        "texto": "Los",
+        "inicio": 6.8,
+        "fin": 6.96
+      },
+      {
+        "texto": "Ángeles,",
+        "inicio": 7.04,
+        "fin": 7.6
+      },
+      {
+        "texto": "Chicago",
+        "inicio": 7.68,
+        "fin": 8.16
+      },
+      {
+        "texto": "o",
+        "inicio": 8.24,
+        "fin": 8.32
+      },
+      {
+        "texto": "Nueva",
+        "inicio": 8.4,
+        "fin": 8.56
+      },
+      {
+        "texto": "York.",
+        "inicio": 8.64,
+        "fin": 8.96
+      },
+      {
+        "texto": "Si",
+        "inicio": 9.44,
+        "fin": 9.52
+      },
+      {
+        "texto": "esos",
+        "inicio": 9.6,
+        "fin": 9.76
+      },
+      {
+        "texto": "aeropuertos",
+        "inicio": 9.84,
+        "fin": 10.32
+      },
+      {
+        "texto": "se",
+        "inicio": 10.36,
+        "fin": 10.4
+      },
+      {
+        "texto": "detienen,",
+        "inicio": 10.52,
+        "fin": 11.12
+      },
+      {
+        "texto": "tu",
+        "inicio": 11.2,
+        "fin": 11.28
+      },
+      {
+        "texto": "conexión",
+        "inicio": 11.36,
+        "fin": 11.76
+      },
+      {
+        "texto": "también.",
+        "inicio": 11.813,
+        "fin": 12.4
+      },
+      {
+        "texto": "Así",
+        "inicio": 12.64,
+        "fin": 12.84
+      },
+      {
+        "texto": "que,",
+        "inicio": 12.88,
+        "fin": 13.12
+      },
+      {
+        "texto": "si",
+        "inicio": 13.2,
+        "fin": 13.28
+      },
+      {
+        "texto": "tienes",
+        "inicio": 13.36,
+        "fin": 13.6
+      },
+      {
+        "texto": "vuelo,",
+        "inicio": 13.68,
+        "fin": 14.16
+      },
+      {
+        "texto": "revisa",
+        "inicio": 14.24,
+        "fin": 14.56
+      },
+      {
+        "texto": "su",
+        "inicio": 14.6,
+        "fin": 14.64
+      },
+      {
+        "texto": "estado",
+        "inicio": 14.72,
+        "fin": 15.04
+      },
+      {
+        "texto": "directamente",
+        "inicio": 15.24,
+        "fin": 15.76
+      },
+      {
+        "texto": "con",
+        "inicio": 15.84,
+        "fin": 15.92
+      },
+      {
+        "texto": "tu",
+        "inicio": 15.96,
+        "fin": 16
+      },
+      {
+        "texto": "aerolínea.",
+        "inicio": 16.04,
+        "fin": 16.8
+      }
+    ],
+    [
+      {
+        "texto": "Hoy",
+        "inicio": 0,
+        "fin": 0.16
+      },
+      {
+        "texto": "dependemos",
+        "inicio": 0.32,
+        "fin": 0.64
+      },
+      {
+        "texto": "de",
+        "inicio": 0.68,
+        "fin": 0.72
+      },
+      {
+        "texto": "la",
+        "inicio": 0.76,
+        "fin": 0.8
+      },
+      {
+        "texto": "tecnología",
+        "inicio": 0.88,
+        "fin": 1.44
+      },
+      {
+        "texto": "para",
+        "inicio": 1.52,
+        "fin": 1.68
+      },
+      {
+        "texto": "casi",
+        "inicio": 1.84,
+        "fin": 2.16
+      },
+      {
+        "texto": "todo,",
+        "inicio": 2.24,
+        "fin": 2.88
+      },
+      {
+        "texto": "y",
+        "inicio": 2.96,
+        "fin": 3.04
+      },
+      {
+        "texto": "una",
+        "inicio": 3.12,
+        "fin": 3.28
+      },
+      {
+        "texto": "falla",
+        "inicio": 3.36,
+        "fin": 3.52
+      },
+      {
+        "texto": "de",
+        "inicio": 3.56,
+        "fin": 3.6
+      },
+      {
+        "texto": "comunicación",
+        "inicio": 3.68,
+        "fin": 4.32
+      },
+      {
+        "texto": "puede",
+        "inicio": 4.4,
+        "fin": 4.64
+      },
+      {
+        "texto": "dejar",
+        "inicio": 4.68,
+        "fin": 4.88
+      },
+      {
+        "texto": "en",
+        "inicio": 4.96,
+        "fin": 5.04
+      },
+      {
+        "texto": "tierra",
+        "inicio": 5.08,
+        "fin": 5.44
+      },
+      {
+        "texto": "a",
+        "inicio": 5.48,
+        "fin": 5.52
+      },
+      {
+        "texto": "todo",
+        "inicio": 5.76,
+        "fin": 6
+      },
+      {
+        "texto": "un",
+        "inicio": 6.08,
+        "fin": 6.16
+      },
+      {
+        "texto": "país.",
+        "inicio": 6.2,
+        "fin": 6.88
+      },
+      {
+        "texto": "Dime",
+        "inicio": 7.2,
+        "fin": 7.36
+      },
+      {
+        "texto": "en",
+        "inicio": 7.4,
+        "fin": 7.44
+      },
+      {
+        "texto": "los",
+        "inicio": 7.48,
+        "fin": 7.52
+      },
+      {
+        "texto": "comentarios:",
+        "inicio": 7.6,
+        "fin": 8.32
+      },
+      {
+        "texto": "¿los",
+        "inicio": 8.48,
+        "fin": 8.64
+      },
+      {
+        "texto": "sistemas",
+        "inicio": 8.76,
+        "fin": 9.04
+      },
+      {
+        "texto": "críticos",
+        "inicio": 9.12,
+        "fin": 9.6
+      },
+      {
+        "texto": "deberían",
+        "inicio": 9.68,
+        "fin": 10
+      },
+      {
+        "texto": "depender",
+        "inicio": 10.08,
+        "fin": 10.56
+      },
+      {
+        "texto": "tanto",
+        "inicio": 10.667,
+        "fin": 10.88
+      },
+      {
+        "texto": "de",
+        "inicio": 10.92,
+        "fin": 10.96
+      },
+      {
+        "texto": "una",
+        "inicio": 11.04,
+        "fin": 11.12
+      },
+      {
+        "texto": "infraestructura",
+        "inicio": 11.24,
+        "fin": 11.76
+      },
+      {
+        "texto": "centralizada?",
+        "inicio": 11.84,
+        "fin": 12.96
+      },
+      {
+        "texto": "Soy",
+        "inicio": 13.44,
+        "fin": 13.6
+      },
+      {
+        "texto": "DevMorado,",
+        "inicio": 13.68,
+        "fin": 14.4
+      },
+      {
+        "texto": "y",
+        "inicio": 14.44,
+        "fin": 14.48
+      },
+      {
+        "texto": "aquí",
+        "inicio": 14.6,
+        "fin": 14.96
+      },
+      {
+        "texto": "hablamos",
+        "inicio": 15.04,
+        "fin": 15.28
+      },
+      {
+        "texto": "de",
+        "inicio": 15.36,
+        "fin": 15.4
+      },
+      {
+        "texto": "tecnología",
+        "inicio": 15.44,
+        "fin": 16.16
+      },
+      {
+        "texto": "y",
+        "inicio": 16.2,
+        "fin": 16.24
+      },
+      {
+        "texto": "de",
+        "inicio": 16.28,
+        "fin": 16.32
+      },
+      {
+        "texto": "las",
+        "inicio": 16.4,
+        "fin": 16.48
+      },
+      {
+        "texto": "noticias",
+        "inicio": 16.56,
+        "fin": 17.04
+      },
+      {
+        "texto": "que",
+        "inicio": 17.12,
+        "fin": 17.28
+      },
+      {
+        "texto": "cambian",
+        "inicio": 17.32,
+        "fin": 17.6
+      },
+      {
+        "texto": "el",
+        "inicio": 17.68,
+        "fin": 17.76
+      },
+      {
+        "texto": "mundo.",
+        "inicio": 17.84,
+        "fin": 18.4
+      }
+    ]
+  ]
+}

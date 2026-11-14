@@ -1,0 +1,59 @@
+{
+  "canal": "codigo",
+  "lenguaje": "javascript",
+  "slug": "que-pasa-si-metes-un-ciclo-dentro-de-otro",
+  "tema": "¿Qué pasa si metes un ciclo dentro de otro?",
+  "gancho": {
+    "titulo": "Un ciclo dentro de otro",
+    "narracion": "¿Qué pasa si metes un ciclo dentro de otro? No se pelean: uno espera al otro. Se llaman ciclos anidados, y con ellos vas a imprimir varias tablas de multiplicar de una sola vez."
+  },
+  "escenas": [
+    {
+      "titulo": "El de adentro va primero",
+      "narracion": "Mira cómo corre. Primero i vale uno, y entra el ciclo de adentro: j vale uno, luego dos, luego tres. El de adentro termina todas sus vueltas, y solo entonces i sube a dos. Ahí j vuelve a empezar desde uno, como un reloj: el minutero da la vuelta completa antes de que avance la hora.",
+      "codigo": "for (let i = 1; i <= 2; i++) {\n  for (let j = 1; j <= 3; j++) {\n    console.log(i, j);\n  }\n}",
+      "resaltar": [2, 3],
+      "salida": "1 1\n1 2\n1 3\n2 1\n2 2\n2 3",
+      "depurar": {
+        "marcas": [
+          { "frase": "Primero i vale", "linea": 1 },
+          { "frase": "j vale uno", "linea": 3 },
+          { "frase": "luego tres", "linea": 3, "vez": 3 },
+          { "frase": "solo entonces", "linea": 3, "vez": 4 },
+          { "frase": "como un reloj", "linea": 0 }
+        ]
+      }
+    },
+    {
+      "titulo": "Las vueltas se multiplican",
+      "narracion": "¿Cuántas veces corre el código de adentro? El de afuera da tres vueltas, y en cada una el de adentro da cuatro. Tres por cuatro: doce. Las vueltas se multiplican, así que si los dos ciclos llegan a mil, son un millón de vueltas. Por eso un ciclo anidado puede volver lento tu programa.",
+      "codigo": "let vueltas = 0;\nfor (let i = 1; i <= 3; i++) {\n  for (let j = 1; j <= 4; j++) {\n    vueltas++;\n  }\n}\nconsole.log(vueltas);",
+      "resaltar": [4, 7],
+      "salida": "12"
+    },
+    {
+      "titulo": "Varias tablas de una vez",
+      "narracion": "Ahora algo útil. En el video de la tabla de multiplicar usamos un solo ciclo para una sola tabla. Si lo metemos dentro de otro ciclo que cambie n, tenemos varias tablas: el de afuera elige la tabla, la del dos y la del tres, y el de adentro la recorre del uno al tres.",
+      "codigo": "for (let n = 2; n <= 3; n++) {\n  for (let i = 1; i <= 3; i++) {\n    let r = n * i;\n    console.log(n, \"x\", i, \"=\", r);\n  }\n}",
+      "resaltar": [1, 2],
+      "salida": "2 x 1 = 2\n2 x 2 = 4\n2 x 3 = 6\n3 x 1 = 3\n3 x 2 = 6\n3 x 3 = 9"
+    },
+    {
+      "titulo": "La letra equivocada",
+      "narracion": "Y cuidado con este error. En el ciclo de adentro la condición pregunta por j, pero escribiste que aumenta i. j nunca cambia, siempre vale uno, y la condición nunca se vuelve falsa: otra vez un bucle infinito. Revisa que cada ciclo haga avanzar su propia variable.",
+      "codigo": "for (let i = 1; i <= 2; i++) {\n  for (let j = 1; j <= 3; i++) {\n    console.log(i, j);\n  }\n}",
+      "resaltar": [2],
+      "salida": "1 1\n2 1\n3 1\n... nunca termina"
+    }
+  ],
+  "cierre": {
+    "titulo": "¿Hasta la del diez?",
+    "narracion": "Ahora te toca a ti: ¿qué cambiarías para imprimir todas las tablas del uno al diez? Déjalo en los comentarios. Sígueme en DevMorado para aprender a programar desde cero. En el siguiente empezamos con arreglos: cómo guardar muchos datos en una sola variable."
+  },
+  "descripcion": "Qué pasa cuando metes un ciclo dentro de otro en JavaScript: cómo corren los ciclos anidados, por qué se multiplican las vueltas y cómo imprimir varias tablas de multiplicar.",
+  "hashtags": ["#programacion", "#javascript", "#aprendeaprogramar", "#ciclofor", "#ciclosanidados", "#DevMorado"],
+  "portada": {
+    "titulo": "Un ciclo dentro de otro",
+    "frase": "Así corren los ciclos anidados"
+  }
+}

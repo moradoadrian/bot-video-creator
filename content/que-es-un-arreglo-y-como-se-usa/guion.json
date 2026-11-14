@@ -1,0 +1,78 @@
+{
+  "canal": "codigo",
+  "lenguaje": "javascript",
+  "slug": "que-es-un-arreglo-y-como-se-usa",
+  "tema": "Qué es un arreglo y cómo se usa",
+  "gancho": {
+    "titulo": "Una lista en una variable",
+    "narracion": "Si tu programa tiene que guardar cien datos, ¿vas a crear cien variables? No. Para eso existen los arreglos: una lista con un solo nombre. Hoy te enseño a crearla, leerla y cambiarla."
+  },
+  "escenas": [
+    {
+      "titulo": "Una variable por dato",
+      "narracion": "Imagina tu lista del súper. Sin arreglos, necesitas una variable para cada cosa: compra uno, compra dos, compra tres. Con tres está bien, pero con cien sería un desastre, y ni siquiera podrías recorrerlas con un ciclo.",
+      "codigo": "let compra1 = \"pan\";\nlet compra2 = \"leche\";\nlet compra3 = \"huevos\";\n// ... y así cien veces",
+      "resaltar": [
+        1,
+        2,
+        3
+      ],
+      "archivo": "sin-arreglo.js"
+    },
+    {
+      "titulo": "Todo en una sola variable",
+      "narracion": "Con un arreglo, todo cabe en una variable. Abres corchetes, y adentro escribes los datos separados por comas. Ahora lista guarda los tres, en orden, y si la imprimes ves todo junto.",
+      "codigo": "let lista = [\n  \"pan\",\n  \"leche\",\n  \"té\"\n];\nconsole.log(lista);",
+      "resaltar": [
+        1,
+        5
+      ],
+      "salida": "[\"pan\",\"leche\",\"té\"]"
+    },
+    {
+      "titulo": "Cada dato tiene su lugar",
+      "narracion": "Para sacar un solo dato, escribes el nombre y, entre corchetes, su posición. Pero ojo: se empieza a contar desde cero. La posición cero es pan, y la dos es té. Por qué empieza en cero te lo explico en otro video.",
+      "codigo": "let lista = [\"pan\", \"leche\", \"té\"];\n\nconsole.log(lista[0]);\nconsole.log(lista[2]);",
+      "resaltar": [
+        3,
+        4
+      ],
+      "salida": "pan\nté"
+    },
+    {
+      "titulo": "Cambiar un dato",
+      "narracion": "También puedes cambiar un dato. Si ya no quieres leche sino café, le asignas un valor nuevo a la posición uno. El resto de la lista se queda igual.",
+      "codigo": "let lista = [\"pan\", \"leche\", \"té\"];\n\nlista[1] = \"café\";\nconsole.log(lista);",
+      "resaltar": [
+        3
+      ],
+      "salida": "[\"pan\",\"café\",\"té\"]"
+    },
+    {
+      "titulo": "¿Cuántos hay?",
+      "narracion": "Y para saber cuántos datos tiene, usas punto length. Aquí dice tres. Esto es clave, porque con length un ciclo sabe exactamente cuántas vueltas dar, sin importar si la lista tiene tres datos o mil.",
+      "codigo": "let lista = [\"pan\", \"leche\", \"té\"];\n\nconsole.log(lista.length);",
+      "resaltar": [
+        3
+      ],
+      "salida": "3"
+    }
+  ],
+  "cierre": {
+    "titulo": "¿Qué guardarías tú?",
+    "narracion": "Cuéntame en los comentarios: ¿qué lista guardarías tú en un arreglo? Sígueme en DevMorado para aprender a programar desde cero. En el siguiente: cómo recorrer un arreglo completo con for of."
+  },
+  "descripcion": "Qué es un arreglo en JavaScript y cómo se usa: crear una lista, leer un dato por su posición, cambiarlo y saber cuántos hay con length.",
+  "hashtags": [
+    "#programacion",
+    "#javascript",
+    "#aprendeaprogramar",
+    "#arreglos",
+    "#arrays",
+    "#DevMorado"
+  ],
+  "portada": {
+    "titulo": "¿Qué es un arreglo?",
+    "frase": "Muchos datos en una sola variable"
+  }
+}

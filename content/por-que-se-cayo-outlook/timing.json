@@ -1,0 +1,1138 @@
+{
+  "conAudio": true,
+  "duraciones": [
+    12.04,
+    10.27,
+    13.17,
+    9.48,
+    15.39,
+    14.03,
+    11.08
+  ],
+  "palabras": [
+    [
+      {
+        "texto": "Hoy,",
+        "inicio": 0,
+        "fin": 0.48
+      },
+      {
+        "texto": "doce",
+        "inicio": 0.56,
+        "fin": 0.72
+      },
+      {
+        "texto": "de",
+        "inicio": 0.8,
+        "fin": 0.88
+      },
+      {
+        "texto": "noviembre,",
+        "inicio": 0.96,
+        "fin": 1.76
+      },
+      {
+        "texto": "Outlook",
+        "inicio": 1.88,
+        "fin": 2.16
+      },
+      {
+        "texto": "se",
+        "inicio": 2.2,
+        "fin": 2.24
+      },
+      {
+        "texto": "cayó",
+        "inicio": 2.32,
+        "fin": 2.56
+      },
+      {
+        "texto": "para",
+        "inicio": 2.68,
+        "fin": 2.8
+      },
+      {
+        "texto": "miles",
+        "inicio": 2.88,
+        "fin": 3.2
+      },
+      {
+        "texto": "de",
+        "inicio": 3.28,
+        "fin": 3.36
+      },
+      {
+        "texto": "personas:",
+        "inicio": 3.52,
+        "fin": 4.24
+      },
+      {
+        "texto": "más",
+        "inicio": 4.28,
+        "fin": 4.4
+      },
+      {
+        "texto": "de",
+        "inicio": 4.48,
+        "fin": 4.56
+      },
+      {
+        "texto": "ciento",
+        "inicio": 4.64,
+        "fin": 4.88
+      },
+      {
+        "texto": "treinta",
+        "inicio": 4.96,
+        "fin": 5.28
+      },
+      {
+        "texto": "mil",
+        "inicio": 5.44,
+        "fin": 5.52
+      },
+      {
+        "texto": "reportes",
+        "inicio": 5.6,
+        "fin": 6.24
+      },
+      {
+        "texto": "solo",
+        "inicio": 6.28,
+        "fin": 6.48
+      },
+      {
+        "texto": "en",
+        "inicio": 6.52,
+        "fin": 6.56
+      },
+      {
+        "texto": "Estados",
+        "inicio": 6.64,
+        "fin": 6.96
+      },
+      {
+        "texto": "Unidos.",
+        "inicio": 7.04,
+        "fin": 7.76
+      },
+      {
+        "texto": "Y",
+        "inicio": 7.8,
+        "fin": 7.84
+      },
+      {
+        "texto": "no",
+        "inicio": 7.92,
+        "fin": 8
+      },
+      {
+        "texto": "era",
+        "inicio": 8.08,
+        "fin": 8.16
+      },
+      {
+        "texto": "tu",
+        "inicio": 8.2,
+        "fin": 8.24
+      },
+      {
+        "texto": "internet:",
+        "inicio": 8.52,
+        "fin": 9.12
+      },
+      {
+        "texto": "eran",
+        "inicio": 9.16,
+        "fin": 9.36
+      },
+      {
+        "texto": "servidores",
+        "inicio": 9.44,
+        "fin": 9.84
+      },
+      {
+        "texto": "de",
+        "inicio": 9.88,
+        "fin": 9.92
+      },
+      {
+        "texto": "Microsoft",
+        "inicio": 10,
+        "fin": 10.56
+      },
+      {
+        "texto": "que",
+        "inicio": 10.64,
+        "fin": 10.72
+      },
+      {
+        "texto": "dejaron",
+        "inicio": 10.8,
+        "fin": 11.12
+      },
+      {
+        "texto": "de",
+        "inicio": 11.16,
+        "fin": 11.2
+      },
+      {
+        "texto": "responder.",
+        "inicio": 11.32,
+        "fin": 12.08
+      }
+    ],
+    [
+      {
+        "texto": "Y",
+        "inicio": 0,
+        "fin": 0.08
+      },
+      {
+        "texto": "no",
+        "inicio": 0.16,
+        "fin": 0.24
+      },
+      {
+        "texto": "fue",
+        "inicio": 0.28,
+        "fin": 0.4
+      },
+      {
+        "texto": "solo",
+        "inicio": 0.48,
+        "fin": 0.64
+      },
+      {
+        "texto": "el",
+        "inicio": 0.68,
+        "fin": 0.72
+      },
+      {
+        "texto": "correo.",
+        "inicio": 0.8,
+        "fin": 1.36
+      },
+      {
+        "texto": "También",
+        "inicio": 1.52,
+        "fin": 1.76
+      },
+      {
+        "texto": "fallaron",
+        "inicio": 1.84,
+        "fin": 2.16
+      },
+      {
+        "texto": "Teams,",
+        "inicio": 2.24,
+        "fin": 2.72
+      },
+      {
+        "texto": "Copilot",
+        "inicio": 2.8,
+        "fin": 3.52
+      },
+      {
+        "texto": "y",
+        "inicio": 3.6,
+        "fin": 3.68
+      },
+      {
+        "texto": "otros",
+        "inicio": 3.76,
+        "fin": 4
+      },
+      {
+        "texto": "servicios.",
+        "inicio": 4.12,
+        "fin": 4.64
+      },
+      {
+        "texto": "El",
+        "inicio": 5.12,
+        "fin": 5.2
+      },
+      {
+        "texto": "origen",
+        "inicio": 5.28,
+        "fin": 5.44
+      },
+      {
+        "texto": "común:",
+        "inicio": 5.52,
+        "fin": 6.04
+      },
+      {
+        "texto": "Exchange",
+        "inicio": 6.24,
+        "fin": 6.72
+      },
+      {
+        "texto": "Online,",
+        "inicio": 6.8,
+        "fin": 7.52
+      },
+      {
+        "texto": "el",
+        "inicio": 7.56,
+        "fin": 7.6
+      },
+      {
+        "texto": "sistema",
+        "inicio": 7.68,
+        "fin": 8.08
+      },
+      {
+        "texto": "que",
+        "inicio": 8.16,
+        "fin": 8.24
+      },
+      {
+        "texto": "maneja",
+        "inicio": 8.32,
+        "fin": 8.56
+      },
+      {
+        "texto": "los",
+        "inicio": 8.6,
+        "fin": 8.64
+      },
+      {
+        "texto": "buzones",
+        "inicio": 8.72,
+        "fin": 9.12
+      },
+      {
+        "texto": "de",
+        "inicio": 9.16,
+        "fin": 9.2
+      },
+      {
+        "texto": "correo",
+        "inicio": 9.28,
+        "fin": 9.52
+      },
+      {
+        "texto": "en",
+        "inicio": 9.56,
+        "fin": 9.6
+      },
+      {
+        "texto": "la",
+        "inicio": 9.68,
+        "fin": 9.72
+      },
+      {
+        "texto": "nube.",
+        "inicio": 9.76,
+        "fin": 10.32
+      }
+    ],
+    [
+      {
+        "texto": "Varios",
+        "inicio": 0,
+        "fin": 0.32
+      },
+      {
+        "texto": "servidores",
+        "inicio": 0.44,
+        "fin": 0.88
+      },
+      {
+        "texto": "quedaron",
+        "inicio": 0.92,
+        "fin": 1.28
+      },
+      {
+        "texto": "fuera",
+        "inicio": 1.36,
+        "fin": 1.6
+      },
+      {
+        "texto": "de",
+        "inicio": 1.64,
+        "fin": 1.68
+      },
+      {
+        "texto": "servicio",
+        "inicio": 1.76,
+        "fin": 2.16
+      },
+      {
+        "texto": "sin",
+        "inicio": 2.32,
+        "fin": 2.48
+      },
+      {
+        "texto": "aviso.",
+        "inicio": 2.56,
+        "fin": 3.2
+      },
+      {
+        "texto": "Imagina",
+        "inicio": 3.44,
+        "fin": 3.84
+      },
+      {
+        "texto": "diez",
+        "inicio": 4,
+        "fin": 4.2
+      },
+      {
+        "texto": "servidores:",
+        "inicio": 4.24,
+        "fin": 5.28
+      },
+      {
+        "texto": "si",
+        "inicio": 5.36,
+        "fin": 5.44
+      },
+      {
+        "texto": "tres",
+        "inicio": 5.6,
+        "fin": 5.84
+      },
+      {
+        "texto": "dejan",
+        "inicio": 5.88,
+        "fin": 6.08
+      },
+      {
+        "texto": "de",
+        "inicio": 6.12,
+        "fin": 6.16
+      },
+      {
+        "texto": "responder,",
+        "inicio": 6.24,
+        "fin": 6.96
+      },
+      {
+        "texto": "los",
+        "inicio": 7.04,
+        "fin": 7.12
+      },
+      {
+        "texto": "otros",
+        "inicio": 7.28,
+        "fin": 7.44
+      },
+      {
+        "texto": "siete",
+        "inicio": 7.48,
+        "fin": 7.76
+      },
+      {
+        "texto": "reciben",
+        "inicio": 7.84,
+        "fin": 8.32
+      },
+      {
+        "texto": "toda",
+        "inicio": 8.36,
+        "fin": 8.56
+      },
+      {
+        "texto": "esa",
+        "inicio": 8.64,
+        "fin": 8.72
+      },
+      {
+        "texto": "carga,",
+        "inicio": 8.8,
+        "fin": 9.36
+      },
+      {
+        "texto": "se",
+        "inicio": 9.4,
+        "fin": 9.44
+      },
+      {
+        "texto": "saturan",
+        "inicio": 9.52,
+        "fin": 10
+      },
+      {
+        "texto": "y",
+        "inicio": 10.16,
+        "fin": 10.24
+      },
+      {
+        "texto": "también",
+        "inicio": 10.32,
+        "fin": 10.72
+      },
+      {
+        "texto": "pueden",
+        "inicio": 10.8,
+        "fin": 11.04
+      },
+      {
+        "texto": "caer.",
+        "inicio": 11.12,
+        "fin": 11.6
+      },
+      {
+        "texto": "Una",
+        "inicio": 11.84,
+        "fin": 12
+      },
+      {
+        "texto": "falla",
+        "inicio": 12.16,
+        "fin": 12.4
+      },
+      {
+        "texto": "en",
+        "inicio": 12.44,
+        "fin": 12.48
+      },
+      {
+        "texto": "cadena.",
+        "inicio": 12.56,
+        "fin": 13.2
+      }
+    ],
+    [
+      {
+        "texto": "Microsoft",
+        "inicio": 0,
+        "fin": 0.56
+      },
+      {
+        "texto": "pausó",
+        "inicio": 0.64,
+        "fin": 0.96
+      },
+      {
+        "texto": "sus",
+        "inicio": 1.04,
+        "fin": 1.12
+      },
+      {
+        "texto": "despliegues,",
+        "inicio": 1.2,
+        "fin": 2.08
+      },
+      {
+        "texto": "movió",
+        "inicio": 2.16,
+        "fin": 2.32
+      },
+      {
+        "texto": "el",
+        "inicio": 2.4,
+        "fin": 2.48
+      },
+      {
+        "texto": "tráfico",
+        "inicio": 2.52,
+        "fin": 2.88
+      },
+      {
+        "texto": "a",
+        "inicio": 2.92,
+        "fin": 2.96
+      },
+      {
+        "texto": "otras",
+        "inicio": 3.04,
+        "fin": 3.28
+      },
+      {
+        "texto": "rutas",
+        "inicio": 3.32,
+        "fin": 3.76
+      },
+      {
+        "texto": "y",
+        "inicio": 3.84,
+        "fin": 3.92
+      },
+      {
+        "texto": "reinició",
+        "inicio": 4,
+        "fin": 4.56
+      },
+      {
+        "texto": "los",
+        "inicio": 4.6,
+        "fin": 4.64
+      },
+      {
+        "texto": "servidores.",
+        "inicio": 4.72,
+        "fin": 5.76
+      },
+      {
+        "texto": "Pero",
+        "inicio": 5.787,
+        "fin": 5.84
+      },
+      {
+        "texto": "algunos,",
+        "inicio": 5.92,
+        "fin": 6.56
+      },
+      {
+        "texto": "al",
+        "inicio": 6.6,
+        "fin": 6.64
+      },
+      {
+        "texto": "volver",
+        "inicio": 6.72,
+        "fin": 6.96
+      },
+      {
+        "texto": "a",
+        "inicio": 7.04,
+        "fin": 7.093
+      },
+      {
+        "texto": "recibir",
+        "inicio": 7.147,
+        "fin": 7.44
+      },
+      {
+        "texto": "tráfico,",
+        "inicio": 7.52,
+        "fin": 8.16
+      },
+      {
+        "texto": "fallaban",
+        "inicio": 8.28,
+        "fin": 8.64
+      },
+      {
+        "texto": "otra",
+        "inicio": 8.72,
+        "fin": 8.88
+      },
+      {
+        "texto": "vez.",
+        "inicio": 9.04,
+        "fin": 9.52
+      }
+    ],
+    [
+      {
+        "texto": "La",
+        "inicio": 0,
+        "fin": 0.16
+      },
+      {
+        "texto": "pista:",
+        "inicio": 0.24,
+        "fin": 1.04
+      },
+      {
+        "texto": "las",
+        "inicio": 1.12,
+        "fin": 1.2
+      },
+      {
+        "texto": "comprobaciones",
+        "inicio": 1.28,
+        "fin": 1.84
+      },
+      {
+        "texto": "de",
+        "inicio": 1.88,
+        "fin": 1.92
+      },
+      {
+        "texto": "salud,",
+        "inicio": 2,
+        "fin": 2.64
+      },
+      {
+        "texto": "pruebas",
+        "inicio": 2.68,
+        "fin": 2.88
+      },
+      {
+        "texto": "automáticas",
+        "inicio": 2.96,
+        "fin": 3.68
+      },
+      {
+        "texto": "que",
+        "inicio": 3.76,
+        "fin": 3.84
+      },
+      {
+        "texto": "revisan",
+        "inicio": 3.92,
+        "fin": 4.32
+      },
+      {
+        "texto": "si",
+        "inicio": 4.36,
+        "fin": 4.4
+      },
+      {
+        "texto": "un",
+        "inicio": 4.48,
+        "fin": 4.56
+      },
+      {
+        "texto": "servidor",
+        "inicio": 4.68,
+        "fin": 5.04
+      },
+      {
+        "texto": "está",
+        "inicio": 5.12,
+        "fin": 5.28
+      },
+      {
+        "texto": "bien.",
+        "inicio": 5.36,
+        "fin": 6
+      },
+      {
+        "texto": "Muchos",
+        "inicio": 6.12,
+        "fin": 6.32
+      },
+      {
+        "texto": "las",
+        "inicio": 6.4,
+        "fin": 6.48
+      },
+      {
+        "texto": "fallaban",
+        "inicio": 6.56,
+        "fin": 7.04
+      },
+      {
+        "texto": "y",
+        "inicio": 7.12,
+        "fin": 7.2
+      },
+      {
+        "texto": "quedaban",
+        "inicio": 7.253,
+        "fin": 7.6
+      },
+      {
+        "texto": "fuera.",
+        "inicio": 7.64,
+        "fin": 8.32
+      },
+      {
+        "texto": "Con",
+        "inicio": 8.4,
+        "fin": 8.48
+      },
+      {
+        "texto": "un",
+        "inicio": 8.52,
+        "fin": 8.56
+      },
+      {
+        "texto": "cambio",
+        "inicio": 8.6,
+        "fin": 8.8
+      },
+      {
+        "texto": "de",
+        "inicio": 8.88,
+        "fin": 8.96
+      },
+      {
+        "texto": "configuración,",
+        "inicio": 9.08,
+        "fin": 9.92
+      },
+      {
+        "texto": "Microsoft",
+        "inicio": 10.16,
+        "fin": 10.4
+      },
+      {
+        "texto": "recuperó",
+        "inicio": 10.48,
+        "fin": 10.96
+      },
+      {
+        "texto": "parte",
+        "inicio": 11.08,
+        "fin": 11.28
+      },
+      {
+        "texto": "de",
+        "inicio": 11.36,
+        "fin": 11.44
+      },
+      {
+        "texto": "ellos,",
+        "inicio": 11.52,
+        "fin": 12.08
+      },
+      {
+        "texto": "aunque",
+        "inicio": 12.12,
+        "fin": 12.56
+      },
+      {
+        "texto": "al",
+        "inicio": 12.64,
+        "fin": 12.72
+      },
+      {
+        "texto": "grabar",
+        "inicio": 12.8,
+        "fin": 12.96
+      },
+      {
+        "texto": "este",
+        "inicio": 13.08,
+        "fin": 13.2
+      },
+      {
+        "texto": "video",
+        "inicio": 13.4,
+        "fin": 13.6
+      },
+      {
+        "texto": "la",
+        "inicio": 13.68,
+        "fin": 13.76
+      },
+      {
+        "texto": "recuperación",
+        "inicio": 13.84,
+        "fin": 14.4
+      },
+      {
+        "texto": "seguía",
+        "inicio": 14.48,
+        "fin": 14.72
+      },
+      {
+        "texto": "lenta.",
+        "inicio": 14.8,
+        "fin": 15.44
+      }
+    ],
+    [
+      {
+        "texto": "La",
+        "inicio": 0,
+        "fin": 0.12
+      },
+      {
+        "texto": "lección:",
+        "inicio": 0.16,
+        "fin": 0.64
+      },
+      {
+        "texto": "tu",
+        "inicio": 1.12,
+        "fin": 1.2
+      },
+      {
+        "texto": "aplicación",
+        "inicio": 1.28,
+        "fin": 1.84
+      },
+      {
+        "texto": "no",
+        "inicio": 2,
+        "fin": 2.16
+      },
+      {
+        "texto": "es",
+        "inicio": 2.24,
+        "fin": 2.32
+      },
+      {
+        "texto": "solo",
+        "inicio": 2.4,
+        "fin": 2.56
+      },
+      {
+        "texto": "tu",
+        "inicio": 2.64,
+        "fin": 2.8
+      },
+      {
+        "texto": "código.",
+        "inicio": 2.933,
+        "fin": 3.6
+      },
+      {
+        "texto": "Depende",
+        "inicio": 3.68,
+        "fin": 4
+      },
+      {
+        "texto": "de",
+        "inicio": 4.04,
+        "fin": 4.08
+      },
+      {
+        "texto": "servidores,",
+        "inicio": 4.2,
+        "fin": 5.04
+      },
+      {
+        "texto": "redes,",
+        "inicio": 5.12,
+        "fin": 5.76
+      },
+      {
+        "texto": "bases",
+        "inicio": 5.92,
+        "fin": 6.08
+      },
+      {
+        "texto": "de",
+        "inicio": 6.12,
+        "fin": 6.16
+      },
+      {
+        "texto": "datos,",
+        "inicio": 6.24,
+        "fin": 6.8
+      },
+      {
+        "texto": "monitoreo",
+        "inicio": 6.88,
+        "fin": 7.44
+      },
+      {
+        "texto": "y",
+        "inicio": 7.6,
+        "fin": 7.64
+      },
+      {
+        "texto": "recuperación.",
+        "inicio": 7.68,
+        "fin": 8.96
+      },
+      {
+        "texto": "No",
+        "inicio": 9.04,
+        "fin": 9.12
+      },
+      {
+        "texto": "basta",
+        "inicio": 9.227,
+        "fin": 9.44
+      },
+      {
+        "texto": "con",
+        "inicio": 9.52,
+        "fin": 9.6
+      },
+      {
+        "texto": "preguntarte",
+        "inicio": 9.68,
+        "fin": 10.16
+      },
+      {
+        "texto": "si",
+        "inicio": 10.2,
+        "fin": 10.24
+      },
+      {
+        "texto": "funciona.",
+        "inicio": 10.32,
+        "fin": 11.28
+      },
+      {
+        "texto": "Pregúntate:",
+        "inicio": 11.333,
+        "fin": 11.92
+      },
+      {
+        "texto": "¿qué",
+        "inicio": 12.24,
+        "fin": 12.48
+      },
+      {
+        "texto": "pasa",
+        "inicio": 12.52,
+        "fin": 12.8
+      },
+      {
+        "texto": "cuando",
+        "inicio": 12.88,
+        "fin": 13.12
+      },
+      {
+        "texto": "algo",
+        "inicio": 13.24,
+        "fin": 13.36
+      },
+      {
+        "texto": "falla?",
+        "inicio": 13.44,
+        "fin": 14.08
+      }
+    ],
+    [
+      {
+        "texto": "Si",
+        "inicio": 0,
+        "fin": 0.12
+      },
+      {
+        "texto": "le",
+        "inicio": 0.16,
+        "fin": 0.22
+      },
+      {
+        "texto": "pasa",
+        "inicio": 0.24,
+        "fin": 0.453
+      },
+      {
+        "texto": "a",
+        "inicio": 0.48,
+        "fin": 0.52
+      },
+      {
+        "texto": "Microsoft,",
+        "inicio": 0.56,
+        "fin": 1.44
+      },
+      {
+        "texto": "le",
+        "inicio": 1.52,
+        "fin": 1.6
+      },
+      {
+        "texto": "pasa",
+        "inicio": 1.68,
+        "fin": 1.84
+      },
+      {
+        "texto": "a",
+        "inicio": 1.867,
+        "fin": 1.893
+      },
+      {
+        "texto": "cualquiera.",
+        "inicio": 1.92,
+        "fin": 2.72
+      },
+      {
+        "texto": "Dime",
+        "inicio": 2.96,
+        "fin": 3.12
+      },
+      {
+        "texto": "en",
+        "inicio": 3.147,
+        "fin": 3.173
+      },
+      {
+        "texto": "los",
+        "inicio": 3.2,
+        "fin": 3.28
+      },
+      {
+        "texto": "comentarios:",
+        "inicio": 3.32,
+        "fin": 4.24
+      },
+      {
+        "texto": "si",
+        "inicio": 4.32,
+        "fin": 4.4
+      },
+      {
+        "texto": "tu",
+        "inicio": 4.48,
+        "fin": 4.56
+      },
+      {
+        "texto": "app",
+        "inicio": 4.64,
+        "fin": 4.72
+      },
+      {
+        "texto": "tuviera",
+        "inicio": 4.8,
+        "fin": 5.12
+      },
+      {
+        "texto": "millones",
+        "inicio": 5.28,
+        "fin": 5.6
+      },
+      {
+        "texto": "de",
+        "inicio": 5.68,
+        "fin": 5.72
+      },
+      {
+        "texto": "usuarios",
+        "inicio": 5.76,
+        "fin": 6.24
+      },
+      {
+        "texto": "y",
+        "inicio": 6.4,
+        "fin": 6.48
+      },
+      {
+        "texto": "un",
+        "inicio": 6.52,
+        "fin": 6.56
+      },
+      {
+        "texto": "servidor",
+        "inicio": 6.68,
+        "fin": 7.04
+      },
+      {
+        "texto": "dejara",
+        "inicio": 7.12,
+        "fin": 7.44
+      },
+      {
+        "texto": "de",
+        "inicio": 7.48,
+        "fin": 7.52
+      },
+      {
+        "texto": "responder,",
+        "inicio": 7.6,
+        "fin": 8.48
+      },
+      {
+        "texto": "¿qué",
+        "inicio": 8.507,
+        "fin": 8.56
+      },
+      {
+        "texto": "harías?",
+        "inicio": 8.64,
+        "fin": 9.52
+      },
+      {
+        "texto": "Sígueme",
+        "inicio": 9.6,
+        "fin": 10
+      },
+      {
+        "texto": "en",
+        "inicio": 10.08,
+        "fin": 10.24
+      },
+      {
+        "texto": "DevMorado.",
+        "inicio": 10.36,
+        "fin": 11.12
+      }
+    ]
+  ]
+}

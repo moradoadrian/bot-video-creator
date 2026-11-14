@@ -605,12 +605,16 @@ const BloqueVista: React.FC<{
   // Adelantado para que el primer cuadro nunca salga vacío
   const entra = spring({ frame: frame + 8, fps, config: { damping: 13, stiffness: 160 } });
   const voz = { audio, palabras, personaje };
-  const visual = (v: Visual, top: number, alto: number) => (
-    <div style={{ position: 'absolute', top, left: 50, width: 885, height: alto }}>
-      <VisualVista visual={v} narracion={b.narracion} duracionSeg={duracionSeg} palabras={palabras} paleta={paleta} acento={acento} ancho={885} alto={alto} />
+  const visual = (v: Visual, top: number, alto: number) => {
+    // El recorrido ocupa todo el ancho: es un mundo por el que viaja su propia cámara
+    const ancho = v.tipo === 'recorrido' ? 1080 : 885;
+    return (
+    <div style={{ position: 'absolute', top, left: v.tipo === 'recorrido' ? 0 : 50, width: ancho, height: alto }}>
+      <VisualVista visual={v} narracion={b.narracion} duracionSeg={duracionSeg} palabras={palabras} paleta={paleta} acento={acento} ancho={ancho} alto={alto} />
       {sonidos && <Efectos en={tiemposVisual(v, b.narracion, duracionSeg, palabras)} archivo="pop.wav" volumen={0.3} frames={4} />}
     </div>
-  );
+    );
+  };
   /** Lo que se mueve con la cámara; el subtítulo y el personaje quedan fijos para que se lean bien. */
   const conCamara = (momentos: number[], escenario: React.ReactNode, tamPersonaje: number) => (
     <AbsoluteFill>
@@ -629,7 +633,7 @@ const BloqueVista: React.FC<{
           const te = tiemposEditor(b, duracionSeg);
           return [...(b.resaltar?.length ? [te.tResaltar] : []), ...(te.salida.length ? [te.tSalida, te.tUltima] : [])];
         })()
-      : b.visual
+      : b.visual && b.visual.tipo !== 'recorrido'
         ? tiemposVisual(b.visual, b.narracion, duracionSeg, palabras)
         : [];
     return conCamara(
@@ -670,7 +674,7 @@ const BloqueVista: React.FC<{
         ) : b.codigo ? (
           <Editor e={b} duracionSeg={duracionSeg} acento={acento} paleta={paleta} archivo={b.archivo ?? archivo} sonidos={sonidos} />
         ) : b.visual ? (
-          visual(b.visual, 390, 900)
+          b.visual.tipo === 'recorrido' ? visual(b.visual, 350, 940) : visual(b.visual, 390, 900)
         ) : null}
       </>,
       200,
@@ -681,7 +685,7 @@ const BloqueVista: React.FC<{
     const conCodigo = b.codigo && !b.visual ? b.codigo : undefined;
     const momentos = conCodigo
       ? [tiemposTecleo(conCodigo, duracionSeg).fin]
-      : b.visual
+      : b.visual && b.visual.tipo !== 'recorrido'
         ? tiemposVisual(b.visual, b.narracion, duracionSeg, palabras)
         : [];
     return conCamara(

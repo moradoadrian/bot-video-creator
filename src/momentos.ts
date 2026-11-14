@@ -20,6 +20,7 @@ export const clavesDe = (v: Visual): string[] => {
     case 'tarjetas':
       return [...v.items.map((i) => i.clave ?? i.texto), ...(v.etiquetas ? [v.etiquetas.clave ?? v.etiquetas.lista[0]] : [])];
     case 'flujo':
+    case 'recorrido':
       return [
         ...v.pasos.map((i) => i.clave ?? i.texto),
         ...(v.regreso ? [v.regreso.clave ?? v.regreso.texto] : []),
@@ -29,6 +30,13 @@ export const clavesDe = (v: Visual): string[] => {
       return [...v.partes, v.resultado].map((i) => i.clave ?? i.texto);
     case 'versus':
       return v.lados.map((i) => i.clave ?? i.texto);
+    case 'red':
+      return [...[v.centro, ...v.nodos].map((i) => i.clave ?? i.texto), ...(v.falla ? [v.falla.clave ?? v.falla.texto] : [])];
+    case 'cascada':
+      return [...v.fichas, ...(v.final ? [v.final] : [])].map((i) => i.clave ?? i.texto);
+    case 'verificar':
+      // Cada afirmación aporta dos momentos: cuando aparece y cuando recibe su sello
+      return v.items.flatMap((i) => [i.clave ?? i.texto, i.claveVeredicto]);
   }
 };
 

@@ -123,6 +123,38 @@ const trazos = (tipo: IconoCodigo, color: string): React.ReactNode => {
           <path d="M16 21v-6a8 8 0 0 1 16 0v6" />
         </>
       );
+    case 'avion':
+      return <path d="M24 4c2 0 3 2 3 5v9l15 9v4l-15-4v9l5 4v3l-8-2-8 2v-3l5-4v-9L6 31v-4l15-9V9c0-3 1-5 3-5z" />;
+    case 'torre':
+      return (
+        <>
+          <path d="M13 7h22l-4 11H17z" />
+          <path d="M19 18v24M29 18v24M13 42h22M19 28h10" />
+        </>
+      );
+    case 'alerta':
+      return (
+        <>
+          <path d="M24 6L43 40H5z" />
+          <path d="M24 18v10" />
+          <circle cx="24" cy="34" r="2" {...relleno} />
+        </>
+      );
+    case 'reloj':
+      return (
+        <>
+          <circle cx="24" cy="24" r="18" />
+          <path d="M24 13v11l7 5" />
+        </>
+      );
+    case 'antena':
+      return (
+        <>
+          <circle cx="24" cy="18" r="3" {...relleno} />
+          <path d="M24 22v20M17 42h14" />
+          <path d="M17 11a10 10 0 0 0 0 14M31 11a10 10 0 0 1 0 14M11 5a18 18 0 0 0 0 26M37 5a18 18 0 0 1 0 26" />
+        </>
+      );
   }
 };
 

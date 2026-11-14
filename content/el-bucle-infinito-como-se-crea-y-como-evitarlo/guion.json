@@ -1,0 +1,50 @@
+{
+  "canal": "codigo",
+  "lenguaje": "javascript",
+  "slug": "el-bucle-infinito-como-se-crea-y-como-evitarlo",
+  "tema": "El bucle infinito: cómo se crea y cómo evitarlo",
+  "gancho": {
+    "titulo": "Este código nunca termina",
+    "narracion": "Este código de cuatro líneas congela tu programa. Se llama bucle infinito, a todos nos pasa cuando empezamos, y hoy te enseño cómo se crea y cómo evitarlo."
+  },
+  "escenas": [
+    {
+      "titulo": "Así se crea",
+      "narracion": "Queremos contar del uno al tres. El ciclo pregunta: ¿i es menor o igual a tres? Sí, e imprime uno. Pero nadie cambia a i: sigue valiendo uno, así que la respuesta siempre es sí. El ciclo imprime uno para siempre y tu programa se congela.",
+      "codigo": "let i = 1;\nwhile (i <= 3) {\n  console.log(i);\n}",
+      "resaltar": [2, 3],
+      "salida": "1\n1\n1\n... nunca termina"
+    },
+    {
+      "titulo": "La línea que faltaba",
+      "narracion": "La solución es una sola línea: que i aumente en uno en cada vuelta. Ahora i vale uno, luego dos, luego tres. Cuando llega a cuatro, la condición ya es falsa y el ciclo termina. Recuerda: algo tiene que cambiar en cada vuelta.",
+      "codigo": "let i = 1;\nwhile (i <= 3) {\n  console.log(i);\n  i++;\n}",
+      "resaltar": [4],
+      "salida": "1\n2\n3"
+    },
+    {
+      "titulo": "Avanzar al revés",
+      "narracion": "También pasa con for. Aquí quieres una cuenta regresiva desde diez, pero escribiste que i aumenta. Diez, once, doce: i se aleja del cero y la condición nunca se vuelve falsa. Se arregla haciendo que i disminuya en uno.",
+      "codigo": "for (let i = 10; i > 0; i++) {\n  console.log(i);\n}",
+      "resaltar": [1],
+      "salida": "10\n11\n12\n... nunca termina"
+    },
+    {
+      "titulo": "Tres preguntas antes",
+      "narracion": "Antes de correr cualquier ciclo, hazte tres preguntas. ¿Qué variable cambia en cada vuelta? ¿Se acerca a la meta o se aleja? ¿En algún momento la condición será falsa? Y si ya se congeló, tranquilo: presiona control más C en la terminal, o cierra la pestaña.",
+      "codigo": "// Antes de correr un ciclo:\n\n// 1. ¿Qué variable cambia?\n// 2. ¿Se acerca a la meta?\n// 3. ¿La condición será falsa?",
+      "resaltar": [3, 4, 5],
+      "archivo": "antes-del-ciclo.js"
+    }
+  ],
+  "cierre": {
+    "titulo": "¿Ya te pasó?",
+    "narracion": "Guarda este video para la próxima vez que tu programa se quede congelado, y cuéntame en los comentarios si ya te pasó. Sígueme en DevMorado para aprender a programar desde cero. En el siguiente: ¿qué pasa si metes un ciclo dentro de otro?"
+  },
+  "descripcion": "Qué es un bucle infinito en JavaScript, los dos errores que lo crean y tres preguntas para evitarlo antes de correr tu ciclo.",
+  "hashtags": ["#programacion", "#javascript", "#aprendeaprogramar", "#bucleinfinito", "#ciclowhile", "#DevMorado"],
+  "portada": {
+    "titulo": "Bucle infinito",
+    "frase": "El error que congela tu programa"
+  }
+}

@@ -38,6 +38,7 @@ export type Traza = { pasos: PasoTraza[]; salida: string[] };
 export const ICONOS_CODIGO = [
   'pantalla', 'servidor', 'base-datos', 'api', 'cursor', 'imagen', 'formulario', 'menu', 'engrane', 'escudo',
   'lista', 'capas', 'check', 'carrito', 'codigo', 'rayo', 'gota', 'usuario', 'nube', 'candado',
+  'avion', 'torre', 'alerta', 'reloj', 'antena',
 ] as const;
 export type IconoCodigo = (typeof ICONOS_CODIGO)[number];
 
@@ -47,6 +48,12 @@ export type IconoCodigo = (typeof ICONOS_CODIGO)[number];
  */
 export type ItemVisual = { texto: string; detalle?: string; icono?: IconoCodigo; clave?: string };
 
+/** Sello de una afirmación en `verificar`. */
+export const VEREDICTOS = ['confirmado', 'sin-pruebas', 'falso'] as const;
+export type Veredicto = (typeof VEREDICTOS)[number];
+/** Afirmación que aparece con su `clave` y recibe el sello cuando la voz dice `claveVeredicto`. */
+export type ItemVerificar = ItemVisual & { veredicto: Veredicto; claveVeredicto: string };
+
 export type Visual =
   /** Cuadrícula de tarjetas, con una fila opcional de etiquetas (tecnologías, por ejemplo). */
   | { tipo: 'tarjetas'; items: ItemVisual[]; etiquetas?: { titulo?: string; lista: string[]; clave?: string } }
@@ -55,7 +62,15 @@ export type Visual =
   /** A + B = C */
   | { tipo: 'suma'; partes: ItemVisual[]; resultado: ItemVisual }
   /** Dos lados frente a frente. */
-  | { tipo: 'versus'; lados: [ItemVisual, ItemVisual] };
+  | { tipo: 'versus'; lados: [ItemVisual, ItemVisual] }
+  /** Como flujo, pero en un mundo por el que viaja la cámara siguiendo al paquete de luz. */
+  | { tipo: 'recorrido'; pasos: ItemVisual[]; regreso?: { texto: string; clave?: string }; final?: ItemVisual }
+  /** Un centro que manda señales a varios nodos; con `falla`, el centro cae y se cortan las conexiones. */
+  | { tipo: 'red'; centro: ItemVisual; nodos: ItemVisual[]; falla?: { texto: string; clave?: string } }
+  /** Fichas de dominó: cada una cae, choca con la anterior y la sacude (efecto en cadena). */
+  | { tipo: 'cascada'; fichas: ItemVisual[]; final?: ItemVisual }
+  /** Hechos contra rumores: cada afirmación recibe un sello (confirmado, sin pruebas, falso). */
+  | { tipo: 'verificar'; items: ItemVerificar[] };
 
 type Comun = {
   slug: string;

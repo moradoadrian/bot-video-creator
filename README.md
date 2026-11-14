@@ -82,7 +82,12 @@ npm run render -- diferencia-entre-while-y-do-while
   - `flujo`: `pasos` (2–5) en cadena con un paquete que viaja entre ellos; opcionales `regreso: { texto, clave }` y `final` (un aviso al terminar).
   - `suma`: `partes` (2–3) + … = `resultado`.
   - `versus`: `lados` con dos elementos frente a frente.
-  - Cada elemento: `{ "texto": "Backend", "detalle": "Valida y procesa", "icono": "servidor", "clave": "valida" }`. Íconos: `pantalla`, `servidor`, `base-datos`, `api`, `cursor`, `imagen`, `formulario`, `menu`, `engrane`, `escudo`, `lista`, `capas`, `check`, `carrito`, `codigo`, `rayo`, `gota`, `usuario`, `nube`, `candado`. Ejemplo completo: `content/frontend-vs-backend-que-es-cada-uno/guion.json`.
+  - `recorrido`: igual que `flujo` (mismos campos), pero los pasos viven en un mundo más grande que la pantalla y la cámara viaja por él siguiendo a un paquete de luz: abre en plano general con las siluetas del mapa, se acerca a cada paso cuando la voz lo nombra y vuelve a abrir al final con toda la ruta encendida. Ideal para procesos con recorrido (una petición por Internet, un pedido, un login). Ejemplo: `content/que-pasa-cuando-escribes-una-url-y-presionas-enter/guion.json`.
+  - `red`: un `centro` y sus `nodos` (2–6) alrededor; cada nodo se conecta al nombrarse y por las líneas viajan pulsos de luz. Con `falla: { texto, clave }` el centro entra en alarma y tiembla, las líneas se cortan con una X y los nodos se apagan. Mejor en escenas que en el gancho (necesita alto).
+  - `cascada`: `fichas` (2–5) en escalera que caen como dominó; cada una choca con la anterior, que se sacude y queda caída. Opcional `final` (el resultado).
+  - `verificar`: `items` (2–4) con `veredicto` (`confirmado`, `sin-pruebas` o `falso`) y `claveVeredicto`: la afirmación entra con su `clave` mostrando "verificando…" y el sello cae cuando la voz dice `claveVeredicto`. Ideal para separar hechos de rumores en noticias.
+  - Ejemplo con los tres: `content/estados-unidos-detuvo-sus-vuelos/guion.json`.
+  - Cada elemento: `{ "texto": "Backend", "detalle": "Valida y procesa", "icono": "servidor", "clave": "valida" }`. Íconos: `pantalla`, `servidor`, `base-datos`, `api`, `cursor`, `imagen`, `formulario`, `menu`, `engrane`, `escudo`, `lista`, `capas`, `check`, `carrito`, `codigo`, `rayo`, `gota`, `usuario`, `nube`, `candado`, `avion`, `torre`, `alerta`, `reloj`, `antena`. Ejemplo completo: `content/frontend-vs-backend-que-es-cada-uno/guion.json`.
 - Opcional, para la portada: `"portada": { "titulo": "...", "frase": "..." }`. Sin esto usa el título del gancho.
 
 ## Depurador visual

@@ -4,13 +4,14 @@ import { test } from 'node:test';
 import { pasoActual, recortar, tiemposDePasos } from '../src/depurador';
 import { medidasEditor } from '../src/medidas';
 import { agruparPalabras, indiceActual, palabrasDeAlineacion } from '../src/subtitulos';
-import { momentosClave } from '../src/momentos';
+import { clavesDe, momentosClave } from '../src/momentos';
 import { duracionTecleo, iniciosDeLinea, lineaDelCursor, momentosDeTecla, visiblesPorLinea } from '../src/tecleo';
 import { esClave, palabrasClave } from '../src/subtitulos';
 import { golpesDeCamara, SEPARACION_MIN, ZOOM_ENTRADA, ZOOM_GOLPE, ZOOM_LENTO, zoomCamara } from '../src/camara';
 import { EscenaCodigo, PasoTraza, Traza } from '../src/types';
 import { conReintentos, ejecutar, leerGuion, parsearGuion, slugify, verificarCodigo, verificarVisuales } from './lib';
 import { formatoValor, trazar } from './traza';
+import { camaraEn, geometria, llavesCamara, paqueteEn, planoCerrado, planoGeneral, tiemposRecorrido } from '../src/recorrido';
 
 const escena = (e: Partial<EscenaCodigo>): EscenaCodigo => ({ titulo: 'Prueba', narracion: 'Texto', ...e });
 const contiene = (avisos: string[], texto: string) => avisos.some((a) => a.includes(texto));
@@ -372,4 +373,55 @@ test('palabrasClave toma nombres del código, del diagrama y del título, sin co
   assert.ok(!esClave('cuándo', claves));
   const visual = palabrasClave({ titulo: 'x', visual: { tipo: 'versus', lados: [{ texto: 'Frontend' }, { texto: 'Backend' }] } });
   assert.ok(esClave('frontends', visual));
+});
+
+test('recorrido: la cámara abre en plano general, llega a cada paso al nombrarlo y cierra en general', () => {
+  const g = geometria(3, false, true);
+  const tm = tiemposRecorrido([1, 3, 5, 6], 3, false, true);
+  const llaves = llavesCamara(g, tm, 8, 1080, 940);
+  for (let k = 1; k < llaves.length; k++) assert.ok(llaves[k].t > llaves[k - 1].t, 'llaves en orden');
+  assert.deepEqual(camaraEn(llaves, 0), planoGeneral(g, 1080, 940));
+  assert.deepEqual(camaraEn(llaves, tm.llegadas[1]), planoCerrado(g, 1, 940));
+  assert.deepEqual(camaraEn(llaves, 7.9), planoGeneral(g, 1080, 940));
+  // El paquete llega al final del tramo justo cuando se nombra el paso
+  const p = paqueteEn(g, tm, tm.llegadas[2]);
+  assert.equal(p?.p, 1);
+  assert.equal(paqueteEn(g, tm, 0.5), null);
+});
+
+test('recorrido: momentos repetidos o fuera de orden no rompen los tiempos', () => {
+  const tm = tiemposRecorrido([2, 2, 2], 3, false, false);
+  assert.ok(tm.llegadas[1] > tm.llegadas[0] && tm.llegadas[2] > tm.llegadas[1]);
+  assert.ok(tm.salidas.slice(1).every((s: number, i: number) => s < tm.llegadas[i + 1] && Number.isFinite(s)));
+  const ok: any = parsearGuion(
+    guionCodigo({ escenas: [1, 2, 3].map(() => ({ titulo: 'a', narracion: 'A B', visual: { tipo: 'recorrido', pasos: [{ texto: 'A' }, { texto: 'B' }] } })) }),
+  );
+  assert.equal(ok.escenas[0].visual.tipo, 'recorrido');
+});
+
+test('red, cascada y verificar: se validan y dan sus claves en orden', () => {
+  const red = { tipo: 'red', centro: { texto: 'Centro' }, nodos: [{ texto: 'A' }, { texto: 'B' }], falla: { texto: 'Cae', clave: 'se cae' } };
+  const cascada = { tipo: 'cascada', fichas: [{ texto: 'Uno' }, { texto: 'Dos' }], final: { texto: 'Fin' } };
+  const verificar = {
+    tipo: 'verificar',
+    items: [
+      { texto: 'Rumor', veredicto: 'falso', claveVeredicto: 'mentira' },
+      { texto: 'Hecho', veredicto: 'confirmado', claveVeredicto: 'cierto' },
+    ],
+  };
+  const g: any = parsearGuion(
+    guionCodigo({
+      escenas: [
+        { titulo: 'a', narracion: 'El Centro llama a A y a B, y luego se cae.', visual: red },
+        { titulo: 'a', narracion: 'Uno empuja a Dos y al Fin.', visual: cascada },
+        { titulo: 'a', narracion: 'Rumor: mentira. Hecho: cierto.', visual: verificar },
+      ],
+    }),
+  );
+  assert.deepEqual(clavesDe(g.escenas[0].visual), ['Centro', 'A', 'B', 'se cae']);
+  assert.deepEqual(clavesDe(g.escenas[1].visual), ['Uno', 'Dos', 'Fin']);
+  assert.deepEqual(clavesDe(g.escenas[2].visual), ['Rumor', 'mentira', 'Hecho', 'cierto']);
+  assert.deepEqual(verificarVisuales(g), []);
+  const malo = { ...verificar, items: [{ texto: 'X', veredicto: 'quizas', claveVeredicto: 'x' }, verificar.items[0]] };
+  assert.throws(() => parsearGuion(guionCodigo({ escenas: [1, 2, 3].map(() => ({ titulo: 'a', narracion: 'b', visual: malo })) })));
 });

@@ -1,0 +1,1193 @@
+{
+  "conAudio": true,
+  "duraciones": [
+    11.65,
+    12.43,
+    13.64,
+    13.17,
+    18.52,
+    12.36,
+    14.37
+  ],
+  "palabras": [
+    [
+      {
+        "texto": "Escribes",
+        "inicio": 0,
+        "fin": 0.64
+      },
+      {
+        "texto": "Google.com",
+        "inicio": 0.84,
+        "fin": 1.6
+      },
+      {
+        "texto": "en",
+        "inicio": 1.64,
+        "fin": 1.68
+      },
+      {
+        "texto": "tu",
+        "inicio": 1.76,
+        "fin": 1.8
+      },
+      {
+        "texto": "navegador,",
+        "inicio": 1.84,
+        "fin": 2.72
+      },
+      {
+        "texto": "presionas",
+        "inicio": 2.84,
+        "fin": 3.2
+      },
+      {
+        "texto": "ENTER",
+        "inicio": 3.28,
+        "fin": 3.68
+      },
+      {
+        "texto": "y",
+        "inicio": 4,
+        "fin": 4.08
+      },
+      {
+        "texto": "en",
+        "inicio": 4.16,
+        "fin": 4.24
+      },
+      {
+        "texto": "segundos",
+        "inicio": 4.32,
+        "fin": 4.96
+      },
+      {
+        "texto": "aparece",
+        "inicio": 5.04,
+        "fin": 5.44
+      },
+      {
+        "texto": "una",
+        "inicio": 5.52,
+        "fin": 5.6
+      },
+      {
+        "texto": "página",
+        "inicio": 5.68,
+        "fin": 6
+      },
+      {
+        "texto": "web.",
+        "inicio": 6.08,
+        "fin": 6.56
+      },
+      {
+        "texto": "Pero",
+        "inicio": 6.8,
+        "fin": 7.04
+      },
+      {
+        "texto": "¿sabes",
+        "inicio": 7.36,
+        "fin": 7.84
+      },
+      {
+        "texto": "todo",
+        "inicio": 7.92,
+        "fin": 8.16
+      },
+      {
+        "texto": "lo",
+        "inicio": 8.2,
+        "fin": 8.24
+      },
+      {
+        "texto": "que",
+        "inicio": 8.32,
+        "fin": 8.36
+      },
+      {
+        "texto": "acaba",
+        "inicio": 8.4,
+        "fin": 8.64
+      },
+      {
+        "texto": "de",
+        "inicio": 8.72,
+        "fin": 8.8
+      },
+      {
+        "texto": "suceder",
+        "inicio": 8.84,
+        "fin": 9.2
+      },
+      {
+        "texto": "detrás",
+        "inicio": 9.24,
+        "fin": 9.6
+      },
+      {
+        "texto": "de",
+        "inicio": 9.64,
+        "fin": 9.68
+      },
+      {
+        "texto": "escena?",
+        "inicio": 9.76,
+        "fin": 10.32
+      },
+      {
+        "texto": "Te",
+        "inicio": 10.56,
+        "fin": 10.64
+      },
+      {
+        "texto": "lo",
+        "inicio": 10.72,
+        "fin": 10.76
+      },
+      {
+        "texto": "voy",
+        "inicio": 10.8,
+        "fin": 10.88
+      },
+      {
+        "texto": "a",
+        "inicio": 10.96,
+        "fin": 11
+      },
+      {
+        "texto": "mostrar.",
+        "inicio": 11.04,
+        "fin": 11.68
+      }
+    ],
+    [
+      {
+        "texto": "Primero,",
+        "inicio": 0,
+        "fin": 0.64
+      },
+      {
+        "texto": "escribes",
+        "inicio": 0.76,
+        "fin": 1.2
+      },
+      {
+        "texto": "una",
+        "inicio": 1.28,
+        "fin": 1.36
+      },
+      {
+        "texto": "dirección",
+        "inicio": 1.44,
+        "fin": 1.84
+      },
+      {
+        "texto": "web,",
+        "inicio": 1.92,
+        "fin": 2.48
+      },
+      {
+        "texto": "también",
+        "inicio": 2.52,
+        "fin": 2.88
+      },
+      {
+        "texto": "conocida",
+        "inicio": 2.96,
+        "fin": 3.36
+      },
+      {
+        "texto": "como",
+        "inicio": 3.44,
+        "fin": 3.68
+      },
+      {
+        "texto": "URL.",
+        "inicio": 3.92,
+        "fin": 5.16
+      },
+      {
+        "texto": "Pero",
+        "inicio": 5.44,
+        "fin": 5.6
+      },
+      {
+        "texto": "tu",
+        "inicio": 5.68,
+        "fin": 5.76
+      },
+      {
+        "texto": "navegador",
+        "inicio": 5.813,
+        "fin": 6.24
+      },
+      {
+        "texto": "no",
+        "inicio": 6.4,
+        "fin": 6.48
+      },
+      {
+        "texto": "sabe",
+        "inicio": 6.64,
+        "fin": 6.88
+      },
+      {
+        "texto": "dónde",
+        "inicio": 6.96,
+        "fin": 7.2
+      },
+      {
+        "texto": "vive",
+        "inicio": 7.28,
+        "fin": 7.44
+      },
+      {
+        "texto": "esa",
+        "inicio": 7.56,
+        "fin": 7.68
+      },
+      {
+        "texto": "página:",
+        "inicio": 7.76,
+        "fin": 8.56
+      },
+      {
+        "texto": "necesita",
+        "inicio": 8.64,
+        "fin": 9.04
+      },
+      {
+        "texto": "encontrar",
+        "inicio": 9.12,
+        "fin": 9.6
+      },
+      {
+        "texto": "a",
+        "inicio": 9.68,
+        "fin": 9.84
+      },
+      {
+        "texto": "qué",
+        "inicio": 9.92,
+        "fin": 10
+      },
+      {
+        "texto": "servidor",
+        "inicio": 10.08,
+        "fin": 10.56
+      },
+      {
+        "texto": "debe",
+        "inicio": 10.64,
+        "fin": 10.8
+      },
+      {
+        "texto": "conectarse",
+        "inicio": 10.88,
+        "fin": 11.44
+      },
+      {
+        "texto": "para",
+        "inicio": 11.52,
+        "fin": 11.6
+      },
+      {
+        "texto": "obtenerla.",
+        "inicio": 11.68,
+        "fin": 12.48
+      }
+    ],
+    [
+      {
+        "texto": "Aquí",
+        "inicio": 0,
+        "fin": 0.28
+      },
+      {
+        "texto": "entra",
+        "inicio": 0.32,
+        "fin": 0.52
+      },
+      {
+        "texto": "en",
+        "inicio": 0.56,
+        "fin": 0.64
+      },
+      {
+        "texto": "juego",
+        "inicio": 0.68,
+        "fin": 0.96
+      },
+      {
+        "texto": "un",
+        "inicio": 1.04,
+        "fin": 1.12
+      },
+      {
+        "texto": "sistema",
+        "inicio": 1.16,
+        "fin": 1.6
+      },
+      {
+        "texto": "clave.",
+        "inicio": 1.68,
+        "fin": 2.32
+      },
+      {
+        "texto": "El",
+        "inicio": 2.56,
+        "fin": 2.64
+      },
+      {
+        "texto": "dominio",
+        "inicio": 2.72,
+        "fin": 3.04
+      },
+      {
+        "texto": "que",
+        "inicio": 3.08,
+        "fin": 3.12
+      },
+      {
+        "texto": "escribiste",
+        "inicio": 3.2,
+        "fin": 3.84
+      },
+      {
+        "texto": "pasa",
+        "inicio": 3.88,
+        "fin": 4.16
+      },
+      {
+        "texto": "por",
+        "inicio": 4.24,
+        "fin": 4.32
+      },
+      {
+        "texto": "el",
+        "inicio": 4.36,
+        "fin": 4.4
+      },
+      {
+        "texto": "DNS,",
+        "inicio": 4.56,
+        "fin": 5.84
+      },
+      {
+        "texto": "que",
+        "inicio": 5.92,
+        "fin": 6
+      },
+      {
+        "texto": "funciona",
+        "inicio": 6.12,
+        "fin": 6.48
+      },
+      {
+        "texto": "como",
+        "inicio": 6.6,
+        "fin": 6.72
+      },
+      {
+        "texto": "la",
+        "inicio": 6.8,
+        "fin": 6.84
+      },
+      {
+        "texto": "agenda",
+        "inicio": 6.88,
+        "fin": 7.28
+      },
+      {
+        "texto": "de",
+        "inicio": 7.32,
+        "fin": 7.36
+      },
+      {
+        "texto": "Internet:",
+        "inicio": 7.44,
+        "fin": 8.4
+      },
+      {
+        "texto": "busca",
+        "inicio": 8.48,
+        "fin": 8.88
+      },
+      {
+        "texto": "qué",
+        "inicio": 8.96,
+        "fin": 9.04
+      },
+      {
+        "texto": "dirección",
+        "inicio": 9.16,
+        "fin": 9.52
+      },
+      {
+        "texto": "IP",
+        "inicio": 9.68,
+        "fin": 9.92
+      },
+      {
+        "texto": "le",
+        "inicio": 10,
+        "fin": 10.08
+      },
+      {
+        "texto": "corresponde.",
+        "inicio": 10.16,
+        "fin": 11.12
+      },
+      {
+        "texto": "Así",
+        "inicio": 11.24,
+        "fin": 11.52
+      },
+      {
+        "texto": "el",
+        "inicio": 11.6,
+        "fin": 11.68
+      },
+      {
+        "texto": "navegador",
+        "inicio": 11.76,
+        "fin": 12.24
+      },
+      {
+        "texto": "sabe",
+        "inicio": 12.28,
+        "fin": 12.56
+      },
+      {
+        "texto": "a",
+        "inicio": 12.6,
+        "fin": 12.64
+      },
+      {
+        "texto": "dónde",
+        "inicio": 12.68,
+        "fin": 12.88
+      },
+      {
+        "texto": "dirigirse.",
+        "inicio": 12.96,
+        "fin": 13.68
+      }
+    ],
+    [
+      {
+        "texto": "Con",
+        "inicio": 0,
+        "fin": 0.16
+      },
+      {
+        "texto": "esa",
+        "inicio": 0.24,
+        "fin": 0.32
+      },
+      {
+        "texto": "dirección",
+        "inicio": 0.4,
+        "fin": 0.88
+      },
+      {
+        "texto": "IP,",
+        "inicio": 1.04,
+        "fin": 1.92
+      },
+      {
+        "texto": "el",
+        "inicio": 1.96,
+        "fin": 2
+      },
+      {
+        "texto": "navegador",
+        "inicio": 2.08,
+        "fin": 2.56
+      },
+      {
+        "texto": "ya",
+        "inicio": 2.72,
+        "fin": 2.88
+      },
+      {
+        "texto": "puede",
+        "inicio": 2.96,
+        "fin": 3.2
+      },
+      {
+        "texto": "llegar",
+        "inicio": 3.28,
+        "fin": 3.52
+      },
+      {
+        "texto": "al",
+        "inicio": 3.56,
+        "fin": 3.6
+      },
+      {
+        "texto": "servidor.",
+        "inicio": 3.68,
+        "fin": 4.24
+      },
+      {
+        "texto": "Y",
+        "inicio": 4.72,
+        "fin": 4.8
+      },
+      {
+        "texto": "si",
+        "inicio": 4.84,
+        "fin": 4.88
+      },
+      {
+        "texto": "la",
+        "inicio": 4.96,
+        "fin": 5.04
+      },
+      {
+        "texto": "página",
+        "inicio": 5.12,
+        "fin": 5.44
+      },
+      {
+        "texto": "usa",
+        "inicio": 5.52,
+        "fin": 5.76
+      },
+      {
+        "texto": "HTTPS,",
+        "inicio": 6,
+        "fin": 7.2
+      },
+      {
+        "texto": "antes",
+        "inicio": 7.44,
+        "fin": 7.76
+      },
+      {
+        "texto": "de",
+        "inicio": 7.8,
+        "fin": 7.84
+      },
+      {
+        "texto": "intercambiar",
+        "inicio": 7.96,
+        "fin": 8.4
+      },
+      {
+        "texto": "información",
+        "inicio": 8.56,
+        "fin": 9.04
+      },
+      {
+        "texto": "se",
+        "inicio": 9.2,
+        "fin": 9.28
+      },
+      {
+        "texto": "establece",
+        "inicio": 9.36,
+        "fin": 9.84
+      },
+      {
+        "texto": "una",
+        "inicio": 9.92,
+        "fin": 10
+      },
+      {
+        "texto": "conexión",
+        "inicio": 10.08,
+        "fin": 10.48
+      },
+      {
+        "texto": "segura",
+        "inicio": 10.64,
+        "fin": 11.12
+      },
+      {
+        "texto": "y",
+        "inicio": 11.2,
+        "fin": 11.28
+      },
+      {
+        "texto": "cifrada",
+        "inicio": 11.36,
+        "fin": 11.92
+      },
+      {
+        "texto": "con",
+        "inicio": 12,
+        "fin": 12.08
+      },
+      {
+        "texto": "el",
+        "inicio": 12.16,
+        "fin": 12.2
+      },
+      {
+        "texto": "servidor",
+        "inicio": 12.24,
+        "fin": 12.64
+      },
+      {
+        "texto": "web.",
+        "inicio": 12.72,
+        "fin": 13.2
+      }
+    ],
+    [
+      {
+        "texto": "Ahora",
+        "inicio": 0,
+        "fin": 0.32
+      },
+      {
+        "texto": "el",
+        "inicio": 0.36,
+        "fin": 0.4
+      },
+      {
+        "texto": "navegador",
+        "inicio": 0.48,
+        "fin": 0.96
+      },
+      {
+        "texto": "envía",
+        "inicio": 1.08,
+        "fin": 1.36
+      },
+      {
+        "texto": "una",
+        "inicio": 1.44,
+        "fin": 1.52
+      },
+      {
+        "texto": "solicitud",
+        "inicio": 1.6,
+        "fin": 2.24
+      },
+      {
+        "texto": "HTTP:",
+        "inicio": 2.32,
+        "fin": 3.44
+      },
+      {
+        "texto": "un",
+        "inicio": 3.52,
+        "fin": 3.6
+      },
+      {
+        "texto": "GET",
+        "inicio": 3.68,
+        "fin": 4
+      },
+      {
+        "texto": "que",
+        "inicio": 4.08,
+        "fin": 4.16
+      },
+      {
+        "texto": "pide",
+        "inicio": 4.24,
+        "fin": 4.4
+      },
+      {
+        "texto": "la",
+        "inicio": 4.48,
+        "fin": 4.56
+      },
+      {
+        "texto": "página.",
+        "inicio": 4.64,
+        "fin": 5.52
+      },
+      {
+        "texto": "El",
+        "inicio": 5.56,
+        "fin": 5.6
+      },
+      {
+        "texto": "servidor",
+        "inicio": 5.68,
+        "fin": 6.08
+      },
+      {
+        "texto": "la",
+        "inicio": 6.16,
+        "fin": 6.24
+      },
+      {
+        "texto": "procesa",
+        "inicio": 6.32,
+        "fin": 6.88
+      },
+      {
+        "texto": "y",
+        "inicio": 6.92,
+        "fin": 6.96
+      },
+      {
+        "texto": "responde",
+        "inicio": 7.04,
+        "fin": 7.52
+      },
+      {
+        "texto": "200",
+        "inicio": 7.68,
+        "fin": 8.32
+      },
+      {
+        "texto": "OK,",
+        "inicio": 8.56,
+        "fin": 9.2
+      },
+      {
+        "texto": "que",
+        "inicio": 9.24,
+        "fin": 9.28
+      },
+      {
+        "texto": "significa",
+        "inicio": 9.36,
+        "fin": 9.84
+      },
+      {
+        "texto": "que",
+        "inicio": 9.92,
+        "fin": 10
+      },
+      {
+        "texto": "todo",
+        "inicio": 10.16,
+        "fin": 10.4
+      },
+      {
+        "texto": "salió",
+        "inicio": 10.44,
+        "fin": 10.72
+      },
+      {
+        "texto": "bien,",
+        "inicio": 10.8,
+        "fin": 11.2
+      },
+      {
+        "texto": "junto",
+        "inicio": 11.28,
+        "fin": 11.52
+      },
+      {
+        "texto": "con",
+        "inicio": 11.6,
+        "fin": 11.76
+      },
+      {
+        "texto": "el",
+        "inicio": 11.8,
+        "fin": 11.84
+      },
+      {
+        "texto": "HTML.",
+        "inicio": 12,
+        "fin": 13.2
+      },
+      {
+        "texto": "Después",
+        "inicio": 13.52,
+        "fin": 13.92
+      },
+      {
+        "texto": "el",
+        "inicio": 14,
+        "fin": 14.08
+      },
+      {
+        "texto": "navegador",
+        "inicio": 14.16,
+        "fin": 14.56
+      },
+      {
+        "texto": "pide",
+        "inicio": 14.64,
+        "fin": 14.88
+      },
+      {
+        "texto": "también",
+        "inicio": 14.96,
+        "fin": 15.28
+      },
+      {
+        "texto": "el",
+        "inicio": 15.36,
+        "fin": 15.44
+      },
+      {
+        "texto": "CSS,",
+        "inicio": 15.52,
+        "fin": 16.48
+      },
+      {
+        "texto": "el",
+        "inicio": 16.52,
+        "fin": 16.56
+      },
+      {
+        "texto": "JavaScript",
+        "inicio": 16.64,
+        "fin": 17.28
+      },
+      {
+        "texto": "y",
+        "inicio": 17.44,
+        "fin": 17.52
+      },
+      {
+        "texto": "las",
+        "inicio": 17.6,
+        "fin": 17.68
+      },
+      {
+        "texto": "imágenes.",
+        "inicio": 17.76,
+        "fin": 18.56
+      }
+    ],
+    [
+      {
+        "texto": "Finalmente,",
+        "inicio": 0,
+        "fin": 0.88
+      },
+      {
+        "texto": "el",
+        "inicio": 0.92,
+        "fin": 0.96
+      },
+      {
+        "texto": "navegador",
+        "inicio": 1.04,
+        "fin": 1.52
+      },
+      {
+        "texto": "interpreta",
+        "inicio": 1.76,
+        "fin": 2.16
+      },
+      {
+        "texto": "el",
+        "inicio": 2.24,
+        "fin": 2.32
+      },
+      {
+        "texto": "HTML,",
+        "inicio": 2.48,
+        "fin": 3.84
+      },
+      {
+        "texto": "aplica",
+        "inicio": 3.92,
+        "fin": 4.32
+      },
+      {
+        "texto": "los",
+        "inicio": 4.4,
+        "fin": 4.48
+      },
+      {
+        "texto": "estilos",
+        "inicio": 4.6,
+        "fin": 4.96
+      },
+      {
+        "texto": "CSS",
+        "inicio": 5.12,
+        "fin": 5.92
+      },
+      {
+        "texto": "y",
+        "inicio": 6.08,
+        "fin": 6.16
+      },
+      {
+        "texto": "ejecuta",
+        "inicio": 6.24,
+        "fin": 6.72
+      },
+      {
+        "texto": "JavaScript.",
+        "inicio": 6.8,
+        "fin": 7.52
+      },
+      {
+        "texto": "Organiza",
+        "inicio": 8,
+        "fin": 8.48
+      },
+      {
+        "texto": "todos",
+        "inicio": 8.56,
+        "fin": 8.88
+      },
+      {
+        "texto": "esos",
+        "inicio": 8.96,
+        "fin": 9.12
+      },
+      {
+        "texto": "elementos",
+        "inicio": 9.2,
+        "fin": 9.84
+      },
+      {
+        "texto": "y",
+        "inicio": 9.88,
+        "fin": 9.92
+      },
+      {
+        "texto": "construye",
+        "inicio": 10,
+        "fin": 10.48
+      },
+      {
+        "texto": "la",
+        "inicio": 10.56,
+        "fin": 10.64
+      },
+      {
+        "texto": "página",
+        "inicio": 10.72,
+        "fin": 11.04
+      },
+      {
+        "texto": "que",
+        "inicio": 11.12,
+        "fin": 11.2
+      },
+      {
+        "texto": "ves",
+        "inicio": 11.28,
+        "fin": 11.44
+      },
+      {
+        "texto": "en",
+        "inicio": 11.48,
+        "fin": 11.52
+      },
+      {
+        "texto": "tu",
+        "inicio": 11.6,
+        "fin": 11.68
+      },
+      {
+        "texto": "pantalla.",
+        "inicio": 11.76,
+        "fin": 12.4
+      }
+    ],
+    [
+      {
+        "texto": "Y",
+        "inicio": 0,
+        "fin": 0.04
+      },
+      {
+        "texto": "todo",
+        "inicio": 0.08,
+        "fin": 0.34
+      },
+      {
+        "texto": "esto",
+        "inicio": 0.4,
+        "fin": 0.66
+      },
+      {
+        "texto": "sucede",
+        "inicio": 0.72,
+        "fin": 1.2
+      },
+      {
+        "texto": "cada",
+        "inicio": 1.28,
+        "fin": 1.52
+      },
+      {
+        "texto": "vez",
+        "inicio": 1.6,
+        "fin": 1.76
+      },
+      {
+        "texto": "que",
+        "inicio": 1.84,
+        "fin": 1.92
+      },
+      {
+        "texto": "visitas",
+        "inicio": 2,
+        "fin": 2.4
+      },
+      {
+        "texto": "una",
+        "inicio": 2.48,
+        "fin": 2.56
+      },
+      {
+        "texto": "página",
+        "inicio": 2.64,
+        "fin": 2.88
+      },
+      {
+        "texto": "web.",
+        "inicio": 2.96,
+        "fin": 3.68
+      },
+      {
+        "texto": "Ahora",
+        "inicio": 3.72,
+        "fin": 3.92
+      },
+      {
+        "texto": "dime:",
+        "inicio": 3.96,
+        "fin": 4.48
+      },
+      {
+        "texto": "¿sabías",
+        "inicio": 4.72,
+        "fin": 5.04
+      },
+      {
+        "texto": "que",
+        "inicio": 5.12,
+        "fin": 5.2
+      },
+      {
+        "texto": "el",
+        "inicio": 5.24,
+        "fin": 5.28
+      },
+      {
+        "texto": "DNS",
+        "inicio": 5.44,
+        "fin": 6.16
+      },
+      {
+        "texto": "tenía",
+        "inicio": 6.24,
+        "fin": 6.4
+      },
+      {
+        "texto": "un",
+        "inicio": 6.44,
+        "fin": 6.48
+      },
+      {
+        "texto": "papel",
+        "inicio": 6.56,
+        "fin": 6.96
+      },
+      {
+        "texto": "tan",
+        "inicio": 7.08,
+        "fin": 7.2
+      },
+      {
+        "texto": "importante?",
+        "inicio": 7.36,
+        "fin": 8.24
+      },
+      {
+        "texto": "Déjamelo",
+        "inicio": 8.32,
+        "fin": 8.64
+      },
+      {
+        "texto": "en",
+        "inicio": 8.68,
+        "fin": 8.72
+      },
+      {
+        "texto": "los",
+        "inicio": 8.76,
+        "fin": 8.8
+      },
+      {
+        "texto": "comentarios",
+        "inicio": 8.88,
+        "fin": 9.52
+      },
+      {
+        "texto": "y",
+        "inicio": 9.6,
+        "fin": 9.68
+      },
+      {
+        "texto": "sígueme",
+        "inicio": 9.76,
+        "fin": 10.08
+      },
+      {
+        "texto": "en",
+        "inicio": 10.16,
+        "fin": 10.24
+      },
+      {
+        "texto": "DevMorado",
+        "inicio": 10.36,
+        "fin": 10.88
+      },
+      {
+        "texto": "para",
+        "inicio": 10.96,
+        "fin": 11.04
+      },
+      {
+        "texto": "descubrir",
+        "inicio": 11.12,
+        "fin": 11.68
+      },
+      {
+        "texto": "cómo",
+        "inicio": 11.76,
+        "fin": 11.92
+      },
+      {
+        "texto": "funciona",
+        "inicio": 12,
+        "fin": 12.4
+      },
+      {
+        "texto": "el",
+        "inicio": 12.48,
+        "fin": 12.56
+      },
+      {
+        "texto": "mundo",
+        "inicio": 12.64,
+        "fin": 12.88
+      },
+      {
+        "texto": "del",
+        "inicio": 12.96,
+        "fin": 13.04
+      },
+      {
+        "texto": "desarrollo",
+        "inicio": 13.12,
+        "fin": 13.52
+      },
+      {
+        "texto": "de",
+        "inicio": 13.6,
+        "fin": 13.68
+      },
+      {
+        "texto": "software.",
+        "inicio": 13.76,
+        "fin": 14.4
+      }
+    ]
+  ]
+}

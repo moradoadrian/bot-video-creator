@@ -1,0 +1,157 @@
+{
+  "canal": "codigo",
+  "lenguaje": "javascript",
+  "slug": "que-pasa-cuando-escribes-una-url-y-presionas-enter",
+  "tema": "Qué pasa cuando escribes una URL y presionas ENTER",
+  "etiqueta": "Desarrollo web desde cero",
+  "gancho": {
+    "titulo": "¿Qué pasa cuando presionas ENTER?",
+    "narracion": "Escribes Google.com en tu navegador, presionas ENTER y en segundos aparece una página web. Pero ¿sabes todo lo que acaba de suceder detrás de escena? Te lo voy a mostrar.",
+    "visual": {
+      "tipo": "flujo",
+      "pasos": [
+        {
+          "texto": "google.com",
+          "detalle": "Lo que escribes",
+          "icono": "cursor",
+          "clave": "Google"
+        },
+        {
+          "texto": "ENTER",
+          "icono": "rayo"
+        },
+        {
+          "texto": "Página web",
+          "detalle": "En segundos",
+          "icono": "pantalla",
+          "clave": "página"
+        }
+      ]
+    }
+  },
+  "escenas": [
+    {
+      "titulo": "Todo comienza con una URL",
+      "narracion": "Primero, escribes una dirección web, también conocida como URL. Pero tu navegador no sabe dónde vive esa página: necesita encontrar a qué servidor debe conectarse para obtenerla.",
+      "codigo": "https://www.google.com",
+      "resaltar": [
+        1
+      ],
+      "archivo": "barra de direcciones"
+    },
+    {
+      "titulo": "El DNS encuentra la dirección",
+      "narracion": "Aquí entra en juego un sistema clave. El dominio que escribiste pasa por el DNS, que funciona como la agenda de Internet: busca qué dirección IP le corresponde. Así el navegador sabe a dónde dirigirse.",
+      "visual": {
+        "tipo": "recorrido",
+        "pasos": [
+          {
+            "texto": "google.com",
+            "detalle": "El dominio",
+            "icono": "cursor",
+            "clave": "dominio"
+          },
+          {
+            "texto": "DNS",
+            "detalle": "La agenda de Internet",
+            "icono": "lista"
+          },
+          {
+            "texto": "203.0.113.10",
+            "detalle": "Dirección IP (ejemplo)",
+            "icono": "servidor",
+            "clave": "dirección IP"
+          }
+        ],
+        "final": {
+          "texto": "¡Destino encontrado!",
+          "icono": "check",
+          "clave": "dirigirse"
+        }
+      }
+    },
+    {
+      "titulo": "El navegador contacta al servidor",
+      "narracion": "Con esa dirección IP, el navegador ya puede llegar al servidor. Y si la página usa HTTPS, antes de intercambiar información se establece una conexión segura y cifrada con el servidor web.",
+      "visual": {
+        "tipo": "recorrido",
+        "pasos": [
+          {
+            "texto": "Navegador",
+            "icono": "pantalla"
+          },
+          {
+            "texto": "Conexión HTTPS",
+            "detalle": "Segura y cifrada",
+            "icono": "candado",
+            "clave": "HTTPS"
+          },
+          {
+            "texto": "Servidor web",
+            "icono": "servidor",
+            "clave": "servidor web"
+          }
+        ]
+      }
+    },
+    {
+      "titulo": "El servidor responde",
+      "narracion": "Ahora el navegador envía una solicitud HTTP: un GET que pide la página. El servidor la procesa y responde 200 OK, que significa que todo salió bien, junto con el HTML. Después el navegador pide también el CSS, el JavaScript y las imágenes.",
+      "codigo": "GET / HTTP/1.1\nHost: www.google.com\n\nHTTP/1.1 200 OK\nContent-Type: text/html",
+      "resaltar": [
+        1,
+        4
+      ],
+      "salida": "200 OK",
+      "archivo": "solicitud.http"
+    },
+    {
+      "titulo": "La página cobra vida",
+      "narracion": "Finalmente, el navegador interpreta el HTML, aplica los estilos CSS y ejecuta JavaScript. Organiza todos esos elementos y construye la página que ves en tu pantalla.",
+      "visual": {
+        "tipo": "suma",
+        "partes": [
+          {
+            "texto": "HTML",
+            "detalle": "Estructura",
+            "icono": "codigo"
+          },
+          {
+            "texto": "CSS",
+            "detalle": "Estilos",
+            "icono": "gota"
+          },
+          {
+            "texto": "JavaScript",
+            "detalle": "Interacción",
+            "icono": "rayo"
+          }
+        ],
+        "resultado": {
+          "texto": "Página web",
+          "detalle": "Lista en tu pantalla",
+          "icono": "pantalla",
+          "clave": "página"
+        }
+      }
+    }
+  ],
+  "cierre": {
+    "titulo": "¡Todo esto en segundos!",
+    "narracion": "Y todo esto sucede cada vez que visitas una página web. Ahora dime: ¿sabías que el DNS tenía un papel tan importante? Déjamelo en los comentarios y sígueme en DevMorado para descubrir cómo funciona el mundo del desarrollo de software."
+  },
+  "descripcion": "¿Qué sucede cuando escribes una URL y presionas ENTER? Descubre cómo funcionan el DNS, las direcciones IP, los servidores, HTTPS, HTTP y cómo el navegador construye una página web. Todo explicado con animaciones.",
+  "hashtags": [
+    "#DesarrolloWeb",
+    "#Programacion",
+    "#DNS",
+    "#Internet",
+    "#Frontend",
+    "#Backend",
+    "#DevMorado"
+  ],
+  "portada": {
+    "titulo": "¿QUÉ PASA AL PRESIONAR ENTER?",
+    "frase": "Así funciona Internet"
+  }
+}

@@ -1,0 +1,87 @@
+{
+  "canal": "codigo",
+  "lenguaje": "javascript",
+  "slug": "que-es-una-skill-en-inteligencia-artificial",
+  "tema": "¿Qué es una Skill en inteligencia artificial?",
+  "etiqueta": "Inteligencia artificial",
+  "gancho": {
+    "titulo": "¿Qué es una Skill en IA?",
+    "narracion": "¿Sabías que puedes enseñarle nuevas habilidades a una inteligencia artificial sin entrenar un modelo desde cero? Eso se conoce como una Skill.",
+    "visual": {
+      "tipo": "versus",
+      "lados": [
+        { "texto": "Entrenar un modelo", "detalle": "Datos y mucho tiempo", "icono": "engrane", "clave": "entrenar" },
+        { "texto": "Una Skill", "detalle": "Solo instrucciones", "icono": "lista", "clave": "skill" }
+      ]
+    }
+  },
+  "escenas": [
+    {
+      "titulo": "¿Qué es una Skill?",
+      "narracion": "Una Skill, o habilidad, es un paquete de instrucciones que le enseña a una IA cómo hacer una tarea específica. Junta las instrucciones, las buenas prácticas y los procedimientos en un solo lugar. Y eso es una Skill.",
+      "visual": {
+        "tipo": "suma",
+        "partes": [
+          { "texto": "Instrucciones", "icono": "lista", "clave": "instrucciones" },
+          { "texto": "Buenas prácticas", "icono": "check", "clave": "buenas practicas" },
+          { "texto": "Procedimientos", "icono": "engrane", "clave": "procedimientos" }
+        ],
+        "resultado": { "texto": "Skill", "detalle": "Una nueva habilidad", "icono": "rayo", "clave": "eso es una skill" }
+      }
+    },
+    {
+      "titulo": "¿Para qué sirve?",
+      "narracion": "Por ejemplo, puedes crear una Skill para que la IA genere documentación de tu código, revise errores en tus proyectos, cree componentes de Angular o analice archivos y genere reportes.",
+      "visual": {
+        "tipo": "tarjetas",
+        "items": [
+          { "texto": "Documentación", "detalle": "De tu código", "icono": "formulario", "clave": "documentacion" },
+          { "texto": "Revisar errores", "detalle": "En tus proyectos", "icono": "escudo", "clave": "errores" },
+          { "texto": "Angular", "detalle": "Crear componentes", "icono": "codigo", "clave": "angular" },
+          { "texto": "Reportes", "detalle": "Analizar archivos", "icono": "lista", "clave": "reportes" }
+        ]
+      }
+    },
+    {
+      "titulo": "Así se ve por dentro",
+      "narracion": "Por dentro, una Skill suele ser una carpeta con un archivo llamado SKILL punto md. Arriba lleva un nombre y una descripción: así la IA sabe cuándo usarla. Abajo van las instrucciones, paso a paso.",
+      "archivo": "SKILL.md",
+      "codigo": "---\nname: angular\ndescription: Crea componentes\n  de Angular con buenas prácticas\n---\n# Instrucciones\n1. Usa componentes standalone\n2. Un archivo por componente\n3. Agrega pruebas unitarias",
+      "resaltar": [2, 3, 4]
+    },
+    {
+      "titulo": "Ejemplo: Claude y Angular",
+      "narracion": "Imagina que usas Claude con una Skill de Angular. Tú le pides un componente. Claude detecta que esa Skill sirve para la tarea y la carga. Sigue sus instrucciones y buenas prácticas, y te entrega el código como tú lo quieres, sin que se lo expliques cada vez.",
+      "visual": {
+        "tipo": "flujo",
+        "pasos": [
+          { "texto": "Tú pides", "detalle": "Un componente", "icono": "usuario", "clave": "le pides" },
+          { "texto": "Carga la Skill", "detalle": "La de Angular", "icono": "capas", "clave": "la carga" },
+          { "texto": "Sigue el manual", "detalle": "Instrucciones y prácticas", "icono": "lista", "clave": "sigue" }
+        ],
+        "final": { "texto": "Código a tu manera", "detalle": "Sin repetir lo mismo", "icono": "check", "clave": "te entrega" }
+      }
+    },
+    {
+      "titulo": "Un manual de trabajo",
+      "narracion": "Es como darle un manual de trabajo especializado. Sin Skill, le explicas todo cada vez que le pides algo. Con Skill, el manual ya está listo y la IA lo sigue.",
+      "visual": {
+        "tipo": "versus",
+        "lados": [
+          { "texto": "Sin Skill", "detalle": "Explicas todo cada vez", "icono": "usuario", "clave": "sin skill" },
+          { "texto": "Con Skill", "detalle": "El manual ya está listo", "icono": "lista", "clave": "con skill" }
+        ]
+      }
+    }
+  ],
+  "cierre": {
+    "titulo": "¿Ya las conocías?",
+    "narracion": "En pocas palabras: una Skill le da a la IA instrucciones especializadas para hacer mejor ciertas tareas. ¿Ya conocías las Skills o es la primera vez que escuchas este término? Sígueme en DevMorado para aprender más de inteligencia artificial y programación."
+  },
+  "descripcion": "Una Skill es un paquete de instrucciones que le enseña a una IA cómo hacer una tarea específica, sin entrenar un modelo desde cero. Te explico qué es, para qué sirve, cómo se ve un archivo SKILL.md y un ejemplo con Claude y Angular.",
+  "hashtags": ["#inteligenciaartificial", "#ia", "#claude", "#skills", "#programacion", "#angular", "#DevMorado"],
+  "portada": {
+    "titulo": "¿Qué es una Skill en IA?",
+    "frase": "Enséñale nuevas habilidades a la IA"
+  }
+}
