@@ -1,5 +1,5 @@
 /** Cálculos del depurador visual, compartidos por la plantilla y los validadores. */
-import { ALTO_ANIMACION } from './medidas';
+import { ALTO_ANIMACION, RESPIRO_ANIMACION } from './medidas';
 import { MarcaDepurador, Palabra, Traza } from './types';
 
 /** Inicio de cada paso cuando la narración no marca otro momento: se reparten hasta casi el final. */
@@ -113,11 +113,11 @@ export const medidasDepurador = (lineas: string[], traza: Traza, conAnimacion = 
   );
   const altoConsola = Math.max(1, Math.min(traza.salida.length, MAX_CONSOLA_DEPURADOR)) * ALTO_FILA;
   const altoPanel = conAnimacion ? ALTO_ANIMACION : RELLENO_PANEL + TITULO_PANEL + Math.max(altoVariables, altoConsola);
-  const disponible = TOPE_DISPONIBLE - SEPARACION - altoPanel - CABECERA;
+  const disponible = TOPE_DISPONIBLE - SEPARACION - altoPanel - CABECERA - (conAnimacion ? RESPIRO_ANIMACION : 0);
   const columnas = Math.max(1, ...lineas.map((l) => l.length));
   const porAncho = ANCHO_CODIGO / (columnas * ANCHO_CARACTER);
   const porAlto = disponible / Math.max(1, lineas.length) / INTERLINEA;
-  const fs = Math.max(FS_MIN, Math.min(FS_MAX, porAncho, porAlto));
+  const fs = Math.max(conAnimacion ? 34 : FS_MIN, Math.min(FS_MAX, porAncho, porAlto));
   const lh = fs * INTERLINEA;
-  return { fs, lh, altoPanel, desborda: lineas.length * lh > disponible };
+  return { fs, lh, altoPanel, desborda: lineas.length * lh > disponible + 0.5 };
 };

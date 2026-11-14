@@ -3,15 +3,26 @@ import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import { inicioDePasos, pasoActual, recortar, tiemposDePasos } from '../src/depurador';
 import { anguloMarcador, momentosPartes, valorVisible, vueltasDeConsola } from '../src/animaciones/ciclo';
-import { planCiclo } from '../src/animaciones/plan';
-import { calcularCiclo } from './animaciones';
+import { planAnimacion, planCiclo, ritmoConAnimacion } from '../src/animaciones/plan';
+import { anclasDeClaves, lineasDeConsola, tiemposPorPasos } from '../src/animaciones/pasos';
+import {
+  calcularArreglo,
+  calcularCiclo,
+  calcularCondicion,
+  calcularFuncion,
+  calcularObjeto,
+  calcularVariable,
+  elementosDe,
+  partesDeNivel,
+  propiedadesDe,
+} from './animaciones';
 import { medidasEditor } from '../src/medidas';
 import { agruparPalabras, indiceActual, palabrasDeAlineacion } from '../src/subtitulos';
 import { clavesDe, momentosClave } from '../src/momentos';
 import { duracionTecleo, iniciosDeLinea, lineaDelCursor, momentosDeTecla, visiblesPorLinea } from '../src/tecleo';
 import { esClave, palabrasClave } from '../src/subtitulos';
 import { golpesDeCamara, SEPARACION_MIN, ZOOM_ENTRADA, ZOOM_GOLPE, ZOOM_LENTO, zoomCamara } from '../src/camara';
-import { EscenaCodigo, GuionCodigo, PasoTraza, Traza } from '../src/types';
+import { CicloCalculado, EscenaCodigo, FuncionCalculada, GuionCodigo, PasoTraza, Traza } from '../src/types';
 import { agregarTrazas, conReintentos, ejecutar, leerGuion, parsearGuion, slugify, verificarCodigo, verificarVisuales } from './lib';
 import { formatoValor, trazar } from './traza';
 import { camaraEn, geometria, llavesCamara, paqueteEn, planoCerrado, planoGeneral, tiemposRecorrido } from '../src/recorrido';
@@ -540,12 +551,146 @@ test('planCiclo usa los pasos reales del depurador cuando la escena tiene depura
   assert.ok(e.traza && e.animacion?.calculado);
   const plan = planCiclo(e, 19.15)!;
   const { tiempos } = tiemposDePasos(e.traza!, e.depurar!.marcas!, e.narracion, 19.15, inicioDePasos(3));
-  assert.deepEqual(plan.vueltas.map((v) => v.revision), e.animacion!.calculado!.vueltas.map((v) => tiempos[v.revision]));
+  assert.deepEqual(plan.vueltas.map((v) => v.revision), (e.animacion!.calculado as CicloCalculado).vueltas.map((v) => tiempos[v.revision]));
   assert.ok(plan.partes.cambio <= plan.vueltas[0].revision);
 });
 
 test('los guiones de muestra con animación no dan avisos', () => {
   for (const slug of ['el-ciclo-for-animado', 'contar-hacia-atras-animado']) {
+    const g = leerGuion(slug) as GuionCodigo;
+    assert.deepEqual(verificarCodigo(g.escenas, false), [], slug);
+  }
+});
+
+// ── Animaciones paso a paso: variable, arreglo, condición, función y objeto ──
+
+test('partesDeNivel, elementosDe y propiedadesDe leen los valores de la traza sin cortar dentro de comillas', () => {
+  assert.deepEqual(partesDeNivel('1, [2, 3], "a, b"'), ['1', '[2, 3]', '"a, b"']);
+  assert.deepEqual(elementosDe('["pan", "té"]'), ['"pan"', '"té"']);
+  assert.equal(elementosDe('3'), null);
+  assert.deepEqual(propiedadesDe('{a: 1, b: {c: 2}}'), [
+    { clave: 'a', valor: '1' },
+    { clave: 'b', valor: '{c: 2}' },
+  ]);
+});
+
+test('calcularVariable registra cuándo entra y cambia cada valor, y cuándo sale', () => {
+  const c = calcularVariable('let edad = 20;\nedad = edad + 1;\nconst nombre = "Ana";').calculado!;
+  assert.deepEqual(
+    c.cajas.map((x) => [x.nombre, x.declaracion, x.cambios.map((k) => k.valor)]),
+    [
+      ['edad', 'let', ['20', '21']],
+      ['nombre', 'const', ['"Ana"']],
+    ],
+  );
+  const bloque = calcularVariable('{\n  let x = 1;\n}\nconsole.log("fuera");', { variables: ['x'] }).calculado!;
+  assert.ok(bloque.cajas[0].sale !== undefined);
+  assert.match(calcularVariable('let a = 1;', { variables: ['b'] }).error!, /no declara "b"/);
+});
+
+test('calcularArreglo conserva cada casilla en push, pop, shift y unshift, y sigue la casilla que se lee', () => {
+  const c = calcularArreglo('const f = ["a", "b"];\nf.push("c");\nf.shift();\nf.unshift("z");\nf.pop();\nconsole.log(f[1]);').calculado!;
+  assert.deepEqual(c.estados.map((e) => e.accion), ['crea', 'push', 'shift', 'unshift', 'pop']);
+  assert.deepEqual(c.estados[2].celdas.map((x) => x.id), [1, 2]);
+  assert.deepEqual(c.estados[4].celdas.map((x) => x.valor), ['"z"', '"b"']);
+  assert.equal(c.foco[c.foco.length - 2], 1);
+  const deOf = calcularArreglo('const n = [3, 5];\nfor (const x of n) {\n  console.log(x);\n}\nconsole.log("fin");').calculado!;
+  assert.deepEqual(deOf.foco, [null, 0, 0, 1, 1, null, null]);
+});
+
+test('calcularCondicion registra cada evaluación con su rama y sus valores', () => {
+  const c = calcularCondicion('for (let i = 0; i < 3; i++) {\n  if (i % 2 === 0) {\n    console.log(i);\n  }\n}').calculado!;
+  assert.deepEqual(c.evaluaciones.map((e) => [e.rama, e.sustituida]), [
+    ['si', '0 % 2 === 0'],
+    ['no', '1 % 2 === 0'],
+    ['si', '2 % 2 === 0'],
+  ]);
+  assert.equal(c.si, 'imprime i');
+  assert.equal(c.no, null);
+  const conElse = calcularCondicion('const e = 15;\nif (e >= 18) {\n  console.log("sí");\n} else {\n  console.log("no");\n}').calculado!;
+  assert.equal(conElse.evaluaciones[0].rama, 'no');
+  assert.equal(conElse.no, 'imprime "no"');
+});
+
+test('calcularFuncion registra argumentos y resultado de cada llamada', () => {
+  const c = calcularFuncion('function sumar(a, b) {\n  return a + b;\n}\nconsole.log(sumar(2, 3));\nconst r = sumar(10, 5);').calculado!;
+  assert.deepEqual(c.parametros, ['a', 'b']);
+  assert.deepEqual(c.llamadas.map((l) => [l.argumentos, l.resultado]), [
+    [['2', '3'], '5'],
+    [['10', '5'], '15'],
+  ]);
+  assert.ok(c.llamadas.every((l) => l.sale > l.entra));
+  const flecha = calcularFuncion('const doble = (n) => n * 2;\nconsole.log(doble(4));').calculado!;
+  assert.equal(flecha.llamadas[0].resultado, '8');
+  assert.match(calcularFuncion('function f() {}').error!, /nunca se llama/);
+});
+
+test('calcularObjeto sigue propiedades nuevas, cambios y lecturas (no escrituras)', () => {
+  const c = calcularObjeto('const p = { nombre: "Rex", edad: 3 };\np.edad = 4;\np.raza = "pug";\nconsole.log(p.nombre);').calculado!;
+  assert.deepEqual(c.estados.map((e) => e.props.map((x) => `${x.clave}=${x.valor}`).join(' ')), [
+    'nombre="Rex" edad=3',
+    'nombre="Rex" edad=4',
+    'nombre="Rex" edad=4 raza="pug"',
+  ]);
+  assert.deepEqual(c.accesos.slice(0, 4), [null, null, null, 'nombre']);
+});
+
+test('verificarCodigo compara los datos escritos de cada tipo con la ejecución', () => {
+  const avisos = (codigo: string, animacion: EscenaCodigo['animacion'], salida?: string) =>
+    verificarCodigo([escena({ codigo, salida, animacion, narracion: 'Mira esto.' })], false);
+  assert.ok(contiene(avisos('const e = 15;\nif (e >= 18) {\n  e;\n}', { tipo: 'condicion', datos: { rama: 'si' } }), 'toma "no"'));
+  assert.ok(contiene(avisos('const f = (n) => n * 2;\nf(2);', { tipo: 'funcion', datos: { resultado: '5' } }), 'devuelve 4'));
+  assert.ok(contiene(avisos('const p = { a: 1 };', { tipo: 'objeto', datos: { propiedades: ['b'] } }), 'nunca tiene "b"'));
+  assert.ok(contiene(avisos('let n = 1;', { tipo: 'arreglo' }), 'no tiene un arreglo'));
+  assert.ok(contiene(avisos('let n = 1;', { tipo: 'variable', datos: { claves: ['ausente'] } }), 'la clave "ausente"'));
+});
+
+test('tiemposPorPasos reparte por peso, respeta las anclas y nunca retrocede', () => {
+  const pasos = [0, 0, 0, 1, 1, 2].map((s, i) => ({ l: i + 1, s }));
+  const libre = tiemposPorPasos(pasos, [3], [], 1, 6);
+  assert.equal(libre[0], 1);
+  assert.equal(libre[5], 6);
+  assert.ok(libre.every((t, i) => i === 0 || t >= libre[i - 1]));
+  // El evento y las líneas impresas pesan más que los pasos de trámite
+  assert.ok(libre[4] - libre[3] > libre[2] - libre[1]);
+  // Un ancla que retrocede en el tiempo se ignora
+  const anclado = tiemposPorPasos(pasos, [3], [{ paso: 3, t: 5 }, { paso: 4, t: 4 }], 1, 6);
+  assert.equal(anclado[3], 5);
+  assert.ok(anclado[2] < 5 && anclado[4] > 5);
+  assert.deepEqual(lineasDeConsola(pasos, libre, 2), [libre[3], libre[5]]);
+});
+
+test('anclasDeClaves une cada clave con su evento cuando la voz la dice', () => {
+  const narracion = 'Primero guardas veinte y luego cambia a veinticinco.';
+  const palabras = narracion.split(' ').map((texto, k) => ({ texto, inicio: k, fin: k + 0.5 }));
+  assert.deepEqual(anclasDeClaves([0, 1], ['veinte', 'cambia a'], narracion, 10, palabras), [
+    { paso: 0, t: 2 },
+    { paso: 1, t: 5 },
+  ]);
+  assert.deepEqual(anclasDeClaves([0], ['no aparece'], narracion, 10, palabras), []);
+});
+
+test('planAnimacion arma los tiempos de un tipo paso a paso y la consola sale en el paso que imprime', () => {
+  const g = agregarTrazas(leerGuion('animaciones-muestra') as GuionCodigo);
+  const e = g.escenas[3];
+  const plan = planAnimacion(e, 8)!;
+  assert.ok(plan.tiempos && !plan.ciclo);
+  const c = (e.animacion!.calculado as FuncionCalculada);
+  const ritmo = ritmoConAnimacion(e, 8)!;
+  const primeraImpresion = c.pasos.findIndex((p) => p.s > 0);
+  assert.equal(ritmo.lineas![0], plan.tiempos![primeraImpresion]);
+  assert.ok(plan.aparece <= plan.tiempos![0]);
+});
+
+test('parsearGuion acepta los seis tipos y rechaza datos mal formados', () => {
+  const g = leerGuion('animaciones-muestra') as GuionCodigo;
+  assert.deepEqual(g.escenas.map((e) => e.animacion?.tipo), ['variable', 'arreglo', 'condicion', 'funcion', 'objeto']);
+  const malo = { ...g, escenas: g.escenas.map((e, i) => (i === 2 ? { ...e, animacion: { tipo: 'condicion', datos: { rama: 'quizas' } } } : e)) };
+  assert.throws(() => parsearGuion(malo));
+});
+
+test('los guiones de muestra de la fase 2 no dan avisos', () => {
+  for (const slug of ['animaciones-muestra', '5-conceptos-animado', 'api-animado']) {
     const g = leerGuion(slug) as GuionCodigo;
     assert.deepEqual(verificarCodigo(g.escenas, false), [], slug);
   }

@@ -78,6 +78,8 @@ const VisualSchema = z.discriminatedUnion('tipo', [
 ]);
 
 const ClaveOpcional = z.string().min(1).optional();
+/** Palabras de la narración que anclan cada momento de la animación, en orden. */
+const ClavesEventos = z.array(z.string().min(1)).max(12).optional();
 
 /** Animación por concepto. Los datos son opcionales: lo demás sale de ejecutar el código. */
 export const AnimacionSchema = z.discriminatedUnion('tipo', [
@@ -90,6 +92,20 @@ export const AnimacionSchema = z.discriminatedUnion('tipo', [
         claves: z.object({ inicio: ClaveOpcional, condicion: ClaveOpcional, cambio: ClaveOpcional, vueltas: ClaveOpcional }).optional(),
       })
       .optional(),
+  }),
+  z.object({
+    tipo: z.literal('variable'),
+    datos: z.object({ variables: z.array(z.string().min(1)).min(1).max(3).optional(), claves: ClavesEventos }).optional(),
+  }),
+  z.object({ tipo: z.literal('arreglo'), datos: z.object({ nombre: z.string().min(1).optional(), claves: ClavesEventos }).optional() }),
+  z.object({ tipo: z.literal('condicion'), datos: z.object({ rama: z.enum(['si', 'no']).optional(), claves: ClavesEventos }).optional() }),
+  z.object({
+    tipo: z.literal('funcion'),
+    datos: z.object({ nombre: z.string().min(1).optional(), resultado: z.string().optional(), claves: ClavesEventos }).optional(),
+  }),
+  z.object({
+    tipo: z.literal('objeto'),
+    datos: z.object({ nombre: z.string().min(1).optional(), propiedades: z.array(z.string().min(1)).optional(), claves: ClavesEventos }).optional(),
   }),
 ]);
 
@@ -280,7 +296,7 @@ export const verificarCodigo = (escenas: EscenaCodigo[], corregir: boolean, dura
       if (medidasEditor(lineas, nSalida, conAnimacion).desborda) {
         avisos.push(
           conAnimacion
-            ? `${n}: el código no cabe junto a la animación sin tapar el subtítulo. Usa máximo 5 líneas de código.`
+            ? `${n}: el código no cabe junto a la animación sin tapar el subtítulo. Usa máximo 6 líneas de código.`
             : `${n}: el código y la consola tapan el subtítulo. Quita líneas de código o de salida.`,
         );
       }

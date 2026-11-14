@@ -3,7 +3,7 @@ import { duracionTecleo } from './tecleo';
 import { EscenaCodigo } from './types';
 
 /** Ritmo de la consola cuando hay una animación al lado: cada línea es una vuelta que se debe alcanzar a ver. */
-export type RitmoSalida = { inicio?: number; fin?: number };
+export type RitmoSalida = { inicio?: number; fin?: number; /** Segundo exacto de cada línea (lo marca la animación). */ lineas?: number[] };
 
 export const tiemposEditor = (e: EscenaCodigo, duracionSeg: number, ritmo?: RitmoSalida) => {
   const lineas = (e.codigo ?? '').split('\n');
@@ -22,8 +22,10 @@ export const tiemposEditor = (e: EscenaCodigo, duracionSeg: number, ritmo?: Ritm
     const fin = Math.max(tSalida + 0.3 * n, ritmo.fin ?? duracionSeg * 0.85);
     pasoSalida = Math.min(1.1, Math.max(0.3, (fin - tSalida) / n));
   }
+  const fijas = ritmo?.lineas?.length ? ritmo.lineas : null;
+  if (fijas) tSalida = fijas[0];
   /** Cuando sale la última línea de la consola: ahí se celebra. */
-  const tUltima = salida.length ? tSalida + (salida.length - 1) * pasoSalida : Infinity;
-  const tLinea = (i: number) => tSalida + i * pasoSalida;
+  const tUltima = salida.length ? (fijas ? fijas[Math.min(salida.length, fijas.length) - 1] : tSalida + (salida.length - 1) * pasoSalida) : Infinity;
+  const tLinea = (i: number) => (fijas ? (fijas[i] ?? fijas[fijas.length - 1]) : tSalida + i * pasoSalida);
   return { lineas, salida, inicio, durTecleo, finCodigo, tResaltar, tSalida, pasoSalida, tUltima, tLinea };
 };

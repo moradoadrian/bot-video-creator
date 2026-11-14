@@ -111,11 +111,25 @@ Una escena con código puede llevar `animacion`: una animación junto al editor 
 }
 ```
 
+Tipos (todos con `datos` opcional; `claves` son palabras de la narración, en orden, que hacen ocurrir cada momento cuando la voz las dice):
+
+| Tipo | Para qué código | Qué se ve | `datos` |
+|---|---|---|---|
+| `ciclo` | `for` o `while` | Pista circular con condición, cuerpo y cambio | `variable`, `vueltas`, `claves: { inicio, condicion, cambio, vueltas }` |
+| `variable` | declarar y cambiar valores | Cajas con etiqueta: el valor cae dentro, el viejo sale volando, la caja se apaga cuando la variable deja de existir | `variables` (máx. 3), `claves` (una por valor nuevo) |
+| `arreglo` | crear, `push`, `pop`, `shift`, `unshift`, `lista[i]`, `for...of` | Casillas con índice que entran, salen y se recorren; una flecha marca la que se lee | `nombre`, `claves` (una por cambio o lectura) |
+| `condicion` | un `if` (con o sin `else`) | Camino que se bifurca; la condición se llena con los valores reales y una ficha toma la rama | `rama` (`si`/`no`, la primera vez), `claves` (una por evaluación) |
+| `funcion` | una función con nombre | Máquina: los argumentos llenan los parámetros, los engranes giran y el resultado sale por abajo | `nombre`, `resultado` (de la primera llamada, p. ej. `"5"` o `"\"Hola\""`), `claves` (entra y regresa de cada llamada) |
+| `objeto` | crear, cambiar, agregar o leer propiedades | Ficha cuyas propiedades se despliegan; la que cambia voltea su valor y la que se lee se ilumina | `nombre`, `propiedades`, `claves` (una por cambio o lectura) |
+
+- Sin `depurar`, la línea que se ejecuta se marca en el editor y cada línea de consola sale en el paso real que la imprimió. Sin claves, los pasos se reparten a lo largo de la escena.
+- Ejemplo con los cinco tipos nuevos: `content/animaciones-muestra/guion.json`. Con voz real: `content/5-conceptos-animado/guion.json` y `content/api-animado/guion.json` (escena 4, objeto).
+
 - `ciclo`: pista circular para un `for` o un `while`. Arriba se revisa la condición (dice **sí** o **no**), a la derecha corre el cuerpo (lo que imprime sale disparado a la consola), abajo a la izquierda cambia la variable y el contador del centro rebota con su valor nuevo. Al salir, la pista se pone verde; en un bucle infinito se pone roja y se acelera sin fin.
 - Todo lo de `datos` es opcional. `variable` y `vueltas` (veces que entra al cuerpo) se comparan con la ejecución y `render` avisa si no coinciden.
 - `claves`: cada parte entra cuando la voz dice su palabra (con los tiempos reales de ElevenLabs; sin ellos, se estima por la posición en el texto). Sin claves busca palabras como "empieza", "condición" o "en cada vuelta". `claves.vueltas` marca cuándo empiezan a correr las vueltas.
 - Sin `depurar`, cada vuelta que imprime cae justo cuando su línea aparece en la consola. Con `depurar`, cada vuelta sigue los pasos reales de la ejecución y la animación ocupa el lugar del panel de variables (el contador muestra la variable del ciclo y hasta dos más).
-- La animación ocupa una fila bajo el editor: el código debe tener máximo 5 líneas y cada línea de consola máximo 19 caracteres. El cuerpo del ciclo va en su propia línea.
+- La animación ocupa una fila bajo el editor: el código debe tener máximo 6 líneas y cada línea de consola máximo 19 caracteres. El cuerpo del ciclo va en su propia línea.
 - Ejemplos: `content/el-ciclo-for-animado/guion.json` (con y sin `depurar`, y un bucle infinito) y `content/contar-hacia-atras-animado/guion.json` (con tiempos reales de cada palabra).
 - `npm run fotos -- <slug> [--sin-voz] [--en=12,30.5] [--bloque=2]` saca imágenes fijas en `out/fotos/<slug>/` para revisar sin renderizar todo.
 

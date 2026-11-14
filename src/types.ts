@@ -66,8 +66,76 @@ export type CicloCalculado = {
   infinito: boolean;
 };
 
-export type Animacion = { tipo: 'ciclo'; datos?: DatosCiclo; calculado?: CicloCalculado };
-export const TIPOS_ANIMACION = ['ciclo'] as const;
+/**
+ * Un paso de la ejecución, resumido para las animaciones que no son ciclo:
+ * l = línea que corre, s = líneas de consola impresas hasta ese paso.
+ */
+export type PasoAnimacion = { l: number; s: number };
+
+/** Lo que comparten las animaciones calculadas paso a paso. */
+type PorPasos = {
+  pasos: PasoAnimacion[];
+  /** Pasos importantes, en orden: cada `claves[k]` del guion ancla el evento k a la voz. */
+  eventos: number[];
+};
+
+/** `claves`: palabras de la narración que anclan cada evento, en orden. */
+type ConClaves = { claves?: string[] };
+
+export type DatosVariable = ConClaves & { variables?: string[] };
+export type CajaVariable = {
+  nombre: string;
+  declaracion: 'let' | 'const' | 'var' | 'param';
+  /** Cada vez que el valor cambia (la primera es cuando entra). */
+  cambios: { paso: number; valor: string }[];
+  /** Paso en que la variable deja de existir (su bloque terminó). */
+  sale?: number;
+};
+export type VariableCalculada = PorPasos & { cajas: CajaVariable[] };
+
+export type DatosArreglo = ConClaves & { nombre?: string };
+export type CeldaArreglo = { id: number; valor: string };
+export type ArregloCalculado = PorPasos & {
+  nombre: string;
+  /** Contenido del arreglo cada vez que cambia; las celdas conservan su id para animar push, pop, shift y unshift. */
+  estados: { paso: number; celdas: CeldaArreglo[]; accion: 'crea' | 'push' | 'pop' | 'shift' | 'unshift' | 'cambia' }[];
+  /** Casilla que el código está leyendo en cada paso (null si no lee ninguna). */
+  foco: (number | null)[];
+};
+
+export type DatosCondicion = ConClaves & { rama?: 'si' | 'no' };
+export type CondicionCalculada = PorPasos & {
+  condicion: string;
+  /** Lo que hace cada rama (su primera línea), o null si no hay else. */
+  si: string;
+  no: string | null;
+  evaluaciones: { paso: number; rama: 'si' | 'no'; sustituida: string }[];
+};
+
+export type DatosFuncion = ConClaves & { nombre?: string; resultado?: string };
+export type FuncionCalculada = PorPasos & {
+  nombre: string;
+  parametros: string[];
+  llamadas: { entra: number; sale: number; argumentos: string[]; resultado: string }[];
+};
+
+export type DatosObjeto = ConClaves & { nombre?: string; propiedades?: string[] };
+export type ObjetoCalculado = PorPasos & {
+  nombre: string;
+  estados: { paso: number; props: { clave: string; valor: string }[] }[];
+  /** Propiedad que el código está leyendo en cada paso. */
+  accesos: (string | null)[];
+};
+
+export type Animacion =
+  | { tipo: 'ciclo'; datos?: DatosCiclo; calculado?: CicloCalculado }
+  | { tipo: 'variable'; datos?: DatosVariable; calculado?: VariableCalculada }
+  | { tipo: 'arreglo'; datos?: DatosArreglo; calculado?: ArregloCalculado }
+  | { tipo: 'condicion'; datos?: DatosCondicion; calculado?: CondicionCalculada }
+  | { tipo: 'funcion'; datos?: DatosFuncion; calculado?: FuncionCalculada }
+  | { tipo: 'objeto'; datos?: DatosObjeto; calculado?: ObjetoCalculado };
+export const TIPOS_ANIMACION = ['ciclo', 'variable', 'arreglo', 'condicion', 'funcion', 'objeto'] as const;
+export type AnimacionPorPasos = Exclude<Animacion, { tipo: 'ciclo' }>;
 
 /** Cuando la voz dice `frase`, la ejecución llega a la vez número `vez` que corre `linea` (0 = el programa terminó). */
 export type MarcaDepurador = { frase: string; linea: number; vez?: number };

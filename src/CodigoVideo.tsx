@@ -23,13 +23,13 @@ import { Personaje } from './components/Personaje';
 import { LineaCodigo, SINTAXIS } from './components/Resaltado';
 import { ALTO_ANIMACION, ANCHO_ANIMACION, MAX_SALIDA_VISIBLE, SEPARACION_FILA, medidasEditor } from './medidas';
 import { RitmoSalida, tiemposEditor } from './editor';
-import { planCiclo, ritmoConAnimacion, tieneAnimacion } from './animaciones/plan';
+import { planAnimacion, ritmoConAnimacion, tieneAnimacion } from './animaciones/plan';
 import { AnimacionVista } from './components/animaciones';
+import { pasoEn } from './animaciones/pasos';
 import { agruparPalabras, esClave, indiceActual, palabrasClave } from './subtitulos';
 import { VisualVista } from './components/Visual';
 import { golpesDeCamara, zoomCamara } from './camara';
 import { duracionTecleo, iniciosDeLinea, lineaDelCursor, momentosDeTecla, visiblesPorLinea } from './tecleo';
-import { TiemposCiclo } from './animaciones/ciclo';
 import { clavesDe, momentosClave } from './momentos';
 import { EDITOR, FONDO, MONO, SIN_LIGADURAS, TENUE, TEXTO, TINTA, TITULO, segAFrames } from './temaCodigo';
 import { CodigoProps, ConfigPersonaje, EscenaCodigo, Palabra, Visual } from './types';
@@ -440,7 +440,9 @@ const Editor: React.FC<{
   /** Con animación, la consola comparte una fila con ella y va al ritmo de las vueltas. */
   animacion?: React.ReactNode;
   ritmo?: RitmoSalida;
-}> = ({ e, duracionSeg, acento, paleta, archivo, sonidos, animacion, ritmo }) => {
+  /** Línea que la ejecución está corriendo (la marca la animación); 0 o undefined: ninguna. */
+  activa?: number;
+}> = ({ e, duracionSeg, acento, paleta, archivo, sonidos, animacion, ritmo, activa }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const t = frame / fps;
@@ -496,8 +498,12 @@ const Editor: React.FC<{
                   fontSize: FS,
                   ...SIN_LIGADURAS,
                   whiteSpace: 'pre',
-                  background: resaltada ? `${acento}${Math.round(pulso * 0.35 * 255).toString(16).padStart(2, '0')}` : 'transparent',
-                  boxShadow: resaltada ? `inset 8px 0 0 ${acento}` : 'none',
+                  background: resaltada
+                    ? `${acento}${Math.round(pulso * 0.35 * 255).toString(16).padStart(2, '0')}`
+                    : activa === i + 1
+                      ? `${acento}1F`
+                      : 'transparent',
+                  boxShadow: resaltada ? `inset 8px 0 0 ${acento}` : activa === i + 1 ? `inset 8px 0 0 ${acento}99` : 'none',
                 }}
               >
                 <span
@@ -630,8 +636,11 @@ const BloqueVista: React.FC<{
   if (b.tipo === 'escena') {
     const conAnimacion = tieneAnimacion(b);
     const ritmo = ritmoConAnimacion(b, duracionSeg, palabras);
-    const plan: TiemposCiclo | null = conAnimacion ? planCiclo(b, duracionSeg, palabras) : null;
-    const momentosAnimacion = plan ? [plan.partes.inicio, plan.partes.condicion, plan.partes.cambio, ...(plan.salida !== null ? [plan.salida] : []), ...(plan.desboque !== null ? [plan.desboque] : [])] : [];
+    const plan = conAnimacion ? planAnimacion(b, duracionSeg, palabras) : null;
+    const momentosAnimacion = plan?.momentos ?? [];
+    // Línea que corre en este cuadro, según los pasos reales de la animación
+    const pasosAnimacion = b.animacion && b.animacion.tipo !== 'ciclo' ? b.animacion.calculado?.pasos : undefined;
+    const lineaActiva = plan?.tiempos && pasosAnimacion ? pasosAnimacion[pasoEn(plan.tiempos, frame / fps)]?.l : undefined;
     const momentos = b.traza
       ? momentosAnimacion
       : b.codigo
@@ -652,14 +661,14 @@ const BloqueVista: React.FC<{
       <>
         <AnimacionVista
           animacion={b.animacion}
-          tiempos={plan}
+          plan={plan}
           salida={salidaAnimacion}
           acento={acento}
           ancho={enFila ? ANCHO_ANIMACION : 885}
           alto={ALTO_ANIMACION}
         />
-        {sonidos && plan && <Efectos en={[plan.partes.inicio, plan.partes.condicion, plan.partes.cambio]} archivo="pop.wav" volumen={0.3} frames={4} />}
-        {sonidos && plan && plan.salida !== null && <Efectos en={[plan.salida]} archivo="exito.wav" volumen={0.25} frames={18} />}
+        {sonidos && plan && <Efectos en={plan.ciclo ? momentosAnimacion.slice(0, 3) : momentosAnimacion} archivo="pop.wav" volumen={0.25} frames={4} />}
+        {sonidos && plan?.ciclo && plan.ciclo.salida !== null && <Efectos en={[plan.ciclo.salida]} archivo="exito.wav" volumen={0.25} frames={18} />}
       </>
     ) : undefined;
     return conCamara(
@@ -698,7 +707,7 @@ const BloqueVista: React.FC<{
         {b.codigo && b.traza ? (
           <EditorDepurador e={b} duracionSeg={duracionSeg} acento={acento} archivo={b.archivo ?? archivo} sonidos={sonidos} palabras={palabras} animacion={animacion} />
         ) : b.codigo ? (
-          <Editor e={b} duracionSeg={duracionSeg} acento={acento} paleta={paleta} archivo={b.archivo ?? archivo} sonidos={sonidos} animacion={animacion} ritmo={ritmo} />
+          <Editor e={b} duracionSeg={duracionSeg} acento={acento} paleta={paleta} archivo={b.archivo ?? archivo} sonidos={sonidos} animacion={animacion} ritmo={ritmo} activa={lineaActiva} />
         ) : b.visual ? (
           b.visual.tipo === 'recorrido' ? visual(b.visual, 350, 940) : visual(b.visual, 390, 900)
         ) : null}
