@@ -170,7 +170,11 @@ Agrega `depurar` a una escena con código para mostrarla corriendo: la línea ac
 
 ## Personaje
 
-La imagen y sus coordenadas están en `personaje` dentro de `config/marca-codigo.json`. Si cambias o recortas la imagen, actualiza `ancho` y `alto`, el círculo de la `cara` y la posición de la `boca`, todo en píxeles de la imagen original.
+En el video sale un personaje animado en SVG (`src/components/PersonajeAnimado.tsx`) dibujado a partir del avatar de la marca: copete oscuro, pecas, sudadera negra con cordones morados y el logo `</>`, audífonos morados al cuello. Sale de un círculo del color de la escena (la cabeza y el brazo se salen del marco), respira, parpadea solo y la boca sigue el volumen real de la voz.
+
+Sus poses salen de los momentos de cada escena (`src/personaje.ts`): **saluda** en el gancho, **señala** el código cuando se explica, **pulgar arriba** cuando sale el resultado o termina el ciclo, **sorpresa** con un bucle infinito, y en el cierre levanta el pulgar al aparecer el botón y se despide. Antes de cada pose hace un pequeño amago contrario (anticipación) y llega con rebote; al celebrar da un saltito con squash and stretch. Para revisarlo en grande: composición `PersonajePoses` en `npm run studio`.
+
+La portada sigue usando la foto. Para volver a la foto también en el video, pon `"animado": false` en `personaje` dentro de `config/marca-codigo.json`. La imagen y sus coordenadas siguen ahí: si cambias o recortas la imagen, actualiza `ancho` y `alto`, el círculo de la `cara` y la posición de la `boca`, todo en píxeles de la imagen original.
 
 ## Estructura
 
@@ -186,6 +190,7 @@ La imagen y sus coordenadas están en `personaje` dentro de `config/marca-codigo
 | `src/escenario.ts`, `src/plano.ts` | Cámara del escenario: paneles, tomas y viaje entre editor y animación |
 | `src/components/Escenario.tsx` | Paneles con perspectiva, ventana que recorta al viajar y capas de parallax |
 | `src/components/Logo3D.tsx` | Logo en 3D (three.js) del gancho y el cierre |
+| `src/components/PersonajeAnimado.tsx`, `src/personaje.ts` | Personaje animado en SVG y la línea de tiempo de sus poses |
 | `scripts/navegador.ts` | Opciones de Chromium para renderizar (WebGL `angle`) |
 | `src/depurador.ts` | Tiempos y medidas del depurador, compartidos con los validadores |
 | `scripts/traza.ts` | Instrumenta el código con acorn y registra cada paso de su ejecución |

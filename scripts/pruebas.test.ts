@@ -17,6 +17,7 @@ import {
   propiedadesDe,
 } from './animaciones';
 import { medidasEditor } from '../src/medidas';
+import { Gesto, limpiarGestos, parpadeo, poseEn } from '../src/personaje';
 import { botonSeguir, insignia, piezaLlegada, piezaSalida, rayaGancho } from '../src/transiciones';
 import { ALTO_VENTANA, TRANSICION, camaraEscenario, encuadre, limpiarTomas, mundoDe, pesoFoco, viaja } from '../src/escenario';
 import { agruparPalabras, indiceActual, palabrasDeAlineacion } from '../src/subtitulos';
@@ -732,4 +733,38 @@ test('las piezas de las transiciones caen donde está la pieza real y fuera de l
   const llega = piezaLlegada(corta, 0.37, 15);
   assert.ok(llega.ancho >= corta.ancho && llega.x <= corta.x);
   assert.ok(piezaSalida(corta, 15).ancho > corta.ancho);
+});
+
+// ── Personaje animado ──
+
+test('poseEn sostiene cada pose un rato y vuelve a la neutral', () => {
+  const gestos: Gesto[] = [
+    { t: 2, pose: 'senala' },
+    { t: 8, pose: 'celebra' },
+  ];
+  assert.equal(poseEn(gestos, 1).pose, 'neutral');
+  assert.deepEqual(poseEn(gestos, 2.5), { pose: 'senala', previa: 'neutral', desde: 2 });
+  assert.equal(poseEn(gestos, 5).pose, 'neutral');
+  assert.equal(poseEn(gestos, 5).previa, 'senala');
+  assert.equal(poseEn(gestos, 9).pose, 'celebra');
+});
+
+test('limpiarGestos quita los gestos amontonados y deja ganar a celebrar o sorprenderse', () => {
+  const g = limpiarGestos(
+    [
+      { t: 3, pose: 'senala' },
+      { t: 3.5, pose: 'celebra' },
+      { t: 3.8, pose: 'senala' },
+      { t: 9.9, pose: 'saluda' },
+    ],
+    10,
+  );
+  assert.deepEqual(g, [{ t: 3.5, pose: 'celebra' }]);
+});
+
+test('parpadeo es determinista, breve y no se queda con los ojos cerrados', () => {
+  const muestras = Array.from({ length: 600 }, (_, i) => parpadeo(i / 30, 'prueba'));
+  assert.deepEqual(muestras, Array.from({ length: 600 }, (_, i) => parpadeo(i / 30, 'prueba')));
+  const cerrados = muestras.filter((x) => x > 0.5).length;
+  assert.ok(cerrados > 0 && cerrados < 600 * 0.08);
 });

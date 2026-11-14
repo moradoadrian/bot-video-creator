@@ -29,6 +29,9 @@ import { pasoEn } from './animaciones/pasos';
 import { camaraEscenario, pesoFoco } from './escenario';
 import { planoDeEscena } from './plano';
 import { Logo3D } from './components/Logo3D';
+import { PersonajeAnimado } from './components/PersonajeAnimado';
+import { Gesto, limpiarGestos } from './personaje';
+import { inicioDePasos } from './depurador';
 import { Transicion } from './components/Transicion';
 import { ANTES, DESPUES, DESPUES_CIERRE, botonSeguir, insignia, piezaLlegada, piezaSalida, rayaGancho } from './transiciones';
 import { FPS as FPS_VIDEO } from './bloques';
@@ -153,7 +156,10 @@ const Subtitulo: React.FC<{
   palabras?: Palabra[];
   personaje?: ConfigPersonaje;
   tamPersonaje: number;
-}> = ({ texto, duracionSeg, acento, claves, audio, palabras, personaje, tamPersonaje }) => {
+  /** Poses del personaje animado en este bloque. */
+  gestos: Gesto[];
+  semilla: string;
+}> = ({ texto, duracionSeg, acento, claves, audio, palabras, personaje, tamPersonaje, gestos, semilla }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const t = frame / fps;
@@ -164,7 +170,12 @@ const Subtitulo: React.FC<{
   const lado = Math.round(frase.inicio * 10) % 2 ? 1 : -1;
   return (
     <div style={{ position: 'absolute', top: 1310, left: 60, right: 160, height: 220, display: 'flex', alignItems: 'center', gap: 34 }}>
-      <Personaje config={personaje} audio={audio} tam={tamPersonaje} acento={acento} />
+      {/* El personaje animado sale del avatar de la marca; con "animado": false se usa la foto */}
+      {personaje && personaje.animado !== false ? (
+        <PersonajeAnimado audio={audio} tam={tamPersonaje} acento={acento} gestos={limpiarGestos(gestos, duracionSeg)} semilla={semilla} />
+      ) : (
+        <Personaje config={personaje} audio={audio} tam={tamPersonaje} acento={acento} />
+      )}
       <div
         style={{
           fontFamily: TEXTO,
@@ -631,7 +642,7 @@ const BloqueVista: React.FC<{
    * Lo que se mueve con la cámara; el subtítulo y el personaje quedan fijos para que se lean bien.
    * Detrás va un fondo cercano y delante un primer plano, cada uno a otra velocidad (parallax).
    */
-  const conCamara = (momentos: number[], escenario: React.ReactNode, tamPersonaje: number, dy = 0) => {
+  const conCamara = (momentos: number[], escenario: React.ReactNode, tamPersonaje: number, dy = 0, gestos: Gesto[] = []) => {
     const golpes = golpesDeCamara(momentos, duracionSeg);
     const mov = { ...movimientoCamara(frame, fps, duracionSeg, golpes), dy };
     const semilla = `${b.tipo}-${b.titulo}`;
@@ -650,7 +661,16 @@ const BloqueVista: React.FC<{
           </AbsoluteFill>
         </Camara>
         <PrimerPlano camara={mov} semilla={semilla} colores={paleta} />
-        <Subtitulo texto={b.narracion} duracionSeg={duracionSeg} acento={acento} claves={palabrasClave(b)} tamPersonaje={tamPersonaje} {...voz} />
+        <Subtitulo
+          texto={b.narracion}
+          duracionSeg={duracionSeg}
+          acento={acento}
+          claves={palabrasClave(b)}
+          tamPersonaje={tamPersonaje}
+          gestos={gestos}
+          semilla={semilla}
+          {...voz}
+        />
       </AbsoluteFill>
     );
   };
@@ -679,6 +699,39 @@ const BloqueVista: React.FC<{
         : [];
     const salidaAnimacion = b.traza ? b.traza.salida : (b.salida ?? '').split('\n').filter((l) => l.length);
     const enFila = conAnimacion && (b.traza ? true : salidaAnimacion.length > 0);
+    /** El personaje señala el código cuando se explica, celebra cuando sale el resultado y se sorprende con un bucle infinito. */
+    const gestosEscena = (): Gesto[] => {
+      if (plan?.ciclo) {
+        const c = plan.ciclo;
+        return [
+          { t: c.partes.inicio, pose: 'senala' },
+          ...(c.salida !== null ? [{ t: c.salida, pose: 'celebra' as const }] : []),
+          ...(c.desboque !== null ? [{ t: c.desboque, pose: 'sorpresa' as const }] : []),
+        ];
+      }
+      if (plan?.tiempos) {
+        const primero = plan.momentos.length ? Math.min(...plan.momentos) : plan.aparece;
+        const ultimaLinea = ritmo?.lineas?.[ritmo.lineas.length - 1] ?? (b.traza ? plan.tiempos[plan.tiempos.length - 1] : undefined);
+        return [{ t: primero, pose: 'senala' }, ...(ultimaLinea !== undefined && salidaAnimacion.length ? [{ t: ultimaLinea, pose: 'celebra' as const }] : [])];
+      }
+      if (b.traza) {
+        const n = (b.codigo ?? '').split('\n').length;
+        return [{ t: inicioDePasos(n), pose: 'senala' }, ...(b.traza.salida.length ? [{ t: duracionSeg * 0.9, pose: 'celebra' as const }] : [])];
+      }
+      if (b.codigo) {
+        const te = tiemposEditor(b, duracionSeg);
+        const nunca = te.salida.length > 0 && te.salida[te.salida.length - 1].startsWith('...');
+        return [
+          ...(b.resaltar?.length ? [{ t: te.tResaltar, pose: 'senala' as const }] : [{ t: te.finCodigo, pose: 'senala' as const }]),
+          ...(te.salida.length ? [{ t: te.tUltima, pose: nunca ? ('sorpresa' as const) : ('celebra' as const) }] : []),
+        ];
+      }
+      if (b.visual && b.visual.tipo !== 'recorrido') {
+        const ms = tiemposVisual(b.visual, b.narracion, duracionSeg, palabras);
+        return ms.length ? [{ t: ms[0], pose: 'senala' }] : [];
+      }
+      return [];
+    };
     // Cámara del escenario: a qué panel mira, cuánto se inclina cada uno y si tiene que viajar
     const plano = planoDeEscena(b, duracionSeg, plan, ritmo);
     const t = frame / fps;
@@ -755,6 +808,7 @@ const BloqueVista: React.FC<{
       </>,
       200,
       escena?.encuadre.dy ?? 0,
+      gestosEscena(),
     );
   }
 
@@ -787,6 +841,9 @@ const BloqueVista: React.FC<{
         )}
       </>,
       240,
+      0,
+      // En el gancho saluda
+      [{ t: 0.25, pose: 'saluda' }],
     );
   }
 
@@ -872,6 +929,12 @@ const BloqueVista: React.FC<{
       </div>
     </>,
     220,
+    0,
+    // En el cierre levanta el pulgar cuando aparece el botón, y se despide saludando
+    [
+      { t: T_BOTON, pose: 'celebra' },
+      { t: Math.max(T_BOTON + 2.6, duracionSeg - 2.4), pose: 'saluda' },
+    ],
   );
 };
 
