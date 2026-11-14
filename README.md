@@ -50,7 +50,7 @@ npm run render -- diferencia-entre-while-y-do-while
 - `npm run portada -- <slug>` crea `out/<slug>-portada.png` (solo canal código).
 - `npm run studio` abre Remotion Studio para ajustar las plantillas en vivo.
 - `npm test` corre las pruebas de los validadores y los subtítulos, sin red ni créditos.
-- `npm run sonidos` crea el tecleo y el sonido de resultado; se activan con `"sonidos": true` en `config/marca-codigo.json`.
+- `npm run sonidos` crea los sonidos del canal código en `public/sfx` (tecleo, resultado, éxito, pop, whoosh y, para las animaciones: `vuelta` por cada vuelta de un ciclo, `rama` por cada decisión de un `if`, `caida` cuando un valor aterriza, `morph` en las transiciones y `brillo` con las partículas). Se activan con `"sonidos": true` en `config/marca-codigo.json`.
 - Temas listos: `temas.md` (fiestas) y `temas-codigo.md` (ruta de aprendizaje de programación).
 
 ## Guion del canal código
@@ -140,6 +140,8 @@ Tipos (todos con `datos` opcional; `claves` son palabras de la narración, en or
 - **Parallax:** detrás del contenido pasa una capa de símbolos grandes a un tercio de la velocidad de la cámara, y delante unas formas por los bordes al 160 %. El fondo general sigue igual.
 - **Momentos en 3D** (three.js, `src/components/Logo3D.tsx`): en el gancho (si no trae diagrama) el logo `</>` se arma con piezas que llegan volando; en el cierre flota arriba a la derecha con cubos en órbita.
 - **Transiciones con sentido** (`src/transiciones.ts`, `src/components/Transicion.tsx`): en cada corte una pieza de la escena que termina despega y se transforma (morph con `@remotion/paths`) en una estrella al centro, donde cambia de número justo en el corte, y aterriza convertida en la pieza de la siguiente. La raya del título del gancho se vuelve el "1/4" de la primera escena, cada número de escena se vuelve el siguiente, y el último se vuelve el botón "+ Seguir" del cierre. Mientras viaja, la escena que sale se retira y la que entra aparece, así que el corte queda limpio.
+- **Detalle de movimiento** (`src/components/Movimiento.tsx`): los valores y casillas que caen se aplastan al aterrizar (squash and stretch), lo que viaja rápido (argumentos de una función, valores que salen de un ciclo, la ficha del `if`) deja estela con `@remotion/motion-blur`, y los momentos de éxito (la consola termina, el ciclo sale, la función entrega su resultado, un `push`, el programa del depurador termina) sueltan partículas: confeti, chispas y un anillo.
+- **Texto cinético en el gancho:** cada palabra del título llega desde un lado distinto girando en 3D, estirada y con estela de color; la palabra con número (o la más larga) se guarda para el final, en el color de acento y con un golpe de escala.
 - El 3D usa WebGL con `angle` (lo recomendado por Remotion en escritorio). En una máquina sin GPU, define `REMOTION_GL=swangle` en `.env` (más lento).
 
 ## Depurador visual

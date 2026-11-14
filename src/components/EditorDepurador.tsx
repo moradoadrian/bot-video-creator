@@ -17,6 +17,7 @@ import { EDITOR, FONDO, MONO, SIN_LIGADURAS, TENUE, TINTA, segAFrames } from '..
 import { EscenaCodigo, Palabra, PasoTraza, Traza } from '../types';
 import { ANCHO_ANIMACION } from '../medidas';
 import { VistaEscenario, columnaEscenario, panel3D } from './Escenario';
+import { Particulas } from './Movimiento';
 import { LineaCodigo, SINTAXIS } from './Resaltado';
 
 const valorPrevio = (paso: PasoTraza | undefined, etiqueta: string, nombre: string) =>
@@ -228,6 +229,18 @@ export const EditorDepurador: React.FC<{
           </div>
         </div>
       </div>
+      {/* Cuando el programa termina con algo en la consola: partículas sobre la consola */}
+      {traza.salida.length > 0 && (
+        <Particulas
+          desde={tiempos[traza.pasos.length - 1]}
+          x={885 - 90}
+          y={124 + lineas.length * lh + 26 + 30}
+          colores={[SINTAXIS.cadena, acento, TINTA]}
+          semilla={`depurador-${e.titulo}`}
+          cantidad={24}
+          fuerza={0.8}
+        />
+      )}
       <div style={{ display: 'flex', gap: 20, ...(escena ? panel3D(escena.pesoAbajo, 1, escena.entraAbajo, escena.viaja) : {}) }}>
         {animacion ? (
           <div style={{ width: ANCHO_ANIMACION, height: altoPanel, flex: '0 0 auto' }}>{animacion}</div>

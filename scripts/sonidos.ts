@@ -71,6 +71,40 @@ const exito = generar(0.5, (t) =>
   }, 0),
 );
 
+// ── Sonidos de las animaciones (fase 6). Van al final para no cambiar la secuencia de ruido de los anteriores ──
+
+// Vuelta: un clic de madera corto, para cada revisión de un ciclo
+const vuelta = generar(0.06, (t) => (Math.sin(2 * Math.PI * 1900 * t) * 0.6 + ruido() * 0.25) * Math.exp(-t * 90));
+
+// Rama: dos notas que suben (la condición decidió). Para cada evaluación de un if
+const rama = generar(0.22, (t) => {
+  const f = t < 0.08 ? 660 : 990;
+  const dt = t < 0.08 ? t : t - 0.08;
+  return Math.sin(2 * Math.PI * f * dt) * Math.exp(-dt * 22) * 0.55;
+});
+
+// Caída: un golpe grave y suave, cuando un valor aterriza en su caja o una casilla cae
+const caida = generar(0.18, (t) => {
+  const fase = 2 * Math.PI * (180 * t - 260 * t * t);
+  return (Math.sin(fase) * 0.8 + ruido() * 0.12) * Math.exp(-t * 26);
+});
+
+// Morph: un barrido que sube con brillo, para la pieza que viaja entre escenas
+const DUR_MORPH = 0.45;
+const morph = generar(DUR_MORPH, (t) => {
+  const p = t / DUR_MORPH;
+  const fase = 2 * Math.PI * (300 * t + (1500 * t * t * t) / (3 * DUR_MORPH * DUR_MORPH));
+  const forma = Math.sin(Math.PI * p);
+  return (Math.sin(fase) * 0.35 + Math.sin(fase * 2.01) * 0.12) * forma;
+});
+
+// Brillo: campanitas agudas al azar (con semilla), para las explosiones de partículas
+const NOTAS_BRILLO = [2093, 2637, 3136, 3520, 4186];
+const toques = Array.from({ length: 7 }, (_, i) => ({ t0: i * 0.045 + ((ruido() + 1) / 2) * 0.02, f: NOTAS_BRILLO[Math.floor(((ruido() + 1) / 2) * NOTAS_BRILLO.length) % NOTAS_BRILLO.length] }));
+const brillo = generar(0.6, (t) =>
+  toques.reduce((a, { t0, f }) => (t < t0 ? a : a + Math.sin(2 * Math.PI * f * (t - t0)) * Math.exp(-(t - t0) * 14) * 0.13), 0),
+);
+
 const dir = path.join(RAIZ, 'public', 'sfx');
 mkdirSync(dir, { recursive: true });
 writeFileSync(path.join(dir, 'tecla.wav'), wav(tecla));
@@ -78,4 +112,9 @@ writeFileSync(path.join(dir, 'resultado.wav'), wav(resultado));
 writeFileSync(path.join(dir, 'whoosh.wav'), wav(whoosh));
 writeFileSync(path.join(dir, 'pop.wav'), wav(pop));
 writeFileSync(path.join(dir, 'exito.wav'), wav(exito));
+writeFileSync(path.join(dir, 'vuelta.wav'), wav(vuelta));
+writeFileSync(path.join(dir, 'rama.wav'), wav(rama));
+writeFileSync(path.join(dir, 'caida.wav'), wav(caida));
+writeFileSync(path.join(dir, 'morph.wav'), wav(morph));
+writeFileSync(path.join(dir, 'brillo.wav'), wav(brillo));
 console.log('✔ Sonidos en public/sfx. Actívalos con "sonidos": true en config/marca-codigo.json');

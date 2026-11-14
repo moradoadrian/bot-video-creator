@@ -4,7 +4,8 @@ import { pasoEn } from '../../animaciones/pasos';
 import { FONDO, MONO, TENUE, TINTA } from '../../temaCodigo';
 import { ArregloCalculado, CeldaArreglo } from '../../types';
 import { SINTAXIS } from '../Resaltado';
-import { ALARMA, MARGEN, Panel, Rotulo, ajustar, destello, easeInOut, easeOut, rebote, recortarValor } from './comun';
+import { ALARMA, MARGEN, Panel, Rotulo, VERDE, ajustar, destello, easeInOut, easeOut, rebote, recortarValor } from './comun';
+import { Particulas, squash } from '../Movimiento';
 
 const MOVER = 0.45;
 
@@ -95,6 +96,7 @@ export const Arreglo: React.FC<{ c: ArregloCalculado; tiempos: number[]; acento:
         const enFoco = leyendo && foco === i;
         const valorAnterior = !nueva && previo ? previo.celdas[antes]?.valor : undefined;
         const volteo = cambio > 0 ? Math.max(0, 1 - (t - tEstado) / 0.3) : 0;
+        const aplasta = nueva ? squash(t, tEstado + 0.22 + (estado!.accion === 'crea' ? i * 0.08 : 0)) : { sx: 1, sy: 1 };
         return (
           <React.Fragment key={cel.id}>
             <div
@@ -116,7 +118,9 @@ export const Arreglo: React.FC<{ c: ArregloCalculado; tiempos: number[]; acento:
                 fontSize: fs(cel.valor),
                 color: cel.valor.startsWith('"') ? SINTAXIS.cadena : SINTAXIS.numero,
                 opacity: Math.min(1, sNueva * 1.5),
-                transform: `scale(${(0.6 + 0.4 * sNueva) * (enFoco ? 1.08 : 1)}) rotateX(${volteo * 90}deg)`,
+                // Al caer se aplasta y rebota (squash and stretch)
+                transform: `scale(${(0.6 + 0.4 * sNueva) * (enFoco ? 1.08 : 1) * aplasta.sx}, ${(0.6 + 0.4 * sNueva) * (enFoco ? 1.08 : 1) * aplasta.sy}) rotateX(${volteo * 90}deg)`,
+                transformOrigin: '50% 100%',
                 whiteSpace: 'pre',
               }}
             >
@@ -170,6 +174,23 @@ export const Arreglo: React.FC<{ c: ArregloCalculado; tiempos: number[]; acento:
           >
             {recortarValor(cel.valor, 8)}
           </div>
+        );
+      })}
+      {/* Chispas cuando entra una casilla con push o unshift */}
+      {c.estados.map((st, k) => {
+        if (st.accion !== 'push' && st.accion !== 'unshift') return null;
+        const idx = st.accion === 'push' ? st.celdas.length - 1 : 0;
+        return (
+          <Particulas
+            key={k}
+            desde={tiempos[st.paso] + 0.22}
+            x={xDe(idx, st.celdas.length) + lado / 2}
+            y={filaY + lado}
+            colores={[acento, VERDE, TINTA]}
+            semilla={`arreglo-${k}`}
+            cantidad={12}
+            fuerza={0.45}
+          />
         );
       })}
       {/* Flecha que señala la casilla que se lee */}

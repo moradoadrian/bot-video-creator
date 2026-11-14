@@ -33,6 +33,7 @@ import { PersonajeAnimado } from './components/PersonajeAnimado';
 import { Gesto, limpiarGestos } from './personaje';
 import { inicioDePasos } from './depurador';
 import { Transicion } from './components/Transicion';
+import { Particulas, squash } from './components/Movimiento';
 import { ANTES, DESPUES, DESPUES_CIERRE, botonSeguir, insignia, piezaLlegada, piezaSalida, rayaGancho } from './transiciones';
 import { FPS as FPS_VIDEO } from './bloques';
 
@@ -244,28 +245,64 @@ const Camara: React.FC<{ duracionSeg: number; golpes: number[]; children: React.
   );
 };
 
-/** Título que entra palabra por palabra, con rebote, y un subrayado que se dibuja al final. */
+/** La palabra que se remarca en el gancho: la que trae un número, o si no la más larga. */
+const palabraFuerte = (palabras: string[]) => {
+  const conNumero = palabras.findIndex((p) => /\d/.test(p));
+  if (conNumero >= 0) return conNumero;
+  let mejor = -1;
+  palabras.forEach((p, i) => {
+    if (p.replace(/[^\p{L}]/gu, '').length >= 5 && (mejor < 0 || p.length > palabras[mejor].length)) mejor = i;
+  });
+  return mejor;
+};
+
+/**
+ * Texto cinético del gancho: cada palabra llega volando desde un lado distinto, girando en 3D,
+ * estirada por la velocidad y con una estela de su color; aterriza con rebote. La palabra fuerte
+ * llega al final con un golpe de escala y en el color de acento. Luego todo ondea suave y se dibuja la raya.
+ */
 const TituloPorPalabras: React.FC<{ texto: string; acento: string; style: React.CSSProperties; sinRaya?: boolean }> = ({ texto, acento, style, sinRaya }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
+  const t = frame / fps;
   const palabras = texto.split(/\s+/).filter(Boolean);
+  const fuerte = palabraFuerte(palabras);
   // Adelantado: la primera palabra ya se ve en el primer cuadro
   const ADELANTO = 6;
   const RETRASO = 3;
-  const tFin = palabras.length * RETRASO;
+  // La palabra fuerte se guarda para el final
+  const turno = (i: number) => (i === fuerte ? palabras.length : i < fuerte || fuerte < 0 ? i : i - 1);
+  const tFin = (palabras.length + 1) * RETRASO;
   const raya = spring({ frame: Math.max(0, frame - tFin), fps, config: { damping: 18, stiffness: 140 } });
+  const DIRECCIONES = [
+    [0, 110],
+    [-160, 0],
+    [0, -110],
+    [160, 0],
+  ];
   return (
-    <div style={style}>
+    <div style={{ ...style, perspective: 900 }}>
       {palabras.map((p, i) => {
-        const f = frame + ADELANTO - i * RETRASO;
-        const s = f < 0 ? 0 : spring({ frame: f, fps, config: { damping: 10, stiffness: 210 } });
+        const f = frame + ADELANTO - turno(i) * RETRASO;
+        const s = f < 0 ? 0 : spring({ frame: f, fps, config: { damping: 9, stiffness: 190 } });
+        const [dx, dy] = DIRECCIONES[i % 4];
+        const falta = 1 - s;
+        const esFuerte = i === fuerte;
+        // Golpe de la palabra fuerte al aterrizar, y un leve ondeo cuando todo ya llegó
+        const golpe = esFuerte && f > 0 ? Math.exp(-Math.max(0, f - 8) / 5) * Math.max(0, Math.sin(Math.min(f, 20) / 3)) * 0.18 : 0;
+        const ondeo = frame > tFin ? Math.sin(t * 3 + i * 0.7) * 3 : 0;
+        const estira = 1 + Math.min(0.45, Math.abs(falta) * 0.6);
+        const horizontal = dx !== 0;
         return (
           <React.Fragment key={i}>
             <span
               style={{
                 display: 'inline-block',
-                opacity: Math.min(1, s * 2),
-                transform: `translateY(${(1 - s) * 70}px) scale(${0.6 + 0.4 * s}) rotate(${(1 - s) * (i % 2 ? 9 : -9)}deg)`,
+                opacity: Math.min(1, s * 2.5),
+                color: esFuerte ? acento : undefined,
+                transform: `translate(${dx * falta}px, ${dy * falta + ondeo}px) rotateX(${falta * (horizontal ? 0 : 70)}deg) rotateY(${falta * (horizontal ? 60 : 0)}deg) rotate(${falta * (i % 2 ? 10 : -10)}deg) scale(${(0.5 + 0.5 * s + golpe) * (horizontal ? estira : 1)}, ${(0.5 + 0.5 * s + golpe) * (horizontal ? 1 : estira)})`,
+                // Estela de color mientras viaja
+                textShadow: falta > 0.05 ? `${-dx * falta * 0.25}px ${-dy * falta * 0.25}px 0 ${acento}66, ${-dx * falta * 0.5}px ${-dy * falta * 0.5}px 0 ${acento}33` : 'none',
               }}
             >
               {p}
@@ -307,7 +344,7 @@ const Efectos: React.FC<{ en: number[]; archivo: string; volumen: number; frames
   const { fps } = useVideoConfig();
   return (
     <>
-      {en.map((t, k) => (
+      {en.filter((t) => Number.isFinite(t) && t >= 0).map((t, k) => (
         <Sequence key={`${archivo}-${k}`} from={segAFrames(t, fps)} durationInFrames={frames} layout="none">
           <Audio src={staticFile(`sfx/${archivo}`)} volume={volumen} />
         </Sequence>
@@ -379,44 +416,6 @@ const CodigoTecleado: React.FC<{ codigo: string; duracionSeg: number; acento: st
   );
 };
 
-/** Chispas que salen disparadas desde un punto y caen. Duran medio segundo. */
-const Estallido: React.FC<{ desde: number; colores: string[]; x: number; y: number }> = ({ desde, colores, x, y }) => {
-  const frame = useCurrentFrame();
-  const { fps } = useVideoConfig();
-  const DURA = 20;
-  const f = frame - segAFrames(desde, fps);
-  if (f < 0 || f > DURA) return null;
-  const p = f / DURA;
-  const avance = 1 - (1 - p) ** 3;
-  return (
-    <>
-      {Array.from({ length: 22 }, (_, i) => {
-        const r = (k: string) => random(`chispa-${i}-${k}`);
-        const ang = r('a') * Math.PI * 2;
-        const dist = (110 + r('d') * 230) * avance;
-        const tam = 10 + r('t') * 12;
-        return (
-          <div
-            key={i}
-            style={{
-              position: 'absolute',
-              left: x + Math.cos(ang) * dist - tam / 2,
-              top: y + Math.sin(ang) * dist + 160 * p * p - tam / 2,
-              width: tam,
-              height: r('f') > 0.5 ? tam : tam * 0.45,
-              borderRadius: r('f') > 0.5 ? '50%' : 3,
-              background: colores[i % colores.length],
-              opacity: 1 - p * p,
-              transform: `rotate(${r('r') * 360 + f * 18}deg)`,
-              pointerEvents: 'none',
-            }}
-          />
-        );
-      })}
-    </>
-  );
-};
-
 const Palomita: React.FC<{ color: string; tinta: string; tam: number }> = ({ color, tinta, tam }) => (
   <svg width={tam} height={tam} viewBox="0 0 52 52">
     <circle cx="26" cy="26" r="26" fill={color} />
@@ -469,6 +468,7 @@ const Editor: React.FC<{
           <Efectos en={momentosDeTecla(lineas, inicio, durTecleo)} archivo="tecla.wav" volumen={0.1} frames={6} />
           <Efectos en={salida.slice(0, -1).map((_, i) => tLinea(i))} archivo="resultado.wav" volumen={0.1} frames={9} />
           {salida.length > 0 && !nuncaTermina && <Efectos en={[tUltima]} archivo="exito.wav" volumen={0.3} frames={18} />}
+          {salida.length > 0 && !nuncaTermina && <Efectos en={[tUltima + 0.08]} archivo="brillo.wav" volumen={0.25} frames={18} />}
         </>
       )}
       <div
@@ -571,13 +571,15 @@ const Editor: React.FC<{
                 position: 'absolute',
                 top: -26,
                 right: 26,
-                transform: `scale(${sExito}) rotate(${(1 - sExito) * -90}deg)`,
+                transform: `scale(${sExito * squash(t, tUltima + 0.25).sx}, ${sExito * squash(t, tUltima + 0.25).sy}) rotate(${(1 - sExito) * -90}deg)`,
               }}
             >
               <Palomita color={VERDE} tinta={FONDO} tam={60} />
             </div>
           )}
-          {!nuncaTermina && <Estallido desde={tUltima} colores={[VERDE, ...paleta]} x={anchoConsola - 26 - 30 - 26} y={4} />}
+          {!nuncaTermina && (
+            <Particulas desde={tUltima} x={anchoConsola - 26 - 30} y={4} colores={[VERDE, ...paleta]} semilla={`consola-${e.titulo}`} cantidad={30} />
+          )}
           {ultimas.map((l, i) => {
             const s = spring({ frame: frame - segAFrames(tLinea(primera + i), fps), fps, config: { damping: 13, stiffness: 220 } });
             return (
@@ -745,6 +747,38 @@ const BloqueVista: React.FC<{
           viaja: plano.viaja,
         }
       : undefined;
+    /** Cada animación suena a lo suyo: clic por vuelta, dos notas por decisión, golpe al caer un valor, brillo al terminar. */
+    const sonidosDeAnimacion = (a: NonNullable<typeof b.animacion>, p: NonNullable<typeof plan>): { archivo: string; en: number[]; volumen: number; frames: number }[] => {
+      if (p.ciclo) {
+        const c = p.ciclo;
+        const vueltas = c.vueltas.map((v) => v.revision).filter((x) => c.desboque === null || x < c.desboque).slice(0, 40);
+        return [
+          { archivo: 'pop.wav', en: [c.partes.inicio, c.partes.condicion, c.partes.cambio], volumen: 0.22, frames: 4 },
+          { archivo: 'vuelta.wav', en: vueltas, volumen: 0.18, frames: 3 },
+          ...(c.salida !== null ? [{ archivo: 'exito.wav', en: [c.salida], volumen: 0.25, frames: 18 }, { archivo: 'brillo.wav', en: [c.salida + 0.1], volumen: 0.3, frames: 18 }] : []),
+        ];
+      }
+      const ts = p.tiempos ?? [];
+      const calc = a.tipo !== 'ciclo' ? a.calculado : undefined;
+      if (!calc) return [];
+      if (a.tipo === 'condicion') return [{ archivo: 'rama.wav', en: a.calculado!.evaluaciones.map((x) => ts[x.paso]), volumen: 0.25, frames: 7 }];
+      if (a.tipo === 'variable') return [{ archivo: 'caida.wav', en: a.calculado!.cajas.flatMap((cj) => cj.cambios.map((x) => ts[x.paso] + 0.32)), volumen: 0.35, frames: 6 }];
+      if (a.tipo === 'arreglo') {
+        const est = a.calculado!.estados;
+        return [
+          { archivo: 'caida.wav', en: est.filter((x) => x.accion === 'crea' || x.accion === 'push' || x.accion === 'unshift').map((x) => ts[x.paso] + 0.22), volumen: 0.3, frames: 6 },
+          { archivo: 'pop.wav', en: est.filter((x) => x.accion === 'pop' || x.accion === 'shift' || x.accion === 'cambia').map((x) => ts[x.paso]), volumen: 0.25, frames: 4 },
+        ];
+      }
+      if (a.tipo === 'funcion') {
+        const ll = a.calculado!.llamadas;
+        return [
+          { archivo: 'pop.wav', en: ll.map((x) => ts[x.entra]), volumen: 0.22, frames: 4 },
+          { archivo: 'brillo.wav', en: ll.filter((x) => x.resultado !== 'undefined').map((x) => ts[x.sale] + 0.15), volumen: 0.25, frames: 18 },
+        ];
+      }
+      return [{ archivo: 'pop.wav', en: calc.eventos.map((i) => ts[i]), volumen: 0.22, frames: 4 }];
+    };
     const animacion = conAnimacion && b.animacion ? (
       <>
         <AnimacionVista
@@ -755,8 +789,7 @@ const BloqueVista: React.FC<{
           ancho={enFila ? ANCHO_ANIMACION : 885}
           alto={ALTO_ANIMACION}
         />
-        {sonidos && plan && <Efectos en={plan.ciclo ? momentosAnimacion.slice(0, 3) : momentosAnimacion} archivo="pop.wav" volumen={0.25} frames={4} />}
-        {sonidos && plan?.ciclo && plan.ciclo.salida !== null && <Efectos en={[plan.ciclo.salida]} archivo="exito.wav" volumen={0.25} frames={18} />}
+        {sonidos && plan && sonidosDeAnimacion(b.animacion, plan).map((x) => <Efectos key={x.archivo} {...x} />)}
       </>
     ) : undefined;
     return conCamara(
@@ -1011,7 +1044,7 @@ export const CodigoVideo: React.FC<CodigoProps> = ({ guion, timing, marca }) => 
               antes={ANTES}
               despues={despues}
             />
-            {marca.sonidos && <Audio src={staticFile('sfx/whoosh.wav')} volume={0.3} />}
+            {marca.sonidos && <Audio src={staticFile('sfx/morph.wav')} volume={0.35} />}
             {marca.sonidos && (
               <Sequence from={ANTES + despues - 2} durationInFrames={6} layout="none">
                 <Audio src={staticFile('sfx/pop.wav')} volume={0.3} />

@@ -4,6 +4,7 @@ import { FONDO, MONO, SIN_LIGADURAS, TENUE, TINTA } from '../../temaCodigo';
 import { FuncionCalculada } from '../../types';
 import { LineaCodigo, SINTAXIS } from '../Resaltado';
 import { MARGEN, Panel, Rotulo, VERDE, ajustar, destello, easeInOut, easeOut, fijar01, rebote, recortarValor } from './comun';
+import { Estela, Particulas, squash } from '../Movimiento';
 
 /** Engrane simple de 8 dientes. */
 const Engrane: React.FC<{ r: number; color: string; giro: number }> = ({ r, color, giro }) => {
@@ -63,6 +64,7 @@ export const Funcion: React.FC<{ c: FuncionCalculada; tiempos: number[]; acento:
 
   const resultado = ll ? ll.resultado : '';
   const sResultado = regreso ? rebote(frame, fps, tS, 220, 9) : 0;
+  const aplasta = squash(t, ll ? tS + 0.18 : null);
   const fsResultado = ajustar(`→ ${recortarValor(resultado, 16)}`, ancho - 2 * MARGEN - 20, 40, 18);
 
   return (
@@ -108,26 +110,34 @@ export const Funcion: React.FC<{ c: FuncionCalculada; tiempos: number[]; acento:
             >
               <LineaCodigo linea={texto} />
             </div>
-            {/* El argumento vuela desde la izquierda hasta su parámetro */}
+            {/* El argumento vuela desde la izquierda hasta su parámetro, con estela y estirado por la velocidad */}
             {arg !== undefined && llega > 0 && llega < 1 && (
-              <div
-                style={{
-                  position: 'absolute',
-                  left: MARGEN + (xParam(i) + anchoParam / 2 - 40 - MARGEN) * llega,
-                  top: yParams + 4 - Math.sin(llega * Math.PI) * 50,
-                  fontFamily: MONO,
-                  fontWeight: 700,
-                  fontSize: 26,
-                  color: FONDO,
-                  background: acento,
-                  borderRadius: 10,
-                  padding: '2px 10px',
-                  whiteSpace: 'pre',
-                  transform: `rotate(${(1 - llega) * -20}deg)`,
+              <Estela
+                dibujar={(f) => {
+                  const p = easeOut((f / fps - (tE - 0.7 + i * 0.12)) / 0.45);
+                  if (p <= 0 || p >= 1) return null;
+                  return (
+                    <div
+                      style={{
+                        position: 'absolute',
+                        left: MARGEN + (xParam(i) + anchoParam / 2 - 40 - MARGEN) * p,
+                        top: yParams + 4 - Math.sin(p * Math.PI) * 50,
+                        fontFamily: MONO,
+                        fontWeight: 700,
+                        fontSize: 26,
+                        color: FONDO,
+                        background: acento,
+                        borderRadius: 10,
+                        padding: '2px 10px',
+                        whiteSpace: 'pre',
+                        transform: `rotate(${(1 - p) * -20}deg) scaleX(${1 + 0.35 * (1 - p)})`,
+                      }}
+                    >
+                      {recortarValor(arg, 8)}
+                    </div>
+                  );
                 }}
-              >
-                {recortarValor(arg, 8)}
-              </div>
+              />
             )}
           </React.Fragment>
         );
@@ -200,13 +210,20 @@ export const Funcion: React.FC<{ c: FuncionCalculada; tiempos: number[]; acento:
               background: resultado === 'undefined' ? TENUE : VERDE,
               borderRadius: 12,
               padding: '4px 16px',
-              transform: `scale(${0.5 + 0.5 * sResultado}, ${0.5 + 0.5 * sResultado + 0.15 * (1 - fijar01((t - tS) / 0.3))})`,
+              // Sale estirado hacia abajo y se aplasta al caer (squash and stretch)
+              transform: `scale(${(0.5 + 0.5 * sResultado) * aplasta.sx}, ${(0.5 + 0.5 * sResultado + 0.15 * (1 - fijar01((t - tS) / 0.3))) * aplasta.sy})`,
               boxShadow: `5px 5px 0 ${TINTA}`,
             }}
           >
             → {recortarValor(resultado, 16)}
           </div>
         </div>
+      )}
+      {/* Chispas cada vez que la máquina entrega un resultado */}
+      {c.llamadas.map((l, k) =>
+        l.resultado === 'undefined' ? null : (
+          <Particulas key={k} desde={tiempos[l.sale] + 0.15} x={ancho / 2} y={yMaq + altoMaq + 50} colores={[VERDE, acento, '#F4F1FF']} semilla={`funcion-${k}`} cantidad={14} fuerza={0.55} />
+        ),
       )}
       {ll && !regreso && t >= tE && (
         <div

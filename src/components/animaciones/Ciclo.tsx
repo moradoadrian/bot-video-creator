@@ -4,6 +4,7 @@ import { TiemposCiclo, anguloMarcador, valorVisible } from '../../animaciones/ci
 import { EDITOR, FONDO, MONO, SIN_LIGADURAS, TENUE, TINTA, segAFrames } from '../../temaCodigo';
 import { CicloCalculado } from '../../types';
 import { LineaCodigo, SINTAXIS } from '../Resaltado';
+import { Estela, Particulas } from '../Movimiento';
 
 const ALARMA = '#FF5A6E';
 const VERDE = SINTAXIS.cadena;
@@ -158,7 +159,7 @@ export const Ciclo: React.FC<{
     if (!m || m.cuerpo === null || !v.salidas.length || (desboque !== null && m.cuerpo >= desboque)) return [];
     const p = (t - m.cuerpo) / 0.5;
     if (p < 0 || p > 1) return [];
-    return [{ texto: salida[v.salidas[0]] ?? '', p }];
+    return [{ texto: salida[v.salidas[0]] ?? '', p, tc: m.cuerpo }];
   });
 
   const colorPista = desbocado ? ALARMA : salio ? VERDE : acento;
@@ -328,27 +329,38 @@ export const Ciclo: React.FC<{
       )}
       {/* Lo que imprime cada vuelta */}
       {disparos.map((d, i) => (
-        <div
+        <Estela
           key={i}
-          style={{
-            position: 'absolute',
-            left: cuerpo.x + 20 + 170 * (1 - (1 - d.p) ** 2),
-            top: cuerpo.y - 22 - 40 * Math.sin(d.p * Math.PI),
-            fontFamily: MONO,
-            fontWeight: 700,
-            fontSize: 30,
-            color: FONDO,
-            background: VERDE,
-            borderRadius: 10,
-            padding: '2px 10px',
-            whiteSpace: 'pre',
-            opacity: d.p < 0.75 ? 1 : 1 - (d.p - 0.75) / 0.25,
-            transform: `scale(${0.6 + 0.4 * Math.min(1, d.p * 4)})`,
+          dibujar={(f) => {
+            const p = (f / fps - d.tc) / 0.5;
+            if (p < 0 || p > 1) return null;
+            return (
+              <div
+                style={{
+                  position: 'absolute',
+                  left: cuerpo.x + 20 + 170 * (1 - (1 - p) ** 2),
+                  top: cuerpo.y - 22 - 40 * Math.sin(p * Math.PI),
+                  fontFamily: MONO,
+                  fontWeight: 700,
+                  fontSize: 30,
+                  color: FONDO,
+                  background: VERDE,
+                  borderRadius: 10,
+                  padding: '2px 10px',
+                  whiteSpace: 'pre',
+                  opacity: p < 0.75 ? 1 : 1 - (p - 0.75) / 0.25,
+                  // Sale estirado por la velocidad y se encoge al frenar
+                  transform: `scale(${(0.6 + 0.4 * Math.min(1, p * 4)) * (1 + 0.3 * (1 - p))}, ${(0.6 + 0.4 * Math.min(1, p * 4)) * (1 - 0.15 * (1 - p))})`,
+                }}
+              >
+                {d.texto}
+              </div>
+            );
           }}
-        >
-          {d.texto}
-        </div>
+        />
       ))}
+      {/* Al salir del ciclo: explosión de partículas en la puerta */}
+      {tSalida !== null && <Particulas desde={tSalida + 0.1} x={puerta.x} y={puerta.y} colores={[VERDE, acento, TINTA]} semilla={`ciclo-${c.linea}`} cantidad={20} fuerza={0.7} />}
     </div>
   );
 };

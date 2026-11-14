@@ -5,6 +5,7 @@ import { FONDO, MONO, SIN_LIGADURAS, TENUE, TINTA } from '../../temaCodigo';
 import { CondicionCalculada } from '../../types';
 import { LineaCodigo } from '../Resaltado';
 import { ALARMA, MARGEN, Panel, Rotulo, VERDE, ajustar, destello, easeInOut, rebote } from './comun';
+import { Estela, squash } from '../Movimiento';
 
 type P = { x: number; y: number };
 const bezier = (a: P, b: P, c: P, d: P, t: number): P => {
@@ -50,33 +51,37 @@ export const Condicion: React.FC<{ c: CondicionCalculada; tiempos: number[]; ace
     return `M ${a.x} ${a.y} C ${b.x} ${b.y}, ${k.x} ${k.y}, ${f.x} ${f.y}`;
   };
 
-  // Evaluación en curso: la última que ya empezó a bajar
-  let k = -1;
-  c.evaluaciones.forEach((ev, i) => {
-    if (tiempos[ev.paso] - 0.45 <= t) k = i;
-  });
-  const ev = k >= 0 ? c.evaluaciones[k] : null;
-  const tEv = ev ? tiempos[ev.paso] : Infinity;
-  const siguiente = c.evaluaciones[k + 1] ? tiempos[c.evaluaciones[k + 1].paso] : Infinity;
-  const escala = Math.min(1, (siguiente - tEv) / 1.3);
-  const bajar = ev ? easeInOut((t - (tEv - 0.45 * escala)) / (0.45 * escala)) : 0;
-  const tomar = ev ? easeInOut((t - (tEv + 0.25 * escala)) / (0.5 * escala)) : 0;
+  /** Evaluación en curso en el segundo tt (la última que ya empezó a bajar) y dónde va la ficha. */
+  const momento = (tt: number) => {
+    let k = -1;
+    c.evaluaciones.forEach((ev, i) => {
+      if (tiempos[ev.paso] - 0.45 <= tt) k = i;
+    });
+    const ev = k >= 0 ? c.evaluaciones[k] : null;
+    const tEv = ev ? tiempos[ev.paso] : Infinity;
+    const siguiente = c.evaluaciones[k + 1] ? tiempos[c.evaluaciones[k + 1].paso] : Infinity;
+    const escala = Math.min(1, (siguiente - tEv) / 1.3);
+    const bajar = ev ? easeInOut((tt - (tEv - 0.45 * escala)) / (0.45 * escala)) : 0;
+    const tomar = ev ? easeInOut((tt - (tEv + 0.25 * escala)) / (0.5 * escala)) : 0;
+    const rama = ev ? ramas[ev.rama] : null;
+    let ficha: P | null = null;
+    if (ev) {
+      // Baja hasta la punta del rombo (sin tapar la condición), recorre su borde hasta la rama y sigue la curva
+      const punta = cy - dh - 6;
+      if (tomar <= 0) ficha = { x: cx, y: arriba.y + (punta - arriba.y) * bajar };
+      else {
+        const [a, b, kk, f] = curva(rama!);
+        ficha = tomar < 0.3 ? { x: cx + (a.x - cx) * (tomar / 0.3), y: punta + (a.y - punta) * (tomar / 0.3) } : bezier(a, b, kk, f, (tomar - 0.3) / 0.7);
+      }
+    }
+    return { k, ev, tEv, escala, tomar, rama, ficha };
+  };
+  const { k, ev, tEv, escala, tomar, rama } = momento(t);
   const evaluada = ev !== null && t >= tEv;
   const golpe = destello(t, ev ? tEv : null, 0.4);
-  const rama = ev ? ramas[ev.rama] : null;
-
-  let ficha: P | null = null;
-  if (ev) {
-    // Baja hasta la punta del rombo (sin tapar la condición), recorre su borde hasta la rama y sigue la curva
-    const punta = cy - dh - 6;
-    if (tomar <= 0) ficha = { x: cx, y: arriba.y + (punta - arriba.y) * bajar };
-    else {
-      const [a, b, kk, f] = curva(rama!);
-      ficha = tomar < 0.3 ? { x: cx + (a.x - cx) * (tomar / 0.3), y: punta + (a.y - punta) * (tomar / 0.3) } : bezier(a, b, kk, f, (tomar - 0.3) / 0.7);
-    }
-  }
   const llego = ev !== null && tomar >= 1;
   const sLlego = llego ? destello(t, tEv + 0.75 * escala, 0.6) : 0;
+  const aplasta = squash(t, ev ? tEv + 0.75 * escala : null, 0.8);
 
   const texto = evaluada && ev ? ev.sustituida : c.condicion;
   const fsCond = ajustar(texto, dw * 1.25, 30, 16);
@@ -117,13 +122,22 @@ export const Condicion: React.FC<{ c: CondicionCalculada; tiempos: number[]; ace
           strokeLinejoin="round"
           style={{ filter: golpe > 0 && rama ? `drop-shadow(0 0 ${18 * golpe}px ${rama.color})` : undefined }}
         />
-        {ficha && (
-          <g transform={`translate(${ficha.x} ${ficha.y})`}>
-            <circle r={18} fill={TINTA} />
-            <circle r={11} fill={rama && tomar > 0 ? rama.color : acento} />
-          </g>
-        )}
       </svg>
+      {/* La ficha viaja con estela (motion blur) */}
+      <Estela
+        dibujar={(f) => {
+          const m = momento(f / fps);
+          if (!m.ficha) return null;
+          return (
+            <svg width={ancho} height={alto} style={{ position: 'absolute', inset: 0, overflow: 'visible', opacity: sPanel }}>
+              <g transform={`translate(${m.ficha.x} ${m.ficha.y})`}>
+                <circle r={18} fill={TINTA} />
+                <circle r={11} fill={m.rama && m.tomar > 0 ? m.rama.color : acento} />
+              </g>
+            </svg>
+          );
+        }}
+      />
       {/* Texto de la condición: se llena con los valores al evaluarse */}
       <div
         style={{
@@ -180,7 +194,8 @@ export const Condicion: React.FC<{ c: CondicionCalculada; tiempos: number[]; ace
               width: anchoRama,
               top: yRama + 6,
               opacity: sPanel * (apagada ? 0.4 : 1),
-              transform: `scale(${1 + (activa ? 0.08 * sLlego : 0)})`,
+              // La caja de la rama elegida se aplasta al recibir la ficha
+              transform: `scale(${(1 + (activa ? 0.08 * sLlego : 0)) * (activa ? aplasta.sx : 1)}, ${(1 + (activa ? 0.08 * sLlego : 0)) * (activa ? aplasta.sy : 1)})`,
             }}
           >
             <div style={{ fontFamily: MONO, fontWeight: 700, fontSize: 20, color: ramas[r].color, textAlign: 'center', marginBottom: 4 }}>

@@ -17,6 +17,7 @@ import {
   propiedadesDe,
 } from './animaciones';
 import { medidasEditor } from '../src/medidas';
+import { squash } from '../src/components/Movimiento';
 import { Gesto, limpiarGestos, parpadeo, poseEn } from '../src/personaje';
 import { botonSeguir, insignia, piezaLlegada, piezaSalida, rayaGancho } from '../src/transiciones';
 import { ALTO_VENTANA, TRANSICION, camaraEscenario, encuadre, limpiarTomas, mundoDe, pesoFoco, viaja } from '../src/escenario';
@@ -767,4 +768,17 @@ test('parpadeo es determinista, breve y no se queda con los ojos cerrados', () =
   assert.deepEqual(muestras, Array.from({ length: 600 }, (_, i) => parpadeo(i / 30, 'prueba')));
   const cerrados = muestras.filter((x) => x > 0.5).length;
   assert.ok(cerrados > 0 && cerrados < 600 * 0.08);
+});
+
+// ── Detalle de movimiento ──
+
+test('squash aplasta al impactar, rebota amortiguado y vuelve a 1', () => {
+  assert.deepEqual(squash(1, 2), { sx: 1, sy: 1 }, 'antes del impacto');
+  assert.deepEqual(squash(3, 2), { sx: 1, sy: 1 }, 'ya pasó');
+  assert.deepEqual(squash(2.1, null), { sx: 1, sy: 1 });
+  const golpe = squash(2.03, 2);
+  assert.ok(golpe.sx > 1 && golpe.sy < 1, 'se ensancha y se aplasta');
+  assert.ok(Math.abs(golpe.sx - 1 - (1 - golpe.sy)) < 1e-9, 'lo que pierde de alto lo gana de ancho');
+  const despues = Math.max(...Array.from({ length: 10 }, (_, i) => Math.abs(squash(2.4 + i * 0.02, 2).sx - 1)));
+  assert.ok(despues < Math.abs(golpe.sx - 1), 'se amortigua');
 });
