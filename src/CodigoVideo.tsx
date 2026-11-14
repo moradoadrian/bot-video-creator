@@ -25,7 +25,11 @@ import { ALTO_ANIMACION, ANCHO_ANIMACION, MAX_SALIDA_VISIBLE, SEPARACION_FILA, m
 import { RitmoSalida, tiemposEditor } from './editor';
 import { planAnimacion, ritmoConAnimacion, tieneAnimacion } from './animaciones/plan';
 import { AnimacionVista } from './components/animaciones';
+import { FondoCercano, PrimerPlano, VistaEscenario, Ventana, columnaEscenario, panel3D } from './components/Escenario';
 import { pasoEn } from './animaciones/pasos';
+import { camaraEscenario, pesoFoco } from './escenario';
+import { planoDeEscena } from './plano';
+import { Logo3D } from './components/Logo3D';
 import { agruparPalabras, esClave, indiceActual, palabrasClave } from './subtitulos';
 import { VisualVista } from './components/Visual';
 import { golpesDeCamara, zoomCamara } from './camara';
@@ -210,12 +214,16 @@ const tiemposVisual = (v: Visual, narracion: string, duracionSeg: number, palabr
   momentosClave(clavesDe(v), narracion, duracionSeg, palabras).map((m) => Math.max(0.05, m.t - 0.15));
 
 /** Zoom lento, golpes en los momentos clave y una deriva suave para que la toma nunca esté quieta. */
+const movimientoCamara = (frame: number, fps: number, duracionSeg: number, golpes: number[]) => ({
+  escala: zoomCamara(frame / fps, duracionSeg, golpes),
+  x: Math.sin(frame / 40) * 5,
+  y: Math.cos(frame / 55) * 4,
+});
+
 const Camara: React.FC<{ duracionSeg: number; golpes: number[]; children: React.ReactNode }> = ({ duracionSeg, golpes, children }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
-  const escala = zoomCamara(frame / fps, duracionSeg, golpes);
-  const x = Math.sin(frame / 40) * 5;
-  const y = Math.cos(frame / 55) * 4;
+  const { escala, x, y } = movimientoCamara(frame, fps, duracionSeg, golpes);
   return (
     <AbsoluteFill style={{ transform: `translate(${x}px, ${y}px) scale(${escala})`, transformOrigin: '50% 42%' }}>{children}</AbsoluteFill>
   );
@@ -442,7 +450,9 @@ const Editor: React.FC<{
   ritmo?: RitmoSalida;
   /** Línea que la ejecución está corriendo (la marca la animación); 0 o undefined: ninguna. */
   activa?: number;
-}> = ({ e, duracionSeg, acento, paleta, archivo, sonidos, animacion, ritmo, activa }) => {
+  /** Cámara del escenario: hacia dónde mira y cuánto se inclina cada panel. */
+  escena?: VistaEscenario;
+}> = ({ e, duracionSeg, acento, paleta, archivo, sonidos, animacion, ritmo, activa, escena }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const t = frame / fps;
@@ -467,7 +477,7 @@ const Editor: React.FC<{
   const VERDE = SINTAXIS.cadena;
 
   return (
-    <div style={{ position: 'absolute', top: 400, left: 50, width: 885, display: 'flex', flexDirection: 'column', gap: SEPARACION_FILA }}>
+    <div style={{ position: 'absolute', top: 400, left: 50, width: 885, display: 'flex', flexDirection: 'column', gap: SEPARACION_FILA, ...columnaEscenario(escena) }}>
       {sonidos && (
         <>
           <Efectos en={momentosDeTecla(lineas, inicio, durTecleo)} archivo="tecla.wav" volumen={0.1} frames={6} />
@@ -475,7 +485,16 @@ const Editor: React.FC<{
           {salida.length > 0 && !nuncaTermina && <Efectos en={[tUltima]} archivo="exito.wav" volumen={0.3} frames={18} />}
         </>
       )}
-      <div style={{ background: EDITOR, borderRadius: 26, border: `2px solid rgba(244,241,255,0.12)`, overflow: 'hidden' }}>
+      <div
+        style={{
+          background: EDITOR,
+          borderRadius: 26,
+          border: `2px solid rgba(244,241,255,0.12)`,
+          overflow: 'hidden',
+          boxShadow: escena ? `0 ${30 * escena.pesoEditor}px 60px rgba(0,0,0,${0.25 + 0.2 * escena.pesoEditor})` : 'none',
+          ...(escena ? panel3D(escena.pesoEditor, -1, escena.entraEditor, escena.viaja) : {}),
+        }}
+      >
         <div style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '20px 26px', borderBottom: '2px solid rgba(244,241,255,0.08)' }}>
           {['#FF7A8A', '#FFB454', '#7FD1B9'].map((c) => (
             <div key={c} style={{ width: 18, height: 18, borderRadius: 9, background: c }} />
@@ -531,9 +550,16 @@ const Editor: React.FC<{
         </div>
       </div>
 
-      {animacion && !enFila && <div style={{ height: ALTO_ANIMACION }}>{animacion}</div>}
+      {animacion && !enFila && (
+        <div style={{ height: ALTO_ANIMACION, ...(escena ? panel3D(escena.pesoAbajo, 1, escena.entraAbajo, escena.viaja) : {}) }}>{animacion}</div>
+      )}
       {salida.length > 0 && (enFila || t >= tSalida - 0.2) && (
-        <div style={enFila ? { display: 'flex', gap: 20, height: ALTO_ANIMACION } : {}}>
+        <div
+          style={{
+            ...(enFila ? { display: 'flex', gap: 20, height: ALTO_ANIMACION } : {}),
+            ...(escena ? panel3D(escena.pesoAbajo, 1, escena.entraAbajo, escena.viaja) : {}),
+          }}
+        >
         {enFila && <div style={{ width: ANCHO_ANIMACION, flex: '0 0 auto' }}>{animacion}</div>}
         <div
           style={{
@@ -623,15 +649,25 @@ const BloqueVista: React.FC<{
     </div>
     );
   };
-  /** Lo que se mueve con la cámara; el subtítulo y el personaje quedan fijos para que se lean bien. */
-  const conCamara = (momentos: number[], escenario: React.ReactNode, tamPersonaje: number) => (
-    <AbsoluteFill>
-      <Camara duracionSeg={duracionSeg} golpes={golpesDeCamara(momentos, duracionSeg)}>
-        {escenario}
-      </Camara>
-      <Subtitulo texto={b.narracion} duracionSeg={duracionSeg} acento={acento} claves={palabrasClave(b)} tamPersonaje={tamPersonaje} {...voz} />
-    </AbsoluteFill>
-  );
+  /**
+   * Lo que se mueve con la cámara; el subtítulo y el personaje quedan fijos para que se lean bien.
+   * Detrás va un fondo cercano y delante un primer plano, cada uno a otra velocidad (parallax).
+   */
+  const conCamara = (momentos: number[], escenario: React.ReactNode, tamPersonaje: number, dy = 0) => {
+    const golpes = golpesDeCamara(momentos, duracionSeg);
+    const mov = { ...movimientoCamara(frame, fps, duracionSeg, golpes), dy };
+    const semilla = `${b.tipo}-${b.titulo}`;
+    return (
+      <AbsoluteFill>
+        <FondoCercano camara={mov} semilla={semilla} colores={paleta} />
+        <Camara duracionSeg={duracionSeg} golpes={golpes}>
+          {escenario}
+        </Camara>
+        <PrimerPlano camara={mov} semilla={semilla} colores={paleta} />
+        <Subtitulo texto={b.narracion} duracionSeg={duracionSeg} acento={acento} claves={palabrasClave(b)} tamPersonaje={tamPersonaje} {...voz} />
+      </AbsoluteFill>
+    );
+  };
 
   if (b.tipo === 'escena') {
     const conAnimacion = tieneAnimacion(b);
@@ -657,6 +693,19 @@ const BloqueVista: React.FC<{
         : [];
     const salidaAnimacion = b.traza ? b.traza.salida : (b.salida ?? '').split('\n').filter((l) => l.length);
     const enFila = conAnimacion && (b.traza ? true : salidaAnimacion.length > 0);
+    // Cámara del escenario: a qué panel mira, cuánto se inclina cada uno y si tiene que viajar
+    const plano = planoDeEscena(b, duracionSeg, plan, ritmo);
+    const t = frame / fps;
+    const escena: VistaEscenario | undefined = plano
+      ? {
+          encuadre: camaraEscenario(plano.mundo, plano.tomas, t),
+          pesoEditor: pesoFoco(plano.tomas, t, 'editor'),
+          pesoAbajo: pesoFoco(plano.tomas, t, 'abajo'),
+          entraEditor: spring({ frame: frame + 6, fps, config: { damping: 14, stiffness: 120 } }),
+          entraAbajo: frame < segAFrames(plano.entraAbajo, fps) ? 0 : spring({ frame: frame - segAFrames(plano.entraAbajo, fps), fps, config: { damping: 13, stiffness: 120 } }),
+          viaja: plano.viaja,
+        }
+      : undefined;
     const animacion = conAnimacion && b.animacion ? (
       <>
         <AnimacionVista
@@ -705,14 +754,19 @@ const BloqueVista: React.FC<{
           </div>
         </div>
         {b.codigo && b.traza ? (
-          <EditorDepurador e={b} duracionSeg={duracionSeg} acento={acento} archivo={b.archivo ?? archivo} sonidos={sonidos} palabras={palabras} animacion={animacion} />
+          <Ventana activa={!!plano?.viaja}>
+            <EditorDepurador e={b} duracionSeg={duracionSeg} acento={acento} archivo={b.archivo ?? archivo} sonidos={sonidos} palabras={palabras} animacion={animacion} escena={escena} />
+          </Ventana>
         ) : b.codigo ? (
-          <Editor e={b} duracionSeg={duracionSeg} acento={acento} paleta={paleta} archivo={b.archivo ?? archivo} sonidos={sonidos} animacion={animacion} ritmo={ritmo} activa={lineaActiva} />
+          <Ventana activa={!!plano?.viaja}>
+            <Editor e={b} duracionSeg={duracionSeg} acento={acento} paleta={paleta} archivo={b.archivo ?? archivo} sonidos={sonidos} animacion={animacion} ritmo={ritmo} activa={lineaActiva} escena={escena} />
+          </Ventana>
         ) : b.visual ? (
           b.visual.tipo === 'recorrido' ? visual(b.visual, 350, 940) : visual(b.visual, 390, 900)
         ) : null}
       </>,
       200,
+      escena?.encuadre.dy ?? 0,
     );
   }
 
@@ -736,6 +790,12 @@ const BloqueVista: React.FC<{
           {conCodigo && <CodigoTecleado codigo={conCodigo} duracionSeg={duracionSeg} acento={acento} sonidos={sonidos} />}
         </div>
         {b.visual && visual(b.visual, 790, 480)}
+        {/* Momento estelar en 3D: el logo se arma bajo el título (si el gancho no trae diagrama) */}
+        {!b.visual && (
+          <div style={{ position: 'absolute', left: 380, top: 950, width: 540, height: 320 }}>
+            <Logo3D ancho={540} alto={320} colores={[acento, ...paleta]} tinta={TINTA} desde={0.35} />
+          </div>
+        )}
       </>,
       240,
     );
@@ -752,6 +812,10 @@ const BloqueVista: React.FC<{
     [T_BOTON],
     <>
       <Confeti colores={paleta} cantidad={34} seed={`cierre-${b.titulo}`} intensidad={1.4} />
+      {/* El logo vuelve en 3D, con cubos en órbita, arriba a la derecha */}
+      <div style={{ position: 'absolute', left: 560, top: 140, width: 360, height: 280 }}>
+        <Logo3D ancho={360} alto={280} colores={[acento, ...paleta]} tinta={TINTA} desde={0.05} orbita tamano={0.72} />
+      </div>
       {sonidos && <Efectos en={[T_BOTON]} archivo="pop.wav" volumen={0.4} frames={4} />}
       <div
         style={{

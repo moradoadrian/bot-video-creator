@@ -115,9 +115,18 @@ export const medidasDepurador = (lineas: string[], traza: Traza, conAnimacion = 
   const altoPanel = conAnimacion ? ALTO_ANIMACION : RELLENO_PANEL + TITULO_PANEL + Math.max(altoVariables, altoConsola);
   const disponible = TOPE_DISPONIBLE - SEPARACION - altoPanel - CABECERA - (conAnimacion ? RESPIRO_ANIMACION : 0);
   const columnas = Math.max(1, ...lineas.map((l) => l.length));
+  const n = Math.max(1, lineas.length);
   const porAncho = ANCHO_CODIGO / (columnas * ANCHO_CARACTER);
-  const porAlto = disponible / Math.max(1, lineas.length) / INTERLINEA;
-  const fs = Math.max(conAnimacion ? 34 : FS_MIN, Math.min(FS_MAX, porAncho, porAlto));
+  const porAlto = disponible / n / INTERLINEA;
+  // Con animación, si no cabe todo junto, el editor se mide solo y la cámara viaja entre el código y la fila
+  if (conAnimacion && porAlto < FS_MIN) {
+    const soloEditor = TOPE_DISPONIBLE - RESPIRO_ANIMACION - CABECERA;
+    // Letra mínima legible: así el viaje de la cámara es el más corto posible
+    const fs = Math.max(FS_MIN, Math.min(FS_MIN, porAncho, soloEditor / n / INTERLINEA));
+    const lh = fs * INTERLINEA;
+    return { fs, lh, altoPanel, viaja: true, desborda: n * lh > soloEditor + 0.5 };
+  }
+  const fs = Math.max(FS_MIN, Math.min(FS_MAX, porAncho, porAlto));
   const lh = fs * INTERLINEA;
-  return { fs, lh, altoPanel, desborda: lineas.length * lh > disponible + 0.5 };
+  return { fs, lh, altoPanel, viaja: false, desborda: n * lh > disponible + 0.5 };
 };

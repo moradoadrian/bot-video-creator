@@ -296,7 +296,7 @@ export const verificarCodigo = (escenas: EscenaCodigo[], corregir: boolean, dura
       if (medidasEditor(lineas, nSalida, conAnimacion).desborda) {
         avisos.push(
           conAnimacion
-            ? `${n}: el código no cabe junto a la animación sin tapar el subtítulo. Usa máximo 6 líneas de código.`
+            ? `${n}: el código no cabe en pantalla junto a la animación. Usa menos líneas de código.`
             : `${n}: el código y la consola tapan el subtítulo. Quita líneas de código o de salida.`,
         );
       }

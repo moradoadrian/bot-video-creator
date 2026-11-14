@@ -17,6 +17,7 @@ import {
   propiedadesDe,
 } from './animaciones';
 import { medidasEditor } from '../src/medidas';
+import { ALTO_VENTANA, TRANSICION, camaraEscenario, encuadre, limpiarTomas, mundoDe, pesoFoco, viaja } from '../src/escenario';
 import { agruparPalabras, indiceActual, palabrasDeAlineacion } from '../src/subtitulos';
 import { clavesDe, momentosClave } from '../src/momentos';
 import { duracionTecleo, iniciosDeLinea, lineaDelCursor, momentosDeTecla, visiblesPorLinea } from '../src/tecleo';
@@ -499,10 +500,29 @@ test('verificarCodigo compara los datos de la animación con el código', () => 
   assert.ok(contiene(verificarCodigo([sinCiclo], false), 'no se puede animar'));
 });
 
-test('verificarCodigo avisa si el código no cabe junto a la animación', () => {
+test('con animación, el código largo hace viajar a la cámara en vez de encogerse o desbordar', () => {
   const largo = Array.from({ length: 7 }, (_, k) => `let v${k} = ${k};`).join('\n') + '\nfor (let i = 0; i < 2; i++) {\n  v0++;\n}';
-  assert.ok(contiene(verificarCodigo([escena({ codigo: largo, animacion: { tipo: 'ciclo' } })], false), 'junto a la animación'));
-  assert.equal(medidasEditor(['a'], 0, true).desborda, false);
+  assert.deepEqual(verificarCodigo([escena({ codigo: largo, animacion: { tipo: 'ciclo' } })], false), []);
+  const m = medidasEditor(largo.split('\n'), 0, true);
+  assert.ok(m.viaja && !m.desborda && m.fs >= 38);
+  const corto = medidasEditor(['for (let i = 0; i < 3; i++) {', '  x++;', '}'], 0, true);
+  assert.equal(corto.viaja, false);
+});
+
+test('la cámara del escenario se queda quieta si todo cabe y viaja si no', () => {
+  const cabe = mundoDe(400, 380, 26);
+  assert.equal(viaja(cabe), false);
+  assert.equal(encuadre(cabe, 'abajo').dy, 0);
+  assert.ok(encuadre(cabe, 'abajo').escala > 1);
+  const largo = mundoDe(760, 380, 26);
+  assert.ok(viaja(largo));
+  assert.equal(encuadre(largo, 'editor').dy, 0);
+  assert.equal(encuadre(largo, 'abajo').dy, ALTO_VENTANA - largo.alto);
+  const tomas = limpiarTomas([{ t: 0, foco: 'editor' }, { t: 3, foco: 'abajo' }, { t: 3.4, foco: 'todo' }, { t: 9, foco: 'abajo' }], 10);
+  assert.deepEqual(tomas.map((x) => [x.t, x.foco]), [[0, 'editor'], [3, 'todo'], [9, 'abajo']]);
+  const medio = camaraEscenario(largo, [{ t: 0, foco: 'editor' }, { t: 2, foco: 'abajo' }], 2 + TRANSICION / 2);
+  assert.ok(medio.dy < 0 && medio.dy > encuadre(largo, 'abajo').dy);
+  assert.equal(pesoFoco([{ t: 0, foco: 'editor' }, { t: 2, foco: 'abajo' }], 5, 'editor'), 0);
 });
 
 test('parsearGuion acepta la animación opcional y la rechaza sin código', () => {

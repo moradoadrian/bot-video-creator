@@ -129,9 +129,17 @@ Tipos (todos con `datos` opcional; `claves` son palabras de la narración, en or
 - Todo lo de `datos` es opcional. `variable` y `vueltas` (veces que entra al cuerpo) se comparan con la ejecución y `render` avisa si no coinciden.
 - `claves`: cada parte entra cuando la voz dice su palabra (con los tiempos reales de ElevenLabs; sin ellos, se estima por la posición en el texto). Sin claves busca palabras como "empieza", "condición" o "en cada vuelta". `claves.vueltas` marca cuándo empiezan a correr las vueltas.
 - Sin `depurar`, cada vuelta que imprime cae justo cuando su línea aparece en la consola. Con `depurar`, cada vuelta sigue los pasos reales de la ejecución y la animación ocupa el lugar del panel de variables (el contador muestra la variable del ciclo y hasta dos más).
-- La animación ocupa una fila bajo el editor: el código debe tener máximo 6 líneas y cada línea de consola máximo 19 caracteres. El cuerpo del ciclo va en su propia línea.
+- La animación ocupa una fila bajo el editor: cada línea de consola debe tener máximo 19 caracteres. Si el código y la animación no caben juntos, la cámara viaja entre los dos, así que no hay límite de líneas extra. El cuerpo del ciclo va en su propia línea.
 - Ejemplos: `content/el-ciclo-for-animado/guion.json` (con y sin `depurar`, y un bucle infinito) y `content/contar-hacia-atras-animado/guion.json` (con tiempos reales de cada palabra).
 - `npm run fotos -- <slug> [--sin-voz] [--en=12,30.5] [--bloque=2]` saca imágenes fijas en `out/fotos/<slug>/` para revisar sin renderizar todo.
+
+## Cámara, profundidad y 3D
+
+- **Paneles en 3D:** el editor y lo que va debajo (consola, animación o variables) son paneles con perspectiva: entran girando y, cuando la cámara mira al otro, se inclinan hacia atrás y se atenúan. Al final de la escena vuelven los dos de frente.
+- **Cámara del escenario** (`src/escenario.ts`, `src/plano.ts`): mira al editor mientras se escribe, luego a la consola o a la animación. Si todo cabe en pantalla solo se acerca un poco; si el código y la animación no caben juntos, viaja entre ellos y lo que sale de cuadro se desvanece antes del título y del subtítulo. Por eso, junto a una animación, el código puede tener hasta las 10 líneas normales.
+- **Parallax:** detrás del contenido pasa una capa de símbolos grandes a un tercio de la velocidad de la cámara, y delante unas formas por los bordes al 160 %. El fondo general sigue igual.
+- **Momentos en 3D** (three.js, `src/components/Logo3D.tsx`): en el gancho (si no trae diagrama) el logo `</>` se arma con piezas que llegan volando; en el cierre flota arriba a la derecha con cubos en órbita.
+- El 3D usa WebGL con `angle` (lo recomendado por Remotion en escritorio). En una máquina sin GPU, define `REMOTION_GL=swangle` en `.env` (más lento).
 
 ## Depurador visual
 
@@ -174,6 +182,10 @@ La imagen y sus coordenadas están en `personaje` dentro de `config/marca-codigo
 | `src/animaciones/` | Tiempos de cada animación (sin React): de la voz, de la consola o de los pasos reales |
 | `scripts/animaciones.ts` | Ejecuta el código de una escena y calcula los datos de su animación; valida los datos del guion |
 | `scripts/fotos.ts` | Imágenes fijas de momentos de un video (`npm run fotos`) |
+| `src/escenario.ts`, `src/plano.ts` | Cámara del escenario: paneles, tomas y viaje entre editor y animación |
+| `src/components/Escenario.tsx` | Paneles con perspectiva, ventana que recorta al viajar y capas de parallax |
+| `src/components/Logo3D.tsx` | Logo en 3D (three.js) del gancho y el cierre |
+| `scripts/navegador.ts` | Opciones de Chromium para renderizar (WebGL `angle`) |
 | `src/depurador.ts` | Tiempos y medidas del depurador, compartidos con los validadores |
 | `scripts/traza.ts` | Instrumenta el código con acorn y registra cada paso de su ejecución |
 | `src/Portada.tsx` | Portada del canal código |

@@ -16,6 +16,7 @@ import {
 import { EDITOR, FONDO, MONO, SIN_LIGADURAS, TENUE, TINTA, segAFrames } from '../temaCodigo';
 import { EscenaCodigo, Palabra, PasoTraza, Traza } from '../types';
 import { ANCHO_ANIMACION } from '../medidas';
+import { VistaEscenario, columnaEscenario, panel3D } from './Escenario';
 import { LineaCodigo, SINTAXIS } from './Resaltado';
 
 const valorPrevio = (paso: PasoTraza | undefined, etiqueta: string, nombre: string) =>
@@ -130,7 +131,9 @@ export const EditorDepurador: React.FC<{
   palabras?: Palabra[];
   /** Con animación, ocupa el lugar del panel de variables (el contador ya muestra la variable del ciclo). */
   animacion?: React.ReactNode;
-}> = ({ e, duracionSeg, acento, archivo, sonidos, palabras, animacion }) => {
+  /** Cámara del escenario: hacia dónde mira y cuánto se inclina cada panel. */
+  escena?: VistaEscenario;
+}> = ({ e, duracionSeg, acento, archivo, sonidos, palabras, animacion, escena }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const traza = e.traza as Traza;
@@ -150,7 +153,7 @@ export const EditorDepurador: React.FC<{
   const pulso = 0.4 + 0.12 * Math.sin(frame / 7);
 
   return (
-    <div style={{ position: 'absolute', top: 400, left: 50, width: 885, display: 'flex', flexDirection: 'column', gap: 26 }}>
+    <div style={{ position: 'absolute', top: 400, left: 50, width: 885, display: 'flex', flexDirection: 'column', gap: 26, ...columnaEscenario(escena) }}>
       {sonidos &&
         lineas.map((_, i) => (
           <Sequence key={`tecla-${i}`} from={segAFrames(INICIO_CODIGO + i * PASO_CODIGO, fps)} durationInFrames={6} layout="none">
@@ -165,7 +168,15 @@ export const EditorDepurador: React.FC<{
             </Sequence>
           ) : null,
         )}
-      <div style={{ background: EDITOR, borderRadius: 26, border: '2px solid rgba(244,241,255,0.12)', overflow: 'hidden' }}>
+      <div
+        style={{
+          background: EDITOR,
+          borderRadius: 26,
+          border: '2px solid rgba(244,241,255,0.12)',
+          overflow: 'hidden',
+          ...(escena ? panel3D(escena.pesoEditor, -1, escena.entraEditor, escena.viaja) : {}),
+        }}
+      >
         <div style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '20px 26px', borderBottom: '2px solid rgba(244,241,255,0.08)' }}>
           {['#FF7A8A', '#FFB454', '#7FD1B9'].map((c) => (
             <div key={c} style={{ width: 18, height: 18, borderRadius: 9, background: c }} />
@@ -217,7 +228,7 @@ export const EditorDepurador: React.FC<{
           </div>
         </div>
       </div>
-      <div style={{ display: 'flex', gap: 20 }}>
+      <div style={{ display: 'flex', gap: 20, ...(escena ? panel3D(escena.pesoAbajo, 1, escena.entraAbajo, escena.viaja) : {}) }}>
         {animacion ? (
           <div style={{ width: ANCHO_ANIMACION, height: altoPanel, flex: '0 0 auto' }}>{animacion}</div>
         ) : (
