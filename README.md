@@ -50,7 +50,7 @@ npm run render -- diferencia-entre-while-y-do-while
 - `npm run portada -- <slug>` crea `out/<slug>-portada.png` (solo canal código).
 - `npm run studio` abre Remotion Studio para ajustar las plantillas en vivo.
 - `npm test` corre las pruebas de los validadores y los subtítulos, sin red ni créditos.
-- `npm run sonidos` crea el tecleo y el sonido de resultado; se activan con `"sonidos": true` en `config/marca-codigo.json`.
+- `npm run sonidos` crea los sonidos del canal código en `public/sfx` (tecleo, resultado, éxito, pop, whoosh y, para las animaciones: `vuelta` por cada vuelta de un ciclo, `rama` por cada decisión de un `if`, `caida` cuando un valor aterriza, `morph` en las transiciones y `brillo` con las partículas). Se activan con `"sonidos": true` en `config/marca-codigo.json`.
 - Temas listos: `temas.md` (fiestas) y `temas-codigo.md` (ruta de aprendizaje de programación).
 
 ## Guion del canal código
@@ -90,6 +90,60 @@ npm run render -- diferencia-entre-while-y-do-while
   - Cada elemento: `{ "texto": "Backend", "detalle": "Valida y procesa", "icono": "servidor", "clave": "valida" }`. Íconos: `pantalla`, `servidor`, `base-datos`, `api`, `cursor`, `imagen`, `formulario`, `menu`, `engrane`, `escudo`, `lista`, `capas`, `check`, `carrito`, `codigo`, `rayo`, `gota`, `usuario`, `nube`, `candado`, `avion`, `torre`, `alerta`, `reloj`, `antena`. Ejemplo completo: `content/frontend-vs-backend-que-es-cada-uno/guion.json`.
 - Opcional, para la portada: `"portada": { "titulo": "...", "frase": "..." }`. Sin esto usa el título del gancho.
 
+## Animaciones por concepto
+
+Una escena con código puede llevar `animacion`: una animación junto al editor que explica la idea y se mueve con la ejecución real del código (render.ts lo ejecuta y calcula los datos; no se escriben a mano). Es opcional: los guiones sin ella se ven igual que antes.
+
+```json
+{
+  "titulo": "Contar del 1 al 5",
+  "narracion": "Empezamos en uno, repetimos mientras i sea menor o igual a cinco, y en cada vuelta imprimimos i. El resultado: uno, dos, tres, cuatro, cinco.",
+  "codigo": "for (let i = 1; i <= 5; i++) {\n  console.log(i);\n}",
+  "salida": "1\n2\n3\n4\n5",
+  "animacion": {
+    "tipo": "ciclo",
+    "datos": {
+      "variable": "i",
+      "vueltas": 5,
+      "claves": { "inicio": "Empezamos", "condicion": "mientras", "cambio": "en cada vuelta", "vueltas": "El resultado" }
+    }
+  }
+}
+```
+
+Tipos (todos con `datos` opcional; `claves` son palabras de la narración, en orden, que hacen ocurrir cada momento cuando la voz las dice):
+
+| Tipo | Para qué código | Qué se ve | `datos` |
+|---|---|---|---|
+| `ciclo` | `for` o `while` | Pista circular con condición, cuerpo y cambio | `variable`, `vueltas`, `claves: { inicio, condicion, cambio, vueltas }` |
+| `variable` | declarar y cambiar valores | Cajas con etiqueta: el valor cae dentro, el viejo sale volando, la caja se apaga cuando la variable deja de existir | `variables` (máx. 3), `claves` (una por valor nuevo) |
+| `arreglo` | crear, `push`, `pop`, `shift`, `unshift`, `lista[i]`, `for...of` | Casillas con índice que entran, salen y se recorren; una flecha marca la que se lee | `nombre`, `claves` (una por cambio o lectura) |
+| `condicion` | un `if` (con o sin `else`) | Camino que se bifurca; la condición se llena con los valores reales y una ficha toma la rama | `rama` (`si`/`no`, la primera vez), `claves` (una por evaluación) |
+| `funcion` | una función con nombre | Máquina: los argumentos llenan los parámetros, los engranes giran y el resultado sale por abajo | `nombre`, `resultado` (de la primera llamada, p. ej. `"5"` o `"\"Hola\""`), `claves` (entra y regresa de cada llamada) |
+| `objeto` | crear, cambiar, agregar o leer propiedades | Ficha cuyas propiedades se despliegan; la que cambia voltea su valor y la que se lee se ilumina | `nombre`, `propiedades`, `claves` (una por cambio o lectura) |
+
+- Sin `depurar`, la línea que se ejecuta se marca en el editor y cada línea de consola sale en el paso real que la imprimió. Sin claves, los pasos se reparten a lo largo de la escena.
+- Ejemplo con los cinco tipos nuevos: `content/animaciones-muestra/guion.json`. Con voz real: `content/5-conceptos-animado/guion.json` y `content/api-animado/guion.json` (escena 4, objeto).
+
+- `ciclo`: pista circular para un `for` o un `while`. Arriba se revisa la condición (dice **sí** o **no**), a la derecha corre el cuerpo (lo que imprime sale disparado a la consola), abajo a la izquierda cambia la variable y el contador del centro rebota con su valor nuevo. Al salir, la pista se pone verde; en un bucle infinito se pone roja y se acelera sin fin.
+- Todo lo de `datos` es opcional. `variable` y `vueltas` (veces que entra al cuerpo) se comparan con la ejecución y `render` avisa si no coinciden.
+- `claves`: cada parte entra cuando la voz dice su palabra (con los tiempos reales de ElevenLabs; sin ellos, se estima por la posición en el texto). Sin claves busca palabras como "empieza", "condición" o "en cada vuelta". `claves.vueltas` marca cuándo empiezan a correr las vueltas.
+- Sin `depurar`, cada vuelta que imprime cae justo cuando su línea aparece en la consola. Con `depurar`, cada vuelta sigue los pasos reales de la ejecución y la animación ocupa el lugar del panel de variables (el contador muestra la variable del ciclo y hasta dos más).
+- La animación ocupa una fila bajo el editor: cada línea de consola debe tener máximo 19 caracteres. Si el código y la animación no caben juntos, la cámara viaja entre los dos, así que no hay límite de líneas extra. El cuerpo del ciclo va en su propia línea.
+- Ejemplos: `content/el-ciclo-for-animado/guion.json` (con y sin `depurar`, y un bucle infinito) y `content/contar-hacia-atras-animado/guion.json` (con tiempos reales de cada palabra).
+- `npm run fotos -- <slug> [--sin-voz] [--en=12,30.5] [--bloque=2]` saca imágenes fijas en `out/fotos/<slug>/` para revisar sin renderizar todo.
+
+## Cámara, profundidad y 3D
+
+- **Paneles en 3D:** el editor y lo que va debajo (consola, animación o variables) son paneles con perspectiva: entran girando y, cuando la cámara mira al otro, se inclinan hacia atrás y se atenúan. Al final de la escena vuelven los dos de frente.
+- **Cámara del escenario** (`src/escenario.ts`, `src/plano.ts`): mira al editor mientras se escribe, luego a la consola o a la animación. Si todo cabe en pantalla solo se acerca un poco; si el código y la animación no caben juntos, viaja entre ellos y lo que sale de cuadro se desvanece antes del título y del subtítulo. Por eso, junto a una animación, el código puede tener hasta las 10 líneas normales.
+- **Parallax:** detrás del contenido pasa una capa de símbolos grandes a un tercio de la velocidad de la cámara, y delante unas formas por los bordes al 160 %. El fondo general sigue igual.
+- **Momentos en 3D** (three.js, `src/components/Logo3D.tsx`): en el gancho (si no trae diagrama) el logo `</>` se arma con piezas que llegan volando; en el cierre flota arriba a la derecha con cubos en órbita.
+- **Transiciones con sentido** (`src/transiciones.ts`, `src/components/Transicion.tsx`): en cada corte una pieza de la escena que termina despega y se transforma (morph con `@remotion/paths`) en una estrella al centro, donde cambia de número justo en el corte, y aterriza convertida en la pieza de la siguiente. La raya del título del gancho se vuelve el "1/4" de la primera escena, cada número de escena se vuelve el siguiente, y el último se vuelve el botón "+ Seguir" del cierre. Mientras viaja, la escena que sale se retira y la que entra aparece, así que el corte queda limpio.
+- **Detalle de movimiento** (`src/components/Movimiento.tsx`): los valores y casillas que caen se aplastan al aterrizar (squash and stretch), lo que viaja rápido (argumentos de una función, valores que salen de un ciclo, la ficha del `if`) deja estela con `@remotion/motion-blur`, y los momentos de éxito (la consola termina, el ciclo sale, la función entrega su resultado, un `push`, el programa del depurador termina) sueltan partículas: confeti, chispas y un anillo.
+- **Texto cinético en el gancho:** cada palabra del título llega desde un lado distinto girando en 3D, estirada y con estela de color; la palabra con número (o la más larga) se guarda para el final, en el color de acento y con un golpe de escala.
+- El 3D usa WebGL con `angle` (lo recomendado por Remotion en escritorio). En una máquina sin GPU, define `REMOTION_GL=swangle` en `.env` (más lento).
+
 ## Depurador visual
 
 Agrega `depurar` a una escena con código para mostrarla corriendo: la línea activa avanza, el panel enseña las variables y la consola se llena en el momento real. Los pasos salen de ejecutar el código de verdad, no se escriben a mano.
@@ -118,7 +172,13 @@ Agrega `depurar` a una escena con código para mostrarla corriendo: la línea ac
 
 ## Personaje
 
-La imagen y sus coordenadas están en `personaje` dentro de `config/marca-codigo.json`. Si cambias o recortas la imagen, actualiza `ancho` y `alto`, el círculo de la `cara` y la posición de la `boca`, todo en píxeles de la imagen original.
+En el video sale la foto de la marca en un círculo, con la boca ligada al volumen de la voz.
+
+Opcional: con `"animado": true` en `personaje` dentro de `config/marca-codigo.json`, sale en su lugar un personaje animado en SVG (`src/components/PersonajeAnimado.tsx`) dibujado a partir del avatar de la marca: copete oscuro, pecas, sudadera negra con cordones morados y el logo `</>`, audífonos morados al cuello. Sale de un círculo del color de la escena (la cabeza y el brazo se salen del marco), respira, parpadea solo y la boca sigue el volumen real de la voz.
+
+Sus poses salen de los momentos de cada escena (`src/personaje.ts`): **saluda** en el gancho, **señala** el código cuando se explica, **pulgar arriba** cuando sale el resultado o termina el ciclo, **sorpresa** con un bucle infinito, y en el cierre levanta el pulgar al aparecer el botón y se despide. Antes de cada pose hace un pequeño amago contrario (anticipación) y llega con rebote; al celebrar da un saltito con squash and stretch. Para revisarlo en grande: composición `PersonajePoses` en `npm run studio`.
+
+La portada siempre usa la foto. La imagen y sus coordenadas siguen ahí: si cambias o recortas la imagen, actualiza `ancho` y `alto`, el círculo de la `cara` y la posición de la `boca`, todo en píxeles de la imagen original.
 
 ## Estructura
 
@@ -127,6 +187,15 @@ La imagen y sus coordenadas están en `personaje` dentro de `config/marca-codigo
 | `src/FiestaVideo.tsx` | Plantilla fiestas: gancho, tips numerados, cierre con CTA, subtítulos |
 | `src/CodigoVideo.tsx` | Plantilla código: editor con resaltado de sintaxis, línea activa, consola, subtítulos |
 | `src/components/EditorDepurador.tsx` | Editor animado del depurador visual: línea activa, variables y consola |
+| `src/components/animaciones/` | Animaciones por concepto (`Ciclo.tsx`) y el selector por tipo (`index.tsx`) |
+| `src/animaciones/` | Tiempos de cada animación (sin React): de la voz, de la consola o de los pasos reales |
+| `scripts/animaciones.ts` | Ejecuta el código de una escena y calcula los datos de su animación; valida los datos del guion |
+| `scripts/fotos.ts` | Imágenes fijas de momentos de un video (`npm run fotos`) |
+| `src/escenario.ts`, `src/plano.ts` | Cámara del escenario: paneles, tomas y viaje entre editor y animación |
+| `src/components/Escenario.tsx` | Paneles con perspectiva, ventana que recorta al viajar y capas de parallax |
+| `src/components/Logo3D.tsx` | Logo en 3D (three.js) del gancho y el cierre |
+| `src/components/PersonajeAnimado.tsx`, `src/personaje.ts` | Personaje animado en SVG y la línea de tiempo de sus poses |
+| `scripts/navegador.ts` | Opciones de Chromium para renderizar (WebGL `angle`) |
 | `src/depurador.ts` | Tiempos y medidas del depurador, compartidos con los validadores |
 | `scripts/traza.ts` | Instrumenta el código con acorn y registra cada paso de su ejecución |
 | `src/Portada.tsx` | Portada del canal código |

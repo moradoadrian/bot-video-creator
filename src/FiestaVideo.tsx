@@ -17,16 +17,15 @@ import { Confeti } from './components/Confeti';
 import { IconoFiesta } from './components/Iconos';
 import { Icono, VideoProps } from './types';
 
-export const FPS = 30;
-export const PAD_SEG = 0.4;
+import { FPS, PAD_SEG, framesPorBloque } from './bloques';
+
+export { FPS, PAD_SEG, framesPorBloque };
 
 const INK = '#2B2140';
 const CREMA = '#FFF6E9';
 const TITULO = '"Baloo 2", system-ui, sans-serif';
 const TEXTO = 'Nunito, system-ui, sans-serif';
 
-/** Frames de cada bloque (gancho, escenas…, cierre) a partir de las duraciones de audio. */
-export const framesPorBloque = (duraciones: number[]) => duraciones.map((d) => Math.round((d + PAD_SEG) * FPS));
 
 type Bloque = {
   tipo: 'gancho' | 'tip' | 'cierre';

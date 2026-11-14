@@ -15,6 +15,9 @@ import {
 } from '../depurador';
 import { EDITOR, FONDO, MONO, SIN_LIGADURAS, TENUE, TINTA, segAFrames } from '../temaCodigo';
 import { EscenaCodigo, Palabra, PasoTraza, Traza } from '../types';
+import { ANCHO_ANIMACION } from '../medidas';
+import { VistaEscenario, columnaEscenario, panel3D } from './Escenario';
+import { Particulas } from './Movimiento';
 import { LineaCodigo, SINTAXIS } from './Resaltado';
 
 const valorPrevio = (paso: PasoTraza | undefined, etiqueta: string, nombre: string) =>
@@ -101,7 +104,9 @@ const PanelVariables: React.FC<{ paso?: PasoTraza; previo?: PasoTraza; desde: nu
 };
 
 const PanelConsola: React.FC<{ traza: Traza; paso?: PasoTraza; alto: number }> = ({ traza, paso, alto }) => {
-  const lineas = traza.salida.slice(0, paso?.nSalida ?? 0).slice(-MAX_CONSOLA_DEPURADOR);
+  // Caben las líneas que permita el alto del panel (más alto cuando comparte fila con una animación)
+  const caben = Math.max(MAX_CONSOLA_DEPURADOR, Math.floor((alto - 36 - 44) / ALTO_FILA));
+  const lineas = traza.salida.slice(0, paso?.nSalida ?? 0).slice(-caben);
   return (
     <div style={{ ...estiloPanel, flex: 1, height: alto, border: `2px dashed ${SINTAXIS.cadena}55`, background: 'rgba(14,12,30,0.75)' }}>
       <div style={tituloPanel}>CONSOLA</div>
@@ -125,12 +130,16 @@ export const EditorDepurador: React.FC<{
   archivo: string;
   sonidos?: boolean;
   palabras?: Palabra[];
-}> = ({ e, duracionSeg, acento, archivo, sonidos, palabras }) => {
+  /** Con animación, ocupa el lugar del panel de variables (el contador ya muestra la variable del ciclo). */
+  animacion?: React.ReactNode;
+  /** Cámara del escenario: hacia dónde mira y cuánto se inclina cada panel. */
+  escena?: VistaEscenario;
+}> = ({ e, duracionSeg, acento, archivo, sonidos, palabras, animacion, escena }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const traza = e.traza as Traza;
   const lineas = (e.codigo ?? '').split('\n');
-  const { fs, lh, altoPanel } = medidasDepurador(lineas, traza);
+  const { fs, lh, altoPanel } = medidasDepurador(lineas, traza, !!animacion);
   const { tiempos } = tiemposDePasos(traza, e.depurar?.marcas ?? [], e.narracion, duracionSeg, inicioDePasos(lineas.length), palabras);
 
   const idx = pasoActual(tiempos, frame / fps);
@@ -145,7 +154,7 @@ export const EditorDepurador: React.FC<{
   const pulso = 0.4 + 0.12 * Math.sin(frame / 7);
 
   return (
-    <div style={{ position: 'absolute', top: 400, left: 50, width: 885, display: 'flex', flexDirection: 'column', gap: 26 }}>
+    <div style={{ position: 'absolute', top: 400, left: 50, width: 885, display: 'flex', flexDirection: 'column', gap: 26, ...columnaEscenario(escena) }}>
       {sonidos &&
         lineas.map((_, i) => (
           <Sequence key={`tecla-${i}`} from={segAFrames(INICIO_CODIGO + i * PASO_CODIGO, fps)} durationInFrames={6} layout="none">
@@ -160,7 +169,15 @@ export const EditorDepurador: React.FC<{
             </Sequence>
           ) : null,
         )}
-      <div style={{ background: EDITOR, borderRadius: 26, border: '2px solid rgba(244,241,255,0.12)', overflow: 'hidden' }}>
+      <div
+        style={{
+          background: EDITOR,
+          borderRadius: 26,
+          border: '2px solid rgba(244,241,255,0.12)',
+          overflow: 'hidden',
+          ...(escena ? panel3D(escena.pesoEditor, -1, escena.entraEditor, escena.viaja) : {}),
+        }}
+      >
         <div style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '20px 26px', borderBottom: '2px solid rgba(244,241,255,0.08)' }}>
           {['#FF7A8A', '#FFB454', '#7FD1B9'].map((c) => (
             <div key={c} style={{ width: 18, height: 18, borderRadius: 9, background: c }} />
@@ -212,8 +229,24 @@ export const EditorDepurador: React.FC<{
           </div>
         </div>
       </div>
-      <div style={{ display: 'flex', gap: 20 }}>
-        <PanelVariables paso={paso} previo={previo} desde={desde} acento={acento} alto={altoPanel} />
+      {/* Cuando el programa termina con algo en la consola: partículas sobre la consola */}
+      {traza.salida.length > 0 && (
+        <Particulas
+          desde={tiempos[traza.pasos.length - 1]}
+          x={885 - 90}
+          y={124 + lineas.length * lh + 26 + 30}
+          colores={[SINTAXIS.cadena, acento, TINTA]}
+          semilla={`depurador-${e.titulo}`}
+          cantidad={24}
+          fuerza={0.8}
+        />
+      )}
+      <div style={{ display: 'flex', gap: 20, ...(escena ? panel3D(escena.pesoAbajo, 1, escena.entraAbajo, escena.viaja) : {}) }}>
+        {animacion ? (
+          <div style={{ width: ANCHO_ANIMACION, height: altoPanel, flex: '0 0 auto' }}>{animacion}</div>
+        ) : (
+          <PanelVariables paso={paso} previo={previo} desde={desde} acento={acento} alto={altoPanel} />
+        )}
         <PanelConsola traza={traza} paso={paso} alto={altoPanel} />
       </div>
     </div>

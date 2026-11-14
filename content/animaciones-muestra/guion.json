@@ -1,0 +1,68 @@
+{
+  "canal": "codigo",
+  "lenguaje": "javascript",
+  "slug": "animaciones-muestra",
+  "tema": "Muestra de las animaciones por concepto",
+  "gancho": {
+    "titulo": "Así se ve tu código por dentro",
+    "narracion": "Hoy no solo vas a leer código: vas a ver qué pasa adentro de la computadora cuando corre."
+  },
+  "escenas": [
+    {
+      "titulo": "Una caja que cambia",
+      "narracion": "Una variable es una caja. Primero guardas veinte puntos. Luego ganas cinco más y la caja cambia a veinticinco. El nombre se queda, el valor es lo que cambia.",
+      "codigo": "let puntos = 20;\npuntos = puntos + 5;\nconsole.log(puntos);",
+      "resaltar": [2],
+      "salida": "25",
+      "animacion": {
+        "tipo": "variable",
+        "datos": { "variables": ["puntos"], "claves": ["veinte puntos", "cambia a"] }
+      }
+    },
+    {
+      "titulo": "Agregar y quitar",
+      "narracion": "Tu lista empieza con dos frutas. Con push agregas kiwi al final. Con pop quitas la última. Y con el índice uno lees la segunda casilla, porque se cuenta desde cero.",
+      "codigo": "const frutas = [\"pera\", \"uva\"];\nfrutas.push(\"kiwi\");\nfrutas.pop();\nconsole.log(frutas[1]);",
+      "salida": "uva",
+      "animacion": {
+        "tipo": "arreglo",
+        "datos": { "nombre": "frutas", "claves": ["dos frutas", "push", "pop", "índice uno"] }
+      }
+    },
+    {
+      "titulo": "Pares e impares",
+      "narracion": "El if se pregunta en cada vuelta si el número es par. Con cero dice que sí, con uno dice que no y se lo salta, y con dos vuelve a decir que sí.",
+      "codigo": "for (let i = 0; i < 3; i++) {\n  if (i % 2 === 0) {\n    console.log(i, \"es par\");\n  }\n}",
+      "salida": "0 es par\n2 es par",
+      "animacion": {
+        "tipo": "condicion",
+        "datos": { "rama": "si", "claves": ["Con cero", "con uno", "con dos"] }
+      }
+    },
+    {
+      "titulo": "La máquina de sumar",
+      "narracion": "La función es una máquina: le das dos y tres, trabaja y te regresa cinco. Si después le das diez y uno, te regresa once.",
+      "codigo": "function sumar(a, b) {\n  return a + b;\n}\nconsole.log(sumar(2, 3));\nconsole.log(sumar(10, 1));",
+      "salida": "5\n11",
+      "animacion": {
+        "tipo": "funcion",
+        "datos": { "nombre": "sumar", "resultado": "5", "claves": ["dos y tres", "regresa cinco", "diez y uno", "regresa once"] }
+      }
+    },
+    {
+      "titulo": "Una ficha con datos",
+      "narracion": "Un objeto junta datos con nombre. Tu perro se llama Rex y tiene tres años. En su cumpleaños la edad cambia a cuatro, y si le agregas raza, aparece una propiedad nueva.",
+      "codigo": "const perro = {\n  nombre: \"Rex\",\n  edad: 3,\n};\nperro.edad = 4;\nperro.raza = \"pug\";",
+      "animacion": {
+        "tipo": "objeto",
+        "datos": { "nombre": "perro", "propiedades": ["nombre", "edad", "raza"], "claves": ["se llama Rex", "cambia a cuatro", "agregas raza"] }
+      }
+    }
+  ],
+  "cierre": {
+    "titulo": "¿Cuál te costó más?",
+    "narracion": "Guarda este video y dime en comentarios cuál de estas cinco ideas quieres que explique a fondo."
+  },
+  "descripcion": "Variables, arreglos, condiciones, funciones y objetos, animados por dentro.",
+  "hashtags": ["#programacion", "#javascript", "#aprendeaprogramar", "#codigo"]
+}

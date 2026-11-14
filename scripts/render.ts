@@ -7,6 +7,7 @@ import { bundle } from '@remotion/bundler';
 import { renderMedia, selectComposition } from '@remotion/renderer';
 import { mkdirSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
+import { chromiumOptions } from './navegador';
 import { RAIZ, agregarTrazas, canalDe, leerGuion, leerMarca, leerTiming, timingEstimado, verificarCodigo, verificarVisuales } from './lib';
 
 async function main() {
@@ -31,7 +32,7 @@ async function main() {
   console.log('  Empaquetando…');
   const serveUrl = await bundle({ entryPoint: path.join(RAIZ, 'src', 'index.ts'), publicDir: path.join(RAIZ, 'public') });
   const browserExecutable = process.env.CHROME_PATH || null;
-  const composition = await selectComposition({ serveUrl, id: canal === 'codigo' ? 'CodigoVideo' : 'FiestaVideo', inputProps, browserExecutable });
+  const composition = await selectComposition({ serveUrl, id: canal === 'codigo' ? 'CodigoVideo' : 'FiestaVideo', inputProps, browserExecutable, chromiumOptions });
 
   const outDir = path.join(RAIZ, 'out');
   mkdirSync(outDir, { recursive: true });
@@ -49,6 +50,7 @@ async function main() {
     outputLocation: salida,
     inputProps,
     browserExecutable,
+    chromiumOptions,
     onProgress: ({ progress }) => {
       const p = Math.floor(progress * 10) * 10;
       if (p !== ultimo) {

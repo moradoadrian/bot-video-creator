@@ -7,7 +7,6 @@ import React from 'react';
 import {
   AbsoluteFill,
   Audio,
-  Easing,
   Sequence,
   interpolate,
   random,
@@ -21,7 +20,24 @@ import { EditorDepurador } from './components/EditorDepurador';
 import { Confeti } from './components/Confeti';
 import { Personaje } from './components/Personaje';
 import { LineaCodigo, SINTAXIS } from './components/Resaltado';
-import { MAX_SALIDA_VISIBLE, medidasEditor } from './medidas';
+import { ALTO_ANIMACION, ANCHO_ANIMACION, MAX_SALIDA_VISIBLE, SEPARACION_FILA, medidasEditor } from './medidas';
+import { RitmoSalida, tiemposEditor } from './editor';
+import { planAnimacion, ritmoConAnimacion, tieneAnimacion } from './animaciones/plan';
+import { AnimacionVista } from './components/animaciones';
+import { FondoCercano, PrimerPlano, VistaEscenario, Ventana, columnaEscenario, panel3D } from './components/Escenario';
+import { pasoEn } from './animaciones/pasos';
+import { camaraEscenario, pesoFoco } from './escenario';
+import { planoDeEscena } from './plano';
+import { Logo3D } from './components/Logo3D';
+import { PersonajeAnimado } from './components/PersonajeAnimado';
+import { Gesto, limpiarGestos } from './personaje';
+import { inicioDePasos } from './depurador';
+import { Transicion } from './components/Transicion';
+import { Particulas, squash } from './components/Movimiento';
+import { ANTES, DESPUES, DESPUES_CIERRE, botonSeguir, insignia, piezaLlegada, piezaSalida, rayaGancho } from './transiciones';
+import { FPS as FPS_VIDEO } from './bloques';
+
+const fijar01 = (x: number) => Math.min(1, Math.max(0, x));
 import { agruparPalabras, esClave, indiceActual, palabrasClave } from './subtitulos';
 import { VisualVista } from './components/Visual';
 import { golpesDeCamara, zoomCamara } from './camara';
@@ -141,7 +157,10 @@ const Subtitulo: React.FC<{
   palabras?: Palabra[];
   personaje?: ConfigPersonaje;
   tamPersonaje: number;
-}> = ({ texto, duracionSeg, acento, claves, audio, palabras, personaje, tamPersonaje }) => {
+  /** Poses del personaje animado en este bloque. */
+  gestos: Gesto[];
+  semilla: string;
+}> = ({ texto, duracionSeg, acento, claves, audio, palabras, personaje, tamPersonaje, gestos, semilla }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const t = frame / fps;
@@ -152,7 +171,12 @@ const Subtitulo: React.FC<{
   const lado = Math.round(frase.inicio * 10) % 2 ? 1 : -1;
   return (
     <div style={{ position: 'absolute', top: 1310, left: 60, right: 160, height: 220, display: 'flex', alignItems: 'center', gap: 34 }}>
-      <Personaje config={personaje} audio={audio} tam={tamPersonaje} acento={acento} />
+      {/* Por defecto, la foto de la marca; con "animado": true, el personaje en SVG con poses */}
+      {personaje?.animado === true ? (
+        <PersonajeAnimado audio={audio} tam={tamPersonaje} acento={acento} gestos={limpiarGestos(gestos, duracionSeg)} semilla={semilla} />
+      ) : (
+        <Personaje config={personaje} audio={audio} tam={tamPersonaje} acento={acento} />
+      )}
       <div
         style={{
           fontFamily: TEXTO,
@@ -201,90 +225,84 @@ const Subtitulo: React.FC<{
   );
 };
 
-/** Cuándo pasa cada cosa en el editor. Lo comparten el editor y la cámara. */
-const tiemposEditor = (e: EscenaCodigo, duracionSeg: number) => {
-  const lineas = (e.codigo ?? '').split('\n');
-  // El código se teclea casi de inmediato; el resultado se guarda para cuando la voz lo explique.
-  const inicio = 0.1;
-  const durTecleo = duracionTecleo(lineas.reduce((a, l) => a + l.length, 0), Math.min(2.5, duracionSeg * 0.4));
-  const finCodigo = inicio + durTecleo;
-  const tResaltar = finCodigo + 0.3;
-  const salida = (e.salida ?? '').split('\n').filter((l) => l.length);
-  const tSalida = Math.max(finCodigo + 0.6, duracionSeg * 0.3);
-  const pasoSalida = Math.min(0.45, (duracionSeg * 0.35) / Math.max(1, salida.length));
-  /** Cuando sale la última línea de la consola: ahí se celebra. */
-  const tUltima = salida.length ? tSalida + (salida.length - 1) * pasoSalida : Infinity;
-  return { lineas, salida, inicio, durTecleo, tResaltar, tSalida, pasoSalida, tUltima };
-};
-
 /** Momentos en que aparece cada elemento de un diagrama (igual que en VisualVista). */
 const tiemposVisual = (v: Visual, narracion: string, duracionSeg: number, palabras?: Palabra[]) =>
   momentosClave(clavesDe(v), narracion, duracionSeg, palabras).map((m) => Math.max(0.05, m.t - 0.15));
 
 /** Zoom lento, golpes en los momentos clave y una deriva suave para que la toma nunca esté quieta. */
+const movimientoCamara = (frame: number, fps: number, duracionSeg: number, golpes: number[]) => ({
+  escala: zoomCamara(frame / fps, duracionSeg, golpes),
+  x: Math.sin(frame / 40) * 5,
+  y: Math.cos(frame / 55) * 4,
+});
+
 const Camara: React.FC<{ duracionSeg: number; golpes: number[]; children: React.ReactNode }> = ({ duracionSeg, golpes, children }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
-  const escala = zoomCamara(frame / fps, duracionSeg, golpes);
-  const x = Math.sin(frame / 40) * 5;
-  const y = Math.cos(frame / 55) * 4;
+  const { escala, x, y } = movimientoCamara(frame, fps, duracionSeg, golpes);
   return (
     <AbsoluteFill style={{ transform: `translate(${x}px, ${y}px) scale(${escala})`, transformOrigin: '50% 42%' }}>{children}</AbsoluteFill>
   );
 };
 
-/** Frames que dura cada mitad del barrido; el corte entre bloques queda justo en medio, tapado. */
-export const MEDIO_BARRIDO = 7;
-
-/** Franja diagonal que cruza la pantalla y tapa el corte entre dos bloques. */
-const Barrido: React.FC<{ color: string; franja: string }> = ({ color, franja }) => {
-  const frame = useCurrentFrame();
-  const M = MEDIO_BARRIDO;
-  const ANCHO = 1700;
-  // Llega frenando, cubre la pantalla durante el corte y sale acelerando
-  const centro =
-    frame < M
-      ? interpolate(frame, [0, M], [-1250, 540], { easing: Easing.out(Easing.quad), extrapolateRight: 'clamp' })
-      : interpolate(frame, [M, 2 * M], [540, 2330], { easing: Easing.in(Easing.quad), extrapolateRight: 'clamp' });
-  const panel = (desfase: number, ancho: number, fondo: string): React.CSSProperties => ({
-    position: 'absolute',
-    top: -100,
-    height: 2120,
-    width: ancho,
-    left: centro + desfase - ancho / 2,
-    background: fondo,
-    transform: 'skewX(-12deg)',
+/** La palabra que se remarca en el gancho: la que trae un número, o si no la más larga. */
+const palabraFuerte = (palabras: string[]) => {
+  const conNumero = palabras.findIndex((p) => /\d/.test(p));
+  if (conNumero >= 0) return conNumero;
+  let mejor = -1;
+  palabras.forEach((p, i) => {
+    if (p.replace(/[^\p{L}]/gu, '').length >= 5 && (mejor < 0 || p.length > palabras[mejor].length)) mejor = i;
   });
-  return (
-    <AbsoluteFill style={{ pointerEvents: 'none' }}>
-      <div style={panel(ANCHO / 2 + 60, 90, franja)} />
-      <div style={panel(0, ANCHO, color)} />
-    </AbsoluteFill>
-  );
+  return mejor;
 };
 
-/** Título que entra palabra por palabra, con rebote, y un subrayado que se dibuja al final. */
-const TituloPorPalabras: React.FC<{ texto: string; acento: string; style: React.CSSProperties }> = ({ texto, acento, style }) => {
+/**
+ * Texto cinético del gancho: cada palabra llega volando desde un lado distinto, girando en 3D,
+ * estirada por la velocidad y con una estela de su color; aterriza con rebote. La palabra fuerte
+ * llega al final con un golpe de escala y en el color de acento. Luego todo ondea suave y se dibuja la raya.
+ */
+const TituloPorPalabras: React.FC<{ texto: string; acento: string; style: React.CSSProperties; sinRaya?: boolean }> = ({ texto, acento, style, sinRaya }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
+  const t = frame / fps;
   const palabras = texto.split(/\s+/).filter(Boolean);
+  const fuerte = palabraFuerte(palabras);
   // Adelantado: la primera palabra ya se ve en el primer cuadro
   const ADELANTO = 6;
   const RETRASO = 3;
-  const tFin = palabras.length * RETRASO;
+  // La palabra fuerte se guarda para el final
+  const turno = (i: number) => (i === fuerte ? palabras.length : i < fuerte || fuerte < 0 ? i : i - 1);
+  const tFin = (palabras.length + 1) * RETRASO;
   const raya = spring({ frame: Math.max(0, frame - tFin), fps, config: { damping: 18, stiffness: 140 } });
+  const DIRECCIONES = [
+    [0, 110],
+    [-160, 0],
+    [0, -110],
+    [160, 0],
+  ];
   return (
-    <div style={style}>
+    <div style={{ ...style, perspective: 900 }}>
       {palabras.map((p, i) => {
-        const f = frame + ADELANTO - i * RETRASO;
-        const s = f < 0 ? 0 : spring({ frame: f, fps, config: { damping: 10, stiffness: 210 } });
+        const f = frame + ADELANTO - turno(i) * RETRASO;
+        const s = f < 0 ? 0 : spring({ frame: f, fps, config: { damping: 9, stiffness: 190 } });
+        const [dx, dy] = DIRECCIONES[i % 4];
+        const falta = 1 - s;
+        const esFuerte = i === fuerte;
+        // Golpe de la palabra fuerte al aterrizar, y un leve ondeo cuando todo ya llegó
+        const golpe = esFuerte && f > 0 ? Math.exp(-Math.max(0, f - 8) / 5) * Math.max(0, Math.sin(Math.min(f, 20) / 3)) * 0.18 : 0;
+        const ondeo = frame > tFin ? Math.sin(t * 3 + i * 0.7) * 3 : 0;
+        const estira = 1 + Math.min(0.45, Math.abs(falta) * 0.6);
+        const horizontal = dx !== 0;
         return (
           <React.Fragment key={i}>
             <span
               style={{
                 display: 'inline-block',
-                opacity: Math.min(1, s * 2),
-                transform: `translateY(${(1 - s) * 70}px) scale(${0.6 + 0.4 * s}) rotate(${(1 - s) * (i % 2 ? 9 : -9)}deg)`,
+                opacity: Math.min(1, s * 2.5),
+                color: esFuerte ? acento : undefined,
+                transform: `translate(${dx * falta}px, ${dy * falta + ondeo}px) rotateX(${falta * (horizontal ? 0 : 70)}deg) rotateY(${falta * (horizontal ? 60 : 0)}deg) rotate(${falta * (i % 2 ? 10 : -10)}deg) scale(${(0.5 + 0.5 * s + golpe) * (horizontal ? estira : 1)}, ${(0.5 + 0.5 * s + golpe) * (horizontal ? 1 : estira)})`,
+                // Estela de color mientras viaja
+                textShadow: falta > 0.05 ? `${-dx * falta * 0.25}px ${-dy * falta * 0.25}px 0 ${acento}66, ${-dx * falta * 0.5}px ${-dy * falta * 0.5}px 0 ${acento}33` : 'none',
               }}
             >
               {p}
@@ -292,7 +310,8 @@ const TituloPorPalabras: React.FC<{ texto: string; acento: string; style: React.
           </React.Fragment>
         );
       })}
-      <div style={{ height: 14, width: 320 * raya, borderRadius: 7, background: acento, marginTop: 22 }} />
+      {/* Al final del gancho la raya despega y se convierte en el número de la primera escena */}
+      <div style={{ height: 14, width: 320 * raya, borderRadius: 7, background: acento, marginTop: 22, opacity: sinRaya ? 0 : 1 }} />
     </div>
   );
 };
@@ -325,7 +344,7 @@ const Efectos: React.FC<{ en: number[]; archivo: string; volumen: number; frames
   const { fps } = useVideoConfig();
   return (
     <>
-      {en.map((t, k) => (
+      {en.filter((t) => Number.isFinite(t) && t >= 0).map((t, k) => (
         <Sequence key={`${archivo}-${k}`} from={segAFrames(t, fps)} durationInFrames={frames} layout="none">
           <Audio src={staticFile(`sfx/${archivo}`)} volume={volumen} />
         </Sequence>
@@ -397,44 +416,6 @@ const CodigoTecleado: React.FC<{ codigo: string; duracionSeg: number; acento: st
   );
 };
 
-/** Chispas que salen disparadas desde un punto y caen. Duran medio segundo. */
-const Estallido: React.FC<{ desde: number; colores: string[]; x: number; y: number }> = ({ desde, colores, x, y }) => {
-  const frame = useCurrentFrame();
-  const { fps } = useVideoConfig();
-  const DURA = 20;
-  const f = frame - segAFrames(desde, fps);
-  if (f < 0 || f > DURA) return null;
-  const p = f / DURA;
-  const avance = 1 - (1 - p) ** 3;
-  return (
-    <>
-      {Array.from({ length: 22 }, (_, i) => {
-        const r = (k: string) => random(`chispa-${i}-${k}`);
-        const ang = r('a') * Math.PI * 2;
-        const dist = (110 + r('d') * 230) * avance;
-        const tam = 10 + r('t') * 12;
-        return (
-          <div
-            key={i}
-            style={{
-              position: 'absolute',
-              left: x + Math.cos(ang) * dist - tam / 2,
-              top: y + Math.sin(ang) * dist + 160 * p * p - tam / 2,
-              width: tam,
-              height: r('f') > 0.5 ? tam : tam * 0.45,
-              borderRadius: r('f') > 0.5 ? '50%' : 3,
-              background: colores[i % colores.length],
-              opacity: 1 - p * p,
-              transform: `rotate(${r('r') * 360 + f * 18}deg)`,
-              pointerEvents: 'none',
-            }}
-          />
-        );
-      })}
-    </>
-  );
-};
-
 const Palomita: React.FC<{ color: string; tinta: string; tam: number }> = ({ color, tinta, tam }) => (
   <svg width={tam} height={tam} viewBox="0 0 52 52">
     <circle cx="26" cy="26" r="26" fill={color} />
@@ -442,44 +423,64 @@ const Palomita: React.FC<{ color: string; tinta: string; tam: number }> = ({ col
   </svg>
 );
 
-const Editor: React.FC<{ e: EscenaCodigo; duracionSeg: number; acento: string; paleta: string[]; archivo: string; sonidos?: boolean }> = ({
-  e,
-  duracionSeg,
-  acento,
-  paleta,
-  archivo,
-  sonidos,
-}) => {
+const Editor: React.FC<{
+  e: EscenaCodigo;
+  duracionSeg: number;
+  acento: string;
+  paleta: string[];
+  archivo: string;
+  sonidos?: boolean;
+  /** Con animación, la consola comparte una fila con ella y va al ritmo de las vueltas. */
+  animacion?: React.ReactNode;
+  ritmo?: RitmoSalida;
+  /** Línea que la ejecución está corriendo (la marca la animación); 0 o undefined: ninguna. */
+  activa?: number;
+  /** Cámara del escenario: hacia dónde mira y cuánto se inclina cada panel. */
+  escena?: VistaEscenario;
+}> = ({ e, duracionSeg, acento, paleta, archivo, sonidos, animacion, ritmo, activa, escena }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const t = frame / fps;
-  const { lineas, salida, inicio, durTecleo, tResaltar, tSalida, pasoSalida, tUltima } = tiemposEditor(e, duracionSeg);
-  const { fs: FS, lh: LH } = medidasEditor(lineas, salida.length);
+  const { lineas, salida, inicio, durTecleo, finCodigo, tResaltar, tSalida, tUltima, tLinea } = tiemposEditor(e, duracionSeg, ritmo);
+  const { fs: FS, lh: LH } = medidasEditor(lineas, salida.length, !!animacion);
+  const enFila = !!animacion && salida.length > 0;
+  const anchoConsola = enFila ? 885 - ANCHO_ANIMACION - 20 : 885;
   const pulso = 0.55 + 0.25 * Math.sin(frame / 7);
   const visibles = visiblesPorLinea(lineas, t, inicio, durTecleo);
   const inicios = iniciosDeLinea(lineas, inicio, durTecleo);
   const cursorLinea = lineaDelCursor(lineas, visibles);
   const parpadeo = t < inicio + durTecleo || Math.floor(frame / 15) % 2 === 0;
-  const tLinea = (i: number) => tSalida + i * pasoSalida;
   const visiblesSalida = salida.filter((_, i) => t >= tLinea(i));
   const primera = Math.max(0, visiblesSalida.length - MAX_SALIDA_VISIBLE);
   const ultimas = visiblesSalida.slice(primera);
   // La consola celebra cuando termina: palomita, borde verde que brilla y chispas
-  const exito = t >= tUltima;
+  // Un bucle infinito no se celebra: su consola termina en "... nunca termina"
+  const nuncaTermina = salida.length > 0 && salida[salida.length - 1].startsWith('...');
+  const exito = t >= tUltima && !nuncaTermina;
   const sExito = exito ? spring({ frame: frame - segAFrames(tUltima, fps), fps, config: { damping: 8, stiffness: 200 } }) : 0;
   const brillo = exito ? Math.max(0, 1 - (t - tUltima) / 0.8) : 0;
   const VERDE = SINTAXIS.cadena;
 
   return (
-    <div style={{ position: 'absolute', top: 400, left: 50, width: 885, display: 'flex', flexDirection: 'column', gap: 26 }}>
+    <div style={{ position: 'absolute', top: 400, left: 50, width: 885, display: 'flex', flexDirection: 'column', gap: SEPARACION_FILA, ...columnaEscenario(escena) }}>
       {sonidos && (
         <>
           <Efectos en={momentosDeTecla(lineas, inicio, durTecleo)} archivo="tecla.wav" volumen={0.1} frames={6} />
           <Efectos en={salida.slice(0, -1).map((_, i) => tLinea(i))} archivo="resultado.wav" volumen={0.1} frames={9} />
-          {salida.length > 0 && <Efectos en={[tUltima]} archivo="exito.wav" volumen={0.3} frames={18} />}
+          {salida.length > 0 && !nuncaTermina && <Efectos en={[tUltima]} archivo="exito.wav" volumen={0.3} frames={18} />}
+          {salida.length > 0 && !nuncaTermina && <Efectos en={[tUltima + 0.08]} archivo="brillo.wav" volumen={0.25} frames={18} />}
         </>
       )}
-      <div style={{ background: EDITOR, borderRadius: 26, border: `2px solid rgba(244,241,255,0.12)`, overflow: 'hidden' }}>
+      <div
+        style={{
+          background: EDITOR,
+          borderRadius: 26,
+          border: `2px solid rgba(244,241,255,0.12)`,
+          overflow: 'hidden',
+          boxShadow: escena ? `0 ${30 * escena.pesoEditor}px 60px rgba(0,0,0,${0.25 + 0.2 * escena.pesoEditor})` : 'none',
+          ...(escena ? panel3D(escena.pesoEditor, -1, escena.entraEditor, escena.viaja) : {}),
+        }}
+      >
         <div style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '20px 26px', borderBottom: '2px solid rgba(244,241,255,0.08)' }}>
           {['#FF7A8A', '#FFB454', '#7FD1B9'].map((c) => (
             <div key={c} style={{ width: 18, height: 18, borderRadius: 9, background: c }} />
@@ -502,8 +503,12 @@ const Editor: React.FC<{ e: EscenaCodigo; duracionSeg: number; acento: string; p
                   fontSize: FS,
                   ...SIN_LIGADURAS,
                   whiteSpace: 'pre',
-                  background: resaltada ? `${acento}${Math.round(pulso * 0.35 * 255).toString(16).padStart(2, '0')}` : 'transparent',
-                  boxShadow: resaltada ? `inset 8px 0 0 ${acento}` : 'none',
+                  background: resaltada
+                    ? `${acento}${Math.round(pulso * 0.35 * 255).toString(16).padStart(2, '0')}`
+                    : activa === i + 1
+                      ? `${acento}1F`
+                      : 'transparent',
+                  boxShadow: resaltada ? `inset 8px 0 0 ${acento}` : activa === i + 1 ? `inset 8px 0 0 ${acento}99` : 'none',
                 }}
               >
                 <span
@@ -531,7 +536,17 @@ const Editor: React.FC<{ e: EscenaCodigo; duracionSeg: number; acento: string; p
         </div>
       </div>
 
-      {salida.length > 0 && t >= tSalida - 0.2 && (
+      {animacion && !enFila && (
+        <div style={{ height: ALTO_ANIMACION, ...(escena ? panel3D(escena.pesoAbajo, 1, escena.entraAbajo, escena.viaja) : {}) }}>{animacion}</div>
+      )}
+      {salida.length > 0 && (enFila || t >= tSalida - 0.2) && (
+        <div
+          style={{
+            ...(enFila ? { display: 'flex', gap: 20, height: ALTO_ANIMACION } : {}),
+            ...(escena ? panel3D(escena.pesoAbajo, 1, escena.entraAbajo, escena.viaja) : {}),
+          }}
+        >
+        {enFila && <div style={{ width: ANCHO_ANIMACION, flex: '0 0 auto' }}>{animacion}</div>}
         <div
           style={{
             position: 'relative',
@@ -540,7 +555,11 @@ const Editor: React.FC<{ e: EscenaCodigo; duracionSeg: number; acento: string; p
             border: `2px ${exito ? 'solid' : 'dashed'} ${exito ? VERDE : `${VERDE}55`}`,
             boxShadow: brillo ? `0 0 ${50 * brillo}px ${VERDE}` : 'none',
             padding: '18px 26px 20px',
-            opacity: interpolate(t, [tSalida - 0.2, tSalida], [0, 1], { extrapolateRight: 'clamp' }),
+            boxSizing: 'border-box',
+            ...(enFila ? { flex: 1, height: ALTO_ANIMACION } : {}),
+            opacity: enFila
+              ? interpolate(t, [finCodigo, finCodigo + 0.3], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' })
+              : interpolate(t, [tSalida - 0.2, tSalida], [0, 1], { extrapolateRight: 'clamp' }),
           }}
         >
           <div style={{ fontFamily: MONO, fontWeight: 700, fontSize: 22, letterSpacing: 2, color: TENUE, marginBottom: 8 }}>
@@ -552,13 +571,15 @@ const Editor: React.FC<{ e: EscenaCodigo; duracionSeg: number; acento: string; p
                 position: 'absolute',
                 top: -26,
                 right: 26,
-                transform: `scale(${sExito}) rotate(${(1 - sExito) * -90}deg)`,
+                transform: `scale(${sExito * squash(t, tUltima + 0.25).sx}, ${sExito * squash(t, tUltima + 0.25).sy}) rotate(${(1 - sExito) * -90}deg)`,
               }}
             >
               <Palomita color={VERDE} tinta={FONDO} tam={60} />
             </div>
           )}
-          <Estallido desde={tUltima} colores={[VERDE, ...paleta]} x={885 - 26 - 30 - 26} y={4} />
+          {!nuncaTermina && (
+            <Particulas desde={tUltima} x={anchoConsola - 26 - 30} y={4} colores={[VERDE, ...paleta]} semilla={`consola-${e.titulo}`} cantidad={30} />
+          )}
           {ultimas.map((l, i) => {
             const s = spring({ frame: frame - segAFrames(tLinea(primera + i), fps), fps, config: { damping: 13, stiffness: 220 } });
             return (
@@ -581,6 +602,7 @@ const Editor: React.FC<{ e: EscenaCodigo; duracionSeg: number; acento: string; p
             );
           })}
         </div>
+        </div>
       )}
     </div>
   );
@@ -601,7 +623,10 @@ const BloqueVista: React.FC<{
   sonidos?: boolean;
 }> = ({ b, acento, paleta, total, duracionSeg, handle, ctaSecundario, archivo, audio, palabras, personaje, sonidos }) => {
   const frame = useCurrentFrame();
-  const { fps } = useVideoConfig();
+  const { fps, durationInFrames } = useVideoConfig();
+  // Alrededor del corte el contenido se retira (sale) o llega (entra) mientras la pieza de la transición viaja
+  const sale = b.tipo === 'cierre' ? 0 : fijar01((frame - (durationInFrames - ANTES)) / ANTES);
+  const llega = b.tipo === 'gancho' ? 1 : fijar01(frame / 7);
   // Adelantado para que el primer cuadro nunca salga vacío
   const entra = spring({ frame: frame + 8, fps, config: { damping: 13, stiffness: 160 } });
   const voz = { audio, palabras, personaje };
@@ -615,27 +640,158 @@ const BloqueVista: React.FC<{
     </div>
     );
   };
-  /** Lo que se mueve con la cámara; el subtítulo y el personaje quedan fijos para que se lean bien. */
-  const conCamara = (momentos: number[], escenario: React.ReactNode, tamPersonaje: number) => (
-    <AbsoluteFill>
-      <Camara duracionSeg={duracionSeg} golpes={golpesDeCamara(momentos, duracionSeg)}>
-        {escenario}
-      </Camara>
-      <Subtitulo texto={b.narracion} duracionSeg={duracionSeg} acento={acento} claves={palabrasClave(b)} tamPersonaje={tamPersonaje} {...voz} />
-    </AbsoluteFill>
-  );
+  /**
+   * Lo que se mueve con la cámara; el subtítulo y el personaje quedan fijos para que se lean bien.
+   * Detrás va un fondo cercano y delante un primer plano, cada uno a otra velocidad (parallax).
+   */
+  const conCamara = (momentos: number[], escenario: React.ReactNode, tamPersonaje: number, dy = 0, gestos: Gesto[] = []) => {
+    const golpes = golpesDeCamara(momentos, duracionSeg);
+    const mov = { ...movimientoCamara(frame, fps, duracionSeg, golpes), dy };
+    const semilla = `${b.tipo}-${b.titulo}`;
+    return (
+      <AbsoluteFill>
+        <FondoCercano camara={mov} semilla={semilla} colores={paleta} />
+        <Camara duracionSeg={duracionSeg} golpes={golpes}>
+          <AbsoluteFill
+            style={{
+              opacity: llega * (1 - sale),
+              transform: `translateY(${-40 * sale ** 2}px) scale(${1 - 0.05 * sale}) rotateX(${10 * sale}deg)`,
+              transformOrigin: '50% 40%',
+            }}
+          >
+            {escenario}
+          </AbsoluteFill>
+        </Camara>
+        <PrimerPlano camara={mov} semilla={semilla} colores={paleta} />
+        <Subtitulo
+          texto={b.narracion}
+          duracionSeg={duracionSeg}
+          acento={acento}
+          claves={palabrasClave(b)}
+          tamPersonaje={tamPersonaje}
+          gestos={gestos}
+          semilla={semilla}
+          {...voz}
+        />
+      </AbsoluteFill>
+    );
+  };
 
   if (b.tipo === 'escena') {
+    const conAnimacion = tieneAnimacion(b);
+    const ritmo = ritmoConAnimacion(b, duracionSeg, palabras);
+    const plan = conAnimacion ? planAnimacion(b, duracionSeg, palabras) : null;
+    const momentosAnimacion = plan?.momentos ?? [];
+    // Línea que corre en este cuadro, según los pasos reales de la animación
+    const pasosAnimacion = b.animacion && b.animacion.tipo !== 'ciclo' ? b.animacion.calculado?.pasos : undefined;
+    const lineaActiva = plan?.tiempos && pasosAnimacion ? pasosAnimacion[pasoEn(plan.tiempos, frame / fps)]?.l : undefined;
     const momentos = b.traza
-      ? []
+      ? momentosAnimacion
       : b.codigo
       ? (() => {
-          const te = tiemposEditor(b, duracionSeg);
-          return [...(b.resaltar?.length ? [te.tResaltar] : []), ...(te.salida.length ? [te.tSalida, te.tUltima] : [])];
+          const te = tiemposEditor(b, duracionSeg, ritmo);
+          return [
+            ...(b.resaltar?.length ? [te.tResaltar] : []),
+            ...momentosAnimacion,
+            ...(te.salida.length ? [te.tSalida, te.tUltima] : []),
+          ];
         })()
       : b.visual && b.visual.tipo !== 'recorrido'
         ? tiemposVisual(b.visual, b.narracion, duracionSeg, palabras)
         : [];
+    const salidaAnimacion = b.traza ? b.traza.salida : (b.salida ?? '').split('\n').filter((l) => l.length);
+    const enFila = conAnimacion && (b.traza ? true : salidaAnimacion.length > 0);
+    /** El personaje señala el código cuando se explica, celebra cuando sale el resultado y se sorprende con un bucle infinito. */
+    const gestosEscena = (): Gesto[] => {
+      if (plan?.ciclo) {
+        const c = plan.ciclo;
+        return [
+          { t: c.partes.inicio, pose: 'senala' },
+          ...(c.salida !== null ? [{ t: c.salida, pose: 'celebra' as const }] : []),
+          ...(c.desboque !== null ? [{ t: c.desboque, pose: 'sorpresa' as const }] : []),
+        ];
+      }
+      if (plan?.tiempos) {
+        const primero = plan.momentos.length ? Math.min(...plan.momentos) : plan.aparece;
+        const ultimaLinea = ritmo?.lineas?.[ritmo.lineas.length - 1] ?? (b.traza ? plan.tiempos[plan.tiempos.length - 1] : undefined);
+        return [{ t: primero, pose: 'senala' }, ...(ultimaLinea !== undefined && salidaAnimacion.length ? [{ t: ultimaLinea, pose: 'celebra' as const }] : [])];
+      }
+      if (b.traza) {
+        const n = (b.codigo ?? '').split('\n').length;
+        return [{ t: inicioDePasos(n), pose: 'senala' }, ...(b.traza.salida.length ? [{ t: duracionSeg * 0.9, pose: 'celebra' as const }] : [])];
+      }
+      if (b.codigo) {
+        const te = tiemposEditor(b, duracionSeg);
+        const nunca = te.salida.length > 0 && te.salida[te.salida.length - 1].startsWith('...');
+        return [
+          ...(b.resaltar?.length ? [{ t: te.tResaltar, pose: 'senala' as const }] : [{ t: te.finCodigo, pose: 'senala' as const }]),
+          ...(te.salida.length ? [{ t: te.tUltima, pose: nunca ? ('sorpresa' as const) : ('celebra' as const) }] : []),
+        ];
+      }
+      if (b.visual && b.visual.tipo !== 'recorrido') {
+        const ms = tiemposVisual(b.visual, b.narracion, duracionSeg, palabras);
+        return ms.length ? [{ t: ms[0], pose: 'senala' }] : [];
+      }
+      return [];
+    };
+    // Cámara del escenario: a qué panel mira, cuánto se inclina cada uno y si tiene que viajar
+    const plano = planoDeEscena(b, duracionSeg, plan, ritmo);
+    const t = frame / fps;
+    const escena: VistaEscenario | undefined = plano
+      ? {
+          encuadre: camaraEscenario(plano.mundo, plano.tomas, t),
+          pesoEditor: pesoFoco(plano.tomas, t, 'editor'),
+          pesoAbajo: pesoFoco(plano.tomas, t, 'abajo'),
+          entraEditor: spring({ frame: frame + 6, fps, config: { damping: 14, stiffness: 120 } }),
+          entraAbajo: frame < segAFrames(plano.entraAbajo, fps) ? 0 : spring({ frame: frame - segAFrames(plano.entraAbajo, fps), fps, config: { damping: 13, stiffness: 120 } }),
+          viaja: plano.viaja,
+        }
+      : undefined;
+    /** Cada animación suena a lo suyo: clic por vuelta, dos notas por decisión, golpe al caer un valor, brillo al terminar. */
+    const sonidosDeAnimacion = (a: NonNullable<typeof b.animacion>, p: NonNullable<typeof plan>): { archivo: string; en: number[]; volumen: number; frames: number }[] => {
+      if (p.ciclo) {
+        const c = p.ciclo;
+        const vueltas = c.vueltas.map((v) => v.revision).filter((x) => c.desboque === null || x < c.desboque).slice(0, 40);
+        return [
+          { archivo: 'pop.wav', en: [c.partes.inicio, c.partes.condicion, c.partes.cambio], volumen: 0.22, frames: 4 },
+          { archivo: 'vuelta.wav', en: vueltas, volumen: 0.18, frames: 3 },
+          ...(c.salida !== null ? [{ archivo: 'exito.wav', en: [c.salida], volumen: 0.25, frames: 18 }, { archivo: 'brillo.wav', en: [c.salida + 0.1], volumen: 0.3, frames: 18 }] : []),
+        ];
+      }
+      const ts = p.tiempos ?? [];
+      const calc = a.tipo !== 'ciclo' ? a.calculado : undefined;
+      if (!calc) return [];
+      if (a.tipo === 'condicion') return [{ archivo: 'rama.wav', en: a.calculado!.evaluaciones.map((x) => ts[x.paso]), volumen: 0.25, frames: 7 }];
+      if (a.tipo === 'variable') return [{ archivo: 'caida.wav', en: a.calculado!.cajas.flatMap((cj) => cj.cambios.map((x) => ts[x.paso] + 0.32)), volumen: 0.35, frames: 6 }];
+      if (a.tipo === 'arreglo') {
+        const est = a.calculado!.estados;
+        return [
+          { archivo: 'caida.wav', en: est.filter((x) => x.accion === 'crea' || x.accion === 'push' || x.accion === 'unshift').map((x) => ts[x.paso] + 0.22), volumen: 0.3, frames: 6 },
+          { archivo: 'pop.wav', en: est.filter((x) => x.accion === 'pop' || x.accion === 'shift' || x.accion === 'cambia').map((x) => ts[x.paso]), volumen: 0.25, frames: 4 },
+        ];
+      }
+      if (a.tipo === 'funcion') {
+        const ll = a.calculado!.llamadas;
+        return [
+          { archivo: 'pop.wav', en: ll.map((x) => ts[x.entra]), volumen: 0.22, frames: 4 },
+          { archivo: 'brillo.wav', en: ll.filter((x) => x.resultado !== 'undefined').map((x) => ts[x.sale] + 0.15), volumen: 0.25, frames: 18 },
+        ];
+      }
+      return [{ archivo: 'pop.wav', en: calc.eventos.map((i) => ts[i]), volumen: 0.22, frames: 4 }];
+    };
+    const animacion = conAnimacion && b.animacion ? (
+      <>
+        <AnimacionVista
+          animacion={b.animacion}
+          plan={plan}
+          salida={salidaAnimacion}
+          acento={acento}
+          ancho={enFila ? ANCHO_ANIMACION : 885}
+          alto={ALTO_ANIMACION}
+        />
+        {sonidos && plan && sonidosDeAnimacion(b.animacion, plan).map((x) => <Efectos key={x.archivo} {...x} />)}
+      </>
+    ) : undefined;
     return conCamara(
       momentos,
       <>
@@ -649,7 +805,9 @@ const BloqueVista: React.FC<{
               background: acento,
               borderRadius: 14,
               padding: '8px 18px',
-              transform: `scale(${entra})`,
+              // La insignia la trae la transición: aparece cuando la pieza aterriza y se va cuando despega
+              opacity: frame < DESPUES || frame >= durationInFrames - ANTES ? 0 : 1,
+              transform: `scale(${frame < DESPUES ? 0 : 1 + 0.06 * Math.max(0, 1 - (frame - DESPUES) / 5)})`,
               flex: '0 0 auto',
             }}
           >
@@ -670,14 +828,20 @@ const BloqueVista: React.FC<{
           </div>
         </div>
         {b.codigo && b.traza ? (
-          <EditorDepurador e={b} duracionSeg={duracionSeg} acento={acento} archivo={b.archivo ?? archivo} sonidos={sonidos} palabras={palabras} />
+          <Ventana activa={!!plano?.viaja}>
+            <EditorDepurador e={b} duracionSeg={duracionSeg} acento={acento} archivo={b.archivo ?? archivo} sonidos={sonidos} palabras={palabras} animacion={animacion} escena={escena} />
+          </Ventana>
         ) : b.codigo ? (
-          <Editor e={b} duracionSeg={duracionSeg} acento={acento} paleta={paleta} archivo={b.archivo ?? archivo} sonidos={sonidos} />
+          <Ventana activa={!!plano?.viaja}>
+            <Editor e={b} duracionSeg={duracionSeg} acento={acento} paleta={paleta} archivo={b.archivo ?? archivo} sonidos={sonidos} animacion={animacion} ritmo={ritmo} activa={lineaActiva} escena={escena} />
+          </Ventana>
         ) : b.visual ? (
           b.visual.tipo === 'recorrido' ? visual(b.visual, 350, 940) : visual(b.visual, 390, 900)
         ) : null}
       </>,
       200,
+      escena?.encuadre.dy ?? 0,
+      gestosEscena(),
     );
   }
 
@@ -694,6 +858,7 @@ const BloqueVista: React.FC<{
         <div style={{ position: 'absolute', top: 210, left: 70, right: 160, display: 'flex', flexDirection: 'column', gap: 34 }}>
           <EtiquetaGlitch texto={`// ${b.etiqueta ?? 'JavaScript desde cero'}`} color={acento} />
           <TituloPorPalabras
+            sinRaya={frame >= durationInFrames - ANTES}
             texto={b.titulo}
             acento={acento}
             style={{ fontFamily: TITULO, fontWeight: 800, fontSize: 112, lineHeight: 0.98, color: TINTA, textWrap: 'balance' }}
@@ -701,8 +866,17 @@ const BloqueVista: React.FC<{
           {conCodigo && <CodigoTecleado codigo={conCodigo} duracionSeg={duracionSeg} acento={acento} sonidos={sonidos} />}
         </div>
         {b.visual && visual(b.visual, 790, 480)}
+        {/* Momento estelar en 3D: el logo se arma bajo el título (si el gancho no trae diagrama) */}
+        {!b.visual && (
+          <div style={{ position: 'absolute', left: 380, top: 950, width: 540, height: 320 }}>
+            <Logo3D ancho={540} alto={320} colores={[acento, ...paleta]} tinta={TINTA} desde={0.35} />
+          </div>
+        )}
       </>,
       240,
+      0,
+      // En el gancho saluda
+      [{ t: 0.25, pose: 'saluda' }],
     );
   }
 
@@ -717,6 +891,10 @@ const BloqueVista: React.FC<{
     [T_BOTON],
     <>
       <Confeti colores={paleta} cantidad={34} seed={`cierre-${b.titulo}`} intensidad={1.4} />
+      {/* El logo vuelve en 3D, con cubos en órbita, arriba a la derecha */}
+      <div style={{ position: 'absolute', left: 560, top: 140, width: 360, height: 280 }}>
+        <Logo3D ancho={360} alto={280} colores={[acento, ...paleta]} tinta={TINTA} desde={0.05} orbita tamano={0.72} />
+      </div>
       {sonidos && <Efectos en={[T_BOTON]} archivo="pop.wav" volumen={0.4} frames={4} />}
       <div
         style={{
@@ -784,6 +962,12 @@ const BloqueVista: React.FC<{
       </div>
     </>,
     220,
+    0,
+    // En el cierre levanta el pulgar cuando aparece el botón, y se despide saludando
+    [
+      { t: T_BOTON, pose: 'celebra' },
+      { t: Math.max(T_BOTON + 2.6, duracionSeg - 2.4), pose: 'saluda' },
+    ],
   );
 };
 
@@ -836,14 +1020,36 @@ export const CodigoVideo: React.FC<CodigoProps> = ({ guion, timing, marca }) => 
         );
       })}
       <Progreso color={marca.colores[0]} />
-      {/* Un barrido tapa cada corte; va al final para quedar encima de todo */}
-      {bloques.slice(1).map((_, k) => {
+      {/* En cada corte una pieza viaja de un bloque al siguiente; va al final para quedar encima de todo */}
+      {bloques.slice(1).map((b, k) => {
         const i = k + 1;
+        const previo = bloques[i - 1];
         const corte = frames.slice(0, i).reduce((a, f) => a + f, 0);
+        const despues = b.tipo === 'cierre' ? DESPUES_CIERRE : DESPUES;
+        const color = (n: number) => marca.colores[n % marca.colores.length];
+        const desde =
+          previo.tipo === 'escena'
+            ? insignia(previo.numero, guion.escenas.length, previo.titulo)
+            : rayaGancho(previo.titulo);
+        const hacia = b.tipo === 'escena' ? insignia(b.numero, guion.escenas.length, b.titulo) : botonSeguir();
         return (
-          <Sequence key={`barrido-${i}`} from={corte - MEDIO_BARRIDO} durationInFrames={2 * MEDIO_BARRIDO} name={`barrido-${i}`}>
-            <Barrido color={marca.colores[i % marca.colores.length]} franja={TINTA} />
-            {marca.sonidos && <Audio src={staticFile('sfx/whoosh.wav')} volume={0.35} />}
+          <Sequence key={`transicion-${i}`} from={corte - ANTES} durationInFrames={ANTES + despues + 5} name={`transicion-${i}`}>
+            <Transicion
+              desde={piezaSalida(desde, timing.duraciones[i - 1])}
+              hacia={piezaLlegada(hacia, despues / FPS_VIDEO, timing.duraciones[i])}
+              colorDesde={color(i - 1)}
+              colorHacia={color(i)}
+              textoDesde={previo.tipo === 'escena' ? `${previo.numero}/${guion.escenas.length}` : ''}
+              textoHacia={b.tipo === 'escena' ? `${b.numero}/${guion.escenas.length}` : '+ Seguir'}
+              antes={ANTES}
+              despues={despues}
+            />
+            {marca.sonidos && <Audio src={staticFile('sfx/morph.wav')} volume={0.35} />}
+            {marca.sonidos && (
+              <Sequence from={ANTES + despues - 2} durationInFrames={6} layout="none">
+                <Audio src={staticFile('sfx/pop.wav')} volume={0.3} />
+              </Sequence>
+            )}
           </Sequence>
         );
       })}

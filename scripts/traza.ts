@@ -276,12 +276,17 @@ export const formatoValor = (v: unknown, profundidad = 0): string => {
 
 const formatoConsola = (v: unknown) => (typeof v === 'string' ? v : JSON.stringify(v));
 
-/** Corre el código y devuelve sus pasos, o el motivo por el que no se pudo seguir. */
-export const trazar = (codigo: string): { traza?: Traza; error?: string } => {
+/**
+ * Corre el código y devuelve sus pasos, o el motivo por el que no se pudo seguir.
+ * Con `parcial`, un código que no termina (o da demasiados pasos) devuelve los pasos que alcanzó
+ * y `incompleta: true`: así se pueden animar las primeras vueltas de un bucle infinito.
+ */
+export const trazar = (codigo: string, { parcial = false } = {}): { traza?: Traza; error?: string; incompleta?: boolean } => {
+  const pasos: PasoTraza[] = [];
+  const salida: string[] = [];
+  const cortado = (error: string) => (parcial && pasos.length ? { traza: { pasos, salida }, error, incompleta: true } : { error });
   try {
     const { codigo: instrumentado, ambitos, funciones } = instrumentar(codigo);
-    const pasos: PasoTraza[] = [];
-    const salida: string[] = [];
     const pila = [0];
     let profundidadUltimo = 0;
 
@@ -338,7 +343,8 @@ export const trazar = (codigo: string): { traza?: Traza; error?: string } => {
     );
     return { traza: { pasos, salida } };
   } catch (e: any) {
-    if (e?.code === 'ERR_SCRIPT_EXECUTION_TIMEOUT') return { error: 'el código no termina' };
+    if (e?.code === 'ERR_SCRIPT_EXECUTION_TIMEOUT') return cortado('el código no termina');
+    if (e instanceof RangeError || e?.name === 'RangeError') return cortado(`${e.name}: ${e.message}`);
     return { error: `${e?.name ?? 'Error'}: ${e?.message ?? e}` };
   }
 };

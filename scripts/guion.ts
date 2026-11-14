@@ -5,6 +5,7 @@
  */
 import path from 'node:path';
 import { MAX_COLUMNAS_CONSOLA } from '../src/depurador';
+import { MAX_COLUMNAS_CONSOLA_ANIMACION } from '../src/medidas';
 import { Canal, ICONOS } from '../src/types';
 import { MAX_COLUMNAS, MAX_LINEAS, dirContenido, escribirJson, parsearGuion, requiereEnv, slugify, verificarCodigo } from './lib';
 
@@ -14,6 +15,15 @@ const FORMATO = `- Video vertical narrado por voz, de 65 a 85 segundos en total 
 - Tono cálido y práctico, con modismos mexicanos ligeros. Tutea al espectador.
 - Todo debe ser original: no copies frases de otros creadores ni menciones marcas registradas o personajes con derechos.
 - "descripcion": 1 o 2 frases para el post. "hashtags": 4 a 6, en español, relevantes para búsqueda.`;
+
+const ANIMACIONES = `- "animacion" (opcional, en escenas con código): una animación junto al editor que explica el concepto y se mueve con la ejecución real del código. Elige el tipo que mejor muestre la idea de la escena; no hace falta en todas. Con animación, cada línea de consola debe tener máximo ${MAX_COLUMNAS_CONSOLA_ANIMACION} caracteres.
+  Las claves son palabras o frases cortas copiadas tal cual de ESA narración, en el orden en que se dicen: hacen que cada momento de la animación ocurra cuando la voz lo dice. Todo dentro de "datos" es opcional y se comprueba ejecutando el código.
+  - "ciclo" (un for o un while con el cuerpo en su propia línea): pista circular; arriba se revisa la condición, a la derecha corre el cuerpo, abajo cambia la variable. {"tipo":"ciclo","datos":{"variable":"i","vueltas":5,"claves":{"inicio":"...","condicion":"...","cambio":"...","vueltas":"..."}}}. "vueltas" = veces que entra al cuerpo; "claves.vueltas" = cuándo empiezan a correr.
+  - "variable" (declarar y cambiar valores): una caja con etiqueta por variable (máximo 3); el valor cae dentro y el viejo sale volando al cambiar. {"tipo":"variable","datos":{"variables":["edad"],"claves":["...","..."]}}. Una clave por cada vez que una variable recibe valor, en orden.
+  - "arreglo" (crear, push, pop, shift, unshift, cambiar o leer una casilla, for...of): fila de casillas con índice. {"tipo":"arreglo","datos":{"nombre":"lista","claves":["...","..."]}}. Una clave por cada cambio del arreglo o lectura de una casilla, en orden.
+  - "condicion" (un if, con o sin else): un camino que se bifurca; la condición se llena con los valores reales y una ficha toma la rama verdadera o falsa. {"tipo":"condicion","datos":{"rama":"si","claves":["..."]}}. "rama" = la que toma la primera vez ("si" o "no"); una clave por cada vez que se evalúa.
+  - "funcion" (una función con nombre que se llama): una máquina; los argumentos entran a sus parámetros y el resultado sale por abajo. {"tipo":"funcion","datos":{"nombre":"sumar","resultado":"5","claves":["...","..."]}}. "resultado" = lo que devuelve la primera llamada, escrito como en la consola de Node (texto entre comillas dobles); dos claves por llamada: cuando entra y cuando regresa.
+  - "objeto" (crear un objeto, cambiar, agregar o leer propiedades): una ficha cuyas propiedades se despliegan. {"tipo":"objeto","datos":{"nombre":"perro","propiedades":["nombre","edad"],"claves":["...","..."]}}. Una clave por cada cambio o lectura de propiedad, en orden.`;
 
 const SISTEMA_FIESTAS = `Eres guionista de un canal de TikTok en español de México sobre fiestas infantiles.
 El público son mamás, papás y familiares adultos que organizan cumpleaños de niños de 2 a 10 años.
@@ -40,11 +50,12 @@ ${FORMATO}
 - Usa console.log para mostrar resultados. "salida" = exactamente lo que imprime el código, una línea por cada console.log. Si a propósito muestras un bucle infinito, escribe las primeras líneas y termina con "... nunca termina".
 - "resaltar": números de línea (desde 1) que la narración está explicando en esa escena.
 - La narración se lee en voz alta: NO incluyas símbolos ni código literal en la narración. Di "i aumenta en uno" en vez de "i++", "menor o igual" en vez de "<=", "igual igual igual" se dice "comparación estricta".
+${ANIMACIONES}
 - Incluye al menos una escena con un error común de principiante y cómo evitarlo.
 - Termina el cierre sugiriendo el siguiente tema relacionado como pregunta.
 
 Responde SOLO con un objeto JSON válido, sin texto adicional:
-{"canal":"codigo","lenguaje":"javascript","slug":"...","tema":"...","gancho":{"titulo":"...","narracion":"..."},"escenas":[{"titulo":"...","narracion":"...","codigo":"...","resaltar":[1],"salida":"..."}],"cierre":{"titulo":"...","narracion":"..."},"descripcion":"...","hashtags":["#..."]}`;
+{"canal":"codigo","lenguaje":"javascript","slug":"...","tema":"...","gancho":{"titulo":"...","narracion":"..."},"escenas":[{"titulo":"...","narracion":"...","codigo":"...","resaltar":[1],"salida":"...","animacion":{"tipo":"ciclo","datos":{"variable":"i","vueltas":3}}}],"cierre":{"titulo":"...","narracion":"..."},"descripcion":"...","hashtags":["#..."]}`;
 
 const SISTEMA_AVANZADO = `Eres guionista de un canal de TikTok en español de México que muestra JavaScript por dentro, con el código corriendo paso a paso.
 El público ya sabe variables, ciclos y funciones, y quiere entender lo que pasa debajo. Los ejemplos van en JavaScript síncrono: el depurador no sigue async, await ni generadores.
@@ -58,6 +69,7 @@ ${FORMATO}
 - "depurar": en cada escena con código, para animar la ejecución real. "marcas" une la narración con la ejecución: cuando la voz dice "frase" (texto exacto de esa narración), el programa llega a la vez número "vez" que corre "linea". "linea": 0 es el programa ya terminado. Pon una marca en cada momento clave, en el orden en que suceden.
 - La narración debe nombrar lo que se ve en el panel de variables. Las variables que sobreviven a su función aparecen con la etiqueta "recordada".
 - La narración se lee en voz alta: NO incluyas símbolos ni código literal.
+${ANIMACIONES}
 - Incluye al menos una escena con un error real que comete quien ya programa, y cómo evitarlo.
 - Termina el cierre sugiriendo el siguiente tema relacionado como pregunta.
 
