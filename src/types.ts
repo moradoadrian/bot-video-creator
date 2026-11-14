@@ -224,7 +224,7 @@ export type ConfigPersonaje = {
   alto: number;
   cara: { x: number; y: number; radio: number };
   boca: { x: number; y: number; ancho: number; alto: number };
-  /** true (por defecto): personaje animado en SVG en el video. false: la foto en un círculo. La portada siempre usa la foto. */
+  /** true: personaje animado en SVG con poses. false o sin poner (por defecto): la foto en un círculo. La portada siempre usa la foto. */
   animado?: boolean;
 };
 

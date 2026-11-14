@@ -170,8 +170,8 @@ const Subtitulo: React.FC<{
   const lado = Math.round(frase.inicio * 10) % 2 ? 1 : -1;
   return (
     <div style={{ position: 'absolute', top: 1310, left: 60, right: 160, height: 220, display: 'flex', alignItems: 'center', gap: 34 }}>
-      {/* El personaje animado sale del avatar de la marca; con "animado": false se usa la foto */}
-      {personaje && personaje.animado !== false ? (
+      {/* Por defecto, la foto de la marca; con "animado": true, el personaje en SVG con poses */}
+      {personaje?.animado === true ? (
         <PersonajeAnimado audio={audio} tam={tamPersonaje} acento={acento} gestos={limpiarGestos(gestos, duracionSeg)} semilla={semilla} />
       ) : (
         <Personaje config={personaje} audio={audio} tam={tamPersonaje} acento={acento} />
