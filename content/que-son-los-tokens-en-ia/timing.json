@@ -1,0 +1,1023 @@
+{
+  "conAudio": true,
+  "duraciones": [
+    11,
+    11.39,
+    12.04,
+    8.91,
+    11.39,
+    8.67,
+    8.91
+  ],
+  "palabras": [
+    [
+      {
+        "texto": "¿Sabías",
+        "inicio": 0,
+        "fin": 0.4
+      },
+      {
+        "texto": "que",
+        "inicio": 0.48,
+        "fin": 0.52
+      },
+      {
+        "texto": "la",
+        "inicio": 0.56,
+        "fin": 0.6
+      },
+      {
+        "texto": "inteligencia",
+        "inicio": 0.64,
+        "fin": 1.2
+      },
+      {
+        "texto": "artificial",
+        "inicio": 1.28,
+        "fin": 1.92
+      },
+      {
+        "texto": "no",
+        "inicio": 2.08,
+        "fin": 2.16
+      },
+      {
+        "texto": "lee",
+        "inicio": 2.24,
+        "fin": 2.48
+      },
+      {
+        "texto": "exactamente",
+        "inicio": 2.72,
+        "fin": 3.28
+      },
+      {
+        "texto": "como",
+        "inicio": 3.36,
+        "fin": 3.52
+      },
+      {
+        "texto": "nosotros?",
+        "inicio": 3.6,
+        "fin": 4.36
+      },
+      {
+        "texto": "Cuando",
+        "inicio": 4.64,
+        "fin": 4.8
+      },
+      {
+        "texto": "le",
+        "inicio": 4.84,
+        "fin": 4.88
+      },
+      {
+        "texto": "escribes",
+        "inicio": 4.96,
+        "fin": 5.28
+      },
+      {
+        "texto": "a",
+        "inicio": 5.32,
+        "fin": 5.36
+      },
+      {
+        "texto": "un",
+        "inicio": 5.4,
+        "fin": 5.44
+      },
+      {
+        "texto": "chat",
+        "inicio": 5.52,
+        "fin": 5.76
+      },
+      {
+        "texto": "de",
+        "inicio": 5.8,
+        "fin": 5.84
+      },
+      {
+        "texto": "IA,",
+        "inicio": 6,
+        "fin": 6.64
+      },
+      {
+        "texto": "tu",
+        "inicio": 6.68,
+        "fin": 6.72
+      },
+      {
+        "texto": "mensaje",
+        "inicio": 6.8,
+        "fin": 7.2
+      },
+      {
+        "texto": "se",
+        "inicio": 7.24,
+        "fin": 7.28
+      },
+      {
+        "texto": "divide",
+        "inicio": 7.36,
+        "fin": 7.68
+      },
+      {
+        "texto": "en",
+        "inicio": 7.76,
+        "fin": 7.84
+      },
+      {
+        "texto": "pequeñas",
+        "inicio": 7.92,
+        "fin": 8.32
+      },
+      {
+        "texto": "unidades",
+        "inicio": 8.4,
+        "fin": 8.8
+      },
+      {
+        "texto": "llamadas",
+        "inicio": 8.88,
+        "fin": 9.28
+      },
+      {
+        "texto": "tokens.",
+        "inicio": 9.36,
+        "fin": 9.92
+      },
+      {
+        "texto": "¡Te",
+        "inicio": 10.24,
+        "fin": 10.32
+      },
+      {
+        "texto": "explico!",
+        "inicio": 10.4,
+        "fin": 11.04
+      }
+    ],
+    [
+      {
+        "texto": "Un",
+        "inicio": 0,
+        "fin": 0.16
+      },
+      {
+        "texto": "token",
+        "inicio": 0.24,
+        "fin": 0.64
+      },
+      {
+        "texto": "es",
+        "inicio": 0.72,
+        "fin": 0.88
+      },
+      {
+        "texto": "una",
+        "inicio": 0.92,
+        "fin": 0.96
+      },
+      {
+        "texto": "unidad",
+        "inicio": 1.04,
+        "fin": 1.36
+      },
+      {
+        "texto": "de",
+        "inicio": 1.4,
+        "fin": 1.44
+      },
+      {
+        "texto": "texto",
+        "inicio": 1.6,
+        "fin": 2
+      },
+      {
+        "texto": "que",
+        "inicio": 2.08,
+        "fin": 2.16
+      },
+      {
+        "texto": "la",
+        "inicio": 2.2,
+        "fin": 2.24
+      },
+      {
+        "texto": "inteligencia",
+        "inicio": 2.32,
+        "fin": 2.8
+      },
+      {
+        "texto": "artificial",
+        "inicio": 2.88,
+        "fin": 3.36
+      },
+      {
+        "texto": "utiliza",
+        "inicio": 3.48,
+        "fin": 3.84
+      },
+      {
+        "texto": "para",
+        "inicio": 3.92,
+        "fin": 4.08
+      },
+      {
+        "texto": "procesar",
+        "inicio": 4.16,
+        "fin": 4.56
+      },
+      {
+        "texto": "lo",
+        "inicio": 4.64,
+        "fin": 4.72
+      },
+      {
+        "texto": "que",
+        "inicio": 4.76,
+        "fin": 4.8
+      },
+      {
+        "texto": "escribes.",
+        "inicio": 4.88,
+        "fin": 5.44
+      },
+      {
+        "texto": "Puede",
+        "inicio": 5.84,
+        "fin": 6
+      },
+      {
+        "texto": "ser",
+        "inicio": 6.08,
+        "fin": 6.16
+      },
+      {
+        "texto": "una",
+        "inicio": 6.24,
+        "fin": 6.32
+      },
+      {
+        "texto": "palabra",
+        "inicio": 6.4,
+        "fin": 6.64
+      },
+      {
+        "texto": "completa,",
+        "inicio": 6.72,
+        "fin": 7.52
+      },
+      {
+        "texto": "una",
+        "inicio": 7.6,
+        "fin": 7.76
+      },
+      {
+        "texto": "parte",
+        "inicio": 7.92,
+        "fin": 8.24
+      },
+      {
+        "texto": "de",
+        "inicio": 8.28,
+        "fin": 8.32
+      },
+      {
+        "texto": "una",
+        "inicio": 8.4,
+        "fin": 8.48
+      },
+      {
+        "texto": "palabra,",
+        "inicio": 8.56,
+        "fin": 9.28
+      },
+      {
+        "texto": "un",
+        "inicio": 9.36,
+        "fin": 9.44
+      },
+      {
+        "texto": "número",
+        "inicio": 9.52,
+        "fin": 9.92
+      },
+      {
+        "texto": "o",
+        "inicio": 10.08,
+        "fin": 10.24
+      },
+      {
+        "texto": "incluso",
+        "inicio": 10.32,
+        "fin": 10.68
+      },
+      {
+        "texto": "un",
+        "inicio": 10.72,
+        "fin": 10.8
+      },
+      {
+        "texto": "signo.",
+        "inicio": 10.92,
+        "fin": 11.44
+      }
+    ],
+    [
+      {
+        "texto": "Imagina",
+        "inicio": 0,
+        "fin": 0.4
+      },
+      {
+        "texto": "que",
+        "inicio": 0.48,
+        "fin": 0.56
+      },
+      {
+        "texto": "escribes:",
+        "inicio": 0.64,
+        "fin": 1.28
+      },
+      {
+        "texto": "Hola,",
+        "inicio": 1.6,
+        "fin": 2.08
+      },
+      {
+        "texto": "¿cómo",
+        "inicio": 2.107,
+        "fin": 2.24
+      },
+      {
+        "texto": "estás?",
+        "inicio": 2.32,
+        "fin": 2.72
+      },
+      {
+        "texto": "El",
+        "inicio": 3.2,
+        "fin": 3.28
+      },
+      {
+        "texto": "modelo",
+        "inicio": 3.44,
+        "fin": 3.6
+      },
+      {
+        "texto": "divide",
+        "inicio": 3.8,
+        "fin": 4
+      },
+      {
+        "texto": "ese",
+        "inicio": 4.08,
+        "fin": 4.16
+      },
+      {
+        "texto": "texto",
+        "inicio": 4.24,
+        "fin": 4.56
+      },
+      {
+        "texto": "en",
+        "inicio": 4.6,
+        "fin": 4.64
+      },
+      {
+        "texto": "fragmentos",
+        "inicio": 4.92,
+        "fin": 5.44
+      },
+      {
+        "texto": "y",
+        "inicio": 5.48,
+        "fin": 5.52
+      },
+      {
+        "texto": "trabaja",
+        "inicio": 5.56,
+        "fin": 5.92
+      },
+      {
+        "texto": "con",
+        "inicio": 6,
+        "fin": 6.08
+      },
+      {
+        "texto": "ellos",
+        "inicio": 6.16,
+        "fin": 6.4
+      },
+      {
+        "texto": "para",
+        "inicio": 6.48,
+        "fin": 6.56
+      },
+      {
+        "texto": "generar",
+        "inicio": 6.64,
+        "fin": 6.96
+      },
+      {
+        "texto": "una",
+        "inicio": 7.04,
+        "fin": 7.2
+      },
+      {
+        "texto": "respuesta.",
+        "inicio": 7.48,
+        "fin": 8.24
+      },
+      {
+        "texto": "La",
+        "inicio": 8.28,
+        "fin": 8.32
+      },
+      {
+        "texto": "cantidad",
+        "inicio": 8.4,
+        "fin": 8.8
+      },
+      {
+        "texto": "exacta",
+        "inicio": 9.04,
+        "fin": 9.36
+      },
+      {
+        "texto": "depende",
+        "inicio": 9.52,
+        "fin": 9.76
+      },
+      {
+        "texto": "del",
+        "inicio": 9.84,
+        "fin": 9.92
+      },
+      {
+        "texto": "modelo",
+        "inicio": 10,
+        "fin": 10.48
+      },
+      {
+        "texto": "y",
+        "inicio": 10.52,
+        "fin": 10.56
+      },
+      {
+        "texto": "de",
+        "inicio": 10.68,
+        "fin": 10.8
+      },
+      {
+        "texto": "cómo",
+        "inicio": 10.84,
+        "fin": 11.04
+      },
+      {
+        "texto": "divida",
+        "inicio": 11.12,
+        "fin": 11.36
+      },
+      {
+        "texto": "el",
+        "inicio": 11.4,
+        "fin": 11.44
+      },
+      {
+        "texto": "texto.",
+        "inicio": 11.52,
+        "fin": 12.08
+      }
+    ],
+    [
+      {
+        "texto": "Los",
+        "inicio": 0,
+        "fin": 0.16
+      },
+      {
+        "texto": "tokens",
+        "inicio": 0.24,
+        "fin": 0.64
+      },
+      {
+        "texto": "permiten",
+        "inicio": 0.8,
+        "fin": 1.04
+      },
+      {
+        "texto": "medir",
+        "inicio": 1.12,
+        "fin": 1.36
+      },
+      {
+        "texto": "cuánto",
+        "inicio": 1.44,
+        "fin": 1.76
+      },
+      {
+        "texto": "texto",
+        "inicio": 1.84,
+        "fin": 2.16
+      },
+      {
+        "texto": "entra",
+        "inicio": 2.24,
+        "fin": 2.56
+      },
+      {
+        "texto": "y",
+        "inicio": 2.72,
+        "fin": 2.8
+      },
+      {
+        "texto": "cuánto",
+        "inicio": 2.88,
+        "fin": 3.2
+      },
+      {
+        "texto": "texto",
+        "inicio": 3.28,
+        "fin": 3.6
+      },
+      {
+        "texto": "genera",
+        "inicio": 3.76,
+        "fin": 4
+      },
+      {
+        "texto": "una",
+        "inicio": 4.12,
+        "fin": 4.24
+      },
+      {
+        "texto": "IA.",
+        "inicio": 4.32,
+        "fin": 4.64
+      },
+      {
+        "texto": "También",
+        "inicio": 5.12,
+        "fin": 5.36
+      },
+      {
+        "texto": "ayudan",
+        "inicio": 5.44,
+        "fin": 5.76
+      },
+      {
+        "texto": "a",
+        "inicio": 5.8,
+        "fin": 5.84
+      },
+      {
+        "texto": "establecer",
+        "inicio": 5.88,
+        "fin": 6.32
+      },
+      {
+        "texto": "cuánto",
+        "inicio": 6.48,
+        "fin": 6.8
+      },
+      {
+        "texto": "contexto",
+        "inicio": 6.88,
+        "fin": 7.44
+      },
+      {
+        "texto": "puede",
+        "inicio": 7.52,
+        "fin": 7.68
+      },
+      {
+        "texto": "procesar",
+        "inicio": 7.76,
+        "fin": 8.16
+      },
+      {
+        "texto": "un",
+        "inicio": 8.2,
+        "fin": 8.24
+      },
+      {
+        "texto": "modelo.",
+        "inicio": 8.32,
+        "fin": 8.96
+      }
+    ],
+    [
+      {
+        "texto": "¡Así",
+        "inicio": 0,
+        "fin": 0.32
+      },
+      {
+        "texto": "es!",
+        "inicio": 0.4,
+        "fin": 0.92
+      },
+      {
+        "texto": "En",
+        "inicio": 1.12,
+        "fin": 1.2
+      },
+      {
+        "texto": "muchos",
+        "inicio": 1.28,
+        "fin": 1.44
+      },
+      {
+        "texto": "servicios",
+        "inicio": 1.56,
+        "fin": 1.92
+      },
+      {
+        "texto": "de",
+        "inicio": 1.96,
+        "fin": 2
+      },
+      {
+        "texto": "inteligencia",
+        "inicio": 2.08,
+        "fin": 2.56
+      },
+      {
+        "texto": "artificial,",
+        "inicio": 2.64,
+        "fin": 3.28
+      },
+      {
+        "texto": "como",
+        "inicio": 3.36,
+        "fin": 3.52
+      },
+      {
+        "texto": "las",
+        "inicio": 3.6,
+        "fin": 3.84
+      },
+      {
+        "texto": "API,",
+        "inicio": 3.92,
+        "fin": 4.8
+      },
+      {
+        "texto": "el",
+        "inicio": 4.84,
+        "fin": 4.88
+      },
+      {
+        "texto": "precio",
+        "inicio": 5.04,
+        "fin": 5.28
+      },
+      {
+        "texto": "depende",
+        "inicio": 5.44,
+        "fin": 5.68
+      },
+      {
+        "texto": "de",
+        "inicio": 5.72,
+        "fin": 5.76
+      },
+      {
+        "texto": "los",
+        "inicio": 5.84,
+        "fin": 5.92
+      },
+      {
+        "texto": "tokens",
+        "inicio": 6.08,
+        "fin": 6.4
+      },
+      {
+        "texto": "que",
+        "inicio": 6.48,
+        "fin": 6.52
+      },
+      {
+        "texto": "envías",
+        "inicio": 6.56,
+        "fin": 7.12
+      },
+      {
+        "texto": "y",
+        "inicio": 7.16,
+        "fin": 7.2
+      },
+      {
+        "texto": "los",
+        "inicio": 7.28,
+        "fin": 7.36
+      },
+      {
+        "texto": "que",
+        "inicio": 7.44,
+        "fin": 7.48
+      },
+      {
+        "texto": "recibes.",
+        "inicio": 7.52,
+        "fin": 8.48
+      },
+      {
+        "texto": "Pero",
+        "inicio": 8.56,
+        "fin": 8.72
+      },
+      {
+        "texto": "no",
+        "inicio": 8.88,
+        "fin": 8.96
+      },
+      {
+        "texto": "todos",
+        "inicio": 9.12,
+        "fin": 9.36
+      },
+      {
+        "texto": "los",
+        "inicio": 9.44,
+        "fin": 9.52
+      },
+      {
+        "texto": "servicios",
+        "inicio": 9.64,
+        "fin": 10
+      },
+      {
+        "texto": "cobran",
+        "inicio": 10.08,
+        "fin": 10.32
+      },
+      {
+        "texto": "de",
+        "inicio": 10.36,
+        "fin": 10.4
+      },
+      {
+        "texto": "la",
+        "inicio": 10.48,
+        "fin": 10.52
+      },
+      {
+        "texto": "misma",
+        "inicio": 10.56,
+        "fin": 10.8
+      },
+      {
+        "texto": "manera.",
+        "inicio": 10.88,
+        "fin": 11.44
+      }
+    ],
+    [
+      {
+        "texto": "Si",
+        "inicio": 0,
+        "fin": 0.08
+      },
+      {
+        "texto": "quieres",
+        "inicio": 0.16,
+        "fin": 0.4
+      },
+      {
+        "texto": "aprovechar",
+        "inicio": 0.48,
+        "fin": 0.88
+      },
+      {
+        "texto": "mejor",
+        "inicio": 0.96,
+        "fin": 1.28
+      },
+      {
+        "texto": "la",
+        "inicio": 1.36,
+        "fin": 1.44
+      },
+      {
+        "texto": "IA,",
+        "inicio": 1.52,
+        "fin": 2
+      },
+      {
+        "texto": "escribe",
+        "inicio": 2.08,
+        "fin": 2.4
+      },
+      {
+        "texto": "instrucciones",
+        "inicio": 2.52,
+        "fin": 3.04
+      },
+      {
+        "texto": "claras,",
+        "inicio": 3.12,
+        "fin": 3.92
+      },
+      {
+        "texto": "evita",
+        "inicio": 4,
+        "fin": 4.24
+      },
+      {
+        "texto": "información",
+        "inicio": 4.4,
+        "fin": 4.8
+      },
+      {
+        "texto": "innecesaria",
+        "inicio": 4.88,
+        "fin": 5.6
+      },
+      {
+        "texto": "y",
+        "inicio": 5.68,
+        "fin": 5.76
+      },
+      {
+        "texto": "proporciona",
+        "inicio": 5.84,
+        "fin": 6.48
+      },
+      {
+        "texto": "solamente",
+        "inicio": 6.6,
+        "fin": 7.12
+      },
+      {
+        "texto": "el",
+        "inicio": 7.2,
+        "fin": 7.28
+      },
+      {
+        "texto": "contexto",
+        "inicio": 7.52,
+        "fin": 7.787
+      },
+      {
+        "texto": "que",
+        "inicio": 7.813,
+        "fin": 7.84
+      },
+      {
+        "texto": "necesita.",
+        "inicio": 7.92,
+        "fin": 8.72
+      }
+    ],
+    [
+      {
+        "texto": "Ahora",
+        "inicio": 0,
+        "fin": 0.32
+      },
+      {
+        "texto": "ya",
+        "inicio": 0.4,
+        "fin": 0.48
+      },
+      {
+        "texto": "sabes",
+        "inicio": 0.52,
+        "fin": 0.8
+      },
+      {
+        "texto": "qué",
+        "inicio": 0.88,
+        "fin": 0.96
+      },
+      {
+        "texto": "son",
+        "inicio": 1.04,
+        "fin": 1.12
+      },
+      {
+        "texto": "los",
+        "inicio": 1.2,
+        "fin": 1.28
+      },
+      {
+        "texto": "tokens.",
+        "inicio": 1.52,
+        "fin": 1.96
+      },
+      {
+        "texto": "Guarda",
+        "inicio": 2.16,
+        "fin": 2.36
+      },
+      {
+        "texto": "este",
+        "inicio": 2.4,
+        "fin": 2.56
+      },
+      {
+        "texto": "video",
+        "inicio": 2.76,
+        "fin": 2.96
+      },
+      {
+        "texto": "y",
+        "inicio": 3.04,
+        "fin": 3.12
+      },
+      {
+        "texto": "comenta",
+        "inicio": 3.2,
+        "fin": 3.52
+      },
+      {
+        "texto": "si",
+        "inicio": 3.6,
+        "fin": 3.68
+      },
+      {
+        "texto": "quieres",
+        "inicio": 3.76,
+        "fin": 3.92
+      },
+      {
+        "texto": "que",
+        "inicio": 3.96,
+        "fin": 4
+      },
+      {
+        "texto": "explique",
+        "inicio": 4.16,
+        "fin": 4.56
+      },
+      {
+        "texto": "qué",
+        "inicio": 4.64,
+        "fin": 4.8
+      },
+      {
+        "texto": "es",
+        "inicio": 4.88,
+        "fin": 4.96
+      },
+      {
+        "texto": "el",
+        "inicio": 5.04,
+        "fin": 5.12
+      },
+      {
+        "texto": "contexto",
+        "inicio": 5.36,
+        "fin": 5.64
+      },
+      {
+        "texto": "de",
+        "inicio": 5.68,
+        "fin": 5.76
+      },
+      {
+        "texto": "una",
+        "inicio": 5.84,
+        "fin": 6
+      },
+      {
+        "texto": "IA.",
+        "inicio": 6.08,
+        "fin": 6.72
+      },
+      {
+        "texto": "¡Sígueme",
+        "inicio": 6.747,
+        "fin": 7.12
+      },
+      {
+        "texto": "para",
+        "inicio": 7.2,
+        "fin": 7.28
+      },
+      {
+        "texto": "aprender",
+        "inicio": 7.32,
+        "fin": 7.76
+      },
+      {
+        "texto": "más",
+        "inicio": 7.8,
+        "fin": 7.92
+      },
+      {
+        "texto": "de",
+        "inicio": 7.96,
+        "fin": 8
+      },
+      {
+        "texto": "tecnología!",
+        "inicio": 8.08,
+        "fin": 8.96
+      }
+    ]
+  ]
+}

@@ -1,0 +1,71 @@
+{
+  "canal": "codigo",
+  "lenguaje": "javascript",
+  "slug": "que-es-un-prompt-en-ia",
+  "tema": "Qué es un prompt en IA",
+  "gancho": {
+    "titulo": "¿Qué es un prompt en IA?",
+    "narracion": "Cada vez que le escribes a una inteligencia artificial, estás usando un prompt. Y si aprendes a escribirlo bien, las respuestas mejoran muchísimo. Te explico cómo."
+  },
+  "escenas": [
+    {
+      "titulo": "Es tu instrucción",
+      "narracion": "Un prompt es el mensaje que le das a la IA: una pregunta, una orden o un ejemplo. El modelo lee tu prompt, lo interpreta y genera una respuesta. Si tu prompt es vago, la respuesta también.",
+      "visual": {
+        "tipo": "flujo",
+        "pasos": [
+          { "texto": "Tu prompt", "detalle": "Pregunta u orden", "icono": "formulario", "clave": "mensaje" },
+          { "texto": "El modelo", "detalle": "Lo lee y lo interpreta", "icono": "engrane", "clave": "lee" },
+          { "texto": "La respuesta", "detalle": "Lo que te regresa", "icono": "pantalla", "clave": "genera" }
+        ]
+      }
+    },
+    {
+      "titulo": "Sus tres partes",
+      "narracion": "Un buen prompt tiene partes. El rol: quién quieres que sea la IA, por ejemplo un maestro paciente. La tarea: qué tiene que hacer. Y el formato: cómo quieres la respuesta, por ejemplo en tres viñetas.",
+      "codigo": "const prompt = {\n  rol: \"maestro paciente\",\n  tarea: \"explica qué es HTML\",\n  formato: \"3 viñetas\",\n};\nconsole.log(prompt.tarea);",
+      "resaltar": [3],
+      "salida": "explica qué es HTML",
+      "animacion": {
+        "tipo": "objeto",
+        "datos": {
+          "nombre": "prompt",
+          "propiedades": ["rol", "tarea", "formato"],
+          "claves": ["tiene partes", "La tarea"]
+        }
+      }
+    },
+    {
+      "titulo": "Vago contra claro",
+      "narracion": "El error más común es pedir algo vago, como háblame de perros, y esperar magia. Compáralo con uno claro: dame cinco razas de perro para vivir en departamento, con su tamaño. El segundo te da justo lo que necesitas.",
+      "visual": {
+        "tipo": "versus",
+        "lados": [
+          { "texto": "Vago", "detalle": "Háblame de perros", "icono": "alerta", "clave": "vago" },
+          { "texto": "Claro", "detalle": "5 razas para depa", "icono": "check", "clave": "claro" }
+        ]
+      }
+    },
+    {
+      "titulo": "Armarlo con código",
+      "narracion": "También puedes armar prompts con código. Esta función recibe el rol y la tarea, y regresa el prompt listo. Le das chef y ayúdame, y te devuelve: eres chef, ayúdame. Así lo reutilizas con cualquier rol.",
+      "codigo": "function armar(rol, tarea) {\n  return `Eres ${rol}. ${tarea}`;\n}\nconst p = armar(\"chef\", \"Ayúdame\");\nconsole.log(p);",
+      "resaltar": [2],
+      "salida": "Eres chef. Ayúdame",
+      "animacion": {
+        "tipo": "funcion",
+        "datos": {
+          "nombre": "armar",
+          "resultado": "\"Eres chef. Ayúdame\"",
+          "claves": ["Le das", "te devuelve"]
+        }
+      }
+    }
+  ],
+  "cierre": {
+    "titulo": "¿Y los tokens?",
+    "narracion": "Guarda este video para tu próximo prompt y dime en comentarios si quieres saber qué son los tokens. Sígueme para aprender a programar desde cero."
+  },
+  "descripcion": "Qué es un prompt en IA, sus tres partes y cómo escribir uno claro, explicado fácil.",
+  "hashtags": ["#inteligenciaartificial", "#prompts", "#programacion", "#javascript", "#aprendeaprogramar"]
+}

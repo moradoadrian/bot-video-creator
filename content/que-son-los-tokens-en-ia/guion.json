@@ -1,0 +1,78 @@
+{
+  "canal": "codigo",
+  "lenguaje": "javascript",
+  "slug": "que-son-los-tokens-en-ia",
+  "tema": "Qué son los tokens en inteligencia artificial",
+  "gancho": {
+    "titulo": "¿Qué son los tokens en IA?",
+    "narracion": "¿Sabías que la inteligencia artificial no lee exactamente como nosotros? Cuando le escribes a un chat de IA, tu mensaje se divide en pequeñas unidades llamadas tokens. ¡Te explico!"
+  },
+  "escenas": [
+    {
+      "titulo": "¿Qué es un token?",
+      "narracion": "Un token es una unidad de texto que la inteligencia artificial utiliza para procesar lo que escribes. Puede ser una palabra completa, una parte de una palabra, un número o incluso un signo.",
+      "visual": {
+        "tipo": "tarjetas",
+        "items": [
+          { "texto": "Palabra completa", "detalle": "hola", "icono": "codigo", "clave": "palabra completa" },
+          { "texto": "Parte de palabra", "detalle": "progra + mar", "icono": "capas", "clave": "una parte" },
+          { "texto": "Número", "detalle": "2025", "icono": "lista", "clave": "número" },
+          { "texto": "Signo", "detalle": "¿ ? , !", "icono": "rayo", "clave": "signo" }
+        ]
+      }
+    },
+    {
+      "titulo": "¿Cómo funcionan?",
+      "narracion": "Imagina que escribes: Hola, ¿cómo estás? El modelo divide ese texto en fragmentos y trabaja con ellos para generar una respuesta. La cantidad exacta depende del modelo y de cómo divida el texto.",
+      "codigo": "// Un modelo podría dividirlo así:\nconst tokens = [\n  \"Hola\", \",\", \" ¿cómo\",\n  \" estás\", \"?\",\n];\nconsole.log(tokens.length);",
+      "resaltar": [2],
+      "salida": "5",
+      "animacion": {
+        "tipo": "arreglo",
+        "datos": { "nombre": "tokens", "claves": ["fragmentos"] }
+      }
+    },
+    {
+      "titulo": "¿Para qué sirven?",
+      "narracion": "Los tokens permiten medir cuánto texto entra y cuánto texto genera una IA. También ayudan a establecer cuánto contexto puede procesar un modelo.",
+      "visual": {
+        "tipo": "tarjetas",
+        "items": [
+          { "texto": "Lo que entra", "detalle": "Tu mensaje", "icono": "formulario", "clave": "entra" },
+          { "texto": "Lo que genera", "detalle": "La respuesta", "icono": "pantalla", "clave": "genera" },
+          { "texto": "El contexto", "detalle": "Cuánto puede recordar", "icono": "capas", "clave": "contexto" }
+        ]
+      }
+    },
+    {
+      "titulo": "¿También cuestan dinero?",
+      "narracion": "¡Así es! En muchos servicios de inteligencia artificial, como las API, el precio depende de los tokens que envías y los que recibes. Pero no todos los servicios cobran de la misma manera.",
+      "visual": {
+        "tipo": "suma",
+        "partes": [
+          { "texto": "Lo que envías", "detalle": "Tokens de entrada", "icono": "formulario", "clave": "envías" },
+          { "texto": "Lo que recibes", "detalle": "Tokens de salida", "icono": "pantalla", "clave": "recibes" }
+        ],
+        "resultado": { "texto": "Lo que pagas", "detalle": "Varía por servicio", "icono": "carrito", "clave": "cobran" }
+      }
+    },
+    {
+      "titulo": "Un consejo",
+      "narracion": "Si quieres aprovechar mejor la IA, escribe instrucciones claras, evita información innecesaria y proporciona solamente el contexto que necesita.",
+      "visual": {
+        "tipo": "tarjetas",
+        "items": [
+          { "texto": "Instrucciones claras", "detalle": "Di qué quieres", "icono": "check", "clave": "claras" },
+          { "texto": "Sin relleno", "detalle": "Quita lo innecesario", "icono": "escudo", "clave": "innecesaria" },
+          { "texto": "Contexto justo", "detalle": "Solo lo que necesita", "icono": "capas", "clave": "contexto" }
+        ]
+      }
+    }
+  ],
+  "cierre": {
+    "titulo": "¿Qué sigue?",
+    "narracion": "Ahora ya sabes qué son los tokens. Guarda este video y comenta si quieres que explique qué es el contexto de una IA. ¡Sígueme para aprender más de tecnología!"
+  },
+  "descripcion": "Qué son los tokens en inteligencia artificial, para qué sirven y por qué influyen en el precio, explicado fácil.",
+  "hashtags": ["#inteligenciaartificial", "#tokens", "#ia", "#tecnologia", "#aprendeaprogramar"]
+}

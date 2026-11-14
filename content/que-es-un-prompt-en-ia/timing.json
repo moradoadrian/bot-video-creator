@@ -1,0 +1,1020 @@
+{
+  "conAudio": true,
+  "duraciones": [
+    9.8,
+    12.83,
+    13.71,
+    14.03,
+    13.79,
+    7.81
+  ],
+  "palabras": [
+    [
+      {
+        "texto": "Cada",
+        "inicio": 0,
+        "fin": 0.16
+      },
+      {
+        "texto": "vez",
+        "inicio": 0.24,
+        "fin": 0.32
+      },
+      {
+        "texto": "que",
+        "inicio": 0.4,
+        "fin": 0.48
+      },
+      {
+        "texto": "le",
+        "inicio": 0.52,
+        "fin": 0.56
+      },
+      {
+        "texto": "escribes",
+        "inicio": 0.64,
+        "fin": 1.04
+      },
+      {
+        "texto": "a",
+        "inicio": 1.08,
+        "fin": 1.12
+      },
+      {
+        "texto": "una",
+        "inicio": 1.2,
+        "fin": 1.28
+      },
+      {
+        "texto": "inteligencia",
+        "inicio": 1.36,
+        "fin": 1.76
+      },
+      {
+        "texto": "artificial,",
+        "inicio": 1.84,
+        "fin": 2.56
+      },
+      {
+        "texto": "estás",
+        "inicio": 2.68,
+        "fin": 2.96
+      },
+      {
+        "texto": "usando",
+        "inicio": 3.04,
+        "fin": 3.36
+      },
+      {
+        "texto": "un",
+        "inicio": 3.52,
+        "fin": 3.6
+      },
+      {
+        "texto": "prompt.",
+        "inicio": 3.76,
+        "fin": 4.4
+      },
+      {
+        "texto": "Y",
+        "inicio": 4.64,
+        "fin": 4.68
+      },
+      {
+        "texto": "si",
+        "inicio": 4.72,
+        "fin": 4.8
+      },
+      {
+        "texto": "aprendes",
+        "inicio": 4.88,
+        "fin": 5.2
+      },
+      {
+        "texto": "a",
+        "inicio": 5.24,
+        "fin": 5.28
+      },
+      {
+        "texto": "escribirlo",
+        "inicio": 5.32,
+        "fin": 5.76
+      },
+      {
+        "texto": "bien,",
+        "inicio": 5.84,
+        "fin": 6.32
+      },
+      {
+        "texto": "las",
+        "inicio": 6.4,
+        "fin": 6.48
+      },
+      {
+        "texto": "respuestas",
+        "inicio": 6.6,
+        "fin": 7.04
+      },
+      {
+        "texto": "mejoran",
+        "inicio": 7.12,
+        "fin": 7.52
+      },
+      {
+        "texto": "muchísimo.",
+        "inicio": 7.6,
+        "fin": 8.52
+      },
+      {
+        "texto": "Te",
+        "inicio": 8.72,
+        "fin": 8.8
+      },
+      {
+        "texto": "explico",
+        "inicio": 8.88,
+        "fin": 9.2
+      },
+      {
+        "texto": "cómo.",
+        "inicio": 9.28,
+        "fin": 9.84
+      }
+    ],
+    [
+      {
+        "texto": "Un",
+        "inicio": 0,
+        "fin": 0.12
+      },
+      {
+        "texto": "prompt",
+        "inicio": 0.16,
+        "fin": 0.573
+      },
+      {
+        "texto": "es",
+        "inicio": 0.64,
+        "fin": 0.8
+      },
+      {
+        "texto": "el",
+        "inicio": 0.88,
+        "fin": 0.94
+      },
+      {
+        "texto": "mensaje",
+        "inicio": 0.96,
+        "fin": 1.44
+      },
+      {
+        "texto": "que",
+        "inicio": 1.52,
+        "fin": 1.6
+      },
+      {
+        "texto": "le",
+        "inicio": 1.64,
+        "fin": 1.68
+      },
+      {
+        "texto": "das",
+        "inicio": 1.76,
+        "fin": 1.92
+      },
+      {
+        "texto": "a",
+        "inicio": 1.96,
+        "fin": 2
+      },
+      {
+        "texto": "la",
+        "inicio": 2.04,
+        "fin": 2.08
+      },
+      {
+        "texto": "IA:",
+        "inicio": 2.16,
+        "fin": 2.88
+      },
+      {
+        "texto": "una",
+        "inicio": 2.96,
+        "fin": 3.04
+      },
+      {
+        "texto": "pregunta,",
+        "inicio": 3.12,
+        "fin": 3.92
+      },
+      {
+        "texto": "una",
+        "inicio": 4,
+        "fin": 4.08
+      },
+      {
+        "texto": "orden",
+        "inicio": 4.24,
+        "fin": 4.72
+      },
+      {
+        "texto": "o",
+        "inicio": 4.8,
+        "fin": 4.88
+      },
+      {
+        "texto": "un",
+        "inicio": 4.96,
+        "fin": 5.04
+      },
+      {
+        "texto": "ejemplo.",
+        "inicio": 5.12,
+        "fin": 5.6
+      },
+      {
+        "texto": "El",
+        "inicio": 6.08,
+        "fin": 6.16
+      },
+      {
+        "texto": "modelo",
+        "inicio": 6.24,
+        "fin": 6.56
+      },
+      {
+        "texto": "lee",
+        "inicio": 6.64,
+        "fin": 6.8
+      },
+      {
+        "texto": "tu",
+        "inicio": 6.88,
+        "fin": 6.96
+      },
+      {
+        "texto": "prompt,",
+        "inicio": 7.04,
+        "fin": 7.6
+      },
+      {
+        "texto": "lo",
+        "inicio": 7.64,
+        "fin": 7.68
+      },
+      {
+        "texto": "interpreta",
+        "inicio": 7.76,
+        "fin": 8.32
+      },
+      {
+        "texto": "y",
+        "inicio": 8.56,
+        "fin": 8.64
+      },
+      {
+        "texto": "genera",
+        "inicio": 8.72,
+        "fin": 9.04
+      },
+      {
+        "texto": "una",
+        "inicio": 9.12,
+        "fin": 9.2
+      },
+      {
+        "texto": "respuesta.",
+        "inicio": 9.28,
+        "fin": 9.84
+      },
+      {
+        "texto": "Si",
+        "inicio": 10.24,
+        "fin": 10.32
+      },
+      {
+        "texto": "tu",
+        "inicio": 10.4,
+        "fin": 10.44
+      },
+      {
+        "texto": "prompt",
+        "inicio": 10.48,
+        "fin": 10.8
+      },
+      {
+        "texto": "es",
+        "inicio": 10.84,
+        "fin": 10.88
+      },
+      {
+        "texto": "vago,",
+        "inicio": 10.96,
+        "fin": 11.52
+      },
+      {
+        "texto": "la",
+        "inicio": 11.6,
+        "fin": 11.68
+      },
+      {
+        "texto": "respuesta",
+        "inicio": 11.76,
+        "fin": 12.16
+      },
+      {
+        "texto": "también.",
+        "inicio": 12.24,
+        "fin": 12.88
+      }
+    ],
+    [
+      {
+        "texto": "Un",
+        "inicio": 0,
+        "fin": 0.16
+      },
+      {
+        "texto": "buen",
+        "inicio": 0.213,
+        "fin": 0.32
+      },
+      {
+        "texto": "prompt",
+        "inicio": 0.4,
+        "fin": 0.8
+      },
+      {
+        "texto": "tiene",
+        "inicio": 0.88,
+        "fin": 1.04
+      },
+      {
+        "texto": "partes.",
+        "inicio": 1.2,
+        "fin": 1.88
+      },
+      {
+        "texto": "El",
+        "inicio": 2.08,
+        "fin": 2.24
+      },
+      {
+        "texto": "rol:",
+        "inicio": 2.32,
+        "fin": 2.96
+      },
+      {
+        "texto": "quién",
+        "inicio": 3,
+        "fin": 3.2
+      },
+      {
+        "texto": "quieres",
+        "inicio": 3.28,
+        "fin": 3.52
+      },
+      {
+        "texto": "que",
+        "inicio": 3.56,
+        "fin": 3.6
+      },
+      {
+        "texto": "sea",
+        "inicio": 3.68,
+        "fin": 3.84
+      },
+      {
+        "texto": "la",
+        "inicio": 3.92,
+        "fin": 4
+      },
+      {
+        "texto": "IA,",
+        "inicio": 4.08,
+        "fin": 4.56
+      },
+      {
+        "texto": "por",
+        "inicio": 4.6,
+        "fin": 4.64
+      },
+      {
+        "texto": "ejemplo",
+        "inicio": 4.72,
+        "fin": 5.12
+      },
+      {
+        "texto": "un",
+        "inicio": 5.36,
+        "fin": 5.6
+      },
+      {
+        "texto": "maestro",
+        "inicio": 5.68,
+        "fin": 6
+      },
+      {
+        "texto": "paciente.",
+        "inicio": 6.08,
+        "fin": 6.56
+      },
+      {
+        "texto": "La",
+        "inicio": 6.96,
+        "fin": 7.04
+      },
+      {
+        "texto": "tarea:",
+        "inicio": 7.12,
+        "fin": 7.84
+      },
+      {
+        "texto": "qué",
+        "inicio": 7.92,
+        "fin": 8
+      },
+      {
+        "texto": "tiene",
+        "inicio": 8.16,
+        "fin": 8.4
+      },
+      {
+        "texto": "que",
+        "inicio": 8.48,
+        "fin": 8.56
+      },
+      {
+        "texto": "hacer.",
+        "inicio": 8.667,
+        "fin": 8.96
+      },
+      {
+        "texto": "Y",
+        "inicio": 9.28,
+        "fin": 9.36
+      },
+      {
+        "texto": "el",
+        "inicio": 9.44,
+        "fin": 9.52
+      },
+      {
+        "texto": "formato:",
+        "inicio": 9.6,
+        "fin": 10.4
+      },
+      {
+        "texto": "cómo",
+        "inicio": 10.44,
+        "fin": 10.64
+      },
+      {
+        "texto": "quieres",
+        "inicio": 10.72,
+        "fin": 10.96
+      },
+      {
+        "texto": "la",
+        "inicio": 11,
+        "fin": 11.04
+      },
+      {
+        "texto": "respuesta,",
+        "inicio": 11.28,
+        "fin": 11.76
+      },
+      {
+        "texto": "por",
+        "inicio": 11.8,
+        "fin": 11.84
+      },
+      {
+        "texto": "ejemplo",
+        "inicio": 11.92,
+        "fin": 12.32
+      },
+      {
+        "texto": "en",
+        "inicio": 12.48,
+        "fin": 12.64
+      },
+      {
+        "texto": "tres",
+        "inicio": 12.72,
+        "fin": 12.88
+      },
+      {
+        "texto": "viñetas.",
+        "inicio": 12.96,
+        "fin": 13.76
+      }
+    ],
+    [
+      {
+        "texto": "El",
+        "inicio": 0,
+        "fin": 0.16
+      },
+      {
+        "texto": "error",
+        "inicio": 0.28,
+        "fin": 0.4
+      },
+      {
+        "texto": "más",
+        "inicio": 0.48,
+        "fin": 0.64
+      },
+      {
+        "texto": "común",
+        "inicio": 0.72,
+        "fin": 1.04
+      },
+      {
+        "texto": "es",
+        "inicio": 1.12,
+        "fin": 1.28
+      },
+      {
+        "texto": "pedir",
+        "inicio": 1.36,
+        "fin": 1.52
+      },
+      {
+        "texto": "algo",
+        "inicio": 1.6,
+        "fin": 1.84
+      },
+      {
+        "texto": "vago,",
+        "inicio": 1.88,
+        "fin": 2.4
+      },
+      {
+        "texto": "como",
+        "inicio": 2.48,
+        "fin": 2.8
+      },
+      {
+        "texto": "háblame",
+        "inicio": 3.2,
+        "fin": 3.6
+      },
+      {
+        "texto": "de",
+        "inicio": 3.64,
+        "fin": 3.68
+      },
+      {
+        "texto": "perros,",
+        "inicio": 3.76,
+        "fin": 4.4
+      },
+      {
+        "texto": "y",
+        "inicio": 4.44,
+        "fin": 4.48
+      },
+      {
+        "texto": "esperar",
+        "inicio": 4.56,
+        "fin": 4.88
+      },
+      {
+        "texto": "magia.",
+        "inicio": 4.96,
+        "fin": 5.36
+      },
+      {
+        "texto": "Compáralo",
+        "inicio": 5.84,
+        "fin": 6.24
+      },
+      {
+        "texto": "con",
+        "inicio": 6.32,
+        "fin": 6.4
+      },
+      {
+        "texto": "uno",
+        "inicio": 6.48,
+        "fin": 6.56
+      },
+      {
+        "texto": "claro:",
+        "inicio": 6.64,
+        "fin": 7.44
+      },
+      {
+        "texto": "dame",
+        "inicio": 7.48,
+        "fin": 7.76
+      },
+      {
+        "texto": "cinco",
+        "inicio": 7.84,
+        "fin": 8.08
+      },
+      {
+        "texto": "razas",
+        "inicio": 8.16,
+        "fin": 8.48
+      },
+      {
+        "texto": "de",
+        "inicio": 8.52,
+        "fin": 8.56
+      },
+      {
+        "texto": "perro",
+        "inicio": 8.64,
+        "fin": 8.88
+      },
+      {
+        "texto": "para",
+        "inicio": 8.96,
+        "fin": 9.12
+      },
+      {
+        "texto": "vivir",
+        "inicio": 9.16,
+        "fin": 9.36
+      },
+      {
+        "texto": "en",
+        "inicio": 9.4,
+        "fin": 9.44
+      },
+      {
+        "texto": "departamento,",
+        "inicio": 9.6,
+        "fin": 10.4
+      },
+      {
+        "texto": "con",
+        "inicio": 10.48,
+        "fin": 10.56
+      },
+      {
+        "texto": "su",
+        "inicio": 10.6,
+        "fin": 10.64
+      },
+      {
+        "texto": "tamaño.",
+        "inicio": 10.72,
+        "fin": 11.2
+      },
+      {
+        "texto": "El",
+        "inicio": 11.6,
+        "fin": 11.68
+      },
+      {
+        "texto": "segundo",
+        "inicio": 11.76,
+        "fin": 12.16
+      },
+      {
+        "texto": "te",
+        "inicio": 12.24,
+        "fin": 12.32
+      },
+      {
+        "texto": "da",
+        "inicio": 12.4,
+        "fin": 12.48
+      },
+      {
+        "texto": "justo",
+        "inicio": 12.64,
+        "fin": 12.96
+      },
+      {
+        "texto": "lo",
+        "inicio": 13,
+        "fin": 13.04
+      },
+      {
+        "texto": "que",
+        "inicio": 13.12,
+        "fin": 13.2
+      },
+      {
+        "texto": "necesitas.",
+        "inicio": 13.253,
+        "fin": 14.08
+      }
+    ],
+    [
+      {
+        "texto": "También",
+        "inicio": 0,
+        "fin": 0.32
+      },
+      {
+        "texto": "puedes",
+        "inicio": 0.373,
+        "fin": 0.56
+      },
+      {
+        "texto": "armar",
+        "inicio": 0.64,
+        "fin": 0.88
+      },
+      {
+        "texto": "prompts",
+        "inicio": 0.96,
+        "fin": 1.36
+      },
+      {
+        "texto": "con",
+        "inicio": 1.44,
+        "fin": 1.52
+      },
+      {
+        "texto": "código.",
+        "inicio": 1.6,
+        "fin": 2.2
+      },
+      {
+        "texto": "Esta",
+        "inicio": 2.4,
+        "fin": 2.64
+      },
+      {
+        "texto": "función",
+        "inicio": 2.72,
+        "fin": 3.04
+      },
+      {
+        "texto": "recibe",
+        "inicio": 3.16,
+        "fin": 3.44
+      },
+      {
+        "texto": "el",
+        "inicio": 3.52,
+        "fin": 3.68
+      },
+      {
+        "texto": "rol",
+        "inicio": 3.76,
+        "fin": 4
+      },
+      {
+        "texto": "y",
+        "inicio": 4.08,
+        "fin": 4.12
+      },
+      {
+        "texto": "la",
+        "inicio": 4.16,
+        "fin": 4.24
+      },
+      {
+        "texto": "tarea,",
+        "inicio": 4.32,
+        "fin": 4.88
+      },
+      {
+        "texto": "y",
+        "inicio": 4.92,
+        "fin": 4.96
+      },
+      {
+        "texto": "regresa",
+        "inicio": 5.04,
+        "fin": 5.36
+      },
+      {
+        "texto": "el",
+        "inicio": 5.4,
+        "fin": 5.44
+      },
+      {
+        "texto": "prompt",
+        "inicio": 5.52,
+        "fin": 5.76
+      },
+      {
+        "texto": "listo.",
+        "inicio": 5.84,
+        "fin": 6.4
+      },
+      {
+        "texto": "Le",
+        "inicio": 6.64,
+        "fin": 6.72
+      },
+      {
+        "texto": "das",
+        "inicio": 6.88,
+        "fin": 7.04
+      },
+      {
+        "texto": "chef",
+        "inicio": 7.28,
+        "fin": 7.76
+      },
+      {
+        "texto": "y",
+        "inicio": 7.84,
+        "fin": 7.92
+      },
+      {
+        "texto": "ayúdame,",
+        "inicio": 8,
+        "fin": 8.8
+      },
+      {
+        "texto": "y",
+        "inicio": 8.84,
+        "fin": 8.88
+      },
+      {
+        "texto": "te",
+        "inicio": 8.96,
+        "fin": 9.04
+      },
+      {
+        "texto": "devuelve:",
+        "inicio": 9.12,
+        "fin": 9.6
+      },
+      {
+        "texto": "eres",
+        "inicio": 9.92,
+        "fin": 10.16
+      },
+      {
+        "texto": "chef,",
+        "inicio": 10.24,
+        "fin": 10.72
+      },
+      {
+        "texto": "ayúdame.",
+        "inicio": 10.8,
+        "fin": 11.28
+      },
+      {
+        "texto": "Así",
+        "inicio": 11.68,
+        "fin": 11.92
+      },
+      {
+        "texto": "lo",
+        "inicio": 11.96,
+        "fin": 12
+      },
+      {
+        "texto": "reutilizas",
+        "inicio": 12.08,
+        "fin": 12.64
+      },
+      {
+        "texto": "con",
+        "inicio": 12.72,
+        "fin": 12.8
+      },
+      {
+        "texto": "cualquier",
+        "inicio": 12.88,
+        "fin": 13.28
+      },
+      {
+        "texto": "rol.",
+        "inicio": 13.36,
+        "fin": 13.84
+      }
+    ],
+    [
+      {
+        "texto": "Guarda",
+        "inicio": 0,
+        "fin": 0.28
+      },
+      {
+        "texto": "este",
+        "inicio": 0.32,
+        "fin": 0.48
+      },
+      {
+        "texto": "video",
+        "inicio": 0.64,
+        "fin": 0.8
+      },
+      {
+        "texto": "para",
+        "inicio": 0.88,
+        "fin": 0.96
+      },
+      {
+        "texto": "tu",
+        "inicio": 1.04,
+        "fin": 1.2
+      },
+      {
+        "texto": "próximo",
+        "inicio": 1.24,
+        "fin": 1.52
+      },
+      {
+        "texto": "prompt",
+        "inicio": 1.68,
+        "fin": 2.08
+      },
+      {
+        "texto": "y",
+        "inicio": 2.16,
+        "fin": 2.24
+      },
+      {
+        "texto": "dime",
+        "inicio": 2.28,
+        "fin": 2.48
+      },
+      {
+        "texto": "en",
+        "inicio": 2.52,
+        "fin": 2.56
+      },
+      {
+        "texto": "comentarios",
+        "inicio": 2.64,
+        "fin": 3.12
+      },
+      {
+        "texto": "si",
+        "inicio": 3.2,
+        "fin": 3.28
+      },
+      {
+        "texto": "quieres",
+        "inicio": 3.36,
+        "fin": 3.52
+      },
+      {
+        "texto": "saber",
+        "inicio": 3.56,
+        "fin": 3.84
+      },
+      {
+        "texto": "qué",
+        "inicio": 3.92,
+        "fin": 4.08
+      },
+      {
+        "texto": "son",
+        "inicio": 4.16,
+        "fin": 4.24
+      },
+      {
+        "texto": "los",
+        "inicio": 4.32,
+        "fin": 4.48
+      },
+      {
+        "texto": "tokens.",
+        "inicio": 4.72,
+        "fin": 5.44
+      },
+      {
+        "texto": "Sígueme",
+        "inicio": 5.48,
+        "fin": 5.92
+      },
+      {
+        "texto": "para",
+        "inicio": 6,
+        "fin": 6.08
+      },
+      {
+        "texto": "aprender",
+        "inicio": 6.16,
+        "fin": 6.48
+      },
+      {
+        "texto": "a",
+        "inicio": 6.52,
+        "fin": 6.56
+      },
+      {
+        "texto": "programar",
+        "inicio": 6.72,
+        "fin": 7.04
+      },
+      {
+        "texto": "desde",
+        "inicio": 7.12,
+        "fin": 7.36
+      },
+      {
+        "texto": "cero.",
+        "inicio": 7.44,
+        "fin": 7.84
+      }
+    ]
+  ]
+}
