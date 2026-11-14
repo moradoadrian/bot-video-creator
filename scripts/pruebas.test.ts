@@ -17,6 +17,7 @@ import {
   propiedadesDe,
 } from './animaciones';
 import { medidasEditor } from '../src/medidas';
+import { botonSeguir, insignia, piezaLlegada, piezaSalida, rayaGancho } from '../src/transiciones';
 import { ALTO_VENTANA, TRANSICION, camaraEscenario, encuadre, limpiarTomas, mundoDe, pesoFoco, viaja } from '../src/escenario';
 import { agruparPalabras, indiceActual, palabrasDeAlineacion } from '../src/subtitulos';
 import { clavesDe, momentosClave } from '../src/momentos';
@@ -714,4 +715,21 @@ test('los guiones de muestra de la fase 2 no dan avisos', () => {
     const g = leerGuion(slug) as GuionCodigo;
     assert.deepEqual(verificarCodigo(g.escenas, false), [], slug);
   }
+});
+
+// ── Transiciones ──
+
+test('las piezas de las transiciones caen donde está la pieza real y fuera de la zona de TikTok', () => {
+  const corta = insignia(1, 4, 'Sus 3 partes');
+  const larga = insignia(4, 4, 'Cuidado: bucle infinito');
+  assert.equal(corta.y + corta.alto / 2, 205 + 70 / 2);
+  assert.ok(larga.y > corta.y, 'un título de dos líneas baja la insignia');
+  for (const p of [corta, larga, rayaGancho('El ciclo for en 60 segundos'), botonSeguir()]) {
+    assert.ok(p.x >= 0 && p.x + p.ancho <= 1080 - 160, 'respeta los 160 px de la derecha');
+    assert.ok(p.y > 150 && p.y + p.alto < 1310, 'no toca la barra de progreso ni el subtítulo');
+  }
+  // La cámara del bloque acerca un poco la pieza al llegar y al salir
+  const llega = piezaLlegada(corta, 0.37, 15);
+  assert.ok(llega.ancho >= corta.ancho && llega.x <= corta.x);
+  assert.ok(piezaSalida(corta, 15).ancho > corta.ancho);
 });

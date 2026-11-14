@@ -7,7 +7,6 @@ import React from 'react';
 import {
   AbsoluteFill,
   Audio,
-  Easing,
   Sequence,
   interpolate,
   random,
@@ -30,6 +29,11 @@ import { pasoEn } from './animaciones/pasos';
 import { camaraEscenario, pesoFoco } from './escenario';
 import { planoDeEscena } from './plano';
 import { Logo3D } from './components/Logo3D';
+import { Transicion } from './components/Transicion';
+import { ANTES, DESPUES, DESPUES_CIERRE, botonSeguir, insignia, piezaLlegada, piezaSalida, rayaGancho } from './transiciones';
+import { FPS as FPS_VIDEO } from './bloques';
+
+const fijar01 = (x: number) => Math.min(1, Math.max(0, x));
 import { agruparPalabras, esClave, indiceActual, palabrasClave } from './subtitulos';
 import { VisualVista } from './components/Visual';
 import { golpesDeCamara, zoomCamara } from './camara';
@@ -229,38 +233,8 @@ const Camara: React.FC<{ duracionSeg: number; golpes: number[]; children: React.
   );
 };
 
-/** Frames que dura cada mitad del barrido; el corte entre bloques queda justo en medio, tapado. */
-export const MEDIO_BARRIDO = 7;
-
-/** Franja diagonal que cruza la pantalla y tapa el corte entre dos bloques. */
-const Barrido: React.FC<{ color: string; franja: string }> = ({ color, franja }) => {
-  const frame = useCurrentFrame();
-  const M = MEDIO_BARRIDO;
-  const ANCHO = 1700;
-  // Llega frenando, cubre la pantalla durante el corte y sale acelerando
-  const centro =
-    frame < M
-      ? interpolate(frame, [0, M], [-1250, 540], { easing: Easing.out(Easing.quad), extrapolateRight: 'clamp' })
-      : interpolate(frame, [M, 2 * M], [540, 2330], { easing: Easing.in(Easing.quad), extrapolateRight: 'clamp' });
-  const panel = (desfase: number, ancho: number, fondo: string): React.CSSProperties => ({
-    position: 'absolute',
-    top: -100,
-    height: 2120,
-    width: ancho,
-    left: centro + desfase - ancho / 2,
-    background: fondo,
-    transform: 'skewX(-12deg)',
-  });
-  return (
-    <AbsoluteFill style={{ pointerEvents: 'none' }}>
-      <div style={panel(ANCHO / 2 + 60, 90, franja)} />
-      <div style={panel(0, ANCHO, color)} />
-    </AbsoluteFill>
-  );
-};
-
 /** Título que entra palabra por palabra, con rebote, y un subrayado que se dibuja al final. */
-const TituloPorPalabras: React.FC<{ texto: string; acento: string; style: React.CSSProperties }> = ({ texto, acento, style }) => {
+const TituloPorPalabras: React.FC<{ texto: string; acento: string; style: React.CSSProperties; sinRaya?: boolean }> = ({ texto, acento, style, sinRaya }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const palabras = texto.split(/\s+/).filter(Boolean);
@@ -288,7 +262,8 @@ const TituloPorPalabras: React.FC<{ texto: string; acento: string; style: React.
           </React.Fragment>
         );
       })}
-      <div style={{ height: 14, width: 320 * raya, borderRadius: 7, background: acento, marginTop: 22 }} />
+      {/* Al final del gancho la raya despega y se convierte en el número de la primera escena */}
+      <div style={{ height: 14, width: 320 * raya, borderRadius: 7, background: acento, marginTop: 22, opacity: sinRaya ? 0 : 1 }} />
     </div>
   );
 };
@@ -635,7 +610,10 @@ const BloqueVista: React.FC<{
   sonidos?: boolean;
 }> = ({ b, acento, paleta, total, duracionSeg, handle, ctaSecundario, archivo, audio, palabras, personaje, sonidos }) => {
   const frame = useCurrentFrame();
-  const { fps } = useVideoConfig();
+  const { fps, durationInFrames } = useVideoConfig();
+  // Alrededor del corte el contenido se retira (sale) o llega (entra) mientras la pieza de la transición viaja
+  const sale = b.tipo === 'cierre' ? 0 : fijar01((frame - (durationInFrames - ANTES)) / ANTES);
+  const llega = b.tipo === 'gancho' ? 1 : fijar01(frame / 7);
   // Adelantado para que el primer cuadro nunca salga vacío
   const entra = spring({ frame: frame + 8, fps, config: { damping: 13, stiffness: 160 } });
   const voz = { audio, palabras, personaje };
@@ -661,7 +639,15 @@ const BloqueVista: React.FC<{
       <AbsoluteFill>
         <FondoCercano camara={mov} semilla={semilla} colores={paleta} />
         <Camara duracionSeg={duracionSeg} golpes={golpes}>
-          {escenario}
+          <AbsoluteFill
+            style={{
+              opacity: llega * (1 - sale),
+              transform: `translateY(${-40 * sale ** 2}px) scale(${1 - 0.05 * sale}) rotateX(${10 * sale}deg)`,
+              transformOrigin: '50% 40%',
+            }}
+          >
+            {escenario}
+          </AbsoluteFill>
         </Camara>
         <PrimerPlano camara={mov} semilla={semilla} colores={paleta} />
         <Subtitulo texto={b.narracion} duracionSeg={duracionSeg} acento={acento} claves={palabrasClave(b)} tamPersonaje={tamPersonaje} {...voz} />
@@ -733,7 +719,9 @@ const BloqueVista: React.FC<{
               background: acento,
               borderRadius: 14,
               padding: '8px 18px',
-              transform: `scale(${entra})`,
+              // La insignia la trae la transición: aparece cuando la pieza aterriza y se va cuando despega
+              opacity: frame < DESPUES || frame >= durationInFrames - ANTES ? 0 : 1,
+              transform: `scale(${frame < DESPUES ? 0 : 1 + 0.06 * Math.max(0, 1 - (frame - DESPUES) / 5)})`,
               flex: '0 0 auto',
             }}
           >
@@ -783,6 +771,7 @@ const BloqueVista: React.FC<{
         <div style={{ position: 'absolute', top: 210, left: 70, right: 160, display: 'flex', flexDirection: 'column', gap: 34 }}>
           <EtiquetaGlitch texto={`// ${b.etiqueta ?? 'JavaScript desde cero'}`} color={acento} />
           <TituloPorPalabras
+            sinRaya={frame >= durationInFrames - ANTES}
             texto={b.titulo}
             acento={acento}
             style={{ fontFamily: TITULO, fontWeight: 800, fontSize: 112, lineHeight: 0.98, color: TINTA, textWrap: 'balance' }}
@@ -935,14 +924,36 @@ export const CodigoVideo: React.FC<CodigoProps> = ({ guion, timing, marca }) => 
         );
       })}
       <Progreso color={marca.colores[0]} />
-      {/* Un barrido tapa cada corte; va al final para quedar encima de todo */}
-      {bloques.slice(1).map((_, k) => {
+      {/* En cada corte una pieza viaja de un bloque al siguiente; va al final para quedar encima de todo */}
+      {bloques.slice(1).map((b, k) => {
         const i = k + 1;
+        const previo = bloques[i - 1];
         const corte = frames.slice(0, i).reduce((a, f) => a + f, 0);
+        const despues = b.tipo === 'cierre' ? DESPUES_CIERRE : DESPUES;
+        const color = (n: number) => marca.colores[n % marca.colores.length];
+        const desde =
+          previo.tipo === 'escena'
+            ? insignia(previo.numero, guion.escenas.length, previo.titulo)
+            : rayaGancho(previo.titulo);
+        const hacia = b.tipo === 'escena' ? insignia(b.numero, guion.escenas.length, b.titulo) : botonSeguir();
         return (
-          <Sequence key={`barrido-${i}`} from={corte - MEDIO_BARRIDO} durationInFrames={2 * MEDIO_BARRIDO} name={`barrido-${i}`}>
-            <Barrido color={marca.colores[i % marca.colores.length]} franja={TINTA} />
-            {marca.sonidos && <Audio src={staticFile('sfx/whoosh.wav')} volume={0.35} />}
+          <Sequence key={`transicion-${i}`} from={corte - ANTES} durationInFrames={ANTES + despues + 5} name={`transicion-${i}`}>
+            <Transicion
+              desde={piezaSalida(desde, timing.duraciones[i - 1])}
+              hacia={piezaLlegada(hacia, despues / FPS_VIDEO, timing.duraciones[i])}
+              colorDesde={color(i - 1)}
+              colorHacia={color(i)}
+              textoDesde={previo.tipo === 'escena' ? `${previo.numero}/${guion.escenas.length}` : ''}
+              textoHacia={b.tipo === 'escena' ? `${b.numero}/${guion.escenas.length}` : '+ Seguir'}
+              antes={ANTES}
+              despues={despues}
+            />
+            {marca.sonidos && <Audio src={staticFile('sfx/whoosh.wav')} volume={0.3} />}
+            {marca.sonidos && (
+              <Sequence from={ANTES + despues - 2} durationInFrames={6} layout="none">
+                <Audio src={staticFile('sfx/pop.wav')} volume={0.3} />
+              </Sequence>
+            )}
           </Sequence>
         );
       })}
