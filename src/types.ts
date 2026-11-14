@@ -23,7 +23,51 @@ export type EscenaCodigo = Bloque & {
   depurar?: { marcas?: MarcaDepurador[] };
   /** Pasos de la ejecución. No se escribe a mano: render.ts los calcula ejecutando el código. */
   traza?: Traza;
+  /** Animación que explica el concepto junto al editor. Se mueve con la ejecución real del código. */
+  animacion?: Animacion;
 };
+
+/** Palabras de la narración que hacen entrar cada parte del ciclo. */
+export type ClavesCiclo = { inicio?: string; condicion?: string; cambio?: string; vueltas?: string };
+
+/** Lo que el guion puede decir de un ciclo; todo es opcional porque sale del código. */
+export type DatosCiclo = {
+  /** Variable que cuenta las vueltas; si se escribe, debe ser la del ciclo. */
+  variable?: string;
+  /** Cuántas veces entra al cuerpo; si se escribe, debe coincidir con la ejecución. */
+  vueltas?: number;
+  claves?: ClavesCiclo;
+};
+
+/** Una vuelta tal como pasó: índices de pasos de la traza y líneas de consola que imprimió. */
+export type VueltaCiclo = {
+  /** Paso en que se revisa la condición. */
+  revision: number;
+  /** Valor de la variable en esa revisión. */
+  valor: string;
+  /** true si la condición dejó entrar al cuerpo. */
+  entra: boolean;
+  /** Último paso dentro del cuerpo (igual a revision si no entra). */
+  finCuerpo: number;
+  /** Índices de las líneas de consola que salieron en esta vuelta. */
+  salidas: number[];
+  /** Otras variables al terminar el cuerpo (máximo dos), para mostrarlas junto al contador. */
+  otras: VariableTraza[];
+};
+
+/** Lo que render.ts calcula ejecutando el código; no se escribe a mano. */
+export type CicloCalculado = {
+  tipo: 'for' | 'while';
+  variable: string;
+  linea: number;
+  partes: { inicio?: string; condicion: string; cambio?: string };
+  vueltas: VueltaCiclo[];
+  /** El ciclo no termina: se muestran las primeras vueltas y luego se acelera. */
+  infinito: boolean;
+};
+
+export type Animacion = { tipo: 'ciclo'; datos?: DatosCiclo; calculado?: CicloCalculado };
+export const TIPOS_ANIMACION = ['ciclo'] as const;
 
 /** Cuando la voz dice `frase`, la ejecución llega a la vez número `vez` que corre `linea` (0 = el programa terminó). */
 export type MarcaDepurador = { frase: string; linea: number; vez?: number };

@@ -5,6 +5,7 @@
  */
 import path from 'node:path';
 import { MAX_COLUMNAS_CONSOLA } from '../src/depurador';
+import { MAX_COLUMNAS_CONSOLA_ANIMACION } from '../src/medidas';
 import { Canal, ICONOS } from '../src/types';
 import { MAX_COLUMNAS, MAX_LINEAS, dirContenido, escribirJson, parsearGuion, requiereEnv, slugify, verificarCodigo } from './lib';
 
@@ -14,6 +15,11 @@ const FORMATO = `- Video vertical narrado por voz, de 65 a 85 segundos en total 
 - Tono cálido y práctico, con modismos mexicanos ligeros. Tutea al espectador.
 - Todo debe ser original: no copies frases de otros creadores ni menciones marcas registradas o personajes con derechos.
 - "descripcion": 1 o 2 frases para el post. "hashtags": 4 a 6, en español, relevantes para búsqueda.`;
+
+const ANIMACIONES = `- "animacion" (opcional, en escenas con código): una animación que explica el concepto junto al editor y se mueve con la ejecución real del código. Úsala cuando ayude a ver la idea, no en todas las escenas.
+  - "ciclo": para código con un for o un while, con el cuerpo en su propia línea, máximo 5 líneas de código y líneas de consola de máximo ${MAX_COLUMNAS_CONSOLA_ANIMACION} caracteres. Se ve una pista circular: arriba se revisa la condición, a la derecha corre el cuerpo, abajo cambia la variable y un contador avanza en cada vuelta.
+    Formato: {"tipo":"ciclo","datos":{"variable":"i","vueltas":5,"claves":{"inicio":"...","condicion":"...","cambio":"...","vueltas":"..."}}}
+    "variable" y "vueltas" (cuántas veces entra al cuerpo) se comprueban ejecutando el código. Cada clave es una palabra o frase corta copiada tal cual de esa narración: la parte entra cuando la voz la dice. "claves.vueltas" marca cuándo empiezan a correr las vueltas. Todo dentro de "datos" es opcional; sin claves, se buscan palabras como "empieza", "condición" o "en cada vuelta".`;
 
 const SISTEMA_FIESTAS = `Eres guionista de un canal de TikTok en español de México sobre fiestas infantiles.
 El público son mamás, papás y familiares adultos que organizan cumpleaños de niños de 2 a 10 años.
@@ -40,11 +46,12 @@ ${FORMATO}
 - Usa console.log para mostrar resultados. "salida" = exactamente lo que imprime el código, una línea por cada console.log. Si a propósito muestras un bucle infinito, escribe las primeras líneas y termina con "... nunca termina".
 - "resaltar": números de línea (desde 1) que la narración está explicando en esa escena.
 - La narración se lee en voz alta: NO incluyas símbolos ni código literal en la narración. Di "i aumenta en uno" en vez de "i++", "menor o igual" en vez de "<=", "igual igual igual" se dice "comparación estricta".
+${ANIMACIONES}
 - Incluye al menos una escena con un error común de principiante y cómo evitarlo.
 - Termina el cierre sugiriendo el siguiente tema relacionado como pregunta.
 
 Responde SOLO con un objeto JSON válido, sin texto adicional:
-{"canal":"codigo","lenguaje":"javascript","slug":"...","tema":"...","gancho":{"titulo":"...","narracion":"..."},"escenas":[{"titulo":"...","narracion":"...","codigo":"...","resaltar":[1],"salida":"..."}],"cierre":{"titulo":"...","narracion":"..."},"descripcion":"...","hashtags":["#..."]}`;
+{"canal":"codigo","lenguaje":"javascript","slug":"...","tema":"...","gancho":{"titulo":"...","narracion":"..."},"escenas":[{"titulo":"...","narracion":"...","codigo":"...","resaltar":[1],"salida":"...","animacion":{"tipo":"ciclo","datos":{"variable":"i","vueltas":3}}}],"cierre":{"titulo":"...","narracion":"..."},"descripcion":"...","hashtags":["#..."]}`;
 
 const SISTEMA_AVANZADO = `Eres guionista de un canal de TikTok en español de México que muestra JavaScript por dentro, con el código corriendo paso a paso.
 El público ya sabe variables, ciclos y funciones, y quiere entender lo que pasa debajo. Los ejemplos van en JavaScript síncrono: el depurador no sigue async, await ni generadores.
@@ -58,6 +65,7 @@ ${FORMATO}
 - "depurar": en cada escena con código, para animar la ejecución real. "marcas" une la narración con la ejecución: cuando la voz dice "frase" (texto exacto de esa narración), el programa llega a la vez número "vez" que corre "linea". "linea": 0 es el programa ya terminado. Pon una marca en cada momento clave, en el orden en que suceden.
 - La narración debe nombrar lo que se ve en el panel de variables. Las variables que sobreviven a su función aparecen con la etiqueta "recordada".
 - La narración se lee en voz alta: NO incluyas símbolos ni código literal.
+${ANIMACIONES}
 - Incluye al menos una escena con un error real que comete quien ya programa, y cómo evitarlo.
 - Termina el cierre sugiriendo el siguiente tema relacionado como pregunta.
 

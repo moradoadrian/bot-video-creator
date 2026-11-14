@@ -9,13 +9,21 @@ const FS_MIN = 38;
 const FS_MAX = 54;
 const INTERLINEA = 60 / 38;
 export const MAX_SALIDA_VISIBLE = 6;
+/** Alto de la fila de la animación (la animación y la consola, lado a lado) bajo el editor. */
+export const ALTO_ANIMACION = 420;
+/** Ancho de la animación cuando comparte la fila con la consola. */
+export const ANCHO_ANIMACION = 440;
+export const SEPARACION_FILA = 26;
+/** Lo que cabe en la consola angosta de la fila de la animación, a 32 px. */
+export const MAX_COLUMNAS_CONSOLA_ANIMACION = 19;
 
 const altoConsola = (nSalida: number) => (nSalida ? 26 + 75 + 46 * Math.min(nSalida, MAX_SALIDA_VISIBLE) : 0);
 
 /** Agranda el código cuando sobra espacio, sin bajar del tamaño mínimo legible. */
-export const medidasEditor = (lineas: string[], nSalida: number) => {
+export const medidasEditor = (lineas: string[], nSalida: number, conAnimacion = false) => {
   const columnas = Math.max(1, ...lineas.map((l) => l.length));
-  const disponible = TOPE_INFERIOR - TOPE_SUPERIOR - CABECERA - altoConsola(nSalida);
+  const abajo = conAnimacion ? ALTO_ANIMACION + SEPARACION_FILA : altoConsola(nSalida);
+  const disponible = TOPE_INFERIOR - TOPE_SUPERIOR - CABECERA - abajo;
   const porAncho = ANCHO_CODIGO / (columnas * ANCHO_CARACTER);
   const porAlto = disponible / Math.max(1, lineas.length) / INTERLINEA;
   const fs = Math.max(FS_MIN, Math.min(FS_MAX, porAncho, porAlto));

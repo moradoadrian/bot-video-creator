@@ -14,7 +14,8 @@
     "sonidos": "tsx scripts/sonidos.ts",
     "todo": "tsx --env-file-if-exists=.env scripts/todo.ts",
     "test": "tsx --test scripts/pruebas.test.ts",
-    "typecheck": "tsc -p ."
+    "typecheck": "tsc -p .",
+    "fotos": "tsx --env-file-if-exists=.env scripts/fotos.ts"
   },
   "keywords": [],
   "author": "",

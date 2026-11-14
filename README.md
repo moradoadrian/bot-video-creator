@@ -90,6 +90,35 @@ npm run render -- diferencia-entre-while-y-do-while
   - Cada elemento: `{ "texto": "Backend", "detalle": "Valida y procesa", "icono": "servidor", "clave": "valida" }`. Íconos: `pantalla`, `servidor`, `base-datos`, `api`, `cursor`, `imagen`, `formulario`, `menu`, `engrane`, `escudo`, `lista`, `capas`, `check`, `carrito`, `codigo`, `rayo`, `gota`, `usuario`, `nube`, `candado`, `avion`, `torre`, `alerta`, `reloj`, `antena`. Ejemplo completo: `content/frontend-vs-backend-que-es-cada-uno/guion.json`.
 - Opcional, para la portada: `"portada": { "titulo": "...", "frase": "..." }`. Sin esto usa el título del gancho.
 
+## Animaciones por concepto
+
+Una escena con código puede llevar `animacion`: una animación junto al editor que explica la idea y se mueve con la ejecución real del código (render.ts lo ejecuta y calcula los datos; no se escriben a mano). Es opcional: los guiones sin ella se ven igual que antes.
+
+```json
+{
+  "titulo": "Contar del 1 al 5",
+  "narracion": "Empezamos en uno, repetimos mientras i sea menor o igual a cinco, y en cada vuelta imprimimos i. El resultado: uno, dos, tres, cuatro, cinco.",
+  "codigo": "for (let i = 1; i <= 5; i++) {\n  console.log(i);\n}",
+  "salida": "1\n2\n3\n4\n5",
+  "animacion": {
+    "tipo": "ciclo",
+    "datos": {
+      "variable": "i",
+      "vueltas": 5,
+      "claves": { "inicio": "Empezamos", "condicion": "mientras", "cambio": "en cada vuelta", "vueltas": "El resultado" }
+    }
+  }
+}
+```
+
+- `ciclo`: pista circular para un `for` o un `while`. Arriba se revisa la condición (dice **sí** o **no**), a la derecha corre el cuerpo (lo que imprime sale disparado a la consola), abajo a la izquierda cambia la variable y el contador del centro rebota con su valor nuevo. Al salir, la pista se pone verde; en un bucle infinito se pone roja y se acelera sin fin.
+- Todo lo de `datos` es opcional. `variable` y `vueltas` (veces que entra al cuerpo) se comparan con la ejecución y `render` avisa si no coinciden.
+- `claves`: cada parte entra cuando la voz dice su palabra (con los tiempos reales de ElevenLabs; sin ellos, se estima por la posición en el texto). Sin claves busca palabras como "empieza", "condición" o "en cada vuelta". `claves.vueltas` marca cuándo empiezan a correr las vueltas.
+- Sin `depurar`, cada vuelta que imprime cae justo cuando su línea aparece en la consola. Con `depurar`, cada vuelta sigue los pasos reales de la ejecución y la animación ocupa el lugar del panel de variables (el contador muestra la variable del ciclo y hasta dos más).
+- La animación ocupa una fila bajo el editor: el código debe tener máximo 5 líneas y cada línea de consola máximo 19 caracteres. El cuerpo del ciclo va en su propia línea.
+- Ejemplos: `content/el-ciclo-for-animado/guion.json` (con y sin `depurar`, y un bucle infinito) y `content/contar-hacia-atras-animado/guion.json` (con tiempos reales de cada palabra).
+- `npm run fotos -- <slug> [--sin-voz] [--en=12,30.5] [--bloque=2]` saca imágenes fijas en `out/fotos/<slug>/` para revisar sin renderizar todo.
+
 ## Depurador visual
 
 Agrega `depurar` a una escena con código para mostrarla corriendo: la línea activa avanza, el panel enseña las variables y la consola se llena en el momento real. Los pasos salen de ejecutar el código de verdad, no se escriben a mano.
@@ -127,6 +156,10 @@ La imagen y sus coordenadas están en `personaje` dentro de `config/marca-codigo
 | `src/FiestaVideo.tsx` | Plantilla fiestas: gancho, tips numerados, cierre con CTA, subtítulos |
 | `src/CodigoVideo.tsx` | Plantilla código: editor con resaltado de sintaxis, línea activa, consola, subtítulos |
 | `src/components/EditorDepurador.tsx` | Editor animado del depurador visual: línea activa, variables y consola |
+| `src/components/animaciones/` | Animaciones por concepto (`Ciclo.tsx`) y el selector por tipo (`index.tsx`) |
+| `src/animaciones/` | Tiempos de cada animación (sin React): de la voz, de la consola o de los pasos reales |
+| `scripts/animaciones.ts` | Ejecuta el código de una escena y calcula los datos de su animación; valida los datos del guion |
+| `scripts/fotos.ts` | Imágenes fijas de momentos de un video (`npm run fotos`) |
 | `src/depurador.ts` | Tiempos y medidas del depurador, compartidos con los validadores |
 | `scripts/traza.ts` | Instrumenta el código con acorn y registra cada paso de su ejecución |
 | `src/Portada.tsx` | Portada del canal código |

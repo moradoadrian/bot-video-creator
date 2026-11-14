@@ -1,15 +1,18 @@
 /** Pruebas sin red ni créditos. Uso: npm test */
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import { pasoActual, recortar, tiemposDePasos } from '../src/depurador';
+import { inicioDePasos, pasoActual, recortar, tiemposDePasos } from '../src/depurador';
+import { anguloMarcador, momentosPartes, valorVisible, vueltasDeConsola } from '../src/animaciones/ciclo';
+import { planCiclo } from '../src/animaciones/plan';
+import { calcularCiclo } from './animaciones';
 import { medidasEditor } from '../src/medidas';
 import { agruparPalabras, indiceActual, palabrasDeAlineacion } from '../src/subtitulos';
 import { clavesDe, momentosClave } from '../src/momentos';
 import { duracionTecleo, iniciosDeLinea, lineaDelCursor, momentosDeTecla, visiblesPorLinea } from '../src/tecleo';
 import { esClave, palabrasClave } from '../src/subtitulos';
 import { golpesDeCamara, SEPARACION_MIN, ZOOM_ENTRADA, ZOOM_GOLPE, ZOOM_LENTO, zoomCamara } from '../src/camara';
-import { EscenaCodigo, PasoTraza, Traza } from '../src/types';
-import { conReintentos, ejecutar, leerGuion, parsearGuion, slugify, verificarCodigo, verificarVisuales } from './lib';
+import { EscenaCodigo, GuionCodigo, PasoTraza, Traza } from '../src/types';
+import { agregarTrazas, conReintentos, ejecutar, leerGuion, parsearGuion, slugify, verificarCodigo, verificarVisuales } from './lib';
 import { formatoValor, trazar } from './traza';
 import { camaraEn, geometria, llavesCamara, paqueteEn, planoCerrado, planoGeneral, tiemposRecorrido } from '../src/recorrido';
 
@@ -424,4 +427,126 @@ test('red, cascada y verificar: se validan y dan sus claves en orden', () => {
   assert.deepEqual(verificarVisuales(g), []);
   const malo = { ...verificar, items: [{ texto: 'X', veredicto: 'quizas', claveVeredicto: 'x' }, verificar.items[0]] };
   assert.throws(() => parsearGuion(guionCodigo({ escenas: [1, 2, 3].map(() => ({ titulo: 'a', narracion: 'b', visual: malo })) })));
+});
+
+// ── Animaciones por concepto: ciclo ──
+
+test('calcularCiclo sigue un for: valor en cada revisión, cuándo entra y qué imprime', () => {
+  const { calculado } = calcularCiclo('for (let i = 3; i > 0; i--) {\n  console.log(i);\n}\nconsole.log("fin");');
+  assert.ok(calculado);
+  assert.equal(calculado.variable, 'i');
+  assert.deepEqual(calculado.partes, { inicio: 'let i = 3', condicion: 'i > 0', cambio: 'i--' });
+  assert.deepEqual(calculado.vueltas.map((v) => v.valor), ['3', '2', '1', '0']);
+  assert.deepEqual(calculado.vueltas.map((v) => v.entra), [true, true, true, false]);
+  assert.deepEqual(calculado.vueltas.map((v) => v.salidas), [[0], [1], [2], []]);
+  assert.equal(calculado.infinito, false);
+});
+
+test('calcularCiclo entiende cuerpos vacíos, while, otras variables y break', () => {
+  const vacio = calcularCiclo('for (let i = 0; i < 3; i++) {\n  // nada\n}').calculado!;
+  assert.deepEqual(vacio.vueltas.map((v) => v.entra), [true, true, true, false]);
+  const mientras = calcularCiclo('let n = 2;\nwhile (n > 0) {\n  n--;\n}').calculado!;
+  assert.equal(mientras.tipo, 'while');
+  assert.equal(mientras.variable, 'n');
+  assert.deepEqual(mientras.vueltas.map((v) => v.valor), ['2', '1', '0']);
+  const suma = calcularCiclo('let suma = 0;\nfor (let i = 1; i <= 2; i++) {\n  suma += i;\n}').calculado!;
+  assert.deepEqual(suma.vueltas[1].otras, [{ nombre: 'suma', valor: '3' }]);
+  const corte = calcularCiclo('for (let i = 0; i < 9; i++) {\n  if (i === 1) break;\n}').calculado!;
+  assert.equal(corte.vueltas.length, 2);
+  assert.ok(corte.vueltas.every((v) => v.entra));
+});
+
+test('calcularCiclo anima las primeras vueltas de un bucle infinito', () => {
+  const { calculado } = calcularCiclo('for (let i = 0; i < 5; i--) {\n  console.log(i);\n}');
+  assert.ok(calculado?.infinito);
+  assert.deepEqual(calculado!.vueltas.slice(0, 3).map((v) => v.valor), ['0', '-1', '-2']);
+  assert.ok(calculado!.vueltas.every((v) => v.entra));
+});
+
+test('calcularCiclo explica por qué no puede animar', () => {
+  assert.match(calcularCiclo('console.log(1);').error!, /no tiene un ciclo/);
+  assert.match(calcularCiclo('for (let i = 0; i < 2; i++) console.log(i);').error!, /misma línea/);
+});
+
+test('trazar con parcial devuelve los pasos de un código que no termina', () => {
+  assert.equal(trazar('for (let i = 0; i < 5; i--) {}').traza, undefined);
+  const r = trazar('for (let i = 0; i < 5; i--) {}', { parcial: true });
+  assert.ok(r.incompleta && r.traza!.pasos.length > 10);
+});
+
+test('verificarCodigo compara los datos de la animación con el código', () => {
+  const codigo = 'for (let i = 1; i <= 3; i++) {\n  console.log(i);\n}';
+  const bien = escena({ codigo, salida: '1\n2\n3', animacion: { tipo: 'ciclo', datos: { variable: 'i', vueltas: 3 } } });
+  assert.deepEqual(verificarCodigo([bien], false), []);
+  const mal = escena({ codigo, salida: '1\n2\n3', animacion: { tipo: 'ciclo', datos: { variable: 'j', vueltas: 4 } } });
+  const avisos = verificarCodigo([mal], false);
+  assert.ok(contiene(avisos, 'usa "i"'));
+  assert.ok(contiene(avisos, 'el código da 3'));
+  const clave = escena({ codigo, salida: '1\n2\n3', narracion: 'Empieza en uno.', animacion: { tipo: 'ciclo', datos: { claves: { cambio: 'aumenta' } } } });
+  assert.ok(contiene(verificarCodigo([clave], false), 'la clave "aumenta"'));
+  const sinCiclo = escena({ codigo: 'console.log(1);', salida: '1', animacion: { tipo: 'ciclo' } });
+  assert.ok(contiene(verificarCodigo([sinCiclo], false), 'no se puede animar'));
+});
+
+test('verificarCodigo avisa si el código no cabe junto a la animación', () => {
+  const largo = Array.from({ length: 7 }, (_, k) => `let v${k} = ${k};`).join('\n') + '\nfor (let i = 0; i < 2; i++) {\n  v0++;\n}';
+  assert.ok(contiene(verificarCodigo([escena({ codigo: largo, animacion: { tipo: 'ciclo' } })], false), 'junto a la animación'));
+  assert.equal(medidasEditor(['a'], 0, true).desborda, false);
+});
+
+test('parsearGuion acepta la animación opcional y la rechaza sin código', () => {
+  const base = leerGuion('el-ciclo-for-en-javascript-explicado-facil') as GuionCodigo;
+  const con = parsearGuion({ ...base, escenas: base.escenas.map((e, i) => (i === 0 ? { ...e, animacion: { tipo: 'ciclo' } } : e)) });
+  assert.equal((con as GuionCodigo).escenas[0].animacion?.tipo, 'ciclo');
+  const sinCodigo = { ...base, escenas: base.escenas.map((e, i) => (i === 0 ? { titulo: e.titulo, narracion: e.narracion, animacion: { tipo: 'ciclo' } } : e)) };
+  assert.throws(() => parsearGuion(sinCodigo));
+});
+
+test('momentosPartes usa las palabras de la voz, respeta el orden y escalona lo que no se dice', () => {
+  const narracion = 'Empiezas en cinco. La condición dice mayor que cero. Y le resta uno en cada vuelta.';
+  const palabras = narracion.split(' ').map((texto, k) => ({ texto, inicio: k * 0.5, fin: k * 0.5 + 0.4 }));
+  const p = momentosPartes(undefined, narracion, 10, palabras, 0);
+  assert.equal(p.inicio, 0.1); // momentosClave nunca da menos de 0.1 s
+  assert.equal(p.condicion, 2);
+  assert.equal(p.cambio, 5.5);
+  const nada = momentosPartes(undefined, 'Mira esto.', 10, undefined, 1);
+  assert.deepEqual(nada, { inicio: 1, condicion: 1.35, cambio: 1.7 });
+});
+
+test('vueltasDeConsola ancla cada vuelta a su línea de consola y sale después de la última', () => {
+  const c = calcularCiclo('for (let i = 1; i <= 3; i++) {\n  console.log(i);\n}').calculado!;
+  const tc = vueltasDeConsola(c, (i) => 4 + i, 3, 3, 9);
+  assert.deepEqual(tc.vueltas.slice(0, 3).map((v) => v.cuerpo), [4, 5, 6]);
+  assert.ok(tc.vueltas.every((v, k) => k === 0 || v.revision > tc.vueltas[k - 1].revision));
+  assert.ok(tc.salida! > 6 && tc.salida! < 7);
+  assert.equal(tc.desboque, null);
+});
+
+test('el marcador da una vuelta completa por iteración y el valor cambia con la variable', () => {
+  const c = calcularCiclo('for (let i = 1; i <= 2; i++) {\n  console.log(i);\n}').calculado!;
+  const tc = { partes: { inicio: 0, condicion: 0, cambio: 0 }, ...vueltasDeConsola(c, (i) => 2 + i * 2, 2, 1, 8) };
+  const v0 = tc.vueltas[0];
+  assert.equal(anguloMarcador(tc, v0.revision).angulo, 0);
+  assert.equal(Math.round(anguloMarcador(tc, v0.cuerpo!).angulo), 90);
+  const casiFin = anguloMarcador(tc, tc.vueltas[1].revision - 0.01).angulo;
+  assert.ok(casiFin > 300 && casiFin <= 360);
+  assert.equal(valorVisible(tc, v0.cambio! - 0.01), 0);
+  assert.equal(valorVisible(tc, v0.cambio! + 0.01), 1);
+});
+
+test('planCiclo usa los pasos reales del depurador cuando la escena tiene depurar', () => {
+  const g = agregarTrazas(leerGuion('el-ciclo-for-animado') as GuionCodigo);
+  const e = g.escenas[1];
+  assert.ok(e.traza && e.animacion?.calculado);
+  const plan = planCiclo(e, 19.15)!;
+  const { tiempos } = tiemposDePasos(e.traza!, e.depurar!.marcas!, e.narracion, 19.15, inicioDePasos(3));
+  assert.deepEqual(plan.vueltas.map((v) => v.revision), e.animacion!.calculado!.vueltas.map((v) => tiempos[v.revision]));
+  assert.ok(plan.partes.cambio <= plan.vueltas[0].revision);
+});
+
+test('los guiones de muestra con animación no dan avisos', () => {
+  for (const slug of ['el-ciclo-for-animado', 'contar-hacia-atras-animado']) {
+    const g = leerGuion(slug) as GuionCodigo;
+    assert.deepEqual(verificarCodigo(g.escenas, false), [], slug);
+  }
 });

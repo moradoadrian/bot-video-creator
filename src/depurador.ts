@@ -1,4 +1,5 @@
 /** Cálculos del depurador visual, compartidos por la plantilla y los validadores. */
+import { ALTO_ANIMACION } from './medidas';
 import { MarcaDepurador, Palabra, Traza } from './types';
 
 /** Inicio de cada paso cuando la narración no marca otro momento: se reparten hasta casi el final. */
@@ -105,13 +106,13 @@ const ALTO_GRUPO = 34;
 export const ALTO_FILA = 46;
 
 /** Reserva el alto del panel más lleno de toda la escena, para que nada brinque durante la animación. */
-export const medidasDepurador = (lineas: string[], traza: Traza) => {
+export const medidasDepurador = (lineas: string[], traza: Traza, conAnimacion = false) => {
   const altoVariables = Math.max(
     0,
     ...traza.pasos.map((p) => p.grupos.length * ALTO_GRUPO + p.grupos.reduce((a, g) => a + g.variables.length, 0) * ALTO_FILA),
   );
   const altoConsola = Math.max(1, Math.min(traza.salida.length, MAX_CONSOLA_DEPURADOR)) * ALTO_FILA;
-  const altoPanel = RELLENO_PANEL + TITULO_PANEL + Math.max(altoVariables, altoConsola);
+  const altoPanel = conAnimacion ? ALTO_ANIMACION : RELLENO_PANEL + TITULO_PANEL + Math.max(altoVariables, altoConsola);
   const disponible = TOPE_DISPONIBLE - SEPARACION - altoPanel - CABECERA;
   const columnas = Math.max(1, ...lineas.map((l) => l.length));
   const porAncho = ANCHO_CODIGO / (columnas * ANCHO_CARACTER);

@@ -21,11 +21,15 @@ import { EditorDepurador } from './components/EditorDepurador';
 import { Confeti } from './components/Confeti';
 import { Personaje } from './components/Personaje';
 import { LineaCodigo, SINTAXIS } from './components/Resaltado';
-import { MAX_SALIDA_VISIBLE, medidasEditor } from './medidas';
+import { ALTO_ANIMACION, ANCHO_ANIMACION, MAX_SALIDA_VISIBLE, SEPARACION_FILA, medidasEditor } from './medidas';
+import { RitmoSalida, tiemposEditor } from './editor';
+import { planCiclo, ritmoConAnimacion, tieneAnimacion } from './animaciones/plan';
+import { AnimacionVista } from './components/animaciones';
 import { agruparPalabras, esClave, indiceActual, palabrasClave } from './subtitulos';
 import { VisualVista } from './components/Visual';
 import { golpesDeCamara, zoomCamara } from './camara';
 import { duracionTecleo, iniciosDeLinea, lineaDelCursor, momentosDeTecla, visiblesPorLinea } from './tecleo';
+import { TiemposCiclo } from './animaciones/ciclo';
 import { clavesDe, momentosClave } from './momentos';
 import { EDITOR, FONDO, MONO, SIN_LIGADURAS, TENUE, TEXTO, TINTA, TITULO, segAFrames } from './temaCodigo';
 import { CodigoProps, ConfigPersonaje, EscenaCodigo, Palabra, Visual } from './types';
@@ -199,22 +203,6 @@ const Subtitulo: React.FC<{
       </div>
     </div>
   );
-};
-
-/** Cuándo pasa cada cosa en el editor. Lo comparten el editor y la cámara. */
-const tiemposEditor = (e: EscenaCodigo, duracionSeg: number) => {
-  const lineas = (e.codigo ?? '').split('\n');
-  // El código se teclea casi de inmediato; el resultado se guarda para cuando la voz lo explique.
-  const inicio = 0.1;
-  const durTecleo = duracionTecleo(lineas.reduce((a, l) => a + l.length, 0), Math.min(2.5, duracionSeg * 0.4));
-  const finCodigo = inicio + durTecleo;
-  const tResaltar = finCodigo + 0.3;
-  const salida = (e.salida ?? '').split('\n').filter((l) => l.length);
-  const tSalida = Math.max(finCodigo + 0.6, duracionSeg * 0.3);
-  const pasoSalida = Math.min(0.45, (duracionSeg * 0.35) / Math.max(1, salida.length));
-  /** Cuando sale la última línea de la consola: ahí se celebra. */
-  const tUltima = salida.length ? tSalida + (salida.length - 1) * pasoSalida : Infinity;
-  return { lineas, salida, inicio, durTecleo, tResaltar, tSalida, pasoSalida, tUltima };
 };
 
 /** Momentos en que aparece cada elemento de un diagrama (igual que en VisualVista). */
@@ -442,41 +430,47 @@ const Palomita: React.FC<{ color: string; tinta: string; tam: number }> = ({ col
   </svg>
 );
 
-const Editor: React.FC<{ e: EscenaCodigo; duracionSeg: number; acento: string; paleta: string[]; archivo: string; sonidos?: boolean }> = ({
-  e,
-  duracionSeg,
-  acento,
-  paleta,
-  archivo,
-  sonidos,
-}) => {
+const Editor: React.FC<{
+  e: EscenaCodigo;
+  duracionSeg: number;
+  acento: string;
+  paleta: string[];
+  archivo: string;
+  sonidos?: boolean;
+  /** Con animación, la consola comparte una fila con ella y va al ritmo de las vueltas. */
+  animacion?: React.ReactNode;
+  ritmo?: RitmoSalida;
+}> = ({ e, duracionSeg, acento, paleta, archivo, sonidos, animacion, ritmo }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const t = frame / fps;
-  const { lineas, salida, inicio, durTecleo, tResaltar, tSalida, pasoSalida, tUltima } = tiemposEditor(e, duracionSeg);
-  const { fs: FS, lh: LH } = medidasEditor(lineas, salida.length);
+  const { lineas, salida, inicio, durTecleo, finCodigo, tResaltar, tSalida, tUltima, tLinea } = tiemposEditor(e, duracionSeg, ritmo);
+  const { fs: FS, lh: LH } = medidasEditor(lineas, salida.length, !!animacion);
+  const enFila = !!animacion && salida.length > 0;
+  const anchoConsola = enFila ? 885 - ANCHO_ANIMACION - 20 : 885;
   const pulso = 0.55 + 0.25 * Math.sin(frame / 7);
   const visibles = visiblesPorLinea(lineas, t, inicio, durTecleo);
   const inicios = iniciosDeLinea(lineas, inicio, durTecleo);
   const cursorLinea = lineaDelCursor(lineas, visibles);
   const parpadeo = t < inicio + durTecleo || Math.floor(frame / 15) % 2 === 0;
-  const tLinea = (i: number) => tSalida + i * pasoSalida;
   const visiblesSalida = salida.filter((_, i) => t >= tLinea(i));
   const primera = Math.max(0, visiblesSalida.length - MAX_SALIDA_VISIBLE);
   const ultimas = visiblesSalida.slice(primera);
   // La consola celebra cuando termina: palomita, borde verde que brilla y chispas
-  const exito = t >= tUltima;
+  // Un bucle infinito no se celebra: su consola termina en "... nunca termina"
+  const nuncaTermina = salida.length > 0 && salida[salida.length - 1].startsWith('...');
+  const exito = t >= tUltima && !nuncaTermina;
   const sExito = exito ? spring({ frame: frame - segAFrames(tUltima, fps), fps, config: { damping: 8, stiffness: 200 } }) : 0;
   const brillo = exito ? Math.max(0, 1 - (t - tUltima) / 0.8) : 0;
   const VERDE = SINTAXIS.cadena;
 
   return (
-    <div style={{ position: 'absolute', top: 400, left: 50, width: 885, display: 'flex', flexDirection: 'column', gap: 26 }}>
+    <div style={{ position: 'absolute', top: 400, left: 50, width: 885, display: 'flex', flexDirection: 'column', gap: SEPARACION_FILA }}>
       {sonidos && (
         <>
           <Efectos en={momentosDeTecla(lineas, inicio, durTecleo)} archivo="tecla.wav" volumen={0.1} frames={6} />
           <Efectos en={salida.slice(0, -1).map((_, i) => tLinea(i))} archivo="resultado.wav" volumen={0.1} frames={9} />
-          {salida.length > 0 && <Efectos en={[tUltima]} archivo="exito.wav" volumen={0.3} frames={18} />}
+          {salida.length > 0 && !nuncaTermina && <Efectos en={[tUltima]} archivo="exito.wav" volumen={0.3} frames={18} />}
         </>
       )}
       <div style={{ background: EDITOR, borderRadius: 26, border: `2px solid rgba(244,241,255,0.12)`, overflow: 'hidden' }}>
@@ -531,7 +525,10 @@ const Editor: React.FC<{ e: EscenaCodigo; duracionSeg: number; acento: string; p
         </div>
       </div>
 
-      {salida.length > 0 && t >= tSalida - 0.2 && (
+      {animacion && !enFila && <div style={{ height: ALTO_ANIMACION }}>{animacion}</div>}
+      {salida.length > 0 && (enFila || t >= tSalida - 0.2) && (
+        <div style={enFila ? { display: 'flex', gap: 20, height: ALTO_ANIMACION } : {}}>
+        {enFila && <div style={{ width: ANCHO_ANIMACION, flex: '0 0 auto' }}>{animacion}</div>}
         <div
           style={{
             position: 'relative',
@@ -540,7 +537,11 @@ const Editor: React.FC<{ e: EscenaCodigo; duracionSeg: number; acento: string; p
             border: `2px ${exito ? 'solid' : 'dashed'} ${exito ? VERDE : `${VERDE}55`}`,
             boxShadow: brillo ? `0 0 ${50 * brillo}px ${VERDE}` : 'none',
             padding: '18px 26px 20px',
-            opacity: interpolate(t, [tSalida - 0.2, tSalida], [0, 1], { extrapolateRight: 'clamp' }),
+            boxSizing: 'border-box',
+            ...(enFila ? { flex: 1, height: ALTO_ANIMACION } : {}),
+            opacity: enFila
+              ? interpolate(t, [finCodigo, finCodigo + 0.3], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' })
+              : interpolate(t, [tSalida - 0.2, tSalida], [0, 1], { extrapolateRight: 'clamp' }),
           }}
         >
           <div style={{ fontFamily: MONO, fontWeight: 700, fontSize: 22, letterSpacing: 2, color: TENUE, marginBottom: 8 }}>
@@ -558,7 +559,7 @@ const Editor: React.FC<{ e: EscenaCodigo; duracionSeg: number; acento: string; p
               <Palomita color={VERDE} tinta={FONDO} tam={60} />
             </div>
           )}
-          <Estallido desde={tUltima} colores={[VERDE, ...paleta]} x={885 - 26 - 30 - 26} y={4} />
+          {!nuncaTermina && <Estallido desde={tUltima} colores={[VERDE, ...paleta]} x={anchoConsola - 26 - 30 - 26} y={4} />}
           {ultimas.map((l, i) => {
             const s = spring({ frame: frame - segAFrames(tLinea(primera + i), fps), fps, config: { damping: 13, stiffness: 220 } });
             return (
@@ -580,6 +581,7 @@ const Editor: React.FC<{ e: EscenaCodigo; duracionSeg: number; acento: string; p
               </div>
             );
           })}
+        </div>
         </div>
       )}
     </div>
@@ -626,16 +628,40 @@ const BloqueVista: React.FC<{
   );
 
   if (b.tipo === 'escena') {
+    const conAnimacion = tieneAnimacion(b);
+    const ritmo = ritmoConAnimacion(b, duracionSeg, palabras);
+    const plan: TiemposCiclo | null = conAnimacion ? planCiclo(b, duracionSeg, palabras) : null;
+    const momentosAnimacion = plan ? [plan.partes.inicio, plan.partes.condicion, plan.partes.cambio, ...(plan.salida !== null ? [plan.salida] : []), ...(plan.desboque !== null ? [plan.desboque] : [])] : [];
     const momentos = b.traza
-      ? []
+      ? momentosAnimacion
       : b.codigo
       ? (() => {
-          const te = tiemposEditor(b, duracionSeg);
-          return [...(b.resaltar?.length ? [te.tResaltar] : []), ...(te.salida.length ? [te.tSalida, te.tUltima] : [])];
+          const te = tiemposEditor(b, duracionSeg, ritmo);
+          return [
+            ...(b.resaltar?.length ? [te.tResaltar] : []),
+            ...momentosAnimacion,
+            ...(te.salida.length ? [te.tSalida, te.tUltima] : []),
+          ];
         })()
       : b.visual && b.visual.tipo !== 'recorrido'
         ? tiemposVisual(b.visual, b.narracion, duracionSeg, palabras)
         : [];
+    const salidaAnimacion = b.traza ? b.traza.salida : (b.salida ?? '').split('\n').filter((l) => l.length);
+    const enFila = conAnimacion && (b.traza ? true : salidaAnimacion.length > 0);
+    const animacion = conAnimacion && b.animacion ? (
+      <>
+        <AnimacionVista
+          animacion={b.animacion}
+          tiempos={plan}
+          salida={salidaAnimacion}
+          acento={acento}
+          ancho={enFila ? ANCHO_ANIMACION : 885}
+          alto={ALTO_ANIMACION}
+        />
+        {sonidos && plan && <Efectos en={[plan.partes.inicio, plan.partes.condicion, plan.partes.cambio]} archivo="pop.wav" volumen={0.3} frames={4} />}
+        {sonidos && plan && plan.salida !== null && <Efectos en={[plan.salida]} archivo="exito.wav" volumen={0.25} frames={18} />}
+      </>
+    ) : undefined;
     return conCamara(
       momentos,
       <>
@@ -670,9 +696,9 @@ const BloqueVista: React.FC<{
           </div>
         </div>
         {b.codigo && b.traza ? (
-          <EditorDepurador e={b} duracionSeg={duracionSeg} acento={acento} archivo={b.archivo ?? archivo} sonidos={sonidos} palabras={palabras} />
+          <EditorDepurador e={b} duracionSeg={duracionSeg} acento={acento} archivo={b.archivo ?? archivo} sonidos={sonidos} palabras={palabras} animacion={animacion} />
         ) : b.codigo ? (
-          <Editor e={b} duracionSeg={duracionSeg} acento={acento} paleta={paleta} archivo={b.archivo ?? archivo} sonidos={sonidos} />
+          <Editor e={b} duracionSeg={duracionSeg} acento={acento} paleta={paleta} archivo={b.archivo ?? archivo} sonidos={sonidos} animacion={animacion} ritmo={ritmo} />
         ) : b.visual ? (
           b.visual.tipo === 'recorrido' ? visual(b.visual, 350, 940) : visual(b.visual, 390, 900)
         ) : null}

@@ -3,9 +3,10 @@ import path from 'node:path';
 import vm from 'node:vm';
 import { z } from 'zod';
 import { MAX_COLUMNAS_CONSOLA, inicioDePasos, medidasDepurador, tiemposDePasos } from '../src/depurador';
-import { MAX_SALIDA_VISIBLE, medidasEditor } from '../src/medidas';
+import { MAX_COLUMNAS_CONSOLA_ANIMACION, MAX_SALIDA_VISIBLE, medidasEditor } from '../src/medidas';
 import { clavesDe, momentosClave } from '../src/momentos';
 import { Canal, EscenaCodigo, Guion, GuionCodigo, ICONOS, ICONOS_CODIGO, Marca, VEREDICTOS, Timing, Visual } from '../src/types';
+import { calcularAnimacion, verificarAnimacion } from './animaciones';
 import { trazar } from './traza';
 
 export const RAIZ = path.resolve(__dirname, '..');
@@ -76,6 +77,22 @@ const VisualSchema = z.discriminatedUnion('tipo', [
   }),
 ]);
 
+const ClaveOpcional = z.string().min(1).optional();
+
+/** Animación por concepto. Los datos son opcionales: lo demás sale de ejecutar el código. */
+export const AnimacionSchema = z.discriminatedUnion('tipo', [
+  z.object({
+    tipo: z.literal('ciclo'),
+    datos: z
+      .object({
+        variable: z.string().min(1).optional(),
+        vueltas: z.number().int().min(0).optional(),
+        claves: z.object({ inicio: ClaveOpcional, condicion: ClaveOpcional, cambio: ClaveOpcional, vueltas: ClaveOpcional }).optional(),
+      })
+      .optional(),
+  }),
+]);
+
 export const GuionFiestasSchema = z.object({
   ...Comun,
   canal: z.literal('fiestas').optional(),
@@ -101,6 +118,7 @@ export const GuionCodigoSchema = z.object({
         salida: z.string().optional(),
         archivo: z.string().max(30).optional(),
         visual: VisualSchema.optional(),
+        animacion: AnimacionSchema.optional(),
         depurar: z
           .object({
             marcas: z
@@ -110,7 +128,9 @@ export const GuionCodigoSchema = z.object({
           .optional(),
       })
         .refine((e) => !(e.codigo && e.visual), 'Una escena lleva codigo o visual, no los dos')
-        .refine((e) => !(e.depurar && e.archivo), 'depurar ejecuta el código: no se combina con archivo (código ilustrativo)'),
+        .refine((e) => !(e.depurar && e.archivo), 'depurar ejecuta el código: no se combina con archivo (código ilustrativo)')
+        .refine((e) => !(e.animacion && !e.codigo), 'animacion necesita codigo: se mueve con su ejecución')
+        .refine((e) => !(e.animacion && e.archivo), 'animacion ejecuta el código: no se combina con archivo (código ilustrativo)'),
     )
     .min(3)
     .max(7),
@@ -213,12 +233,12 @@ export const ejecutar = (codigo: string): { salida: string; error?: string; time
 };
 
 /** Avisos propios de una escena animada: la traza debe salir, caber y seguir el ritmo de la voz. */
-const verificarDepurador = (e: EscenaCodigo, n: string, duracionSeg: number): string[] => {
+const verificarDepurador = (e: EscenaCodigo, n: string, duracionSeg: number, conAnimacion = false): string[] => {
   const { traza, error } = trazar(e.codigo ?? '');
   if (!traza) return [`${n}: no se puede animar la ejecución (${error}). Se mostrará el editor normal.`];
   const avisos: string[] = [];
   const lineas = (e.codigo ?? '').split('\n');
-  if (medidasDepurador(lineas, traza).desborda) {
+  if (medidasDepurador(lineas, traza, conAnimacion).desborda) {
     avisos.push(`${n}: el código y el panel de variables tapan el subtítulo. Quita líneas de código o variables.`);
   }
   if (traza.salida.some((l) => l.length > MAX_COLUMNAS_CONSOLA)) {
@@ -232,10 +252,13 @@ const verificarDepurador = (e: EscenaCodigo, n: string, duracionSeg: number): st
   return avisos;
 };
 
-/** Calcula los pasos de las escenas animadas; la plantilla no puede ejecutar código por su cuenta. */
+/** Calcula los pasos de las escenas animadas y los datos de sus animaciones; la plantilla no puede ejecutar código. */
 export const agregarTrazas = (g: GuionCodigo): GuionCodigo => ({
   ...g,
-  escenas: g.escenas.map((e) => (e.depurar && e.codigo ? { ...e, traza: trazar(e.codigo).traza } : e)),
+  escenas: g.escenas.map((e) => {
+    const conTraza = e.depurar && e.codigo ? { ...e, traza: trazar(e.codigo).traza } : e;
+    return e.animacion ? { ...conTraza, animacion: calcularAnimacion(conTraza) } : conTraza;
+  }),
 });
 
 /**
@@ -247,15 +270,24 @@ export const verificarCodigo = (escenas: EscenaCodigo[], corregir: boolean, dura
   escenas.forEach((e, i) => {
     if (!e.codigo) return;
     const n = `Escena ${i + 1} (${e.titulo})`;
+    avisos.push(...verificarAnimacion(e, n));
+    const conAnimacion = !!e.animacion && !avisos.some((a) => a.startsWith(`${n}: no se puede animar`));
     const lineas = e.codigo.split('\n');
     const nSalida = (e.salida ?? '').split('\n').filter((l) => l.length).length;
     if (e.depurar) {
-      avisos.push(...verificarDepurador(e, n, duraciones?.[i] ?? Math.max(2.5, e.narracion.length / 15)));
+      avisos.push(...verificarDepurador(e, n, duraciones?.[i] ?? Math.max(2.5, e.narracion.length / 15), conAnimacion));
     } else {
-      if (medidasEditor(lineas, nSalida).desborda) {
-        avisos.push(`${n}: el código y la consola tapan el subtítulo. Quita líneas de código o de salida.`);
+      if (medidasEditor(lineas, nSalida, conAnimacion).desborda) {
+        avisos.push(
+          conAnimacion
+            ? `${n}: el código no cabe junto a la animación sin tapar el subtítulo. Usa máximo 5 líneas de código.`
+            : `${n}: el código y la consola tapan el subtítulo. Quita líneas de código o de salida.`,
+        );
       }
       if (nSalida > MAX_SALIDA_VISIBLE) avisos.push(`${n}: la consola solo muestra las últimas ${MAX_SALIDA_VISIBLE} líneas de salida.`);
+      if (conAnimacion && (e.salida ?? '').split('\n').some((l) => l.length > MAX_COLUMNAS_CONSOLA_ANIMACION)) {
+        avisos.push(`${n}: una línea de consola pasa de ${MAX_COLUMNAS_CONSOLA_ANIMACION} caracteres y se cortaría junto a la animación.`);
+      }
     }
     const fuera = (e.resaltar ?? []).filter((l) => l > lineas.length);
     if (fuera.length) avisos.push(`${n}: resaltar apunta a líneas que no existen: ${fuera.join(', ')}.`);
